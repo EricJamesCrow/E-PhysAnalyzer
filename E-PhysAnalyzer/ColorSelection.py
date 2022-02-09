@@ -10,7 +10,7 @@ class ColorSelectionWindow(object):
         self.availableColors = QtWidgets.QLabel(self.centralwidget)
         self.availableColors.setGeometry(QtCore.QRect(40, 0, 711, 521))
         self.availableColors.setText("")
-        self.availableColors.setPixmap(QtGui.QPixmap("E-PhysAnalyzer/configuration/available_colors.png"))
+        self.availableColors.setPixmap(QtGui.QPixmap("available_colors.png"))
         self.availableColors.setScaledContents(True)
         self.availableColors.setObjectName("label")
         self.crText = QtWidgets.QLabel(self.centralwidget)

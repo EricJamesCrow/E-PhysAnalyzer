@@ -1006,8 +1006,8 @@ class EphysAnalyzer(object):
 
     def delColorConfig(self):
         try:
-            os.remove("configuration/config.txt")
-            os.remove("configuration/dpi.txt")
+            os.remove("config.txt")
+            os.remove("dpi.txt")
         except:
             pass
         self.graphEntryOne.hide()
@@ -1034,11 +1034,11 @@ class EphysAnalyzer(object):
         self.msg.setWindowTitle("Successful!")
         self.msg.setText("Configurations saved!")
         self.msg.setStandardButtons(QMessageBox.Ok)
-        with open("configuration/config.txt", "w") as config:
+        with open("config.txt", "w") as config:
             for i in self.colorCodes:
                 config.writelines(f"{i}\n")
         self.setColorConfig()
-        with open("configuration/dpi.txt", "w") as dpi:
+        with open("dpi.txt", "w") as dpi:
             if self.graphQualityComboBox.currentText() == "Custom":
                 self.grabCustomDpi()
                 dpi.writelines(str(self.dpi)+"\n")
@@ -1061,7 +1061,7 @@ class EphysAnalyzer(object):
         x = self.msg.exec()
 
     def setColorConfig(self):
-        with open("configuration/config.txt", "r") as config:
+        with open("config.txt", "r") as config:
             self.colorCodes = []
             for i in config.readlines():
                 self.colorCodes.append(i.replace('\n', ''))
@@ -1083,7 +1083,7 @@ class EphysAnalyzer(object):
 
 
     def loadDpiConfig(self):
-        with open("configuration/dpi.txt", "r") as dpi:
+        with open("dpi.txt", "r") as dpi:
             newDpi = int(dpi.readline().replace("\n", ""))
             if newDpi == 100:
                 self.graphQualityComboBox.setCurrentIndex(0)
