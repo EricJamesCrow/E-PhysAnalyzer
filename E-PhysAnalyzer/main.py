@@ -325,6 +325,7 @@ class EphysAnalyzer(object):
         self.graphEntryOne.setGeometry(QtCore.QRect(530, 220, 113, 20))
         self.graphEntryOne.setObjectName("graphEntryOne")
         self.graphEntryOne.hide()
+        self.graphEntryOne.setFont(font)
 
     def box(self):
         self.boxLineBottom = QtWidgets.QFrame(self.centralwidget)
@@ -996,6 +997,7 @@ class EphysAnalyzer(object):
         if self.dpi == '':
             self.dpi = 300
 
+
     def hideDpiStuff(self):
         self.dpiLabel.hide()
         self.customEditDPI.hide()
@@ -1011,6 +1013,7 @@ class EphysAnalyzer(object):
         except:
             pass
         self.graphEntryOne.hide()
+        self.graphEntryOne.clear()
         self.showGraphs()
         self.setDefaultColorValues()
         self.colorsComboBox.setCurrentIndex(0)
@@ -1029,36 +1032,44 @@ class EphysAnalyzer(object):
         
 
     def saveColorConfig(self):
-        self.grabColors()
-        self.msg = QMessageBox()
-        self.msg.setWindowTitle("Successful!")
-        self.msg.setText("Configurations saved!")
-        self.msg.setStandardButtons(QMessageBox.Ok)
-        with open("config.txt", "w") as config:
-            for i in self.colorCodes:
-                config.writelines(f"{i}\n")
-        self.setColorConfig()
-        with open("dpi.txt", "w") as dpi:
-            if self.graphQualityComboBox.currentText() == "Custom":
-                self.grabCustomDpi()
-                dpi.writelines(str(self.dpi)+"\n")
-            else:
-                dpi.writelines(str(self.dpi)+"\n")
-            if self.baseline == False:
-                dpi.writelines("False\n")
-                dpi.writelines(f"{self.baseline_color}\n")
-            elif self.baseline == True:
-                dpi.writelines("True\n")
-                if self.baselineColorEntry.text() != '':
-                    dpi.writelines(f"{self.baselineColorEntry.text()}\n")
-                else:
-                    dpi.writelines("gray\n")
-            if self.colorCode == False:
-                dpi.writelines("False\n")
-            elif self.colorCode == True:
-                dpi.writelines("True\n")
+        if not self.baselineColorEntry.text().isnumeric():
+            self.grabColors()
+            self.grabCustomDpi()
+            if not any(i.isdigit() for i in self.colorCodes) and (isinstance(self.dpi, int) or self.dpi.isnumeric()):
+                self.msg = QMessageBox()
+                self.msg.setWindowTitle("Successful!")
+                self.msg.setText("Configurations saved!")
+                self.msg.setStandardButtons(QMessageBox.Ok)
+                with open("config.txt", "w") as config:
+                    for i in self.colorCodes:
+                        config.writelines(f"{i}\n")
+                self.setColorConfig()
+                with open("dpi.txt", "w") as dpi:
+                    if self.graphQualityComboBox.currentText() == "Custom":
+                        self.grabCustomDpi()
+                        dpi.writelines(str(self.dpi)+"\n")
+                    else:
+                        dpi.writelines(str(self.dpi)+"\n")
+                    if self.baseline == False:
+                        dpi.writelines("False\n")
+                        dpi.writelines(f"{self.baseline_color}\n")
+                    elif self.baseline == True:
+                        dpi.writelines("True\n")
+                        if self.baselineColorEntry.text() != '' and not self.baselineColorEntry.text().isnumeric():
+                            dpi.writelines(f"{self.baselineColorEntry.text().strip().lower()}\n")
+                            # fix this.....
+                        else:
+                            dpi.writelines("gray\n")
+                    if self.colorCode == False:
+                        dpi.writelines("False\n")
+                    elif self.colorCode == True:
+                        dpi.writelines("True\n")
 
-        x = self.msg.exec()
+                x = self.msg.exec()
+            else:
+                self.failure_pop_up()
+        else:
+            self.failure_pop_up()
 
     def setColorConfig(self):
         with open("config.txt", "r") as config:
@@ -1329,7 +1340,13 @@ class EphysAnalyzer(object):
         self.msg2.setIcon(QMessageBox.Critical)
         self.msg2.setWindowTitle("Error")
 
-        if len(self.fileName) > 12:
+        if self.baselineColorEntry.text().isnumeric():
+            self.msg2.setText("Baseline color isn't a valid string.")
+        elif any(i.isdigit() for i in self.colorCodes):
+            self.msg2.setText("One or more graph colors is not a valid string.")
+        elif not self.dpi.isnumeric():
+            self.msg2.setText("DPI isn't an integer.")
+        elif len(self.fileName) > 12:
             self.msg2.setText("Please only select a maximum of twelve files.")
             try:
                 self.clearPrevFiles()
@@ -1345,6 +1362,8 @@ class EphysAnalyzer(object):
             self.msg2.setText("Missing one or more values for the trace number.")
         elif not int in self.whenDrug:
             self.msg2.setText("One or more values is not an integer for the trace number.")
+        else:
+            self.msg2.setText("Value error.")
         self.msg2.setStandardButtons(QMessageBox.Ok)
         x = self.msg2.exec()
 
