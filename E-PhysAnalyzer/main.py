@@ -1577,7 +1577,7 @@ class EphysAnalyzer(object):
         self.new_path = path
         if self.new_path == path:
             self.success_pop_up(path)
-
+            
     def clear_button(self):
         self.clearDynamicVariables()
         self.clear_ui()
