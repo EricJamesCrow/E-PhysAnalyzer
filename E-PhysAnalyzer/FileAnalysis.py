@@ -9,6 +9,7 @@ import re
 class MainProgram:
     def check_dpi(self, dpi):
         sns.set(rc={'savefig.dpi': int(dpi)})
+        
 
     def check_graphs(self, colorCodes):
         x = sns.scatterplot()
