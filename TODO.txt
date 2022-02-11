@@ -1,0 +1,7 @@
+1. Reformat y axis on averaged graphs
+2. Rename axis/columns in data files on all graphs
+3. Put copyright and author names onto GUI pannel
+4. Change 'single color' entry font
+5. change font size to larger for easier viewing for users
+6. create in depth read-me for users
+7. Change name of files, output folder, columns, etc.
