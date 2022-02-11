@@ -4,12 +4,12 @@ import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
 import re
+import datetime
 
 
 class MainProgram:
     def check_dpi(self, dpi):
         sns.set(rc={'savefig.dpi': int(dpi)})
-        
 
     def check_graphs(self, colorCodes):
         x = sns.scatterplot()
@@ -24,7 +24,7 @@ class MainProgram:
         base_name = os.path.basename(files[0])
         self.base_name_no_ext_outputs = os.path.splitext(base_name)[0]
         parent_dir = os.path.dirname(os.path.abspath(files[0]))
-        directory = f"E-Phys Analyzer"
+        directory = f"E-Phys Analyzer {datetime.date.today()} Results"
         self.output_path = os.path.join(parent_dir, directory)
         os.makedirs(self.output_path, exist_ok=True)
 
@@ -244,7 +244,7 @@ class MainProgram:
                 basedline = True
             else:
                 basedline = False
-            g.set(ylim=(20, 220))
+            g.set(ylim=(25, 225))
             g.set(xlim=(-10, 30))
             g.set(title=f"{self.base_name_no_ext} Averaged to Minutes")
             sns.despine()

@@ -1,12 +1,11 @@
 import os
-
-import numpy
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 from FileAnalysis import MainProgram
 from ColorSelection import ColorSelectionWindow
 import subprocess
+import datetime
 
 
 class EphysAnalyzer(object):
@@ -1572,12 +1571,12 @@ class EphysAnalyzer(object):
         base_name = os.path.basename(files[0])
         self.base_name_no_ext_outputs = os.path.splitext(base_name)[0]
         parent_dir = os.path.dirname(os.path.abspath(files[0]))
-        directory = f"E-Phys Analyzer"
+        directory = f"E-Phys Analyzer {datetime.date.today()} Results"
         path = os.path.join(parent_dir, directory)
         self.new_path = path
         if self.new_path == path:
             self.success_pop_up(path)
-            
+
     def clear_button(self):
         self.clearDynamicVariables()
         self.clear_ui()
