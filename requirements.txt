@@ -1,5 +1,6 @@
+setuptools~=57.0.0
 PyQt6~=6.2.3
 PySide6~=6.2.3
 seaborn~=0.11.2
-pandas~=1.4.0
+pandas
 matplotlib~=3.5.1

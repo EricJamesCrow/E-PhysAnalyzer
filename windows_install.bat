@@ -2,7 +2,7 @@
 
 ::Checks if python is installed
 :check
-python --version 3>NUL
+python --version 3.10
 if errorlevel 1 goto errorNoPython
 
 ::If python is installed then it runs the program
