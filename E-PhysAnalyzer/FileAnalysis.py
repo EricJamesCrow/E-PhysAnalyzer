@@ -7,11 +7,23 @@ import re
 
 
 class MainProgram:
+    def check_dpi(self, dpi):
+        sns.set(rc={'savefig.dpi': int(dpi)})
+
+    def check_graphs(self, colorCodes):
+        x = sns.scatterplot()
+        for i in range(len(colorCodes)):
+            x.axhline(100, color=colorCodes[i]).set_linestyle("--")
+
+    def check_baseline(self, baseline_color):
+        x = sns.scatterplot()
+        x.axhline(100, color=baseline_color).set_linestyle("--")
+
     def mkdir_outputs(self, files):
         base_name = os.path.basename(files[0])
         self.base_name_no_ext_outputs = os.path.splitext(base_name)[0]
         parent_dir = os.path.dirname(os.path.abspath(files[0]))
-        directory = f"EphysAnalyzer Outputs"
+        directory = f"E-Phys Analyzer"
         self.output_path = os.path.join(parent_dir, directory)
         os.makedirs(self.output_path, exist_ok=True)
 
@@ -69,7 +81,7 @@ class MainProgram:
                     timeInMinutes.append((float(traceTime) - float(timeDifference)) / 60000)
             baseline = ampTotal / totalTraces
 
-            with open(os.path.join(self.path, self.base_name_no_ext + '_PostAnalysis.csv'), 'w') as newCSV:
+            with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'w') as newCSV:
 
                 newCSV.write(','.join(['Trace', 'Trace Start (ms)', 'Trace Start (minutes)', 'R1S1 Peak Amp (pA)',
                                        'Absolute Value R1S1 Peak Amp (pA)',
@@ -134,8 +146,8 @@ class MainProgram:
                                 newCSV.write(','+color+'\n')
                     i += 1
 
-            with open(os.path.join(self.path, self.base_name_no_ext + '_MinuteAveraged.csv'), 'w') as secondCSV:
-                with open(os.path.join(self.path, self.base_name_no_ext + '_PostAnalysis.csv'), 'r') as firstCSV:
+            with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'w') as secondCSV:
+                with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'r') as firstCSV:
                     secondCSV.write(
                         f"Time from {drugAdded} Addition (min),Absolute Value R1S1 Peak Amp Averages Per Minute (pA),Trace Numbers Used in Average,Color Code\n")
                     minuteTimes = []
@@ -216,7 +228,7 @@ class MainProgram:
 
     def make_graphs(self, dpi, baseline, baseline_color):
         # Creates the Minute Averaged graph
-        with open(os.path.join(self.path, self.base_name_no_ext + '_MinuteAveraged.csv'), 'r') as data:
+        with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'r') as data:
             gdata = pd.read_csv(data)
             headers = list(gdata.columns)
             sns.set(rc={'savefig.dpi': int(dpi)})
@@ -231,17 +243,17 @@ class MainProgram:
                 basedline = True
             else:
                 basedline = False
-            g.set(ylim=(0, 160))
+            g.set(ylim=(20, 220))
             g.set(xlim=(-10, 30))
-            g.set(title=f"{self.base_name_no_ext} Average to Minutes")
+            g.set(title=f"{self.base_name_no_ext} Averaged to Minutes")
             sns.despine()
             graph1 = g.get_figure()
-            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_MinuteAveraged_Graph.png'))
+            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged Graph.png'))
             importlib.reload(plt)
             importlib.reload(sns)
 
             # Creates the Post Analysis graph
-            with open(os.path.join(self.path, self.base_name_no_ext + '_PostAnalysis.csv'), 'r') as data2:
+            with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'r') as data2:
                 gdata2 = pd.read_csv(data2)
                 headers2 = list(gdata2.columns)
                 sns.set(rc={'savefig.dpi': int(dpi)})
@@ -262,6 +274,6 @@ class MainProgram:
                 g2.set(xlim=(-10, 30))
                 sns.despine()
                 graph2 = g2.get_figure()
-                graph2.savefig(os.path.join(self.path, self.base_name_no_ext + '_PostAnalysis_Graph.png'))
+                graph2.savefig(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis Graph.png'))
                 importlib.reload(plt)
                 importlib.reload(sns)

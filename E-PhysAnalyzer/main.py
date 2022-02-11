@@ -1,4 +1,6 @@
 import os
+
+import numpy
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QFileDialog, QMessageBox
@@ -24,7 +26,7 @@ class EphysAnalyzer(object):
     def setupUi(self, MainWindow):
         self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(800, 620)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.ephysAnalyzText = QtWidgets.QLabel(self.centralwidget)
@@ -38,14 +40,6 @@ class EphysAnalyzer(object):
         self.browseFilesButton = QtWidgets.QPushButton(self.centralwidget)
         self.browseFilesButton.setGeometry(QtCore.QRect(50, 80, 141, 51))
         self.browseFilesButton.setObjectName("pushButton")
-        self.browseFilesButton.setStyleSheet("QPushButton::hover"
-                             "{"
-                             "background-color : lightblue;"
-                             "}"
-                             "QPushButton::pressed"
-                             "{"
-                             "background-color : lightgray;"
-                             "}")
         font.setPointSize(14)
         self.browseFilesButton.setFont(font)
 
@@ -54,14 +48,6 @@ class EphysAnalyzer(object):
         font = QtGui.QFont()
         font.setFamily(self.font)
         font.setPointSize(36)
-        self.runButton.setStyleSheet("QPushButton::hover"
-                             "{"
-                             "background-color : lightblue;"
-                             "}"
-                             "QPushButton::pressed"
-                             "{"
-                             "background-color : lightgray;"
-                             "}")
         self.runButton.setFont(font)
         self.runButton.setObjectName("pushButton_2")
 
@@ -966,6 +952,30 @@ class EphysAnalyzer(object):
         self.dpiLabel.setText(_translate("MainWindow", "DPI"))
         self.graphSettingsLabel.setText(_translate("MainWindow", "Graph Settings"))
         self.graphQualityComboBox.activated.connect(self.graphQuality)
+        font.setPointSize(12)
+        self.clearValuesButton = QtWidgets.QPushButton(self.centralwidget)
+        self.clearValuesButton.setGeometry(QtCore.QRect(90, 508, 75, 24))
+        self.clearValuesButton.setObjectName("clearValuesButton")
+        self.clearValuesButton.setText(_translate("MainWindow", "Clear Files"))
+        self.clearValuesButton.setFont(font)
+        self.clearValuesButton.clicked.connect(self.clear_button)
+
+        self.readMeButton = QtWidgets.QPushButton(self.centralwidget)
+        self.readMeButton.setGeometry(QtCore.QRect(660, 60, 75, 24))
+        self.readMeButton.setObjectName("readMeButton")
+        self.readMeButton.setText(_translate("MainWindow", "README"))
+        self.readMeButton.setFont(font)
+
+        self.emailsLabel = QtWidgets.QLabel(self.centralwidget)
+        self.emailsLabel.setGeometry(QtCore.QRect(280, 583, 251, 16))
+        self.emailsLabel.setObjectName("emailsLabel")
+        self.emailsLabel.setText(_translate("MainWindow", "cameron.cordero@wsu.edu / EricCrow@pm.me"))
+
+        self.copyrightLabel = QtWidgets.QLabel(self.centralwidget)
+        self.copyrightLabel.setGeometry(QtCore.QRect(230, 566, 381, 16))
+        self.copyrightLabel.setObjectName("copyrightLabel")
+        self.copyrightLabel.setText(_translate("MainWindow", "Copyright (c) 2022 Cameron Cordero / Copyright (c) 2022 Eric Crow"))
+
 
 ########################################################################################################################
     def displayBaseline(self, state):
@@ -1024,6 +1034,7 @@ class EphysAnalyzer(object):
         self.checkBox2.setChecked(True)
         self.baselineColorEntry.clear()
         self.customEditDPI.clear()
+        self.dpi = 300
         self.msg3 = QMessageBox()
         self.msg3.setWindowTitle("Successful!")
         self.msg3.setText("Configurations reset!")
@@ -1034,38 +1045,45 @@ class EphysAnalyzer(object):
     def saveColorConfig(self):
         self.grabColors()
         self.grabCustomDpi()
-        if (isinstance(self.dpi, int) or self.dpi.isnumeric()):
-            self.msg = QMessageBox()
-            self.msg.setWindowTitle("Successful!")
-            self.msg.setText("Configurations saved!")
-            self.msg.setStandardButtons(QMessageBox.Ok)
-            with open("config.txt", "w") as config:
-                for i in self.colorCodes:
-                    config.writelines(f"{i}\n")
-            self.setColorConfig()
-            with open("dpi.txt", "w") as dpi:
-                if self.graphQualityComboBox.currentText() == "Custom":
-                    self.grabCustomDpi()
-                    dpi.writelines(str(self.dpi)+"\n")
-                else:
-                    dpi.writelines(str(self.dpi)+"\n")
-                if self.baseline == False:
-                    dpi.writelines("False\n")
-                    dpi.writelines(f"{self.baseline_color}\n")
-                elif self.baseline == True:
-                    dpi.writelines("True\n")
-                    if self.baselineColorEntry.text() != '' and not self.baselineColorEntry.text().isnumeric():
-                        dpi.writelines(f"{self.baselineColorEntry.text().strip().lower()}\n")
-                        # fix this.....
+        self.grabBaselineColor()
+        mP = MainProgram()
+        try:
+            mP.check_graphs(self.colorCodes)
+            mP.check_baseline(self.baseline_color)
+            if (isinstance(self.dpi, int) or self.dpi.isnumeric()):
+                self.msg = QMessageBox()
+                self.msg.setWindowTitle("Successful!")
+                self.msg.setText("Configurations saved!")
+                self.msg.setStandardButtons(QMessageBox.Ok)
+                with open("config.txt", "w") as config:
+                    for i in self.colorCodes:
+                        config.writelines(f"{i}\n")
+                self.setColorConfig()
+                with open("dpi.txt", "w") as dpi:
+                    if self.graphQualityComboBox.currentText() == "Custom":
+                        self.grabCustomDpi()
+                        dpi.writelines(str(self.dpi)+"\n")
                     else:
-                        dpi.writelines("gray\n")
-                if self.colorCode == False:
-                    dpi.writelines("False\n")
-                elif self.colorCode == True:
-                    dpi.writelines("True\n")
+                        dpi.writelines(str(self.dpi)+"\n")
+                    if self.baseline == False:
+                        dpi.writelines("False\n")
+                        dpi.writelines(f"{self.baseline_color}\n")
+                    elif self.baseline == True:
+                        dpi.writelines("True\n")
+                        if self.baselineColorEntry.text() != '' and not self.baselineColorEntry.text().isnumeric():
+                            dpi.writelines(f"{self.baselineColorEntry.text().strip().lower()}\n")
+                            # fix this.....
+                        else:
+                            dpi.writelines("gray\n")
+                    if self.colorCode == False:
+                        dpi.writelines("False\n")
+                    elif self.colorCode == True:
+                        dpi.writelines("True\n")
 
-            x = self.msg.exec()
-        else:
+                x = self.msg.exec()
+            else:
+                self.second_failure_pop_up()
+        except:
             self.second_failure_pop_up()
 
     def setColorConfig(self):
@@ -1271,7 +1289,8 @@ class EphysAnalyzer(object):
 
     def clear_ui(self):
         # Clears the text in the Line Edit boxes
-        self.fileSelectedLabel.setText("")
+        self.fileSelectedLabel.setText("<html><head/><body><p><span style=\" color:#ff0000;\">Please select one or "
+                                       "more .atf files for analysis.</span></p></body></html>")
 
     def clear_values(self):
         self.fileName = []
@@ -1350,16 +1369,27 @@ class EphysAnalyzer(object):
             self.msg2.setText("Missing one or more values for the name of the drug.")
         elif '' in self.whenDrug:
             self.msg2.setText("Missing one or more values for the trace number.")
+        elif any(len(self.whenDrug[i].strip().split(' ')) > 1 for i in range(len(self.whenDrug))):
+            self.msg2.setText("Make sure your trace numbers contain no spaces.")
+            print(self.whenDrug)
         elif not any(i.isdigit() for i in self.whenDrug):
             self.msg2.setText("One or more values is not an integer for the trace number.")
         else:
             try:
-                list(map(int, self.excludedTracesStripped))
-                self.msg2.setText('One or more values in the graph settings is not valid.\n'
-                                  'Click "Show Colors" to see a list of available colors.')
-            except ValueError:
-                self.msg2.setText("One or more values is not an integer for the excluded traces.")
-
+                mP = MainProgram()
+                mP.check_dpi(self.dpi)
+                try:
+                    mP.check_graphs(self.colorCodes)
+                    try:
+                        mP.check_baseline(self.baseline_color)
+                    except:
+                        self.msg2.setText('Baseline color is invalid.\n'
+                                          'Click "Show Colors" to see a list of available colors.')
+                except:
+                    self.msg2.setText('One or more values in the graph settings is not valid.\n'
+                              'Click "Show Colors" to see a list of available colors.')
+            except:
+                self.msg2.setText("DPI is not an integer.")
         self.msg2.setStandardButtons(QMessageBox.Ok)
         x = self.msg2.exec()
 
@@ -1367,12 +1397,23 @@ class EphysAnalyzer(object):
         self.msg4 = QMessageBox()
         self.msg4.setIcon(QMessageBox.Critical)
         self.msg4.setWindowTitle("Error")
-        if self.baselineColorEntry.text().isnumeric():
-            self.msg4.setText("Baseline color isn't a valid string.")
-        elif any(i.isdigit() for i in self.colorCodes):
-            self.msg4.setText("One or more graph colors is not a valid string.")
-        elif not self.dpi.isnumeric():
-            self.msg4.setText("DPI isn't an integer.")
+        mP = MainProgram()
+        try:
+            mP.check_graphs(self.colorCodes)
+            try:
+                mP.check_baseline(self.baseline_color)
+                if self.baselineColorEntry.text().isnumeric():
+                    self.msg4.setText("Baseline color isn't a valid string.")
+                elif any(i.isdigit() for i in self.colorCodes):
+                    self.msg4.setText("One or more graph colors is not a valid string.")
+                elif not self.dpi.isnumeric():
+                    self.msg4.setText("DPI isn't an integer.")
+            except:
+                self.msg4.setText('Baseline color is invalid.\n'
+                                          'Click "Show Colors" to see a list of available colors.')
+        except:
+            self.msg4.setText('One or more values in the graph settings is not valid.\n'
+                              'Click "Show Colors" to see a list of available colors.')
         self.msg4.setStandardButtons(QMessageBox.Ok)
         x = self.msg4.exec()
 
@@ -1469,25 +1510,54 @@ class EphysAnalyzer(object):
             self.drugAdded.append(globals()[f"self.drugAddedEntry{i}"].text())
             self.whenDrug.append(globals()[f"self.traceNumberEntry{i}"].text())
             self.excludedTraces.append(list(globals()[f"self.excludedTracesEntry{i}"].text().split(" ")))
-        if '' in self.drugAdded:
+        if any(len(self.whenDrug[i].strip().split(' ')) > 1 for i in range(len(self.whenDrug))):
             self.failure_pop_up()
         else:
             try:
-                self.run(self.fileName, self.drugAdded, self.whenDrug, self.excludedTraces, self.colorCode, self.colorCodes)
+                self.checkExcludedTraces(self.fileName, self.whenDrug, self.excludedTraces)
+                # or (len(self.whenDrug[i].split(" ")) > 1 for i in range(len(self.whenDrug)))
+                if '' in self.drugAdded or '' in self.fileName or '' in self.whenDrug:
+                    self.failure_pop_up()
+                else:
+                    try:
+                        self.run(self.fileName, self.drugAdded, self.whenDrug, self.excludedTraces, self.colorCode,
+                                 self.colorCodes)
+                    except:
+                        self.failure_pop_up()
             except:
-                self.failure_pop_up()
+                self.excluded_traces_failure_pop_up()
+
+    def excluded_traces_failure_pop_up(self):
+        self.msg5 = QMessageBox()
+        self.msg5.setIcon(QMessageBox.Critical)
+        self.msg5.setWindowTitle("Error")
+        self.msg5.setText("One or more values is not an integer for the excluded traces.")
+        self.msg5.setStandardButtons(QMessageBox.Ok)
+        x = self.msg5.exec()
 
     def grabBaselineColor(self):
         self.baseline_color = self.baselineColorEntry.text().strip()
         if self.baseline_color == '':
             self.baseline_color = "gray"
 
+    def checkExcludedTraces(self, files, whenDrug, excludedTraces):
+        excludedTracesStripped = []
+        exTracesInBaseline = []
+        for i in range(len(files)):
+            excludedTracesStripped = []
+            for x in excludedTraces[i]:
+                if x.strip():
+                    excludedTracesStripped.append(x)
+            x = list(map(int, excludedTracesStripped))
+
     def run(self, files, drugAdded, whenDrug, excludedTraces, colorCode, colorCodes):
-        self.excludedTracesStripped = []
         if self.graphQualityComboBox.currentText() == "Custom":
             self.grabCustomDpi()
         self.grabBaselineColor()
         mP = MainProgram()
+        mP.check_dpi(self.dpi)
+        mP.check_graphs(colorCodes)
+        mP.check_baseline(self.baseline_color)
         mP.mkdir_outputs(files)
         for i in range(len(files)):
             self.excludedTracesStripped = []
@@ -1497,19 +1567,21 @@ class EphysAnalyzer(object):
             mP.mkdir(files[i])
             mP.analyze_data(files[i], drugAdded[i], int(whenDrug[i]), self.excludedTracesStripped, colorCode, colorCodes)
             mP.make_graphs(self.dpi, self.baseline, self.baseline_color)
-            self.excludedTracesStripped = []
+        self.excludedTracesStripped = []
 
         base_name = os.path.basename(files[0])
         self.base_name_no_ext_outputs = os.path.splitext(base_name)[0]
         parent_dir = os.path.dirname(os.path.abspath(files[0]))
-        directory = f"EphysAnalyzer Outputs"
+        directory = f"E-Phys Analyzer"
         path = os.path.join(parent_dir, directory)
         self.new_path = path
+        if self.new_path == path:
+            self.success_pop_up(path)
+
+    def clear_button(self):
         self.clearDynamicVariables()
         self.clear_ui()
         self.clear_values()
-        if self.new_path == path:
-            self.success_pop_up(path)
 
 if __name__ == "__main__":
     import sys
