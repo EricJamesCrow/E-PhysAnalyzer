@@ -16,7 +16,7 @@ class EphysAnalyzer(object):
         self.excludedTraces = []
         self.colorCode = True
         self.colorCodes = ['gray', 'black', 'gray', 'purple', 'green', 'blue', 'orange', 'red']
-        QtGui.QFontDatabase.addApplicationFont("configuration/GILC____.ttf")
+        QtGui.QFontDatabase.addApplicationFont(os.path.abspath("GILC____.ttf"))
         self.font = "Gill Sans MT Condensed"
         self.dpi = 300
         self.baseline = True

@@ -1,5 +1,4 @@
 @echo off
 
-cd E-PhysAnalyzer
-python3.10 main.py
-exit
+cd E-PhysAnalyzer\dist\E-PhysAnalyzer
+.\E-PhysAnalyzer.exe
