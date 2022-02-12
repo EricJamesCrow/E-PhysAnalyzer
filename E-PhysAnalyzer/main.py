@@ -971,7 +971,7 @@ class EphysAnalyzer(object):
         self.emailsLabel.setText(_translate("MainWindow", "cameron.cordero@wsu.edu / EricCrow@pm.me"))
 
         self.copyrightLabel = QtWidgets.QLabel(self.centralwidget)
-        self.copyrightLabel.setGeometry(QtCore.QRect(230, 566, 381, 16))
+        self.copyrightLabel.setGeometry(QtCore.QRect(230, 566, 400, 16))
         self.copyrightLabel.setObjectName("copyrightLabel")
         self.copyrightLabel.setText(_translate("MainWindow", "Copyright (c) 2022 Cameron Cordero / Copyright (c) 2022 Eric Crow"))
 
