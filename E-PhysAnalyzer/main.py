@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 from FileAnalysis import MainProgram
 from ColorSelection import ColorSelectionWindow
+from ReadThis import Ui_ReadMe
 import subprocess
 import datetime
 
@@ -964,9 +965,10 @@ class EphysAnalyzer(object):
         self.readMeButton.setObjectName("readMeButton")
         self.readMeButton.setText(_translate("MainWindow", "README"))
         self.readMeButton.setFont(font)
+        self.readMeButton.clicked.connect(self.show_read_me)
 
         self.emailsLabel = QtWidgets.QLabel(self.centralwidget)
-        self.emailsLabel.setGeometry(QtCore.QRect(280, 583, 251, 16))
+        self.emailsLabel.setGeometry(QtCore.QRect(280, 583, 400, 16))
         self.emailsLabel.setObjectName("emailsLabel")
         self.emailsLabel.setText(_translate("MainWindow", "cameron.cordero@wsu.edu / EricCrow@pm.me"))
 
@@ -1286,6 +1288,12 @@ class EphysAnalyzer(object):
         self.colorSelect.setupUi(self.second_window)
         self.second_window.show()
 
+    def show_read_me(self):
+        self.read_me_window = QtWidgets.QMainWindow()
+        self.read_me_class = Ui_ReadMe()
+        self.read_me_class.setupUi(self.read_me_window)
+        self.read_me_window.show()
+
     def clear_ui(self):
         # Clears the text in the Line Edit boxes
         self.fileSelectedLabel.setText("<html><head/><body><p><span style=\" color:#ff0000;\">Please select one or "
@@ -1370,7 +1378,6 @@ class EphysAnalyzer(object):
             self.msg2.setText("Missing one or more values for the trace number.")
         elif any(len(self.whenDrug[i].strip().split(' ')) > 1 for i in range(len(self.whenDrug))):
             self.msg2.setText("Make sure your trace numbers contain no spaces.")
-            print(self.whenDrug)
         elif not any(i.isdigit() for i in self.whenDrug):
             self.msg2.setText("One or more values is not an integer for the trace number.")
         else:
@@ -1507,14 +1514,13 @@ class EphysAnalyzer(object):
         self.excludedTraces = []
         for i in range(len(self.fileName)):
             self.drugAdded.append(globals()[f"self.drugAddedEntry{i}"].text())
-            self.whenDrug.append(globals()[f"self.traceNumberEntry{i}"].text())
+            self.whenDrug.append(globals()[f"self.traceNumberEntry{i}"].text().strip())
             self.excludedTraces.append(list(globals()[f"self.excludedTracesEntry{i}"].text().split(" ")))
-        if any(len(self.whenDrug[i].strip().split(' ')) > 1 for i in range(len(self.whenDrug))):
+        if any(len(self.whenDrug[i].strip().split(' ')) > 1 for i in range(len(self.whenDrug))) or not any(i.isdigit() for i in self.whenDrug):
             self.failure_pop_up()
         else:
             try:
-                self.checkExcludedTraces(self.fileName, self.whenDrug, self.excludedTraces)
-                # or (len(self.whenDrug[i].split(" ")) > 1 for i in range(len(self.whenDrug)))
+                self.checkExcludedTraces(self.fileName, self.excludedTraces)
                 if '' in self.drugAdded or '' in self.fileName or '' in self.whenDrug:
                     self.failure_pop_up()
                 else:
@@ -1539,7 +1545,7 @@ class EphysAnalyzer(object):
         if self.baseline_color == '':
             self.baseline_color = "gray"
 
-    def checkExcludedTraces(self, files, whenDrug, excludedTraces):
+    def checkExcludedTraces(self, files, excludedTraces):
         excludedTracesStripped = []
         exTracesInBaseline = []
         for i in range(len(files)):
