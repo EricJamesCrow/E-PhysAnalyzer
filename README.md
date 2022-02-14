@@ -19,7 +19,7 @@ Windows installation instructions:
 Linux installation instructions:
 - *REQUIRES PYTHON 3.8 OR ABOVE*
 
-From the Linux command line, input the following commands:
+  From the Linux command line, input the following commands:
 - 'wget https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip'
 - 'unzip main.zip'
 - 'cd E-PhysAnalyzer-main'
