@@ -22,6 +22,9 @@ class EphysAnalyzer(object):
         self.dpi = 300
         self.baseline = True
         self.baseline_color = "gray"
+        self.z_limit = 2.5
+        self.z_checking = True
+        self.z_works = True
 
     def setupUi(self, MainWindow):
         self.MainWindow = MainWindow
@@ -979,8 +982,52 @@ class EphysAnalyzer(object):
         self.copyrightLabel.setText(_translate("MainWindow", "Copyright (c) 2022 Cameron Cordero / Copyright (c) 2022 Eric Crow"))
         self.copyrightLabel.setFont(font)
 
+        self.outliersCheckBox = QtWidgets.QCheckBox(self.centralwidget)
+        self.outliersCheckBox.setGeometry(QtCore.QRect(540, 380, 111, 20))
+        self.outliersCheckBox.setObjectName("outliersCheckBox")
+        self.outliersCheckBox.setText(_translate("MainWindow", "Remove Outliers"))
+        self.outliersCheckBox.setChecked(True)
+        self.outliersCheckBox.stateChanged.connect(self.displayOutliersSlider)
+        font.setPointSize(11)
+        self.outliersCheckBox.setFont(font)
+
+        self.zScoreEntryBox = QtWidgets.QLineEdit(self.centralwidget)
+        self.zScoreEntryBox.setGeometry(QtCore.QRect(580, 400, 61, 16))
+        self.zScoreEntryBox.setObjectName("zScoreEntryBox")
+        self.zScoreEntryBox.setFont(font)
+        self.zScoreEntryBox.setPlaceholderText("2.5")
+
+        self.zScoreLabel = QtWidgets.QLabel(self.centralwidget)
+        self.zScoreLabel.setGeometry(QtCore.QRect(530, 400, 61, 16))
+        self.zScoreLabel.setObjectName("zScoreLabel")
+        self.zScoreLabel.setText(_translate("MainWindow", "Z-Score >"))
+        self.zScoreLabel.setFont(font)
+
+
 
 ########################################################################################################################
+    def grabZscore(self):
+        self.z_works = True
+        if self.zScoreEntryBox.text() != '':
+            try:
+                self.z_limit = float(self.zScoreEntryBox.text().strip())
+                return self.z_limit
+            except:
+                self.z_works = False
+                return self.z_works
+        else:
+            pass
+
+    def displayOutliersSlider(self, state):
+        if state == Qt.Checked:
+            self.zScoreEntryBox.show()
+            self.zScoreLabel.show()
+            self.z_checking = True
+        else:
+            self.zScoreEntryBox.hide()
+            self.zScoreLabel.hide()
+            self.z_checking = False
+
     def displayBaseline(self, state):
         if state == Qt.Checked:
             self.baseline = True
@@ -1025,6 +1072,10 @@ class EphysAnalyzer(object):
             os.remove("dpi.txt")
         except:
             pass
+        self.zScoreEntryBox.clear()
+        self.outliersCheckBox.setChecked(True)
+        self.z_limit = 2.5
+        self.z_checking = True
         self.graphEntryOne.hide()
         self.graphEntryOne.clear()
         self.showGraphs()
@@ -1051,9 +1102,10 @@ class EphysAnalyzer(object):
         self.grabBaselineColor()
         mP = MainProgram()
         try:
+            self.grabZscore()
             mP.check_graphs(self.colorCodes)
             mP.check_baseline(self.baseline_color)
-            if (isinstance(self.dpi, int) or self.dpi.isnumeric()):
+            if (isinstance(self.dpi, int) or self.dpi.isnumeric()) and self.z_works != False:
                 self.msg = QMessageBox()
                 self.msg.setWindowTitle("Successful!")
                 self.msg.setText("Configurations saved!")
@@ -1075,13 +1127,18 @@ class EphysAnalyzer(object):
                         dpi.writelines("True\n")
                         if self.baselineColorEntry.text() != '' and not self.baselineColorEntry.text().isnumeric():
                             dpi.writelines(f"{self.baselineColorEntry.text().strip().lower()}\n")
-                            # fix this.....
                         else:
                             dpi.writelines("gray\n")
                     if self.colorCode == False:
                         dpi.writelines("False\n")
                     elif self.colorCode == True:
                         dpi.writelines("True\n")
+                    if self.z_checking == True:
+                        dpi.writelines("True\n")
+                        dpi.writelines(f"{self.z_limit}\n")
+                    elif self.z_checking == False:
+                        dpi.writelines("False\n")
+                        dpi.writelines(f"{self.z_limit}\n")
 
                 x = self.msg.exec()
             else:
@@ -1134,6 +1191,8 @@ class EphysAnalyzer(object):
             secondLine = dpi.readline()
             thirdLine = dpi.readline()
             fourthLine = dpi.readline()
+            fifthLine = dpi.readline()
+            sixthLine = dpi.readline()
             if secondLine == "True\n":
                 self.baseline = True
                 self.baseline_color = thirdLine.replace("\n", "")
@@ -1146,6 +1205,12 @@ class EphysAnalyzer(object):
                 self.checkBox.setChecked(True)
             else:
                 self.checkBox.setChecked(False)
+            if fifthLine == "True\n":
+                self.outliersCheckBox.setChecked(True)
+            else:
+                self.outliersCheckBox.setChecked(False)
+            self.z_limit = float(sixthLine.replace("\n", ""))
+            self.zScoreEntryBox.setText(str(self.z_limit))
 
 
     def ui_functions(self):
@@ -1365,7 +1430,9 @@ class EphysAnalyzer(object):
         self.msg2 = QMessageBox()
         self.msg2.setIcon(QMessageBox.Critical)
         self.msg2.setWindowTitle("Error")
-        if len(self.fileName) > 12:
+        if self.z_works == False:
+            self.msg2.setText("Z-Score is not an integer or decimal value.")
+        elif len(self.fileName) > 12:
             self.msg2.setText("Please only select a maximum of twelve files.")
             try:
                 self.clearPrevFiles()
@@ -1411,7 +1478,9 @@ class EphysAnalyzer(object):
             mP.check_graphs(self.colorCodes)
             try:
                 mP.check_baseline(self.baseline_color)
-                if self.baselineColorEntry.text().isnumeric():
+                if self.z_works == False:
+                    self.msg4.setText("Z-Score is not an integer or decimal value.")
+                elif self.baselineColorEntry.text().isnumeric():
                     self.msg4.setText("Baseline color isn't a valid string.")
                 elif any(i.isdigit() for i in self.colorCodes):
                     self.msg4.setText("One or more graph colors is not a valid string.")
@@ -1522,10 +1591,10 @@ class EphysAnalyzer(object):
         if (any(len(self.whenDrug[i].strip().split(' ')) > 1 or not self.whenDrug[i].isdigit() for i in range(len(self.whenDrug)))):
             self.failure_pop_up()
         else:
-            print(self.whenDrug)
             try:
                 self.checkExcludedTraces(self.fileName, self.excludedTraces)
-                if '' in self.drugAdded or '' in self.fileName or '' in self.whenDrug:
+                self.grabZscore()
+                if '' in self.drugAdded or '' in self.fileName or '' in self.whenDrug or self.z_works == False:
                     self.failure_pop_up()
                 else:
                     try:
@@ -1533,7 +1602,6 @@ class EphysAnalyzer(object):
                                  self.colorCodes)
                     except:
                         self.failure_pop_up()
-                        print(self.whenDrug)
             except:
                 self.excluded_traces_failure_pop_up()
 
@@ -1568,6 +1636,7 @@ class EphysAnalyzer(object):
         mP.check_dpi(self.dpi)
         mP.check_graphs(colorCodes)
         mP.check_baseline(self.baseline_color)
+        self.grabZscore()
         mP.mkdir_outputs(files)
         for i in range(len(files)):
             self.excludedTracesStripped = []
@@ -1575,7 +1644,7 @@ class EphysAnalyzer(object):
                 if x.strip():
                     self.excludedTracesStripped.append(x)
             mP.mkdir(files[i])
-            mP.analyze_data(files[i], drugAdded[i], int(whenDrug[i]), self.excludedTracesStripped, colorCode, colorCodes)
+            mP.analyze_data(files[i], drugAdded[i], int(whenDrug[i]), self.excludedTracesStripped, colorCode, colorCodes, self.z_limit, self.z_checking)
             mP.make_graphs(self.dpi, self.baseline, self.baseline_color)
         self.excludedTracesStripped = []
 
