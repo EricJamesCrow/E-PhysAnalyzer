@@ -18,8 +18,6 @@ Windows installation instructions:
 -	To properly run the program with all the features, use the 'run.bat' file to start the program
 
 Linux installation instructions:
-- *REQUIRES PYTHON 3.8 OR ABOVE*
-
   From the Linux command line, input the following commands:
 - 'wget https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip'
 - 'unzip main.zip'
