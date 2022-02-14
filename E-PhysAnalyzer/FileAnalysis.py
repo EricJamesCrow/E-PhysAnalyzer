@@ -5,7 +5,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import re
 import datetime
-
+# import mpld3
+# import numpy as np
 
 class MainProgram:
     def check_dpi(self, dpi):
@@ -19,6 +20,8 @@ class MainProgram:
     def check_baseline(self, baseline_color):
         x = sns.scatterplot()
         x.axhline(100, color=baseline_color).set_linestyle("--")
+        importlib.reload(plt)
+        importlib.reload(sns)
 
     def mkdir_outputs(self, files):
         base_name = os.path.basename(files[0])
@@ -85,8 +88,8 @@ class MainProgram:
             with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'w') as newCSV:
 
                 newCSV.write(','.join(['Trace', 'Trace Start (ms)', 'Trace Start (minutes)', 'R1S1 Peak Amp (pA)',
-                                       'Absolute Value R1S1 Peak Amp (pA)',
-                                       'Normalized to Baseline (' + str(baseline) + ')',
+                                       'Abs Val R1S1 Peak Amp (pA)',
+                                       'Normalized to Baseline (' + str(baseline)[:8] + ')',
                                        'Time From ' + drugAdded + ' Addition', 'Color Code']) + '\n')
 
                 atfFile.seek(0)
@@ -150,7 +153,7 @@ class MainProgram:
             with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'w') as secondCSV:
                 with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'r') as firstCSV:
                     secondCSV.write(
-                        f"Time from {drugAdded} Addition (min),Absolute Value R1S1 Peak Amp Averages Per Minute (pA),Trace Numbers Used in Average,Color Code\n")
+                        f"Time from {drugAdded} Addition (min),Abs Val R1S1 Peak Amp Normalized to Baseline (pA),Trace Numbers Used in Average,Color Code\n")
                     minuteTimes = []
                     traceNumbers = []
                     traces = ''
@@ -246,10 +249,10 @@ class MainProgram:
                 basedline = False
             g.set(ylim=(25, 225))
             g.set(xlim=(-10, 30))
-            g.set(title=f"{self.base_name_no_ext} Averaged to Minutes")
+            g.set(title=f"{self.base_name_no_ext} Minute Averages Normalized to Baseline")
             sns.despine()
             graph1 = g.get_figure()
-            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged Graph.png'))
+            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + ' Minute Averages.png'))
             importlib.reload(plt)
             importlib.reload(sns)
 
@@ -271,10 +274,24 @@ class MainProgram:
                     g2.axhline(baseline_int, color=baseline_color).set_linestyle("--")
                 else:
                     pass
-                g2.set(title=f"{self.base_name_no_ext} Full Data Set")
+                g2.set(title=f"{self.base_name_no_ext} Peak Amplitude Over Time")
                 g2.set(xlim=(-10, 30))
                 sns.despine()
                 graph2 = g2.get_figure()
                 graph2.savefig(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis Graph.png'))
                 importlib.reload(plt)
                 importlib.reload(sns)
+
+    # def make_json_graphs(self):
+    #     fig, ax = plt.subplots()
+    #     N = 50
+    #     scatter = ax.scatter(gdata.headers[6],
+    #                          gdata.headers[4])
+    #     ax.grid(color='white', linestyle='solid')
+    #
+    #     ax.set_title("Scatter Plot (with tooltips!)", size=20)
+    #
+    #     labels = [headers[0], headers[4], headers[5], headers[6]]
+    #     tooltip = mpld3.plugins.PointLabelTooltip(scatter)
+    #     mpld3.plugins.connect(fig, tooltip)
+    #     mpld3.save_json(fig, os.path.join(self.path, self.base_name_no_ext + ' with Tool Tips'))

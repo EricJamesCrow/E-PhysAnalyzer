@@ -1149,7 +1149,7 @@ class EphysAnalyzer(object):
     def ui_functions(self):
         # easy to copy/paste for new UI
         self.browseFilesButton.clicked.connect(self.get_filename)
-        self.runButton.clicked.connect(self.runTheJewels)
+        self.runButton.clicked.connect(self.run_the_program)
         self.showColors.clicked.connect(self.showColorsWindow)
 
     def clickBox(self, state):
@@ -1321,6 +1321,7 @@ class EphysAnalyzer(object):
             self.fileSelectedLabel.setText(f"<html><head/><body><p><span style=\" color:#ff0000;\">Please input analysis data.</span></p></body></html>")
             self.clearAndNew(self.fileName)
             self.prevFiles = self.fileName
+
         elif len(self.fileName) == 1:
             self.fileSelectedLabel.setText(
                 f"<html><head/><body><p><span style=\" color:#ff0000;\">Please input analysis data.</span></p></body></html>")
@@ -1377,8 +1378,8 @@ class EphysAnalyzer(object):
         elif '' in self.whenDrug:
             self.msg2.setText("Missing one or more values for the trace number.")
         elif any(len(self.whenDrug[i].strip().split(' ')) > 1 for i in range(len(self.whenDrug))):
-            self.msg2.setText("Make sure your trace numbers contain no spaces.")
-        elif not any(i.isdigit() for i in self.whenDrug):
+            self.msg2.setText("Make sure you choose only one trace number.")
+        elif any(not self.whenDrug[i].isdigit() for i in range(len(self.whenDrug))):
             self.msg2.setText("One or more values is not an integer for the trace number.")
         else:
             try:
@@ -1507,7 +1508,7 @@ class EphysAnalyzer(object):
                 globals()[f"self.traceNumberEntry{i}"].hide()
                 globals()[f"self.excludedTracesEntry{i}"].hide()
 
-    def runTheJewels(self):
+    def run_the_program(self):
         self.grabColors()
         self.drugAdded = []
         self.whenDrug = []
@@ -1516,9 +1517,10 @@ class EphysAnalyzer(object):
             self.drugAdded.append(globals()[f"self.drugAddedEntry{i}"].text())
             self.whenDrug.append(globals()[f"self.traceNumberEntry{i}"].text().strip())
             self.excludedTraces.append(list(globals()[f"self.excludedTracesEntry{i}"].text().split(" ")))
-        if any(len(self.whenDrug[i].strip().split(' ')) > 1 for i in range(len(self.whenDrug))) or not any(i.isdigit() for i in self.whenDrug):
+        if (any(len(self.whenDrug[i].strip().split(' ')) > 1 or not self.whenDrug[i].isdigit() for i in range(len(self.whenDrug)))):
             self.failure_pop_up()
         else:
+            print(self.whenDrug)
             try:
                 self.checkExcludedTraces(self.fileName, self.excludedTraces)
                 if '' in self.drugAdded or '' in self.fileName or '' in self.whenDrug:
@@ -1529,6 +1531,7 @@ class EphysAnalyzer(object):
                                  self.colorCodes)
                     except:
                         self.failure_pop_up()
+                        print(self.whenDrug)
             except:
                 self.excluded_traces_failure_pop_up()
 
