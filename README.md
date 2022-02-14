@@ -9,17 +9,24 @@
 ***
 ## Installation Guide
 #### 1. Install EPhysAnalyzer 
-To run EPhysAnalyzer through apt using the following two commands in the Windows PowerShell or Linux terminal:  
-  If you are on a Linux Terminal, use the following command:
--	'wget https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip'
--	'unzip E-PhysAnalyzer-main.zip'
--	'cd E-PhysAnalyzer-main'
--	'pip install -r requirements.txt'
--	'cd E-PhysAnalyzer'
--	'python main.py'
+Windows installation instructions:
+-	*REQUIRES PYTHON 3.8 OR ABOVE*
+-	Download this package from https://github.com/EricJamesCrow/E-PhysAnalyzer/
+-	Unzip the downloaded file to your desired directory
+-	Within the E-Phys Analyzer-main folder run 'install.bat'
+-	To properly run the program with all the features, use the 'run.bat' file to start the program
 
-If you are on a Windows PowerShell, use the following command:
--	'curl https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip'
+Linux installation instructions:
+- *REQUIRES PYTHON 3.8 OR ABOVE*
+
+From the Linux command line, input the following commands:
+- 'wget https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip'
+- 'unzip main.zip'
+- 'cd E-PhysAnalyzer-main'
+- 'pip install -r requirements.txt'
+- 'cd E-PhysAnalyzer'
+- 'python3 main.py'
+
 ***
 ## Input Files and Formats
 #### Directory Structure
