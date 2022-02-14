@@ -1,4 +1,4 @@
-# E-Phys Analyzer
+# E-Phys Analyzer version 1.0.0
 ##### A data analysis and visualization tool for Clampfit data.
 ***
 ## Table of Contents
