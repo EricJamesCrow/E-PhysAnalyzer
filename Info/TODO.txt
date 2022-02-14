@@ -2,6 +2,6 @@
 - Cooler logo (fabicon) for the window
 - Update readme with more user tips, walkthrough
 - (Linux) 'qt.qpa.xcb: QXcbConnection: XCB error: 3 (BadWindow), sequence: 782, resource id: 10514244, major code: 40 (TranslateCoords), minor code: 0' error
-- Create an analysis that removes outliers from plotted points as an option
 - possbily create a best fit line for data
 - change potential time differences for how frequent readings are taken, ie. not 20 seconds every time per reading.
+
