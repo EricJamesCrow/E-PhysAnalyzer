@@ -54,4 +54,4 @@ I would like to thank the following individuals and organizations who made devel
 - The TE Brown lab at Washington State University, especially Dr. Travis Brown who gave me the opportunity to work on this software
 - Washington State University for funding me as a graduate student while I developed E-Phys Analyzer.
 - Ben Morledge-Hampton from Washington State Unversity who taught me most of my python knowledge and helped me create this program and others.
-- Lastly, I would like to thank my collaborator, Eric Crow for his dedication and persistence on making this program user friendly. Without him, none of this would have been possible.
+- Lastly, I would like to thank my collaborator, Eric Crow for his dedication and persistence on co-writing this program and making it user friendly. Without him, none of this would have been possible.
