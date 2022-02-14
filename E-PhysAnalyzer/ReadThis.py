@@ -26,7 +26,7 @@ class Ui_ReadMe(object):
     def retranslateUi(self, ReadMe):
         _translate = QtCore.QCoreApplication.translate
         ReadMe.setWindowTitle(_translate("ReadMe", "README"))
-        with open(os.path.abspath('configuration/README.md')) as x:
+        with open(os.path.abspath('../README.md')) as x:
             self.textBrowser.setMarkdown(x.read())
         self.close_button = QtWidgets.QPushButton(self.centralwidget, clicked= lambda: self.close(ReadMe))
         self.close_button.setGeometry(QtCore.QRect(370, 555, 75, 24))
