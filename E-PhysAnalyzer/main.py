@@ -968,14 +968,16 @@ class EphysAnalyzer(object):
         self.readMeButton.clicked.connect(self.show_read_me)
 
         self.emailsLabel = QtWidgets.QLabel(self.centralwidget)
-        self.emailsLabel.setGeometry(QtCore.QRect(280, 583, 400, 16))
+        self.emailsLabel.setGeometry(QtCore.QRect(287, 583, 400, 16))
         self.emailsLabel.setObjectName("emailsLabel")
         self.emailsLabel.setText(_translate("MainWindow", "cameron.cordero@wsu.edu / EricCrow@pm.me"))
+        self.emailsLabel.setFont(font)
 
         self.copyrightLabel = QtWidgets.QLabel(self.centralwidget)
-        self.copyrightLabel.setGeometry(QtCore.QRect(230, 566, 400, 16))
+        self.copyrightLabel.setGeometry(QtCore.QRect(240, 566, 400, 16))
         self.copyrightLabel.setObjectName("copyrightLabel")
         self.copyrightLabel.setText(_translate("MainWindow", "Copyright (c) 2022 Cameron Cordero / Copyright (c) 2022 Eric Crow"))
+        self.copyrightLabel.setFont(font)
 
 
 ########################################################################################################################
