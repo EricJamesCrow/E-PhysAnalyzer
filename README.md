@@ -43,7 +43,7 @@ The only necessary columns for this program is trace number, time (ms) and R1S1 
 While viewing the dataset in Clampfit, save the data set as an .atf file and save it to the directory of your choice. Just a reminder, the output from the program saves to the same directory.
 ***
 ## Interpreting Results
-As mentioned previously, to view results, look in the same directory as the analyzed files and select the 'EphysAnalyzer Outputs' file filder.
+As mentioned previously, to view results, look in the same directory as the analyzed files and select the 'E-Phys Analyzer _date_ Results' file filder.
 The file creates two graphs and two .csv files, both from the same analysis.
 1. The first dataset labeled 'Post Analysis' comes from the algorithm in 'AnalyzeData.py'. This file contains every data point and a full analysis of each. The corresponding graph has the same values.
 2. The second dataset labeled 'Minute Averaged' com from the algorithm in 'AnalyzeData.py'. This file contains data points from the baseline (10 minutes prior to drug addition) averaged to create one data point per minute. The graphs have fixed axis and are mainly used to easily compare experiments.
