@@ -12,13 +12,13 @@
 Windows installation instructions:
 -	*REQUIRES PYTHON 3.8 OR ABOVE*
 -	For the newest version of python, click here https://www.microsoft.com/en-us/p/python-310/9pjpw5ldxlz5#activetab=pivot:overviewtab
--	Download this package from https://github.com/EricJamesCrow/E-PhysAnalyzer/
+-	Download this package from https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip
 -	Unzip the downloaded file to your desired directory
 -	Within the E-Phys Analyzer-main folder run 'install.bat'
 -	To properly run the program with all the features, use the 'run.bat' file to start the program
 
 Linux installation instructions:
-  From the Linux command line, input the following commands:
+- From the Linux command line, input the following commands:
 - 'wget https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip'
 - 'unzip main.zip'
 - 'cd E-PhysAnalyzer-main'
