@@ -1542,14 +1542,17 @@ class EphysAnalyzer(object):
             globals()[f"self.drugAddedEntry{i}"] = QtWidgets.QLineEdit(self.MainWindow)
             globals()[f"self.drugAddedEntry{i}"].setGeometry(QtCore.QRect(165, x, 71, 21))
             globals()[f"self.drugAddedEntry{i}"].setObjectName(f"drugAddedLineEdit{i}")
+            globals()[f"self.drugAddedEntry{i}"].setFont(font)
             globals()[f"self.drugAddedEntry{i}"].show()
             globals()[f"self.traceNumberEntry{i}"] = QtWidgets.QLineEdit(self.MainWindow)
             globals()[f"self.traceNumberEntry{i}"].setGeometry(QtCore.QRect(250, x, 75, 21))
             globals()[f"self.traceNumberEntry{i}"].setObjectName(f"traceNumberLineEdit{i}")
+            globals()[f"self.traceNumberEntry{i}"].setFont(font)
             globals()[f"self.traceNumberEntry{i}"].show()
             globals()[f"self.excludedTracesEntry{i}"] = QtWidgets.QLineEdit(self.MainWindow)
             globals()[f"self.excludedTracesEntry{i}"].setGeometry(QtCore.QRect(336, x, 121, 21))
             globals()[f"self.excludedTracesEntry{i}"].setObjectName(f"excludedTracesLineEdit{i}")
+            globals()[f"self.excludedTracesEntry{i}"].setFont(font)
             globals()[f"self.excludedTracesEntry{i}"].show()
 
     def clearDynamicVariables(self):
