@@ -5,3 +5,4 @@
 - possbily create a best fit line for data
 - change potential time differences for how frequent readings are taken, ie. not 20 seconds every time per reading.
 - auto adjust dynamic ui for better size porportions
+- fix font in entry for trance, drug, and ex traces
