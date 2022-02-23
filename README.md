@@ -11,7 +11,7 @@
 #### 1. Install EPhysAnalyzer 
 Windows installation instructions:
 -	*REQUIRES PYTHON 3.8 OR ABOVE*
--	For the newest version of python, click here https://www.microsoft.com/en-us/p/python-310/9pjpw5ldxlz5#activetab=pivot:overviewtab
+-	For the newest version of python, click here https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe
 -	Download this package from https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip
 -	Unzip the downloaded file to your desired directory
 -	Within the E-Phys Analyzer-main folder run 'install.bat'
