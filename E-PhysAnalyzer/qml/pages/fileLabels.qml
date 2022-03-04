@@ -26,7 +26,7 @@ Item {
             text: qsTr("Files")
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font.family: "Segoe UI"
+            font.family: fixedFont.font.family
             //            visible: false
 
             background: Rectangle {
@@ -44,7 +44,7 @@ Item {
                 text: qsTr("Trace Number")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                font.family: "Segoe UI"
+                font.family: fixedFont.font.family
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10
@@ -61,7 +61,7 @@ Item {
                 text: qsTr("Excluded Traces")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                font.family: "Segoe UI"
+                font.family: fixedFont.font.family
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10
@@ -78,7 +78,7 @@ Item {
                 text: qsTr("Drug Name")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                font.family: "Segoe UI"
+                font.family: fixedFont.font.family
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10

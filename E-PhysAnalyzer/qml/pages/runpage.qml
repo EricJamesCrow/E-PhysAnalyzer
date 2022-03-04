@@ -9,6 +9,12 @@ Item {
         color: "#2c313c"
         anchors.fill: parent
 
+        FontLoader {
+            id: fixedFont
+            source: "../fonts/Segoe UI.ttf"
+        }
+
+
         Settings {
             id: settings
             property bool clearValues : false
@@ -22,6 +28,7 @@ Item {
             width: 84
             height: 40
             text: "Browse"
+            font.family: fixedFont.font.family
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.topMargin: 50
@@ -52,6 +59,7 @@ Item {
             width: 301
             height: 85
             text: "Run"
+            font.family: fixedFont.font.family
             anchors.bottom: parent.bottom
             font.pointSize: 32
             anchors.horizontalCenterOffset: 0
@@ -119,6 +127,7 @@ Item {
             x: 93
             y: -2
             text: settings.progressBarLabel
+            font.family: fixedFont.font.family
             font.pointSize: 14
             color: "#ffffff"
         }
@@ -142,7 +151,7 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:394;width:499}D{i:2}D{i:3}D{i:4}D{i:5}D{i:6}D{i:7}D{i:9}
-D{i:8}D{i:10}D{i:1}
+    D{i:0;autoSize:true;height:394;width:499}D{i:2}D{i:3}D{i:4}D{i:5}D{i:6}D{i:7}D{i:8}
+D{i:10}D{i:9}D{i:11}D{i:1}
 }
 ##^##*/

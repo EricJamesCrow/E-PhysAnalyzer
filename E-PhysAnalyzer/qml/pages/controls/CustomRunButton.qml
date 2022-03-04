@@ -11,6 +11,7 @@ Button {
     property color colorPressed: "#3F7EBD"
     flat: true
 
+
     QtObject{
         id: internal
 
@@ -40,6 +41,6 @@ Button {
 }
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:40;width:200}
+    D{i:0;autoSize:true;formeditorZoom:1.25;height:40;width:200}D{i:1}
 }
 ##^##*/
