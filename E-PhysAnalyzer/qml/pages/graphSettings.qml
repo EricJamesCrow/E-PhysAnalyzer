@@ -1594,7 +1594,7 @@ Item {
                     id: minsTextEntry27
                     x: 53
                     y: 190
-                    width: 24
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry27
                     placeholderText: qsTr("20")
