@@ -399,13 +399,13 @@ Item {
                     id: minsTextEntry0
                     x: 17
                     y: 60
-                    width: 26
+                    width: 22
                     height: 20
                     text: settings.minsTextEntry0
                     onTextChanged: settings.minsTextEntry0 = minsTextEntry0.text
                     placeholderText: qsTr("-10")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
 
                     Label {
                         id: dash0
