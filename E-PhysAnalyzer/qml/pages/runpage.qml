@@ -46,6 +46,7 @@ Item {
             height: 42
             color: "#ffffff"
             text: qsTr("Select files for analysis")
+            font.family: fixedFont.font.family
             anchors.left: browseBtn.right
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

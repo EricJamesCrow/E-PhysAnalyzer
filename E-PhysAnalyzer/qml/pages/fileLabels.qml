@@ -27,6 +27,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font.family: fixedFont.font.family
+            font.pointSize: 9
             //            visible: false
 
             background: Rectangle {
@@ -45,6 +46,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.family: fixedFont.font.family
+                font.pointSize: 9
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10
@@ -62,6 +64,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.family: fixedFont.font.family
+                font.pointSize: 9
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10
@@ -79,6 +82,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.family: fixedFont.font.family
+                font.pointSize: 9
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10
