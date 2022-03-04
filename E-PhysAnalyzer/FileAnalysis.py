@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import re
 import datetime
+from uncertainties import ufloat
 
 
 # import mpld3
@@ -53,7 +54,8 @@ class MainProgram:
             for line in atfFile:
                 lineColumns = line.strip().split('\t')
                 peakAmp = abs(float(lineColumns[3]))
-                trace = lineColumns[0]
+                trace = int(lineColumns[1])
+                excludedTraces = list(map(int, excludedTraces))
                 if trace not in excludedTraces:
                     totalPA += peakAmp
                     totalTraces += 1
@@ -67,213 +69,204 @@ class MainProgram:
         self.z_score = ((abs(float(peakAmp)) - mean) / standDev)
         return str(self.z_score)
 
-    def analyze_data(self, files, drugAdded, whenDrug, excludedTraces, colorCode, colorCodes, z_limit, z_checking):
+    def analyze_data(self, files, drugAdded, whenDrug, excludedTraces, colorCode, colorCodes, z_limit, z_checking, user_baseline, graphPoints):
         self.calc_standard_dev(files, excludedTraces)
         with open(files, 'r') as atfFile:
 
-            # Skips the first to lines (useless) in .atf file
-            for _ in range(2): atfFile.readline()
+            # calculates initial time offset, time between traces in minutes, and number of traces per minute
+            time_list_min = []
+            offset_start = 0
+            for _ in range(3): atfFile.readline()
+            first_time = atfFile.readline().strip().split('\t')
+            second_time = atfFile.readline().strip().split('\t')
+            if first_time[2] != 0: offset_start = first_time[2]
+            time_list_min.append((float(first_time[2]) - float(offset_start)) / 60000)
+            time_list_min.append((float(second_time[2]) - float(offset_start)) / 60000)
+            time_between_traces_min = float(time_list_min[1]) - float(time_list_min[0])
+            traces_per_minute = round(1 / time_between_traces_min)
 
-            # Grabs the headers of the .atf file
-            headers = atfFile.readline().strip().split('\t')
-            trace = headers[1]
-            traceTime = headers[2]
-            peakAmp = headers[3]
+            # resets the file to the first line of data and headers
+            atfFile.seek(0)
+            for _ in range(3): atfFile.readline()
+            excludedTraces = list(map(int, excludedTraces))
+            exTracesInBaseine = []
+
+            # looks for excluded traces up to ten minutes before the drug was added (baseline) time period
+            for exTrace in excludedTraces:
+                if int(exTrace) in range(int(whenDrug) - (user_baseline * traces_per_minute + 1), whenDrug):
+                    exTracesInBaseine.append(int(exTrace))
             ampTotal = 0
             totalTraces = 0
-            timeDifference = 0
+            baseline = 0
             timeInMinutes = []
             exTracesInBaseine = []
-            excludedTraces = list(map(int, excludedTraces))
-            for exTrace in excludedTraces:
-                if int(exTrace) in range(int(whenDrug) - 31, whenDrug):
-                    exTracesInBaseine.append(int(exTrace))
+
             for line in atfFile:
 
-                lineColumns = line.strip().split('\t')
-                trace = int(lineColumns[1])
-                traceTime = lineColumns[2]
-                peakAmp = lineColumns[3]
+                file_columns = line.strip().split('\t')
+                trace = int(file_columns[1])
+                traceTime = file_columns[2]
+                peakAmp = file_columns[3]
                 absAmp = abs(float(peakAmp))
 
-                if int(trace) in excludedTraces:
+                # excludes traces that have a z-score that is higher than the one inputted by user
+                # also excludes traces in the user list of inputted traces
+                if trace in excludedTraces:
                     continue
                 if z_checking and abs(float(self.calc_z_score(self.mean, self.standDev, peakAmp)) > z_limit):
                     continue
+                # if the trace is within the baseline, it adds them together to calculate the baseline
                 else:
-                    if trace == 1 and trace < ((int(whenDrug) - 31)):
-                        timeDifference = traceTime[-1:1]
-
-                    if trace == 1 and trace >= ((int(whenDrug) - 31)):
-                        timeDifference = traceTime
+                    if (trace >= (int(whenDrug) - user_baseline * traces_per_minute + 1)) and (trace < int(whenDrug)):
                         ampTotal += float(absAmp)
                         totalTraces += 1
 
-                    if trace >= (int(whenDrug) - 31):
-                        ampTotal += float(absAmp)
-                        totalTraces += 1
-
-                    timeInMinutes.append((float(traceTime) - float(timeDifference)) / 60000)
+                    timeInMinutes.append((float(traceTime) - float(offset_start)) / 60000)
             baseline = ampTotal / totalTraces
 
+            # resets the file before moving on
+            atfFile.seek(0)
+            for _ in range(3): atfFile.readline()
+
+            # analyzes the data and writes to a new file
             with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'w') as newCSV:
 
+                # write the headers of the data file
                 newCSV.write(','.join(['Trace', 'Trace Start (ms)', 'Trace Start (minutes)', 'R1S1 Peak Amp (pA)',
                                        'Abs Val R1S1 Peak Amp (pA)',
                                        'Normalized to Baseline (' + str(baseline)[:8] + ')',
                                        'Time From ' + drugAdded + ' Addition', 'Color Code', 'Z-score']) + '\n')
-
-                atfFile.seek(0)
-                for _ in range(3): atfFile.readline()
                 i = 0
                 for line in atfFile:
+                    # if the trace is part of the excluded traces, or is going to be ignored for its z-score
+                    # then the file will skip through the lines and ignore them
 
-                    lineColumns = line.strip().split('\t')
-                    trace = int(lineColumns[1])
-                    traceTime = lineColumns[2]
-                    peakAmp = lineColumns[3]
+                    file_columns = line.strip().split('\t')
+                    trace = file_columns[1]
+                    trace_int = int(trace)
+                    traceTime = file_columns[2]
+                    peakAmp = file_columns[3]
                     absAmp = abs(float(peakAmp))
                     normalizedAmp = absAmp / baseline * 100
+
+                    a1 = graphPoints[0]
+                    a2 = graphPoints[1]
+                    b1 = graphPoints[2]
+                    b2 = graphPoints[3]
+                    c1 = graphPoints[4]
+                    c2 = graphPoints[5]
+                    d1 = graphPoints[6]
+                    d2 = graphPoints[7]
+                    e1 = graphPoints[8]
+                    e2 = graphPoints[9]
+                    f1 = graphPoints[10]
+                    f2 = graphPoints[11]
+                    g1 = graphPoints[12]
+                    g2 = graphPoints[13]
+                    h1 = graphPoints[14]
+                    h2 = graphPoints[15]
+                    # color codes the trace depending on the time frame its in
+                    # with the int being the time relative to drug addition
                     if colorCode:
-                        if trace <= (whenDrug - 15):
+                        if trace_int >= (whenDrug+1 + a1 * traces_per_minute) and trace_int < (whenDrug+1 + a2 * traces_per_minute):
                             color = colorCodes[0]
-                        elif trace <= (whenDrug):
+                        elif trace_int >= (whenDrug+1 + b1 * traces_per_minute) and trace_int < (whenDrug+1 + b2 * traces_per_minute):
                             color = colorCodes[1]
-                        elif trace <= (whenDrug + 15):
+                        elif trace_int >= (whenDrug+1 + c1 * traces_per_minute) and trace_int < (whenDrug+1 + c2 * traces_per_minute):
                             color = colorCodes[2]
-                        elif trace <= (whenDrug + 30):
+                        elif trace_int >= (whenDrug+1 + d1 * traces_per_minute) and trace_int < (whenDrug+1 + d2 * traces_per_minute):
                             color = colorCodes[3]
-                        elif trace <= (whenDrug + 45):
+                        elif trace_int >= (whenDrug+1 + e1 * traces_per_minute) and trace_int < (whenDrug+1 + e2 * traces_per_minute):
                             color = colorCodes[4]
-                        elif trace <= (whenDrug + 60):
+                        elif trace_int >= (whenDrug+1 + f1 * traces_per_minute) and trace_int < (whenDrug+1 + f2 * traces_per_minute):
                             color = colorCodes[5]
-                        elif trace <= (whenDrug + 75):
+                        elif trace_int >= (whenDrug+1 + g1 * traces_per_minute) and trace_int < (whenDrug+1 + g2 * traces_per_minute):
                             color = colorCodes[6]
-                        elif trace <= (whenDrug + 90):
+                        elif trace_int >= (whenDrug+1 + h1 * traces_per_minute) and trace_int < (whenDrug+1 + h2 * traces_per_minute):
                             color = colorCodes[7]
                         else:
                             color = 'gray'
                     else:
                         color = 'royalblue'
 
-                    if trace in excludedTraces:
+                    if trace_int in excludedTraces:
                         continue
                     if z_checking and abs(float(self.calc_z_score(self.mean, self.standDev, peakAmp)) > z_limit):
                         continue
                     else:
-                        timeFromDrug = timeInMinutes[i] - float(whenDrug) / 3
-                        if timeFromDrug >= 0:
-                            timeFromDrug += (1 / 3)
+                        # time from drug calculation based on given metrics
+                        time_from_drug = timeInMinutes[i] - float(whenDrug) / traces_per_minute
+
+                        # since there is no '0' time point, we are removing that by noting when it becomes positive
+                        if time_from_drug >= 0:
+                            time_from_drug += (time_between_traces_min)
                             newCSV.write(','.join(
                                 [str(trace), str(traceTime), str(timeInMinutes[i]),
                                  str(peakAmp), str(absAmp), str(normalizedAmp),
-                                 str(timeFromDrug)]))
-                            if colorCode:
-                                newCSV.write(
-                                    ',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peakAmp) + '\n')
-                            else:
-                                newCSV.write(
-                                    ',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peakAmp) + '\n')
+                                 str(time_from_drug)]))
+                            newCSV.write(',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peakAmp) + '\n')
 
+                        # anytime before the '0' time point
                         else:
                             newCSV.write(','.join(
                                 [str(trace), str(traceTime), str(timeInMinutes[i]),
                                  str(peakAmp), str(absAmp), str(normalizedAmp),
-                                 str(timeFromDrug)]))
-                            if colorCode:
-                                newCSV.write(
-                                    ',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peakAmp) + '\n')
-                            else:
-                                newCSV.write(
-                                    ',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peakAmp) + '\n')
-                    i += 1
+                                 str(time_from_drug)]))
+                            newCSV.write(
+                                ',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peakAmp) + '\n')
+                        i += 1
 
-            with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'w') as secondCSV:
-                with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'r') as firstCSV:
-                    secondCSV.write(
-                        f"Time from {drugAdded} Addition (min),Abs Val R1S1 Peak Amp Normalized to Baseline (pA),Trace Numbers Used in Average,Color Code\n")
-                    minuteTimes = []
-                    traceNumbers = []
-                    traces = ''
-                    total = 0
-                    drugTime = -10
-                    i = 1
-                    firstCSV.readline()
-                    for line in firstCSV:
-                        lineColumns = line.strip().split(',')
-                        timeFromDrug = lineColumns[6]
-                        floatTime = float(timeFromDrug)
-                        normAmps = lineColumns[5]
-                        trace = lineColumns[0]
-                        color = lineColumns[7]
-                        if floatTime < -10.5:
-                            continue
-                        else:
-                            if floatTime > -10.5 and floatTime < -9.1:
-                                minuteTimes.append(float(normAmps))
-                                traceNumbers.append(trace)
 
-                            else:
-                                floatTimeStr = f'{(floatTime):.6f}'
-                                if i == 1:
-                                    for entry in range(0, len(minuteTimes)): total += float(minuteTimes[entry])
-                                    avg = total / len(minuteTimes)
-                                    traces = ' '.join(traceNumbers)
-                                    secondCSV.write(','.join([str(drugTime), str(float(avg)), traces, color]) + '\n')
-                                    total = 0
-                                    prevTrace = round(float(floatTimeStr))
-                                    minuteTimes = []
-                                    traceNumbers = []
-                                    traces = ''
-                                    i = 0
-                                    drugTime += 1
-                                    oldColor = color
-                                    minuteTimes.append(float(normAmps))
-                                    traceNumbers.append(trace)
+        with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'w') as minute_averaged_csv:
+            with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'r') as full_analysis_csv:
+                minute_averaged_csv.write(
+                    f"Time from {drugAdded} Addition (min),Abs Val R1S1 Peak Amp Normalized to Baseline (pA),Trace Numbers Used in Average,Color Code\n")
+                minuteTimes = []
+                traceNumbers = []
+                traces = ''
+                total = 0
+                drugTime = -user_baseline
+                minute_counter = -user_baseline + 1
 
-                                elif ((floatTimeStr[4] == '0' or floatTimeStr[4] == '9') and floatTimeStr[
-                                    0] == '-') or (
-                                        ((abs(prevTrace - float(floatTimeStr)))) > .9 and (floatTimeStr[0] == '-')):
-                                    for entry in range(len(minuteTimes)): total += float(minuteTimes[entry])
-                                    traces = ' '.join(traceNumbers)
-                                    avg = total / len(minuteTimes)
-                                    secondCSV.write(
-                                        ','.join([str(int(drugTime)), str(float(avg)), traces, oldColor]) + '\n')
-                                    total = 0
-                                    prevTrace = round(float(floatTimeStr))
-                                    drugTime += 1
-                                    oldColor = color
-                                    minuteTimes = []
-                                    traceNumbers = []
-                                    traces = ''
-                                    traceNumbers.append(trace)
-                                    minuteTimes.append(float(normAmps))
+                # skip past headers
+                full_analysis_csv.readline()
 
-                                elif (floatTimeStr[4] == '3' and floatTimeStr[0] != '-') or (
-                                        (abs(prevTrace - float(floatTimeStr))) > .9):
-                                    for entry in range(len(minuteTimes)): total += float(minuteTimes[entry])
-                                    traces = ' '.join(traceNumbers)
-                                    avg = total / len(minuteTimes)
-                                    secondCSV.write(
-                                        ','.join([str(int(drugTime)), str(float(avg)), traces, oldColor]) + '\n')
-                                    total = 0
-                                    prevTrace = int(float(floatTimeStr)) + 1 / 3
-                                    drugTime += 1
-                                    oldColor = color
-                                    minuteTimes = []
-                                    traceNumbers = []
-                                    traces = ''
-                                    traceNumbers.append(trace)
-                                    minuteTimes.append(float(normAmps))
-                                else:
-                                    traceNumbers.append(trace)
-                                    minuteTimes.append(float(normAmps))
-                    for entry in range(len(minuteTimes)): total += float(minuteTimes[entry])
+                for line in full_analysis_csv:
+                    file_columns = line.strip().split(',')
+                    time_from_drug = file_columns[6]
+                    time_from_drug_float = float(time_from_drug)
+                    normalized_amplitude = file_columns[5]
+                    trace = file_columns[0]
+                    color = file_columns[7]
+                    if time_from_drug[0] == '-' and int(trace) < (whenDrug - (user_baseline * traces_per_minute)):
+                        continue
+
+                    if (int(trace) >= (whenDrug + (minute_counter * traces_per_minute + 1))):
+                        minute_counter += 1
+                        for entry in range(0, len(minuteTimes)): total += float(minuteTimes[entry])
+                        avg = total / len(minuteTimes)
+                        traces = ' '.join(traceNumbers)
+                        minute_averaged_csv.write(','.join([str(drugTime), str(float(avg)), traces, color]) + '\n')
+                        total = 0
+                        traces = ''
+                        minuteTimes = []
+                        traceNumbers = []
+                        drugTime += 1
+                        minuteTimes.append(normalized_amplitude)
+                        traceNumbers.append(trace)
+
+                    else:
+                        minuteTimes.append(normalized_amplitude)
+                        traceNumbers.append(trace)
+
+                # add the remaining points together and average them
+                for entry in range(len(minuteTimes)): total += float(minuteTimes[entry])
+                if len(minuteTimes) > 0:
                     traces = ' '.join(traceNumbers)
                     avg = total / len(minuteTimes)
-                    secondCSV.write(','.join([str(int(drugTime)), str(float(avg)), traces, color]) + '\n')
+                    minute_averaged_csv.write(','.join([str(int(drugTime)), str(float(avg)), traces, color]) + '\n')
 
-    def make_graphs(self, dpi, baseline, baseline_color):
+    def make_graphs(self, dpi, baseline, baseline_color, axis_limits):
         # Creates the Minute Averaged graph
         with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'r') as data:
             gdata = pd.read_csv(data)
@@ -290,8 +283,8 @@ class MainProgram:
                 basedline = True
             else:
                 basedline = False
-            g.set(ylim=(25, 225))
-            g.set(xlim=(-10, 30))
+            g.set(xlim=(axis_limits[0], axis_limits[1]))
+            g.set(ylim=(axis_limits[2], axis_limits[3]))
             g.set(title=f"{self.base_name_no_ext} Minute Averages Normalized to Baseline")
             sns.despine()
             graph1 = g.get_figure()
@@ -318,23 +311,10 @@ class MainProgram:
                 else:
                     pass
                 g2.set(title=f"{self.base_name_no_ext} Peak Amplitude Over Time")
-                g2.set(xlim=(-10, 30))
+                g2.set(xlim=(axis_limits[4], axis_limits[5]))
+                g2.set(ylim=(axis_limits[6], axis_limits[7]))
                 sns.despine()
                 graph2 = g2.get_figure()
                 graph2.savefig(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis Graph.png'))
                 importlib.reload(plt)
                 importlib.reload(sns)
-
-    # def make_json_graphs(self):
-    #     fig, ax = plt.subplots()
-    #     N = 50
-    #     scatter = ax.scatter(gdata.headers[6],
-    #                          gdata.headers[4])
-    #     ax.grid(color='white', linestyle='solid')
-    #
-    #     ax.set_title("Scatter Plot (with tooltips!)", size=20)
-    #
-    #     labels = [headers[0], headers[4], headers[5], headers[6]]
-    #     tooltip = mpld3.plugins.PointLabelTooltip(scatter)
-    #     mpld3.plugins.connect(fig, tooltip)
-    #     mpld3.save_json(fig, os.path.join(self.path, self.base_name_no_ext + ' with Tool Tips'))

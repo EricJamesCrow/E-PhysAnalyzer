@@ -1,3 +1,15 @@
+import QtQuick 2.0
+import QtQuick.Window 2.14
+import QtQuick.Layouts 1.14
+import QtQuick.Controls 6.2
+
+Item {id: root
+    visible: true
+    width: 499
+    height: 394
+    QtObject{
+        id: internals
+        property string markdown_text: "
 # E-Phys Analyzer version 1.0.1
 ##### A data analysis and visualization tool for Clampfit data.
 ***
@@ -8,7 +20,7 @@
 4. [Acknowledgements](#acknowledgements)
 ***
 ## Installation Guide
-#### 1. Install EPhysAnalyzer 
+#### 1. Install EPhysAnalyzer
 Windows installation instructions:
 -	*REQUIRES PYTHON 3.8 OR ABOVE*
 -	For the newest version of python, click here https://www.microsoft.com/en-us/p/python-310/9pjpw5ldxlz5#activetab=pivot:overviewtab
@@ -36,7 +48,7 @@ The program will create an 'EphysAnalyzer Outputs' folder in the same directory 
 This program should not ask for administrative privileges to access your files, the only reason it would ask for this is becuase it needs to create new files within the same directory as your input.
 If you come accross any issues like this, please let us know.
 #### Clampfit Data File Format
-When using clampfit to analyze your dataset, you want to deterime the range of the elicited response. 
+When using clampfit to analyze your dataset, you want to deterime the range of the elicited response.
 This program analyzes that by looking at the absolute peak response from stimulation, and if done properly, it should be labeled R1S1 peak.
 The only necessary columns for this program is trace number, time (ms) and R1S1 peak amplitude. To avoid errors in the program, please have the data only have this format.
 While viewing the dataset in Clampfit, save the data set as an .atf file and save it to the directory of your choice. Just a reminder, the output from the program saves to the same directory.
@@ -48,8 +60,57 @@ The file creates two graphs and two .csv files, both from the same analysis.
 2. The second dataset labeled 'Minute Averaged' com from the algorithm in 'AnalyzeData.py'. This file contains data points from the baseline (10 minutes prior to drug addition) averaged to create one data point per minute. The graphs have fixed axis and are mainly used to easily compare experiments.
 ***
 ## Acknowledgements
-I would like to thank the following individuals and organizations who made developing mutperiod possible:  
+I would like to thank the following individuals and organizations who made developing mutperiod possible:
 - The TE Brown lab at Washington State University, especially Dr. Travis Brown who gave me the opportunity to work on this software
 - Washington State University for funding me as a graduate student while I developed E-Phys Analyzer.
 - Ben Morledge-Hampton from Washington State Unversity who taught me most of my python knowledge and helped me create this program and others.
 - Lastly, I would like to thank my collaborator, Eric Crow for his dedication and persistence on co-writing this program and making it user friendly. Without him, none of this would have been possible.
+
+"
+    }
+
+    ScrollView {
+        id: scrollView
+        anchors.fill: parent
+        clip: true
+
+        Flickable {
+            id: flickable
+            width: 300
+            contentHeight: 1006
+            ScrollBar.vertical: ScrollBar {
+                id: theScrollBar
+                hoverEnabled: true
+                active: hovered || pressed
+                policy: ScrollBar.AsNeeded
+                parent: flickable.parent
+                anchors.top: flickable.top
+                anchors.left: flickable.right
+                anchors.bottom: flickable.bottom
+            }
+
+            Rectangle {
+                id: rectangle
+                color: "#ffffff"
+                anchors.fill: parent
+
+                Text{
+                    id: t_output
+                    Layout.fillWidth: true
+                    textFormat: TextEdit.MarkdownText
+                    text: internals.markdown_text
+
+                }
+            }
+        }
+    }
+
+
+
+}
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:0.66}D{i:1}D{i:6}D{i:5}D{i:3}D{i:2}
+}
+##^##*/
