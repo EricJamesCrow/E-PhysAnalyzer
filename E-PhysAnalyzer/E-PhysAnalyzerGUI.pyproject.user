@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.2, 2022-03-03T16:31:26. -->
+<!-- Written by QtCreator 6.0.2, 2022-03-03T17:22:24. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -118,16 +118,16 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Users/educa/Documents/E-PhysAnalyzerGUI/main.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/educa/Documents/E-PhysAnalyzerGUI/main.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/educa/Documents/E-PhysAnalyzerGUI/main.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Users/educa/Documents/GitHub/E-PhysAnalyzer/E-PhysAnalyzer/main.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/educa/Documents/GitHub/E-PhysAnalyzer/E-PhysAnalyzer/main.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/educa/Documents/GitHub/E-PhysAnalyzer/E-PhysAnalyzer/main.py</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{bdeb1ab0-1f28-434b-a104-713056dfacc2}</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\educa\Documents\E-PhysAnalyzerGUI\main.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\educa\Documents\GitHub\E-PhysAnalyzer\E-PhysAnalyzer\main.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/educa/Documents/E-PhysAnalyzerGUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/educa/Documents/GitHub/E-PhysAnalyzer/E-PhysAnalyzer</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

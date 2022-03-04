@@ -7,6 +7,11 @@ Item {
     width: 499
     height: 366
 
+    FontLoader {
+        id: fixedFont
+        source: "../fonts/Segoe UI.ttf"
+    }
+
     Settings {
         id: settings
         property int customsColorsIndex : 0
