@@ -174,6 +174,8 @@ Item {
             currentIndex: settings.customsColorsIndex
             anchors.leftMargin: 94
             anchors.topMargin: 28
+            width: 90
+            height: 20
             model: [ "Profile 1", "Profile 2", "Profile 3", "Single Color" ]
             onCurrentIndexChanged: {
                 settings.customsColorsIndex = customColorsComboBox.currentIndex
@@ -1161,7 +1163,7 @@ Item {
             y: 0
             width: 200
             height: 272
-            visible: false
+            visible: true
             color: "#00000000"
 
 
@@ -2070,7 +2072,7 @@ Item {
             y: 0
             width: 200
             height: 272
-            visible: false
+            visible: true
             color: "#00000000"
 
 
@@ -3289,7 +3291,7 @@ Item {
             y: 0
             width: 200
             height: 272
-            visible: false
+            visible: true
             color: "#00000000"
 
 
