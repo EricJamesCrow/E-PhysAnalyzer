@@ -203,6 +203,13 @@ Item {
                     profileEntries3.visible = false
                 }
             }
+
+            Text {
+                id: text1
+                font.family: fixedFont.font.family
+                font.pointSize: 9
+                color: "black"
+            }
         }
 
 
