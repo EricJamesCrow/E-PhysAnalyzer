@@ -5,6 +5,11 @@ Item {
     width: 493
     height: 50
 
+    FontLoader {
+        id: fixedFont
+        source: "../fonts/Segoe UI.ttf"
+    }
+
     Rectangle {
         id: rectangle
         color: "#2c313c"
@@ -21,6 +26,7 @@ Item {
             text: qsTr("Files")
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+            font.family: "Segoe UI"
             //            visible: false
 
             background: Rectangle {
@@ -38,6 +44,7 @@ Item {
                 text: qsTr("Trace Number")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                font.family: "Segoe UI"
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10
@@ -54,6 +61,7 @@ Item {
                 text: qsTr("Excluded Traces")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                font.family: "Segoe UI"
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10
@@ -70,6 +78,7 @@ Item {
                 text: qsTr("Drug Name")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                font.family: "Segoe UI"
                 background: Rectangle {
                     color: "#4891d9"
                     radius: 10
