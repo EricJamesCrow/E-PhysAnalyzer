@@ -437,19 +437,20 @@ Item {
                     id: minsTextEntry1
                     x: 53
                     y: 60
-                    width: 26
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry1
                     onTextChanged: settings.minsTextEntry1 = minsTextEntry1.text
                     placeholderText: qsTr("-5")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                 }
 
                 Label {
                     id: timeLabel0
                     x: 17
                     y: 30
+                    width: 25
                     color: "#ffffff"
                     text: qsTr("Time (min)")
                     anchors.left: parent.left
@@ -465,13 +466,13 @@ Item {
                     id: minsTextEntry2
                     x: 17
                     y: 86
-                    width: 26
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry2
                     onTextChanged: settings.minsTextEntry2 = minsTextEntry2.text
                     placeholderText: qsTr("-5")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     Label {
                         id: dash1
                         x: 26
@@ -489,12 +490,12 @@ Item {
                     id: minsTextEntry3
                     x: 53
                     y: 86
-                    width: 20
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry3
                     placeholderText: qsTr("0")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry3 = minsTextEntry3.text
                 }
 
@@ -505,13 +506,13 @@ Item {
                     id: minsTextEntry4
                     x: 17
                     y: 112
-                    width: 26
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry4
                     onTextChanged: settings.minsTextEntry4 = minsTextEntry4.text
                     placeholderText: qsTr("0")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     Label {
                         id: dash2
                         x: 26
@@ -531,12 +532,12 @@ Item {
                     id: minsTextEntry5
                     x: 53
                     y: 112
-                    width: 20
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry5
                     placeholderText: qsTr("5")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry5 = minsTextEntry5.text
                 }
 
@@ -544,11 +545,11 @@ Item {
                     id: minsTextEntry6
                     x: 17
                     y: 138
-                    width: 26
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry6
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry6 = minsTextEntry6.text
                     placeholderText: qsTr("5")
                     Label {
@@ -571,11 +572,11 @@ Item {
                     id: minsTextEntry7
                     x: 53
                     y: 138
-                    width: 20
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry7
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     placeholderText: qsTr("10")
                     onTextChanged: settings.minsTextEntry7 = minsTextEntry7.text
                 }
@@ -584,11 +585,11 @@ Item {
                     id: minsTextEntry8
                     x: 17
                     y: 164
-                    width: 26
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry8
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry8 = minsTextEntry8.text
                     placeholderText: qsTr("10")
                     Label {
@@ -612,12 +613,12 @@ Item {
                     id: minsTextEntry9
                     x: 53
                     y: 164
-                    width: 20
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry9
                     placeholderText: qsTr("15")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry9 = minsTextEntry9.text
                 }
 
@@ -625,13 +626,13 @@ Item {
                     id: minsTextEntry10
                     x: 17
                     y: 190
-                    width: 26
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry10
                     onTextChanged: settings.minsTextEntry10 = minsTextEntry10.text
                     placeholderText: qsTr("15")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     Label {
                         id: dash5
                         x: 26
@@ -654,12 +655,12 @@ Item {
                     id: minsTextEntry11
                     x: 53
                     y: 190
-                    width: 20
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry11
                     placeholderText: qsTr("20")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry11 = minsTextEntry11.text
                 }
 
@@ -667,11 +668,11 @@ Item {
                     id: minsTextEntry12
                     x: 17
                     y: 216
-                    width: 26
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry12
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry12 = minsTextEntry12.text
                     placeholderText: qsTr("20")
                     Label {
@@ -697,12 +698,12 @@ Item {
                     id: minsTextEntry13
                     x: 53
                     y: 216
-                    width: 20
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry13
                     placeholderText: qsTr("25")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry13 = minsTextEntry13.text
                 }
 
@@ -710,7 +711,7 @@ Item {
                     id: minsTextEntry14
                     x: 17
                     y: 242
-                    width: 20
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry14
                     font.family: fixedFont.font.family
@@ -734,12 +735,12 @@ Item {
                     id: minsTextEntry15
                     x: 53
                     y: 242
-                    width: 20
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry15
                     placeholderText: qsTr("30")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry15 = minsTextEntry15.text
                 }
 
