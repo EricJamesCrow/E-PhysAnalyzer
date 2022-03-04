@@ -26,7 +26,7 @@ Window {
 
     FontLoader {
         id: fixedFont
-        source: "../fonts/Segoe UI.ttf"
+        source: "fonts/Segoe UI.ttf"
     }
 
 
