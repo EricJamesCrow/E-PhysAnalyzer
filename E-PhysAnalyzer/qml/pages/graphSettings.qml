@@ -2714,6 +2714,8 @@ Item {
                 id: baselineCheckBox2
                 x: 329
                 y: 185
+                width: 19
+                height: 16
                 onCheckStateChanged: {
                     if(baselineCheckBox2.checkState == false){
                         baselineField2.visible = false
@@ -2752,6 +2754,8 @@ Item {
                 id: removeOutliersCheckBox2
                 x: 86
                 y: 286
+                width: 19
+                height: 16
                 onCheckStateChanged: {
                     if(removeOutliersCheckBox2.checkState == false){
                         zscoreLabel2.visible = false
