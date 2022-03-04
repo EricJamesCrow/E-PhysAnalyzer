@@ -767,6 +767,8 @@ Item {
                 anchors.top: parent.top
                 checkState: settings.colorCodeCheckBoxVar
                 anchors.topMargin: 32
+                width: 19
+                height: 16
                 onCheckStateChanged: {
 
                     settings.colorCodeCheckBoxVar = colorCode0.checkState
@@ -867,6 +869,8 @@ Item {
                 id: baselineCheckBox0
                 x: 329
                 y: 185
+                width: 19
+                height: 16
                 Label {
                     id: baselineLanel0
                     x: 19
@@ -904,6 +908,8 @@ Item {
                 id: removeOutliersCheckBox0
                 x: 86
                 y: 286
+                width: 19
+                height: 16
                 Label {
                     id: removeOutliersLabel0
                     x: 16
@@ -1676,6 +1682,8 @@ Item {
                 y: 32
                 anchors.top: parent.top
                 anchors.topMargin: 32
+                width: 19
+                height: 16
                 onCheckStateChanged: {
 
                     settings.colorCodeCheckBoxVar1 = colorCode1.checkState
@@ -1780,6 +1788,8 @@ Item {
                 id: baselineCheckBox1
                 x: 329
                 y: 185
+                width: 19
+                height: 16
                 onCheckStateChanged: {
                     if(baselineCheckBox1.checkState == false){
                         baselineField1.visible = false
@@ -1820,6 +1830,8 @@ Item {
                 id: removeOutliersCheckBox1
                 x: 86
                 y: 286
+                width: 19
+                height: 16
                 onCheckStateChanged: {
                     if(removeOutliersCheckBox1.checkState == false){
                         zscoreLabel1.visible = false
@@ -2600,6 +2612,8 @@ Item {
                 y: 32
                 anchors.top: parent.top
                 anchors.topMargin: 32
+                width: 19
+                height: 16
                 onCheckStateChanged: {
 
                     settings.colorCodeCheckBoxVar2 = colorCode2.checkState
@@ -3374,6 +3388,8 @@ Item {
                 y: 32
                 anchors.top: parent.top
                 anchors.topMargin: 32
+                width: 19
+                height: 16
                 onCheckStateChanged: {
 
                     settings.colorCodeCheckBoxVar3 = colorCode3.checkState
@@ -3468,6 +3484,8 @@ Item {
                 id: baselineCheckBox3
                 x: 329
                 y: 185
+                width: 19
+                height: 16
                 onCheckStateChanged: {
                     if(baselineCheckBox3.checkState == false){
                         baselineField3.visible = false
@@ -3505,6 +3523,8 @@ Item {
                 id: removeOutliersCheckBox3
                 x: 86
                 y: 286
+                width: 19
+                height: 16
                 onCheckStateChanged: {
                     if(removeOutliersCheckBox3.checkState == false){
                         zscoreLabel3.visible = false
