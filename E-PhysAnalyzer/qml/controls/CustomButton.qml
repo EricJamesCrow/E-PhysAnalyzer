@@ -10,6 +10,11 @@ Button {
     property color colorMouseOver: "#55AAFF"
     property color colorPressed: "#3F7EBD"
 
+    FontLoader {
+        id: fixedFont
+        source: "../fonts/Segoe UI.ttf"
+    }
+
     QtObject{
         id: internal
 
@@ -25,7 +30,7 @@ Button {
         Text {
             id: name
             text: button.text
-            font: button.font
+            font.family: fixedFont.font.family
             color: "#ffffff"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter

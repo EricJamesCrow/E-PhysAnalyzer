@@ -13,6 +13,11 @@ Button{
     property bool isNotActiveMenu: true
     flat: true
 
+    FontLoader {
+        id: fixedFont
+        source: "../fonts/Segoe UI.ttf"
+    }
+
     QtObject{
         id: internal
 
@@ -51,6 +56,7 @@ Button{
             color: activeMenuColor
             text: qsTr("HELP")
             anchors.verticalCenter: parent.verticalCenter
+            font.family: fixedFont.font.family
             font.pointSize: 18
             anchors.horizontalCenter: parent.horizontalCenter
             visible: isActiveMenu
@@ -60,6 +66,7 @@ Button{
             color: "#c3cbdd"
             text: qsTr("HELP")
             anchors.verticalCenter: parent.verticalCenter
+            font.family: fixedFont.font.family
             font.pointSize: 18
             anchors.horizontalCenter: parent.horizontalCenter
             visible: isNotActiveMenu
