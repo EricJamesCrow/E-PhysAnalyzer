@@ -399,7 +399,7 @@ Item {
                     id: minsTextEntry0
                     x: 17
                     y: 60
-                    width: 22
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry0
                     onTextChanged: settings.minsTextEntry0 = minsTextEntry0.text
@@ -437,7 +437,7 @@ Item {
                     id: minsTextEntry1
                     x: 53
                     y: 60
-                    width: 22
+                    width: 25
                     height: 20
                     text: settings.minsTextEntry1
                     onTextChanged: settings.minsTextEntry1 = minsTextEntry1.text
