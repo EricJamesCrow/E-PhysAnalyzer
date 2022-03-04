@@ -11,6 +11,7 @@ Button {
     property color colorPressed: "#3F7EBD"
     flat: true
 
+
     QtObject{
         id: internal
 

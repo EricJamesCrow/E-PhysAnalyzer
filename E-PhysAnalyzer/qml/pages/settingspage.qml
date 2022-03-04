@@ -31,6 +31,7 @@ Item {
                 width: 175
                 height: 28
                 anchors.top: parent.top
+                font.family: fixedFont.font.family
                 anchors.topMargin: 0
                 anchors.horizontalCenterOffset: -92
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -48,6 +49,7 @@ Item {
                 width: 175
                 height: 28
                 anchors.left: graphsButton.right
+                font.family: fixedFont.font.family
                 anchors.top: parent.top
                 anchors.topMargin: 0
                 anchors.leftMargin: 0

@@ -11,6 +11,11 @@ Button {
     property color colorPressed: "#3F7EBD"
     flat: true
 
+    FontLoader {
+        id: fixedFont
+        source: "../../fonts/Segoe UI.ttf"
+    }
+
     QtObject{
         id: internal
 

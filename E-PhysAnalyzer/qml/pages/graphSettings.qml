@@ -403,6 +403,8 @@ Item {
                         height: 16
                         text: qsTr("-")
                         color: "#ffffff"
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -933,6 +935,8 @@ Item {
                 y: 315
                 width: 63
                 height: 27
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onClicked: {
                     graphQualityComboBox0.currentIndex = 1
                     baselineCheckBox0.checkState = Qt.Checked
@@ -998,6 +1002,8 @@ Item {
                     y: -21
                     color: "#ffffff"
                     text: qsTr("Baseline time (min)")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
             }
 
@@ -1134,6 +1140,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("Y-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
             }
@@ -1174,6 +1182,8 @@ Item {
                     anchors.topMargin: 60
                     anchors.leftMargin: 94
                     placeholderText: qsTr("gray")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry0String1 = graphEntry8.text
                     }
@@ -1191,6 +1201,8 @@ Item {
                     anchors.topMargin: 86
                     anchors.leftMargin: 94
                     placeholderText: qsTr("black")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry1String1 = graphEntry9.text
                     }
@@ -1208,6 +1220,8 @@ Item {
                     anchors.topMargin: 112
                     anchors.leftMargin: 94
                     placeholderText: qsTr("gray")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry2String1 = graphEntry10.text
                     }
@@ -1225,6 +1239,8 @@ Item {
                     anchors.topMargin: 138
                     anchors.leftMargin: 94
                     placeholderText: qsTr("purple")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry3String1 = graphEntry11.text
                     }
@@ -1242,6 +1258,8 @@ Item {
                     anchors.topMargin: 164
                     anchors.leftMargin: 94
                     placeholderText: qsTr("green")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry4String1 = graphEntry12.text
                     }
@@ -1259,6 +1277,8 @@ Item {
                     anchors.topMargin: 190
                     anchors.leftMargin: 94
                     placeholderText: qsTr("blue")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry5String1 = graphEntry13.text
                     }
@@ -1276,6 +1296,8 @@ Item {
                     anchors.topMargin: 216
                     anchors.leftMargin: 94
                     placeholderText: qsTr("orange")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry6String1 = graphEntry14.text
                     }
@@ -1293,6 +1315,8 @@ Item {
                     anchors.topMargin: 242
                     anchors.leftMargin: 94
                     placeholderText: qsTr("red")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry7String1 = graphEntry15.text
                     }
@@ -1315,6 +1339,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry16
                     placeholderText: qsTr("-10")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash8
                         x: 26
@@ -1323,6 +1349,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry16 = minsTextEntry16.text
                 }
@@ -1335,6 +1363,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry17
                     placeholderText: qsTr("-5")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry17 = minsTextEntry17.text
                 }
 
@@ -1348,6 +1378,8 @@ Item {
                     anchors.top: parent.top
                     anchors.topMargin: 30
                     anchors.leftMargin: 17
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
 
                 TextField {
@@ -1358,6 +1390,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry18
                     placeholderText: qsTr("-5")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash9
                         x: 26
@@ -1366,6 +1400,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry18 = minsTextEntry18.text
                 }
@@ -1378,6 +1414,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry19
                     placeholderText: qsTr("0")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry19 = minsTextEntry19.text
                 }
 
@@ -1389,6 +1427,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry20
                     placeholderText: qsTr("0")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash10
                         x: 26
@@ -1397,6 +1437,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry20 = minsTextEntry20.text
                 }
@@ -1409,6 +1451,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry21
                     placeholderText: qsTr("5")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry21 = minsTextEntry21.text
                 }
 
@@ -1420,6 +1464,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry22
                     placeholderText: qsTr("5")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash11
                         x: 26
@@ -1428,6 +1474,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry22 = minsTextEntry22.text
                 }
@@ -1440,6 +1488,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry23
                     placeholderText: qsTr("10")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry23 = minsTextEntry23.text
                 }
 
@@ -1451,6 +1501,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry24
                     placeholderText: qsTr("10")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash12
                         x: 26
@@ -1459,6 +1511,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry24 = minsTextEntry24.text
                 }
@@ -1471,6 +1525,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry25
                     placeholderText: qsTr("15")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry25 = minsTextEntry25.text
                 }
 
@@ -1482,6 +1538,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry26
                     placeholderText: qsTr("15")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash13
                         x: 26
@@ -1490,6 +1548,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry26 = minsTextEntry26.text
                 }
@@ -1502,6 +1562,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry27
                     placeholderText: qsTr("20")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry27 = minsTextEntry27.text
                 }
 
@@ -1513,6 +1575,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry28
                     placeholderText: qsTr("20")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash14
                         x: 26
@@ -1521,6 +1585,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry28 = minsTextEntry28.text
                 }
@@ -1533,6 +1599,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry29
                     placeholderText: qsTr("25")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry29 = minsTextEntry29.text
                 }
 
@@ -1544,6 +1612,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry30
                     placeholderText: qsTr("25")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash15
                         x: 26
@@ -1552,6 +1622,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry30 = minsTextEntry30.text
                 }
@@ -1564,6 +1636,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry31
                     placeholderText: qsTr("30")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry31 = minsTextEntry31.text
                 }
             }
@@ -1600,6 +1674,8 @@ Item {
                     y: 0
                     color: "#ffffff"
                     text: qsTr("Color Code")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
                 checkState: settings.colorCodeCheckBoxVar1
             }
@@ -1614,6 +1690,8 @@ Item {
                 y: 86
                 color: "#ffffff"
                 text: qsTr("Graph Quality")
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 ComboBox {
                     id: graphQualityComboBox1
                     x: -21
@@ -1621,6 +1699,8 @@ Item {
                     width: 115
                     height: 20
                     currentIndex: settings.graphQualityIndex1
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onCurrentIndexChanged: {
                         settings.graphQualityIndex1 = graphQualityComboBox1.currentIndex
                         if(graphQualityComboBox1.currentIndex == 4) {
@@ -1640,6 +1720,8 @@ Item {
                     height: 20
                     visible: true
                     text: settings.customDpiEntryString1
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: customDpiLabel1
                         x: 99
@@ -1648,6 +1730,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("DPI")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.customDpiEntryString1 = customDpiEntry1.text
                 }
@@ -1676,6 +1760,8 @@ Item {
                     y: 0
                     color: "#ffffff"
                     text: qsTr("Display Baseline")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
 
                 TextField {
@@ -1684,6 +1770,8 @@ Item {
                     y: 31
                     text: settings.baselineColorString1
                     placeholderText: qsTr("Baseline color")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.baselineColorString1 = baselineField1.text
                 }
                 checkState: settings.baselineCheckBoxVar1
@@ -1713,6 +1801,8 @@ Item {
                     color: "#ffffff"
                     text: qsTr("Remove Outliers")
                     styleColor: "#ffffff"
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
 
                 Label {
@@ -1721,6 +1811,8 @@ Item {
                     y: 28
                     color: "#ffffff"
                     text: qsTr("Z-Score >")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     TextField {
                         id: zScoreEntry1
                         x: 59
@@ -1729,6 +1821,8 @@ Item {
                         height: 20
                         text: settings.zScoreEntry1
                         placeholderText: qsTr("2.5")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                         onTextChanged: settings.zScoreEntry1 = zScoreEntry1.text
                     }
                 }
@@ -1745,6 +1839,8 @@ Item {
                 y: 315
                 width: 63
                 height: 27
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onClicked: {
                     graphQualityComboBox1.currentIndex = 1
                     baselineCheckBox1.checkState = Qt.Checked
@@ -1801,6 +1897,8 @@ Item {
                 height: 20
                 text: settings.baselineEntryText1
                 placeholderText: qsTr("Baseline value: 10")
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onTextChanged: {
                     settings.baselineEntryText1 = baselineEntry1.text
                 }
@@ -1811,6 +1909,8 @@ Item {
                     y: -21
                     color: "#ffffff"
                     text: qsTr("Baseline time (min)")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
             }
 
@@ -1825,6 +1925,8 @@ Item {
                 width: 110
                 height: 20
                 currentIndex: settings.axisLimitsIndex1
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onCurrentIndexChanged: {
 
                     settings.axisLimitsIndex1 = axisLimitsComboBox1.currentIndex
@@ -1848,6 +1950,8 @@ Item {
                     y: -19
                     color: "#ffffff"
                     text: qsTr("Axis Limits")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
             }
 
@@ -1866,6 +1970,8 @@ Item {
                     height: 16
                     placeholderText: qsTr("-10, None")
                     text: settings.minAvgXAxisLimitsEntry1
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minAvgXAxisLimitsEntry1 = minAvgXAxisLimitsEntry1.text
                     Label {
                         id: xAxisLabel2
@@ -1873,6 +1979,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("X-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -1883,6 +1991,8 @@ Item {
                     width: 70
                     height: 16
                     placeholderText: qsTr("25, 225")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     text: settings.minAvgYAxisLimitsEntry1
                     onTextChanged: settings.minAvgYAxisLimitsEntry1 = minAvgYAxisLimitsEntry1.text
                     Label {
@@ -1891,6 +2001,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("Y-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -1902,6 +2014,8 @@ Item {
                     height: 16
                     visible: true
                     text: settings.postXAxisLimitsEntry1
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.postXAxisLimitsEntry1 = postAnalysisXAxisLimitsEntry1.text
                     placeholderText: qsTr("-10, None")
                     rotation: 0
@@ -1911,6 +2025,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("X-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -1922,6 +2038,8 @@ Item {
                     height: 16
                     visible: true
                     placeholderText: qsTr("None, None")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     text: settings.postYAxisLimitsEntry1
                     onTextChanged: settings.postYAxisLimitsEntry1 = postAnalysisYAxisLimitsEntry1.text
                     Label {
@@ -1930,6 +2048,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("Y-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
             }
@@ -1960,6 +2080,7 @@ Item {
                 height: 200
                 visible: true
                 color: "#00000000"
+
                 TextField {
                     id: minsTextEntry32
                     x: 17
@@ -1968,6 +2089,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry32
                     placeholderText: qsTr("-10")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash16
                         x: 26
@@ -1976,6 +2099,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry32 = minsTextEntry32.text
                 }
@@ -1987,9 +2112,12 @@ Item {
                     width: 20
                     height: 20
                     text: settings.minsTextEntry33
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     placeholderText: qsTr("-5")
                     onTextChanged: settings.minsTextEntry33 = minsTextEntry33.text
                 }
+
 
                 Label {
                     id: timeLabel2
@@ -2001,6 +2129,8 @@ Item {
                     anchors.top: parent.top
                     anchors.topMargin: 30
                     anchors.leftMargin: 17
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
 
                 TextField {
@@ -2011,6 +2141,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry34
                     placeholderText: qsTr("-5")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash17
                         x: 26
@@ -2019,6 +2151,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry34 = minsTextEntry34.text
                 }
@@ -2031,6 +2165,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry35
                     placeholderText: qsTr("0")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry35 = minsTextEntry35.text
                 }
 
@@ -2042,6 +2178,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry36
                     placeholderText: qsTr("0")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash18
                         x: 26
@@ -2050,6 +2188,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry36 = minsTextEntry36.text
                 }
@@ -2061,6 +2201,8 @@ Item {
                     width: 20
                     height: 20
                     text: settings.minsTextEntry37
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     placeholderText: qsTr("5")
                     onTextChanged: settings.minsTextEntry37 = minsTextEntry37.text
                 }
@@ -2073,6 +2215,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry38
                     placeholderText: qsTr("5")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash19
                         x: 26
@@ -2081,6 +2225,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry38 = minsTextEntry38.text
                 }
@@ -2093,6 +2239,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry39
                     placeholderText: qsTr("10")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry39 = minsTextEntry39.text
                 }
 
@@ -2104,6 +2252,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry40
                     placeholderText: qsTr("10")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash20
                         x: 26
@@ -2112,6 +2262,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry40 = minsTextEntry40.text
                 }
@@ -2124,6 +2276,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry41
                     placeholderText: qsTr("15")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry41 = minsTextEntry41.text
                 }
 
@@ -2135,6 +2289,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry42
                     placeholderText: qsTr("15")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash21
                         x: 26
@@ -2143,6 +2299,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry42 = minsTextEntry42.text
                 }
@@ -2155,6 +2313,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry43
                     placeholderText: qsTr("20")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry43 = minsTextEntry43.text
                 }
 
@@ -2166,6 +2326,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry44
                     placeholderText: qsTr("20")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash22
                         x: 26
@@ -2174,6 +2336,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry44 = minsTextEntry44.text
                 }
@@ -2186,6 +2350,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry45
                     placeholderText: qsTr("25")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry45 = minsTextEntry45.text
                 }
 
@@ -2197,6 +2363,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry46
                     placeholderText: qsTr("25")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: dash23
                         x: 26
@@ -2205,6 +2373,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("-")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.minsTextEntry46 = minsTextEntry46.text
                 }
@@ -2217,6 +2387,8 @@ Item {
                     height: 20
                     text: settings.minsTextEntry47
                     placeholderText: qsTr("30")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minsTextEntry47 = minsTextEntry47.text
                 }
             }
@@ -2238,6 +2410,8 @@ Item {
                     anchors.topMargin: 60
                     anchors.leftMargin: 94
                     placeholderText: qsTr("gray")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry0String2 = graphEntry16.text
                     }
@@ -2255,6 +2429,8 @@ Item {
                     anchors.topMargin: 86
                     anchors.leftMargin: 94
                     placeholderText: qsTr("black")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry1String2 = graphEntry17.text
                     }
@@ -2272,6 +2448,8 @@ Item {
                     anchors.topMargin: 112
                     anchors.leftMargin: 94
                     placeholderText: qsTr("gray")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry2String2 = graphEntry18.text
                     }
@@ -2289,6 +2467,8 @@ Item {
                     anchors.topMargin: 138
                     anchors.leftMargin: 94
                     placeholderText: qsTr("purple")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry3String2 = graphEntry19.text
                     }
@@ -2306,6 +2486,8 @@ Item {
                     anchors.topMargin: 164
                     anchors.leftMargin: 94
                     placeholderText: qsTr("green")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry4String2 = graphEntry20.text
                     }
@@ -2323,6 +2505,8 @@ Item {
                     anchors.topMargin: 190
                     anchors.leftMargin: 94
                     placeholderText: qsTr("blue")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry5String2 = graphEntry21.text
                     }
@@ -2340,6 +2524,8 @@ Item {
                     anchors.topMargin: 216
                     anchors.leftMargin: 94
                     placeholderText: qsTr("orange")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry6String2 = graphEntry22.text
                     }
@@ -2357,6 +2543,8 @@ Item {
                     anchors.topMargin: 242
                     anchors.leftMargin: 94
                     placeholderText: qsTr("red")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: {
                         settings.graphEntry7String2 = graphEntry23.text
                     }
@@ -2396,6 +2584,8 @@ Item {
                     y: 0
                     color: "#ffffff"
                     text: qsTr("Color Code")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
                 checkState: settings.colorCodeCheckBoxVar2
             }
@@ -2408,6 +2598,8 @@ Item {
                 y: 86
                 color: "#ffffff"
                 text: qsTr("Graph Quality")
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 ComboBox {
                     id: graphQualityComboBox2
                     x: -21
@@ -2415,6 +2607,8 @@ Item {
                     width: 115
                     height: 20
                     currentIndex: settings.graphQualityIndex2
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onCurrentIndexChanged: {
                         settings.graphQualityIndex2 = graphQualityComboBox2.currentIndex
                         if(graphQualityComboBox2.currentIndex == 4) {
@@ -2434,6 +2628,8 @@ Item {
                     height: 20
                     visible: true
                     text: settings.customDpiEntryString2
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: customDpiLabel2
                         x: 99
@@ -2442,6 +2638,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("DPI")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.customDpiEntryString2 = customDpiEntry2.text
                 }
@@ -2468,6 +2666,8 @@ Item {
                     y: 0
                     color: "#ffffff"
                     text: qsTr("Display Baseline")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
 
                 TextField {
@@ -2475,6 +2675,8 @@ Item {
                     x: -9
                     y: 31
                     text: settings.baselineColorString2
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     placeholderText: qsTr("Baseline color")
                     onTextChanged: settings.baselineColorString2 = baselineField2.text
                 }
@@ -2502,6 +2704,8 @@ Item {
                     y: 0
                     color: "#ffffff"
                     text: qsTr("Remove Outliers")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     styleColor: "#ffffff"
                 }
 
@@ -2511,6 +2715,8 @@ Item {
                     y: 28
                     color: "#ffffff"
                     text: qsTr("Z-Score >")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     TextField {
                         id: zScoreEntry2
                         x: 59
@@ -2519,6 +2725,8 @@ Item {
                         height: 20
                         text: settings.zScoreEntry2
                         placeholderText: qsTr("2.5")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                         onTextChanged: settings.zScoreEntry2 = zScoreEntry2.text
                     }
                 }
@@ -2533,6 +2741,8 @@ Item {
                 y: 315
                 width: 63
                 height: 27
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onClicked: {
                     graphQualityComboBox2.currentIndex = 1
                     baselineCheckBox2.checkState = Qt.Checked
@@ -2588,6 +2798,8 @@ Item {
                 width: 121
                 height: 20
                 text: settings.baselineEntryText2
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 placeholderText: qsTr("Baseline value: 10")
                 onTextChanged: {
                     settings.baselineEntryText2 = baselineEntry2.text
@@ -2599,6 +2811,8 @@ Item {
                     y: -21
                     color: "#ffffff"
                     text: qsTr("Baseline time (min)")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
             }
 
@@ -2610,6 +2824,8 @@ Item {
                 width: 110
                 height: 20
                 currentIndex: settings.axisLimitsIndex2
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onCurrentIndexChanged: {
 
                     settings.axisLimitsIndex2 = axisLimitsComboBox2.currentIndex
@@ -2633,6 +2849,8 @@ Item {
                     y: -19
                     color: "#ffffff"
                     text: qsTr("Axis Limits")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
             }
 
@@ -2651,6 +2869,8 @@ Item {
                     height: 16
                     placeholderText: qsTr("-10, None")
                     text: settings.minAvgXAxisLimitsEntry2
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.minAvgXAxisLimitsEntry2 = minAvgXAxisLimitsEntry2.text
                     Label {
                         id: xAxisLabel4
@@ -2658,6 +2878,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("X-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -2668,6 +2890,8 @@ Item {
                     width: 70
                     height: 16
                     placeholderText: qsTr("25, 225")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     text: settings.minAvgYAxisLimitsEntry2
                     onTextChanged: settings.minAvgYAxisLimitsEntry2 = minAvgYAxisLimitsEntry2.text
                     Label {
@@ -2676,6 +2900,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("Y-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -2687,6 +2913,8 @@ Item {
                     height: 16
                     visible: true
                     placeholderText: qsTr("-10, None")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     text: settings.postXAxisLimitsEntry2
                     onTextChanged: settings.postXAxisLimitsEntry2 =  postAnalysisXAxisLimitsEntry2.text
                     rotation: 0
@@ -2696,6 +2924,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("X-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -2707,6 +2937,8 @@ Item {
                     height: 16
                     visible: true
                     text: settings.postYAxisLimitsEntry2
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.postYAxisLimitsEntry2 =  postAnalysisYAxisLimitsEntry2.text
                     placeholderText: qsTr("None, None")
 
@@ -2716,6 +2948,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("Y-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
             }
@@ -3069,6 +3303,8 @@ Item {
                 anchors.top: parent.top
                 anchors.leftMargin: 94
                 placeholderText: qsTr("gray")
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 anchors.topMargin: 60
                 visible: true
                 text: settings.singleColorGraphEntryString
@@ -3105,6 +3341,8 @@ Item {
                     y: 0
                     color: "#ffffff"
                     text: qsTr("Color Code")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
                 checkState: settings.colorCodeCheckBoxVar3
             }
@@ -3116,6 +3354,8 @@ Item {
                 y: 86
                 color: "#ffffff"
                 text: qsTr("Graph Quality")
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 ComboBox {
                     id: graphQualityComboBox3
                     x: -21
@@ -3123,6 +3363,8 @@ Item {
                     width: 115
                     height: 20
                     currentIndex: settings.graphQualityIndex3
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onCurrentIndexChanged: {
                         settings.graphQualityIndex3 = graphQualityComboBox3.currentIndex
                         if(graphQualityComboBox3.currentIndex == 4) {
@@ -3142,6 +3384,8 @@ Item {
                     height: 20
                     visible: true
                     text: settings.customDpiEntryString3
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     Label {
                         id: customDpiLabel3
                         x: 99
@@ -3150,6 +3394,8 @@ Item {
                         height: 16
                         color: "#ffffff"
                         text: qsTr("DPI")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                     onTextChanged: settings.customDpiEntryString33 = customDpiEntry3.text
                 }
@@ -3175,6 +3421,8 @@ Item {
                     y: 0
                     color: "#ffffff"
                     text: qsTr("Display Baseline")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
 
                 TextField {
@@ -3183,6 +3431,8 @@ Item {
                     y: 31
                     text: settings.baselineColorString3
                     placeholderText: qsTr("Baseline color")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     onTextChanged: settings.baselineColorString3 = baselineField3.text
                 }
                 checkState: settings.baselineCheckBoxVar3
@@ -3209,6 +3459,8 @@ Item {
                     color: "#ffffff"
                     text: qsTr("Remove Outliers")
                     styleColor: "#ffffff"
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
 
                 Label {
@@ -3217,6 +3469,8 @@ Item {
                     y: 28
                     color: "#ffffff"
                     text: qsTr("Z-Score >")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     TextField {
                         id: zScoreEntry3
                         x: 59
@@ -3225,6 +3479,8 @@ Item {
                         height: 20
                         text: settings.zScoreEntry3
                         placeholderText: qsTr("2.5")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                         onTextChanged: settings.zScoreEntry3 = zScoreEntry3.text
                     }
                 }
@@ -3238,6 +3494,8 @@ Item {
                 y: 315
                 width: 63
                 height: 27
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onClicked: {
                     graphQualityComboBox3.currentIndex = 1
                     baselineCheckBox3.checkState = Qt.Checked
@@ -3266,6 +3524,8 @@ Item {
                 height: 20
                 text: settings.baselineEntryText3
                 placeholderText: qsTr("Baseline value: 10")
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onTextChanged: {
                     settings.baselineEntryText3 = baselineEntry3.text
                 }
@@ -3276,6 +3536,8 @@ Item {
                     y: -21
                     color: "#ffffff"
                     text: qsTr("Baseline time (min)")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
             }
 
@@ -3286,6 +3548,8 @@ Item {
                 width: 110
                 height: 20
                 currentIndex: settings.axisLimitsIndex3
+                font.family: fixedFont.font.family
+                font.pointSize: 9
                 onCurrentIndexChanged: {
 
                     settings.axisLimitsIndex3 = axisLimitsComboBox3.currentIndex
@@ -3309,6 +3573,8 @@ Item {
                     y: -19
                     color: "#ffffff"
                     text: qsTr("Axis Limits")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
             }
 
@@ -3328,6 +3594,8 @@ Item {
                     text: settings.minAvgXAxisLimitsEntry3
                     onTextChanged: settings.minAvgXAxisLimitsEntry3 =  minAvgXAxisLimitsEntry3.text
                     placeholderText: qsTr("-10, None")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
 
                     Label {
                         id: xAxisLabel6
@@ -3335,6 +3603,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("X-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -3345,6 +3615,8 @@ Item {
                     width: 70
                     height: 16
                     placeholderText: qsTr("25, 225")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     text: settings.minAvgYAxisLimitsEntry3
                     onTextChanged: settings.minAvgYAxisLimitsEntry3 =  minAvgYAxisLimitsEntry3.text
                     Label {
@@ -3353,6 +3625,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("Y-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -3364,6 +3638,8 @@ Item {
                     height: 16
                     visible: true
                     placeholderText: qsTr("-10, None")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     text: settings.postXAxisLimitsEntry3
                     onTextChanged: settings.postXAxisLimitsEntry3 =  postAnalysisXAxisLimitsEntry3.text
                     rotation: 0
@@ -3373,6 +3649,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("X-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
 
@@ -3384,6 +3662,8 @@ Item {
                     height: 16
                     visible: true
                     placeholderText: qsTr("None, None")
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                     text: settings.postYAxisLimitsEntry3
                     onTextChanged: settings.postYAxisLimitsEntry3 =  postAnalysisYAxisLimitsEntry3.text
                     Label {
@@ -3392,6 +3672,8 @@ Item {
                         y: 0
                         color: "#ffffff"
                         text: qsTr("Y-Axis")
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
                     }
                 }
             }

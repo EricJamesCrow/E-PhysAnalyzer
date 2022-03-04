@@ -13,6 +13,11 @@ Button{
     property bool isNotActiveMenu: true
     flat: true
 
+    FontLoader {
+        id: fixedFont
+        source: "../../fonts/Segoe UI.ttf"
+    }
+
     QtObject{
         id: internal
 

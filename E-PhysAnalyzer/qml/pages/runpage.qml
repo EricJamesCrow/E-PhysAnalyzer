@@ -75,6 +75,8 @@ Item {
             width: 78
             height: 29
             visible: settings.clearValues
+            font.family: fixedFont.font.family
+            font.pointSize: 9
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 42
             anchors.horizontalCenter: parent.horizontalCenter
