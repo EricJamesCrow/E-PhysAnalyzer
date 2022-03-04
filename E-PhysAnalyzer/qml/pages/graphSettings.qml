@@ -465,7 +465,7 @@ Item {
                     id: minsTextEntry2
                     x: 17
                     y: 86
-                    width: 20
+                    width: 26
                     height: 20
                     text: settings.minsTextEntry2
                     onTextChanged: settings.minsTextEntry2 = minsTextEntry2.text
@@ -505,7 +505,7 @@ Item {
                     id: minsTextEntry4
                     x: 17
                     y: 112
-                    width: 20
+                    width: 26
                     height: 20
                     text: settings.minsTextEntry4
                     onTextChanged: settings.minsTextEntry4 = minsTextEntry4.text
@@ -544,7 +544,7 @@ Item {
                     id: minsTextEntry6
                     x: 17
                     y: 138
-                    width: 20
+                    width: 26
                     height: 20
                     text: settings.minsTextEntry6
                     font.family: fixedFont.font.family
@@ -584,7 +584,7 @@ Item {
                     id: minsTextEntry8
                     x: 17
                     y: 164
-                    width: 20
+                    width: 26
                     height: 20
                     text: settings.minsTextEntry8
                     font.family: fixedFont.font.family
@@ -625,7 +625,7 @@ Item {
                     id: minsTextEntry10
                     x: 17
                     y: 190
-                    width: 20
+                    width: 26
                     height: 20
                     text: settings.minsTextEntry10
                     onTextChanged: settings.minsTextEntry10 = minsTextEntry10.text
@@ -667,7 +667,7 @@ Item {
                     id: minsTextEntry12
                     x: 17
                     y: 216
-                    width: 20
+                    width: 26
                     height: 20
                     text: settings.minsTextEntry12
                     font.family: fixedFont.font.family
@@ -714,7 +714,7 @@ Item {
                     height: 20
                     text: settings.minsTextEntry14
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minsTextEntry14 = minsTextEntry14.text
                     placeholderText: qsTr("25")
                     Label {
