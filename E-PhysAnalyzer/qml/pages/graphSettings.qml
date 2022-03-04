@@ -204,12 +204,13 @@ Item {
                 }
             }
 
-            Text {
-                id: text1
+            contentItem: Text {
+                text: customColorsComboBox.displayText
+                color: "black"
                 font.family: fixedFont.font.family
                 font.pointSize: 9
-                color: "black"
             }
+
         }
 
 
@@ -825,6 +826,15 @@ Item {
                             customDpiEntry0.visible = false
                         }
                     }
+
+                    contentItem: Text {
+                        text: graphQualityComboBox0.displayText
+                        color: "black"
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
+                    }
+
+
                 }
 
                 TextField {
@@ -1042,6 +1052,13 @@ Item {
                         postAnalysisXAxisLimitsEntry0.visible = false
                         postAnalysisYAxisLimitsEntry0.visible = false
                     }
+                }
+
+                contentItem: Text {
+                    text: axisLimitsComboBox0.displayText
+                    color: "black"
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
                 }
 
                 Label {
@@ -1721,6 +1738,13 @@ Item {
                         }
                     }
                     model: [ "Low", "Medium", "High", "Ultra", "Custom" ]
+
+                    contentItem: Text {
+                        text: graphQualityComboBox1.displayText
+                        color: "black"
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
+                    }
                 }
 
                 TextField {
@@ -1954,6 +1978,13 @@ Item {
                     }
                 }
                 model: [ "Minute Averaged", "Post Analysis" ]
+
+                contentItem: Text {
+                    text: axisLimitsComboBox1.displayText
+                    color: "black"
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
+                }
 
                 Label {
                     id: axisLimitsLabel1
@@ -2629,6 +2660,13 @@ Item {
                         }
                     }
                     model: [ "Low", "Medium", "High", "Ultra", "Custom" ]
+
+                    contentItem: Text {
+                        text: graphQualityComboBox2.displayText
+                        color: "black"
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
+                    }
                 }
 
                 TextField {
@@ -2853,6 +2891,12 @@ Item {
                     }
                 }
                 model: [ "Minute Averaged", "Post Analysis" ]
+                contentItem: Text {
+                    text: axisLimitsComboBox2.displayText
+                    color: "black"
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
+                }
 
                 Label {
                     id: axisLimitsLabel2
@@ -3385,6 +3429,13 @@ Item {
                         }
                     }
                     model: [ "Low", "Medium", "High", "Ultra", "Custom" ]
+
+                    contentItem: Text {
+                        text: graphQualityComboBox3.displayText
+                        color: "black"
+                        font.family: fixedFont.font.family
+                        font.pointSize: 9
+                    }
                 }
 
                 TextField {
@@ -3577,6 +3628,12 @@ Item {
                     }
                 }
                 model: [ "Minute Averaged", "Post Analysis" ]
+                contentItem: Text {
+                    text: axisLimitsComboBox3.displayText
+                    color: "black"
+                    font.family: fixedFont.font.family
+                    font.pointSize: 9
+                }
 
                 Label {
                     id: axisLimitsLabel3
