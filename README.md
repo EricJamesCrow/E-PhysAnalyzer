@@ -48,36 +48,37 @@ From there you can navigate to the directory containing the files you would like
 You may select as many files as you want from this directory.
 REMEMBER the files will output to this same directory.
 #### 2. The 'SETUP' Tab
-Within the setup tab lies the parameters and variables that the user can change for running the analysis.
-There are up to 3 user profiles with complete control and 1 profile designed for a single color.
-Any settings changed in these profiles will be saved automatically and can be reset at anytime using the 'Reset' button in the bottom right.
-The entry boxes under the column labeled 'Time (min)' allows you to type in time ranges that you would like to be associated with the corresponding color in the box directly to the right of it.
+- Within the setup tab lies the parameters and variables that the user can change for running the analysis.
+- There are up to 3 user profiles with complete control and 1 profile designed for a single color.
+- Defaults for the program are shown in the gray placeholder text.
+- Any settings changed in these profiles will be saved automatically and can be reset at anytime using the 'Reset' button in the bottom right.
+- The entry boxes under the column labeled 'Time (min)' allows you to type in time ranges that you would like to be associated with the corresponding color in the box directly to the right of it.
 NOTE: To view available colors, click on the 'Colors' tab next to the 'Graphs' tab.
 The default settings are shown in the placeholder text in gray.
-Beneath that are settings for removing outliers. The program calculates the standard deviation of each data file and assigns each point a 'Z-score'.
+- Beneath that are settings for removing outliers. The program calculates the standard deviation of each data file and assigns each point a 'Z-score'.
 The default is to remove outliers that have a z-score of 2.5 or higher.
 Users can uncheck the box to remove outliers if they would like to keep all of the data points for their analysis.
 Users can also enter different parameters for the z score if they wish to be more or less strict with datapoint filtering.
-Under the 'Axis Limits' drop down menu, the user can select each graph and adjust the axis for each.
+- Under the 'Axis Limits' drop down menu, the user can select each graph and adjust the axis for each.
 The default is to use the negative value of the baseline time entered by the user, along with auto adjustment for the rest.
 The program will automatically adjust the axis to include all the values with the least amount of white space.
 If you are entering your own values for these, and you wish to have one auto-adjusted, please input 'None'.
 Please input the points in the same format shown in the placeholder text.
 Ex. If you want the y-axis to go from 25 to 225, in the 'Y-Axis' box type '25, 225'.
-The 'Color Code' selection box will specify whether or not certain points or ranges will be colored accordingly.
+- The 'Color Code' selection box will specify whether or not certain points or ranges will be colored accordingly.
 If you would not like them colored, uncheck the box and they will default to black.
 If you want them a different color, in the 'Profiles' dropdown menu, select 'Single Color' and type in the desired color.
-The 'Graph Quality' drop down menu contains different settings for DPI (dots per inch).
+- The 'Graph Quality' drop down menu contains different settings for DPI (dots per inch).
 Low has 100 DPI, Medium has 300 DPI, High has 600 DPI, and Ultra has 1000 DPI.
 If the user selects 'Custom', an entry box will appear that they can type in the desired DPI.
 NOTE: The higher the DPI, the longer the program takes to run, this is the only bottle necking part of the program.
-Under the 'Display Baseline' check box, the user can decide whether or not to have a dashed line showing the baseline appear on the graph.
+- Under the 'Display Baseline' check box, the user can decide whether or not to have a dashed line showing the baseline appear on the graph.
 Underneath there is an entry box to type in the color of the baseline dashed line.
 NOTE: To view available colors, click on the 'Colors' tab next to the 'Graphs' tab.
-Lastly, under the 'Baseline time (min)' there is a box for the user to specify what their baseline value is for the analysis.
+- Lastly, under the 'Baseline time (min)' there is a box for the user to specify what their baseline value is for the analysis.
 The baseline will be used to calculate what the peak averages are before adding the drug to find relative increases or decreases in signal
 The default is 10, but if you would like to change it, type an integer into the box.
-Again, the 'Reset' button in the bottom right will reset EVERYTHING for this profile only. It will not affect any other profiles.
+- Again, the 'Reset' button in the bottom right will reset EVERYTHING for this profile only. It will not affect any other profiles.
 If you have further questions, please reach out to us and send us a screenshot of your parameters along with your data set and we can help you troubleshoot from there.
 ## 4. Interpreting Results
 As mentioned previously, to view results, look in the same directory as the analyzed files and select the 'E-Phys Analyzer YYYY-DD-MM Results' file filder.
