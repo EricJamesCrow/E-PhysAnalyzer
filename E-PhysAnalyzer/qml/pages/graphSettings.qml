@@ -1091,11 +1091,11 @@ Item {
                     id: minAvgXAxisLimitsEntry0
                     x: 42
                     y: 23
-                    width: 70
+                    width: 75
                     height: 16
-                    placeholderText: qsTr("-10, None")
+                    placeholderText: qsTr("-Baseline,None")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     text: settings.minAvgXAxisLimitsEntry0
                     onTextChanged: settings.minAvgXAxisLimitsEntry0 = minAvgXAxisLimitsEntry0.text
 
@@ -1114,12 +1114,12 @@ Item {
                     id: minAvgYAxisLimitsEntry0
                     x: 42
                     y: 45
-                    width: 70
+                    width: 75
                     height: 16
-                    placeholderText: qsTr("25, 225")
+                    placeholderText: qsTr("25,225")
                     text: settings.minAvgYAxisLimitsEntry0
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minAvgYAxisLimitsEntry0 = minAvgYAxisLimitsEntry0.text
 
                     Label {
@@ -1137,15 +1137,15 @@ Item {
                     id: postAnalysisXAxisLimitsEntry0
                     x: 42
                     y: 23
-                    width: 70
+                    width: 75
                     height: 16
                     visible: true
                     rotation: 0
                     text: settings.postXAxisLimitsEntry0
                     onTextChanged: settings.postXAxisLimitsEntry0 = postAnalysisXAxisLimitsEntry0.text
-                    placeholderText: qsTr("-10, None")
+                    placeholderText: qsTr("-Baseline,None")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     Label {
                         id: xAxisLabel1
                         x: -39
@@ -1161,14 +1161,14 @@ Item {
                     id: postAnalysisYAxisLimitsEntry0
                     x: 42
                     y: 45
-                    width: 70
+                    width: 75
                     height: 16
                     visible: true
                     text: settings.postYAxisLimitsEntry0
                     onTextChanged: settings.postYAxisLimitsEntry0 = postAnalysisYAxisLimitsEntry0.text
-                    placeholderText: qsTr("None, None")
+                    placeholderText: qsTr("None,None")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     Label {
                         id: yAxisLabel1
                         x: -39
@@ -2022,12 +2022,12 @@ Item {
                     id: minAvgXAxisLimitsEntry1
                     x: 42
                     y: 23
-                    width: 70
+                    width: 75
                     height: 16
-                    placeholderText: qsTr("-10, None")
+                    placeholderText: qsTr("-Baseline,None")
                     text: settings.minAvgXAxisLimitsEntry1
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minAvgXAxisLimitsEntry1 = minAvgXAxisLimitsEntry1.text
                     Label {
                         id: xAxisLabel2
@@ -2044,11 +2044,11 @@ Item {
                     id: minAvgYAxisLimitsEntry1
                     x: 42
                     y: 45
-                    width: 70
+                    width: 75
                     height: 16
-                    placeholderText: qsTr("25, 225")
+                    placeholderText: qsTr("25,225")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     text: settings.minAvgYAxisLimitsEntry1
                     onTextChanged: settings.minAvgYAxisLimitsEntry1 = minAvgYAxisLimitsEntry1.text
                     Label {
@@ -2066,14 +2066,14 @@ Item {
                     id: postAnalysisXAxisLimitsEntry1
                     x: 42
                     y: 23
-                    width: 70
+                    width: 75
                     height: 16
                     visible: true
                     text: settings.postXAxisLimitsEntry1
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.postXAxisLimitsEntry1 = postAnalysisXAxisLimitsEntry1.text
-                    placeholderText: qsTr("-10, None")
+                    placeholderText: qsTr("-Baseline,None")
                     rotation: 0
                     Label {
                         id: xAxisLabel3
@@ -2090,12 +2090,12 @@ Item {
                     id: postAnalysisYAxisLimitsEntry1
                     x: 42
                     y: 45
-                    width: 70
+                    width: 75
                     height: 16
                     visible: true
-                    placeholderText: qsTr("None, None")
+                    placeholderText: qsTr("None,None")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     text: settings.postYAxisLimitsEntry1
                     onTextChanged: settings.postYAxisLimitsEntry1 = postAnalysisYAxisLimitsEntry1.text
                     Label {
@@ -2941,12 +2941,12 @@ Item {
                     id: minAvgXAxisLimitsEntry2
                     x: 42
                     y: 23
-                    width: 70
+                    width: 75
                     height: 16
-                    placeholderText: qsTr("-10, None")
+                    placeholderText: qsTr("-Baseline,None")
                     text: settings.minAvgXAxisLimitsEntry2
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.minAvgXAxisLimitsEntry2 = minAvgXAxisLimitsEntry2.text
                     Label {
                         id: xAxisLabel4
@@ -2963,11 +2963,11 @@ Item {
                     id: minAvgYAxisLimitsEntry2
                     x: 42
                     y: 45
-                    width: 70
+                    width: 75
                     height: 16
-                    placeholderText: qsTr("25, 225")
+                    placeholderText: qsTr("25,225")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     text: settings.minAvgYAxisLimitsEntry2
                     onTextChanged: settings.minAvgYAxisLimitsEntry2 = minAvgYAxisLimitsEntry2.text
                     Label {
@@ -2985,12 +2985,12 @@ Item {
                     id: postAnalysisXAxisLimitsEntry2
                     x: 42
                     y: 23
-                    width: 70
+                    width: 75
                     height: 16
                     visible: true
-                    placeholderText: qsTr("-10, None")
+                    placeholderText: qsTr("-Baseline,None")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     text: settings.postXAxisLimitsEntry2
                     onTextChanged: settings.postXAxisLimitsEntry2 =  postAnalysisXAxisLimitsEntry2.text
                     rotation: 0
@@ -3009,14 +3009,14 @@ Item {
                     id: postAnalysisYAxisLimitsEntry2
                     x: 42
                     y: 45
-                    width: 70
+                    width: 75
                     height: 16
                     visible: true
                     text: settings.postYAxisLimitsEntry2
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     onTextChanged: settings.postYAxisLimitsEntry2 =  postAnalysisYAxisLimitsEntry2.text
-                    placeholderText: qsTr("None, None")
+                    placeholderText: qsTr("None,None")
 
                     Label {
                         id: yAxisLabel5
@@ -3058,8 +3058,8 @@ Item {
                         backend.receiveColors(colorCodes)
 
                     } else {
-                        const colorCodes = ['gray', 'gray', 'gray', 'gray', 'gray',
-                                            'gray', 'gray', 'gray']
+                        const colorCodes = ['black', 'black', 'black', 'black', 'black',
+                                            'black', 'black', 'black']
                         backend.receiveColors(colorCodes)
                     }
                 } else if (settings.customsColorsIndex == 1) {
@@ -3076,8 +3076,8 @@ Item {
                         backend.receiveColors(colorCodes)
 
                     } else {
-                        const colorCodes = ['gray', 'gray', 'gray', 'gray', 'gray',
-                                            'gray', 'gray', 'gray']
+                        const colorCodes = ['black', 'black', 'black', 'black', 'black',
+                                            'black', 'black', 'black']
                         backend.receiveColors(colorCodes)
                     }
                 } else if (settings.customsColorsIndex == 2) {
@@ -3094,8 +3094,8 @@ Item {
                         backend.receiveColors(colorCodes)
 
                     } else {
-                        const colorCodes = ['gray', 'gray', 'gray', 'gray', 'gray',
-                                            'gray', 'gray', 'gray']
+                        const colorCodes = ['black', 'black', 'black', 'black', 'black',
+                                            'black', 'black', 'black']
                         backend.receiveColors(colorCodes)
                     }
                 }
@@ -3103,8 +3103,8 @@ Item {
                 else if (settings.customsColorsIndex == 3) {
                     if (settings.colorCodeCheckBoxVar3 == Qt.Checked) {
                         if (singleColorGraphEntry.text == '') {
-                            const colorCodes = ['gray', 'gray', 'gray', 'gray', 'gray',
-                                                'gray', 'gray', 'gray']
+                            const colorCodes = ['black', 'black', 'black', 'black', 'black',
+                                                'black', 'black', 'black']
                             backend.receiveColors(colorCodes)
                         } else {
                             const colorCodes = []
@@ -3119,8 +3119,8 @@ Item {
                             backend.receiveColors(colorCodes)
                         }
                     } else {
-                        const colorCodes = ['gray', 'gray', 'gray', 'gray', 'gray',
-                                            'gray', 'gray', 'gray']
+                        const colorCodes = ['black', 'black', 'black', 'black', 'black',
+                                            'black', 'black', 'black']
                         backend.receiveColors(colorCodes)
                     }
                 }
@@ -3684,13 +3684,13 @@ Item {
                     id: minAvgXAxisLimitsEntry3
                     x: 42
                     y: 23
-                    width: 70
+                    width: 75
                     height: 16
                     text: settings.minAvgXAxisLimitsEntry3
                     onTextChanged: settings.minAvgXAxisLimitsEntry3 =  minAvgXAxisLimitsEntry3.text
-                    placeholderText: qsTr("-10, None")
+                    placeholderText: qsTr("-Baseline,None")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
 
                     Label {
                         id: xAxisLabel6
@@ -3707,11 +3707,11 @@ Item {
                     id: minAvgYAxisLimitsEntry3
                     x: 42
                     y: 45
-                    width: 70
+                    width: 75
                     height: 16
-                    placeholderText: qsTr("25, 225")
+                    placeholderText: qsTr("25,225")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     text: settings.minAvgYAxisLimitsEntry3
                     onTextChanged: settings.minAvgYAxisLimitsEntry3 =  minAvgYAxisLimitsEntry3.text
                     Label {
@@ -3729,12 +3729,12 @@ Item {
                     id: postAnalysisXAxisLimitsEntry3
                     x: 42
                     y: 23
-                    width: 70
+                    width: 75
                     height: 16
                     visible: true
-                    placeholderText: qsTr("-10, None")
+                    placeholderText: qsTr("-Baseline,None")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     text: settings.postXAxisLimitsEntry3
                     onTextChanged: settings.postXAxisLimitsEntry3 =  postAnalysisXAxisLimitsEntry3.text
                     rotation: 0
@@ -3753,12 +3753,12 @@ Item {
                     id: postAnalysisYAxisLimitsEntry3
                     x: 42
                     y: 45
-                    width: 70
+                    width: 75
                     height: 16
                     visible: true
-                    placeholderText: qsTr("None, None")
+                    placeholderText: qsTr("None,None")
                     font.family: fixedFont.font.family
-                    font.pointSize: 9
+                    font.pointSize: 8
                     text: settings.postYAxisLimitsEntry3
                     onTextChanged: settings.postYAxisLimitsEntry3 =  postAnalysisYAxisLimitsEntry3.text
                     Label {

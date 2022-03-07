@@ -55,6 +55,7 @@ class MainWindow(QObject):
     getBaselineValue = Signal()
     setProgressBar = Signal(int, str)
     setColorsBar = Signal(int)
+    setRootHeight = Signal(int)
     getAxisLimits = Signal()
     getGraphPoints = Signal()
 
@@ -75,7 +76,7 @@ class MainWindow(QObject):
         self.axisLimits = []
         try:
             if axisLimits[0] == ['']:
-                self.axisLimits.append(-10)
+                self.axisLimits.append(-self.baselineEntry)
                 self.axisLimits.append(None)
             else:
                 for x in axisLimits[0]:
@@ -134,8 +135,10 @@ class MainWindow(QObject):
     # called from main.qml // emits to ShowColors.qml
         if num == 1:
             self.setColorsBar.emit(303)
+            self.setRootHeight.emit(725)
         else:
             self.setColorsBar.emit(496)
+            self.setRootHeight.emit(385)
 
     @Slot(int)
     def scrollBar(self, num):

@@ -630,7 +630,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -666,7 +666,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -702,7 +702,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -738,7 +738,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -774,7 +774,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -810,7 +810,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -846,7 +846,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -882,7 +882,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -894,7 +894,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -954,7 +954,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -990,7 +990,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1026,7 +1026,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1062,7 +1062,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1098,7 +1098,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1134,7 +1134,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1170,7 +1170,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1206,7 +1206,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1242,7 +1242,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1278,7 +1278,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1314,7 +1314,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1350,7 +1350,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1386,7 +1386,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1422,7 +1422,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }
@@ -1458,7 +1458,7 @@ Item {
                     width: 101
                     height: 20
                     visible: false
-                    placeholderText: qsTr("Ex: 45, 56, 78")
+                    placeholderText: qsTr("Ex: 45,56,78")
                     font.family: fixedFont.font.family
                     font.pointSize: 9
                 }

@@ -340,6 +340,7 @@ Window {
                                 helpButton.isActiveMenu = true
                                 helpButton.isNotActiveMenu = false
                                 stackView.push(Qt.resolvedUrl("pages/README.qml"))
+                                backend.gettingWindowMargins()
                             }
                         }
                     }
