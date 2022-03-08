@@ -117,7 +117,7 @@ class MainProgram:
                     continue
                 # if the trace is within the baseline, it adds them together to calculate the baseline
                 else:
-                    if (trace >= (int(whenDrug) - user_baseline * traces_per_minute + 1)) and (trace < int(whenDrug)):
+                    if (trace >= (int(whenDrug) - (user_baseline * traces_per_minute + 1))) and (trace < int(whenDrug)):
                         ampTotal += float(absAmp)
                         totalTraces += 1
 
@@ -195,7 +195,7 @@ class MainProgram:
                         continue
                     else:
                         # time from drug calculation based on given metrics
-                        time_from_drug = timeInMinutes[i] - float(whenDrug) / traces_per_minute
+                        time_from_drug = timeInMinutes[i] - (float(whenDrug)-1) / traces_per_minute
 
                         # since there is no '0' time point, we are removing that by noting when it becomes positive
                         if time_from_drug >= 0:
