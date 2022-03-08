@@ -104,7 +104,6 @@ As mentioned previously, to view results, look in the same directory as the anal
     Connections {
         target: backend
         function onSetRootHeight(num) {
-            console.log(num)
             rootHeight = num
             root.height = rootHeight
         }
