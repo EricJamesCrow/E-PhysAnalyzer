@@ -11,7 +11,7 @@ Item {id: root
     QtObject{
         id: internals
         property string markdown_text: "
-##### Contact: cameroncordero@gmail.com / EricCrow@pm.me
+##### Contact: cameron.cordero@wsu.edu / EricCrow@pm.me
 ## 1. Using the Program
 #### 1. Selecting Files
 Begin by selecting files using the 'Browse' button in blue.<br/>
