@@ -12,7 +12,7 @@ Item {id: root
         id: internals
         property string markdown_text: "
 ##### Contact: cameron.cordero@wsu.edu / EricCrow@pm.me
-## 1. Using the Program
+## Using the Program
 #### 1. Selecting Files
 Begin by selecting files using the 'Browse' button in blue.<br/>
 This should bring up your native file browser.<br/>
@@ -56,7 +56,7 @@ The default is to use the negative value of the baseline<br/>time entered by the
 - To run the program simply navigate to the 'RUN' tab and select run.
 <br/>NOTE: Make sure you have the drug name, the trace number the drug was added, <br/>and any excluded traces you want removed from the data and analysis.
 - Please follow the placeholder text for formatting these entries. If you have any <br/>questions or are running into errors, please note the error messages and <br/>resolve the issue. If you cannot, contact us.
-## 2. Interpreting Results
+## Interpreting Results
 As mentioned previously, to view results, look in the same directory as the analyzed files<br/>and select the 'E-Phys Analyzer YYYY-DD-MM Results' file filder.
 <br/>The file creates two graphs and two .csv files, both from the same analysis.
 1. The first dataset labeled 'Post Analysis' comes from the algorithm in <br/>'AnalyzeData.py'. This file contains every data point and a full analysis of each. <br/>The corresponding graph has the same values.
