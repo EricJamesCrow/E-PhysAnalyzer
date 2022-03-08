@@ -80,7 +80,7 @@ The baseline will be used to calculate what the peak averages are before adding 
 The default is 10, but if you would like to change it, type an integer into the box.
 - Again, the 'Reset' button in the bottom right will reset EVERYTHING for this profile only. It will not affect any other profiles.
 If you have further questions, please reach out to us and send us a screenshot of your parameters along with your data set and we can help you troubleshoot from there.
-3. Running the Program
+#### 3. Running the Program
 - To run the program simply navigate to the 'RUN' tab and select run.
 NOTE: Make sure you have the drug name, the trace number the drug was added, and any excluded traces you want removed from the data and analysis.
 - Please follow the placeholder text for formatting these entries. If you have any questinos or are running into errors, please note the error messages and resolve the issue. If you cannot, contact us.
