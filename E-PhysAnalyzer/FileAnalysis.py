@@ -238,10 +238,10 @@ class MainProgram:
                     normalized_amplitude = file_columns[5]
                     trace = file_columns[0]
                     color = file_columns[7]
-                    if time_from_drug[0] == '-' and int(trace) < (whenDrug - (user_baseline * traces_per_minute)):
+                    if time_from_drug[0] == '-' and int(trace) + 1 < (whenDrug - (user_baseline * traces_per_minute)):
                         continue
 
-                    if (int(trace) >= (whenDrug + (minute_counter * traces_per_minute + 1))):
+                    if (int(trace) + 1 >= (whenDrug + (minute_counter * traces_per_minute + 1))):
                         minute_counter += 1
                         for entry in range(0, len(minuteTimes)): total += float(minuteTimes[entry])
                         avg = total / len(minuteTimes)

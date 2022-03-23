@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b6e2e090-8938-4bf0-a40b-1ea28aaebb7e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/E-PhysAnalyzerGUI.pyproject" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/FileAnalysis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/qml/controls/SettingsButton.qml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/README.qml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/ShowColors.qml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/chosenFiles.qml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/fileLabels.qml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/graphSettings.qml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/runpage.qml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/settingspage.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/E-PhysAnalyzer/fonts.qrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/E-PhysAnalyzer/main.qml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/E-PhysAnalyzer/qml/controls/NewButton.qml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/font.qml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/E-PhysAnalyzer/qml/pages/testColorsPage.qml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/E-PhysAnalyzer" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="26ndKASIbMGBpPO1awW1CPRtVSS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b6e2e090-8938-4bf0-a40b-1ea28aaebb7e" name="Changes" comment="" />
+      <created>1648063218087</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648063218087</updated>
+    </task>
+    <servers />
+  </component>
+</project>
