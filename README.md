@@ -47,8 +47,10 @@ This should bring up your native file browser.
 From there you can navigate to the directory containing the files you would like to analyze.
 You may select as many files as you want from this directory.
 REMEMBER the files will output to this same directory.
+
 ![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/browsefiles.gif)
 #### 2. The 'SETUP' Tab
+![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/setupfeatures.gif)
 - Within the setup tab lies the parameters and variables that the user can change for running the analysis.
 - There are up to 3 user profiles with complete control and 1 profile designed for a single color.
 - Defaults for the program are shown in the gray placeholder text.
@@ -85,6 +87,8 @@ If you have further questions, please reach out to us and send us a screenshot o
 - To run the program simply navigate to the 'RUN' tab and select run.
 NOTE: Make sure you have the drug name, the trace number the drug was added, and any excluded traces you want removed from the data and analysis.
 - Please follow the placeholder text for formatting these entries. If you have any questinos or are running into errors, please note the error messages and resolve the issue. If you cannot, contact us.
+
+![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/runtheprogram.gif)
 ## 4. Interpreting Results
 As mentioned previously, to view results, look in the same directory as the analyzed files and select the 'E-Phys Analyzer YYYY-DD-MM Results' file filder.
 The file creates two graphs and two .csv files, both from the same analysis.
