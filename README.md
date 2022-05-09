@@ -1,4 +1,5 @@
 # E-Phys Analyzer version 1.2.0
+![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/displayprogram.gif)
 ##### A data analysis and visualization tool for Clampfit data.
 ***
 ## Table of Contents
