@@ -47,6 +47,7 @@ This should bring up your native file browser.
 From there you can navigate to the directory containing the files you would like to analyze.
 You may select as many files as you want from this directory.
 REMEMBER the files will output to this same directory.
+![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/browsefiles.gif)
 #### 2. The 'SETUP' Tab
 - Within the setup tab lies the parameters and variables that the user can change for running the analysis.
 - There are up to 3 user profiles with complete control and 1 profile designed for a single color.
