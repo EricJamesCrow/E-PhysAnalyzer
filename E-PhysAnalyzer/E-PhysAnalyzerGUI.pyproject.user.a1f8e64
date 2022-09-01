@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.1, 2022-08-29T18:18:18. -->
+<!-- Written by QtCreator 6.0.2, 2022-03-07T16:53:18. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{ca52e5e3-664e-4cac-aa87-14bf3d7603fb}</value>
+  <value type="QByteArray">{a1f8e640-30eb-4595-857f-0dc0c2e01476}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -91,9 +91,9 @@
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 6.2.4 MinGW 64-bit</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 6.2.4 MinGW 64-bit</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt6.624.win64_mingw_kit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{aa5c3001-41db-46b1-99c7-90d93618c618}</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">-1</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -121,7 +121,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">C:/Users/educa/Documents/GitHub/E-PhysAnalyzer/E-PhysAnalyzer/main.py</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/educa/Documents/GitHub/E-PhysAnalyzer/E-PhysAnalyzer/main.py</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/educa/Documents/GitHub/E-PhysAnalyzer/E-PhysAnalyzer/main.py</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{010d0a4a-bf5e-42e0-b644-2a8edcf54bef}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{bdeb1ab0-1f28-434b-a104-713056dfacc2}</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\educa\Documents\GitHub\E-PhysAnalyzer\E-PhysAnalyzer\main.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>

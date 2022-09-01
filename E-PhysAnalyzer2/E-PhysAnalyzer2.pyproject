@@ -1,0 +1,3 @@
+{
+    "files": ["main.qml","main.py","qml/controls/buttons/EphysCustomButton.qml","qml/controls/Triangle.qml","qml/pages/Content.qml","qml/controls/buttons/EphysArrow.qml","qml/controls/custom/InputFields.qml"]
+}
