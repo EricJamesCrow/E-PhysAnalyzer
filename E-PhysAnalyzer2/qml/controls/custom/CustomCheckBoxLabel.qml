@@ -6,7 +6,7 @@ Button {
     property string checkBoxTheme: buttonColorDefault
     property string checkBoxThemeClicked: backgroundColor
     property bool checkedState: false
-    property var checkboxSvgIcon: checkBoxIcon
+    property var checkboxSvgIcon: "../../../images/svg_images/checkmark_icon_087589.svg"//checkBoxIcon
 
 
     display: AbstractButton.IconOnly
@@ -61,21 +61,6 @@ Button {
             font.family: "PragmaticaLightC"
         }
 
-        Image {
-            id: checkmarkImg
-            visible: checkedState
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            source: checkboxSvgIcon
-            anchors.rightMargin: 71 * scaleFactor
-            anchors.leftMargin: 10 * scaleFactor
-            anchors.bottomMargin: 0
-            anchors.topMargin: 0
-            fillMode: Image.PreserveAspectFit
-        }
-
         Rectangle {
             id: checkmarkImgBorder
             width: 16* scaleFactor
@@ -89,8 +74,41 @@ Button {
             anchors.topMargin: 5* scaleFactor
             border.color: internal.dynamicColor
             radius: 3
+
+            Image {
+                id: checkmarkImg
+                visible: checkedState
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                source: checkboxSvgIcon
+                anchors.rightMargin: 2
+                anchors.leftMargin: 2
+                anchors.bottomMargin: 2
+                anchors.topMargin: 2
+                fillMode: Image.PreserveAspectFit
+            }
         }
     }
+
+        Rectangle {
+            id: checkBoxDropShadow
+            opacity: 0.20
+            visible: true
+            color: "#000000"
+            radius: 3
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            clip: true
+            anchors.topMargin: 1
+            anchors.leftMargin: 1
+            anchors.rightMargin: -1
+            anchors.bottomMargin: -1
+            z: -3
+        }
 
 //    contentItem: Text {
 //        text: filterCheckBox.text

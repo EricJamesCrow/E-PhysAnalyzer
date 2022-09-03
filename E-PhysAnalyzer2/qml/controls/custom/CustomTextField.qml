@@ -14,6 +14,27 @@ TextField {
     // Custom Properties
     property color colorDefault: backgroundColor
     property color fontColorDefault: buttonColorDefault
+
+    Rectangle {
+        id: textFieldDropShadow
+        x: 2
+        y: 2
+        height: 740
+        opacity: 0.25
+        visible: true
+        color: "#000000"
+        radius: 5
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        clip: true
+        anchors.topMargin: 1
+        anchors.leftMargin: 1
+        anchors.rightMargin: -1
+        anchors.bottomMargin: -1
+        z: -3
+    }
 }
 /*##^##
 Designer {

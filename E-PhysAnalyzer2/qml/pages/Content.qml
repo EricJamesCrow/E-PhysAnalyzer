@@ -2,22 +2,21 @@ import QtQuick 2.15
 import QtQuick.Controls 2.5
 import QtQuick.Dialogs
 import QtCore 6.2
-import QtQml.WorkerScript
 import "../controls"
 import "../controls/buttons"
 import "../controls/custom" // For creating dynamic object, delete this import statement later
 import "../javascript/input-fields.js" as InputFields
-import Qt5Compat.GraphicalEffects
+//import Qt5Compat.GraphicalEffects
 
 Item {
     width: 1580
     height: 820
 
-//    property color topBarColor: settings.topBarColor
-//    property color terminalText: settings.terminalText
-//    property color backgroundColor: settings.backgroundColor
-//      property color columnColor: settings.columnColor
-//     property color buttonColorDefault: settings.buttonColorDefault
+    //    property color topBarColor: settings.topBarColor
+    //    property color terminalText: settings.terminalText
+    //    property color backgroundColor: settings.backgroundColor
+    //      property color columnColor: settings.columnColor
+    //     property color buttonColorDefault: settings.buttonColorDefault
     property var files: []
     property var fileObjects: []
     property var filesBasename: []
@@ -25,38 +24,48 @@ Item {
 
     // Properties for editing
     property int scaleFactor: 1
-    property color topBarColor: "#02323a" //settings.topBarColor
-    property color terminalText: "#2aafd3" //settings.terminalText
-    property color backgroundColor: "#b8e3ee" //settings.backgroundColor
-    property color buttonColorDefault: "#087589"
+    property color topBarColor: "#02323a"
+    property color topBarSecondaryColor: "#015967"
     property color columnColor: "#5ac1d0"
+    property color backgroundColor: "#b8e3ee"
+    property color backgroundBorderColor: "#e9efec"
+    property color buttonColorDefault: "#087589"
+    property color buttonColorPressed: "#357aac"
+    property color checkBoxHighlighted: "#33aac0"
+    property color terminalUnderlineColor: "#51abb9"
+    property color terminalText: "#2aafd3"
+    property color menuDropDownMouseOverColor: "#af025967"
+
     x: 10
 
     Rectangle {
         id: bg
         color: backgroundColor //"#4e7cff"
         anchors.fill: parent
+        z: 0
 
         Rectangle {
             id: rightContent
             opacity: 1
+            visible: true
             color: "#00000000"
             radius: 10
             anchors.left: leftContent.right
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            z: 1
             anchors.topMargin: 60 * scaleFactor
             anchors.bottomMargin: 20 * scaleFactor
             anchors.leftMargin: 30 * scaleFactor
             anchors.rightMargin: 20 * scaleFactor
-            clip: true
-                        layer.enabled: true
-                        layer.effect: DropShadow {
-                            verticalOffset: 2 * scaleFactor
-                            horizontalOffset: 2 * scaleFactor
-                            color: "#80000000"
-                        }
+            clip: false
+            //            layer.enabled: true
+            //            layer.effect: DropShadow {
+            //                verticalOffset: 2 * scaleFactor
+            //                horizontalOffset: 2 * scaleFactor
+            //                color: "#80000000"
+            //            }
 
             Rectangle {
                 id: rightContentTopBar
@@ -71,6 +80,7 @@ Item {
                 anchors.leftMargin: 0
                 anchors.topMargin: 0
                 z: 0
+
 
                 Rectangle {
                     id: rightTopBarBottom
@@ -172,10 +182,10 @@ Item {
                 }
             }
 
-            Rectangle {
+            Loader {
                 id: rightContentLoader
-                color: "#ffffff"
-                radius: 10
+                source: "SettingsPage.qml"
+                clip: true
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: rightContentTopBar.bottom
@@ -185,20 +195,115 @@ Item {
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
                 anchors.topMargin: 0
-                gradient: Gradient {
-                    GradientStop {
-                        position: 0
-                        color: "#4089f7fe"
-                    }
 
-                    GradientStop {
-                        position: 1
-                        color: "#4066a6ff"
-                    }
-                    orientation: Gradient.Vertical
+                Binding {
+                    target: leftContentLoader.item
+                    property: "topBarColor"
+                    value: settings.topBarColor
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "topBarSecondaryColor"
+                    value: settings.topBarSecondaryColor
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "columnColor"
+                    value: settings.columnColor
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "backgroundColor"
+                    value: settings.backgroundColor
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "backgroundBorderColor"
+                    value: settings.backgroundBorderColor
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "buttonColorDefault"
+                    value: settings.buttonColorDefault
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "buttonColorPressed"
+                    value: settings.buttonColorPressed
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "checkBoxHighlighted"
+                    value: settings.checkBoxHighlighted
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "terminalUnderlineColor"
+                    value: settings.terminalUnderlineColor
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property:"addFilterSvgIcon"
+                    value: settings.addFilterSvgIcon
+                }
+
+                Binding {
+                    target: leftContentLoader.item
+                    property:"checkBoxIcon"
+                    value: settings.checkBoxIcon
+                }
+
+
+                Binding {
+                    target: leftContentLoader.item
+                    property: "scaleFactor"
+                    value: settings.scaleFactor
                 }
             }
+
+            Rectangle {
+                id: rightContentBg
+                color:backgroundColor
+                radius: 10
+                anchors.fill: parent
+                z: -2
+            }
+
+            Rectangle {
+                id: rightContentDropShadow
+                x: 2
+                y: 2
+                height: 740
+                anchors.bottomMargin: -2
+                anchors.rightMargin: -2
+                anchors.leftMargin: 2
+                anchors.topMargin: 2
+                opacity: 0.25
+                visible: true
+                z: -3
+                color: "black"
+                radius: 10
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                clip: true
+            }
         }
+
+
+
+
+
 
 
 
@@ -214,12 +319,12 @@ Item {
             anchors.topMargin: 60 * scaleFactor
             anchors.bottomMargin: 20 * scaleFactor
             anchors.leftMargin: 20 * scaleFactor
-                        layer.enabled: true
-                        layer.effect: DropShadow {
-                            verticalOffset: 2 * scaleFactor
-                            horizontalOffset: 2 * scaleFactor
-                            color: "#80000000"
-                        }
+            //            layer.enabled: true
+            //            layer.effect: DropShadow {
+            //                verticalOffset: 2 * scaleFactor
+            //                horizontalOffset: 2 * scaleFactor
+            //                color: "#80000000"
+            //            }
             clip: true
             Rectangle {
                 id: leftContentTopBar
@@ -336,6 +441,11 @@ Item {
             }
         }
 
+
+
+
+
+
         EphysCustomButton {
             id: browseBtn
             btnImage: "../../../images/svg_images/open_icon.svg"
@@ -346,13 +456,21 @@ Item {
             onClicked: fileDialog.open()
         }
 
+
+
+
+
         FileDialog {
             id: fileDialog
-//            nameFilters:["ATF files (*.atf)"]
+            //            nameFilters:["ATF files (*.atf)"]
             fileMode: FileDialog.OpenFiles
             currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
             onAccepted: InputFields.create_objects(selectedFiles)
         }
+
+
+
+
 
         EphysCustomButton {
             id: runBtn
@@ -365,12 +483,19 @@ Item {
 
         }
 
+
+
+
+
         Connections {
             target: backend
             function onAddObject(selectedFile) {
                 InputFields.create(selectedFile)
             }
         }
+
+
+
 
 
 
@@ -386,6 +511,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}
+    D{i:0;formeditorZoom:0.5}D{i:26}D{i:27}
 }
 ##^##*/
