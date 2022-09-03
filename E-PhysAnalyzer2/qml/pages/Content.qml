@@ -182,101 +182,165 @@ Item {
                 }
             }
 
-            Loader {
-                id: rightContentLoader
-                source: "SettingsPage.qml"
-                clip: true
+            Flickable {
+                id: rightContentFlickable
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: rightContentTopBar.bottom
                 anchors.bottom: parent.bottom
                 z: -1
-                anchors.bottomMargin: 0
                 anchors.rightMargin: 0
+                anchors.bottomMargin: 0
                 anchors.leftMargin: 0
                 anchors.topMargin: 0
-
-                Binding {
-                    target: leftContentLoader.item
-                    property: "topBarColor"
-                    value: settings.topBarColor
+                // flickable settings
+                contentWidth: 663
+                contentHeight: 704
+                clip: true
+                ScrollBar.vertical: CustomScrollBar {
+                    id: scrollBarVerticalLeftContent1
+//                    parent: rightContentFlickable.parent
+//                    anchors.right: rightContentFlickable.right
+//                    anchors.top: rightContentFlickable.top
+//                    anchors.bottom: rightContentFlickable.bottom
+                    btnColorDefault: settings.buttonColorDefault
+                    backgroundColorDefault: settings.backgroundColor
+                    width: 10* scaleFactor
+                }
+                ScrollBar.horizontal: CustomScrollBar {
+                    id: scrollBarHorizontalRightContent
+//                    parent: rightContentFlickable.parent
+//                    anchors.left: rightContentFlickable.left
+//                    anchors.right: rightContentFlickable.right
+//                    anchors.bottom: rightContentFlickable.bottom
+                    btnColorDefault: settings.buttonColorDefault
+                    backgroundColorDefault: settings.backgroundColor
+                    height: 17 * scaleFactor
                 }
 
-                Binding {
-                    target: leftContentLoader.item
-                    property: "topBarSecondaryColor"
-                    value: settings.topBarSecondaryColor
+                Loader {
+                    id: rightContentLoader
+                    x: 0
+                    source: "SettingsPage.qml"
+                    clip: true
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    z: -1
+                    anchors.bottomMargin: 0
+                    anchors.rightMargin: 0
+                    anchors.leftMargin: 0
+                    anchors.topMargin: 0
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "topBarColor"
+                        value: settings.topBarColor
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "topBarSecondaryColor"
+                        value: settings.topBarSecondaryColor
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "columnColor"
+                        value: settings.columnColor
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "backgroundColor"
+                        value: settings.backgroundColor
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "backgroundBorderColor"
+                        value: settings.backgroundBorderColor
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "buttonColorDefault"
+                        value: settings.buttonColorDefault
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "buttonColorPressed"
+                        value: settings.buttonColorPressed
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "checkBoxHighlighted"
+                        value: settings.checkBoxHighlighted
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "terminalUnderlineColor"
+                        value: settings.terminalUnderlineColor
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property:"addFilterSvgIcon"
+                        value: settings.addFilterSvgIcon
+                    }
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property:"checkBoxIcon"
+                        value: settings.checkBoxIcon
+                    }
+
+
+                    Binding {
+                        target: leftContentLoader.item
+                        property: "scaleFactor"
+                        value: settings.scaleFactor
+                    }
                 }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property: "columnColor"
-                    value: settings.columnColor
-                }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property: "backgroundColor"
-                    value: settings.backgroundColor
-                }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property: "backgroundBorderColor"
-                    value: settings.backgroundBorderColor
-                }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property: "buttonColorDefault"
-                    value: settings.buttonColorDefault
-                }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property: "buttonColorPressed"
-                    value: settings.buttonColorPressed
-                }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property: "checkBoxHighlighted"
-                    value: settings.checkBoxHighlighted
-                }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property: "terminalUnderlineColor"
-                    value: settings.terminalUnderlineColor
-                }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property:"addFilterSvgIcon"
-                    value: settings.addFilterSvgIcon
-                }
-
-                Binding {
-                    target: leftContentLoader.item
-                    property:"checkBoxIcon"
-                    value: settings.checkBoxIcon
-                }
+            }
 
 
-                Binding {
-                    target: leftContentLoader.item
-                    property: "scaleFactor"
-                    value: settings.scaleFactor
+            Rectangle {
+                id: rightContentBg
+                visible: true
+                color: "#4089f7fe"
+                radius: 10
+                anchors.fill: parent
+                z: -2
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: "#4089f7fe"
+                    }
+
+                    GradientStop {
+                        position: 1
+                        color: "#4066a6ff"
+                    }
+                    orientation: Gradient.Vertical
                 }
             }
 
             Rectangle {
-                id: rightContentBg
+                id: rightContentBgDS
+                visible: true
                 color:backgroundColor
                 radius: 10
                 anchors.fill: parent
-                z: -2
+                z: -3
             }
+
+
+
 
             Rectangle {
                 id: rightContentDropShadow
@@ -289,7 +353,7 @@ Item {
                 anchors.topMargin: 2
                 opacity: 0.25
                 visible: true
-                z: -3
+                z: -4
                 color: "black"
                 radius: 10
                 anchors.left: parent.left
@@ -298,6 +362,9 @@ Item {
                 anchors.bottom: parent.bottom
                 clip: true
             }
+
+
+
         }
 
 
@@ -325,7 +392,7 @@ Item {
             //                horizontalOffset: 2 * scaleFactor
             //                color: "#80000000"
             //            }
-            clip: true
+            clip: false
             Rectangle {
                 id: leftContentTopBar
                 height: 36
@@ -439,6 +506,36 @@ Item {
                     orientation: Gradient.Vertical
                 }
             }
+
+            Rectangle {
+                id: leftContentBg
+                visible: true
+                color: backgroundColor
+                radius: 10
+                anchors.fill: parent
+                z: -3
+            }
+
+            Rectangle {
+                id: leftContentDropShadow
+                x: 2
+                y: 2
+                height: 740
+                opacity: 0.25
+                visible: true
+                color: "#000000"
+                radius: 10
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: -2
+                anchors.leftMargin: 2
+                z: -4
+                anchors.topMargin: 2
+                anchors.bottomMargin: -2
+                clip: true
+            }
         }
 
 
@@ -511,6 +608,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:26}D{i:27}
+    D{i:0;formeditorZoom:0.5}D{i:16}D{i:13}D{i:29}
 }
 ##^##*/

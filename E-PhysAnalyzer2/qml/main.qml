@@ -56,8 +56,8 @@ Window {
     id: mainWindow
     width: 1600 * scaleFactor
     height: 900 * scaleFactor
-    minimumWidth: 1280 * scaleFactor
-    minimumHeight: 720 * scaleFactor
+    minimumWidth: 1600 * scaleFactor
+    minimumHeight: 900 * scaleFactor
     visible: true
     color: "#00000000"
     title: qsTr("E-Phys Analyzer 2.0")

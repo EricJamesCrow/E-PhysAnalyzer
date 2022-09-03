@@ -16,12 +16,12 @@ class Backend(QObject):
 
     @Slot(list)
     def create_objects(self, selected_files):
-        input_fields = InputFields()
-        input_fields.data(self, selected_files)
+        input_fields = InputFields(self, selected_files)
         input_fields.start()
 
 class InputFields(Thread):
-    def data(self, backend, selected_files):
+    def __init__(self, backend, selected_files):
+        super(InputFields, self).__init__()
         self.backend = backend
         self.selected_files = selected_files
 
