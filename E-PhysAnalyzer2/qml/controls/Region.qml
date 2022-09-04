@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.5
+import "buttons"
+import "../javascript/new-region.js" as NewRegion
 
 Item {
     id: region
@@ -8,6 +10,8 @@ Item {
     property string greaterThanEqualToText: "-10"
     property string lessThanText: "-5"
     property string colorSelected: "Red"
+    property int regionNumber: 0
+    property var regionObjectsSlice: []
 
 
     Rectangle {
@@ -80,24 +84,14 @@ Item {
             font.family: "PragmaticaLightC"
         }
 
-        Button {
+        Delete {
             id: circle
-            width: 10
-            height: 10
-            text: "Circle button"
+            width: 12
+            height: 12
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 10
-            background: Rectangle {
-                color: "#ffffff"
-                radius: width * 0.5
-                border.width: 0
-                implicitHeight: width
-                implicitWidth: 140 * scaleFactor
-            }
-            flat: true
-            down: false
-            display: AbstractButton.IconOnly
+            onClicked: NewRegion.deleteRegion(regionNumber)
         }
     }
 }

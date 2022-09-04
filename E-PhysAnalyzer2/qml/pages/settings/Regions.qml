@@ -14,6 +14,8 @@ Rectangle {
     color: "#00000000"
 
     property var regionObjects: []
+    property var currentRegionObject: []
+    property int currentRegionY : 0
     property int regionAxis: 5
 
     Rectangle {

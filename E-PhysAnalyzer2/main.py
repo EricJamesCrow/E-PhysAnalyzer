@@ -30,7 +30,7 @@ class StartingAnimation(Thread):
         self.backend = backend
     
     def run(self):
-        time.sleep(0.3)
+        time.sleep(0.2)
         for i in range(9):
             time.sleep(0.1)
             self.backend.animateObject.emit(i)
