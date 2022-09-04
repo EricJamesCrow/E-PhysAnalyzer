@@ -35,7 +35,7 @@ Item {
         id: gTeTLabel
         x: 68
         color: "#ffffff"
-        text: qsTr("<")
+        text: String.fromCharCode(0x2264)
         anchors.verticalCenter: parent.verticalCenter
         font.family: "PragmaticaLightC"
         anchors.verticalCenterOffset: 0

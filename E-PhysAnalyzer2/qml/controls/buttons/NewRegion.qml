@@ -111,7 +111,7 @@ Button {
             id: greaterThanOrEqualLabel
             x: 50
             color: "#087589"
-            text: qsTr("<=")
+            text: String.fromCharCode(0x2264)
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
 
