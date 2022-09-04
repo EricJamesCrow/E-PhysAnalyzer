@@ -20,7 +20,8 @@ Item {
     property var files: []
     property var fileObjects: []
     property var filesBasename: []
-    property int objectHeight: 20
+    property int objectHeight: 10
+    property int flickableContentHeight: 696
 
     // Properties for editing
     property int scaleFactor: 1
@@ -199,20 +200,20 @@ Item {
                 clip: true
                 ScrollBar.vertical: CustomScrollBar {
                     id: scrollBarVerticalLeftContent1
-//                    parent: rightContentFlickable.parent
-//                    anchors.right: rightContentFlickable.right
-//                    anchors.top: rightContentFlickable.top
-//                    anchors.bottom: rightContentFlickable.bottom
+                    //                    parent: rightContentFlickable.parent
+                    //                    anchors.right: rightContentFlickable.right
+                    //                    anchors.top: rightContentFlickable.top
+                    //                    anchors.bottom: rightContentFlickable.bottom
                     btnColorDefault: settings.buttonColorDefault
                     backgroundColorDefault: settings.backgroundColor
                     width: 10* scaleFactor
                 }
                 ScrollBar.horizontal: CustomScrollBar {
                     id: scrollBarHorizontalRightContent
-//                    parent: rightContentFlickable.parent
-//                    anchors.left: rightContentFlickable.left
-//                    anchors.right: rightContentFlickable.right
-//                    anchors.bottom: rightContentFlickable.bottom
+                    //                    parent: rightContentFlickable.parent
+                    //                    anchors.left: rightContentFlickable.left
+                    //                    anchors.right: rightContentFlickable.right
+                    //                    anchors.bottom: rightContentFlickable.bottom
                     btnColorDefault: settings.buttonColorDefault
                     backgroundColorDefault: settings.backgroundColor
                     height: 17 * scaleFactor
@@ -234,74 +235,74 @@ Item {
                     anchors.topMargin: 0
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "topBarColor"
                         value: settings.topBarColor
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "topBarSecondaryColor"
                         value: settings.topBarSecondaryColor
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "columnColor"
                         value: settings.columnColor
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "backgroundColor"
                         value: settings.backgroundColor
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "backgroundBorderColor"
                         value: settings.backgroundBorderColor
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "buttonColorDefault"
                         value: settings.buttonColorDefault
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "buttonColorPressed"
                         value: settings.buttonColorPressed
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "checkBoxHighlighted"
                         value: settings.checkBoxHighlighted
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "terminalUnderlineColor"
                         value: settings.terminalUnderlineColor
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property:"addFilterSvgIcon"
                         value: settings.addFilterSvgIcon
                     }
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property:"checkBoxIcon"
                         value: settings.checkBoxIcon
                     }
 
 
                     Binding {
-                        target: leftContentLoader.item
+                        target: leftContentBg.item
                         property: "scaleFactor"
                         value: settings.scaleFactor
                     }
@@ -473,20 +474,55 @@ Item {
                 anchors.leftMargin: 0
             }
 
+            Flickable {
+                id: leftContentFlickable
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: leftContentTopBar.bottom
+                anchors.bottom: parent.bottom
+                contentWidth: 847
+                contentHeight: flickableContentHeight
+                anchors.rightMargin: 0
+                z: -1
+                anchors.topMargin: 8
+                ScrollBar.vertical: CustomScrollBar {
+                    id: scrollBarVerticalLeftContent2
+                    width: 10* scaleFactor
+                }
+                anchors.bottomMargin: 0
+                clip: true
+                anchors.leftMargin: 0
+
+                Rectangle {
+                    id: leftContentLoader
+                    x: 0
+                    y: 36
+                    color: "#00000000"
+                    radius: 10
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    z: -1
+                    anchors.topMargin: 0
+                    clip: true
+                }
+            }
+
+
             Rectangle {
-                id: leftContentLoader
+                id: leftContentBg
+                x: 0
+                y: 36
                 color: "#3389f7fe"
                 radius: 10
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: leftContentTopBar.bottom
                 anchors.bottom: parent.bottom
+                anchors.topMargin: -36
                 clip: true
                 z: -1
-                anchors.bottomMargin: 0
-                anchors.rightMargin: 0
-                anchors.leftMargin: 0
-                anchors.topMargin: 0
                 gradient: Gradient {
                     GradientStop {
                         position: 0
@@ -508,13 +544,15 @@ Item {
             }
 
             Rectangle {
-                id: leftContentBg
+                id: leftContentBgDS
                 visible: true
                 color: backgroundColor
                 radius: 10
                 anchors.fill: parent
                 z: -3
             }
+
+
 
             Rectangle {
                 id: leftContentDropShadow
@@ -536,6 +574,8 @@ Item {
                 anchors.bottomMargin: -2
                 clip: true
             }
+
+
         }
 
 
@@ -608,6 +648,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:16}D{i:13}D{i:29}
+    D{i:0;formeditorZoom:0.5}D{i:16}D{i:13}D{i:29}D{i:44}D{i:42}D{i:45}
 }
 ##^##*/

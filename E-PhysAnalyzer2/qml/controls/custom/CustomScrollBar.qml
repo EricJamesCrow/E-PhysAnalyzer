@@ -8,8 +8,8 @@ ScrollBar {
     active: true
     orientation: Qt.Vertical
 
-    property color btnColorDefault: buttonColorDefault
-    property color backgroundColorDefault: backgroundColor
+    property color btnColorDefault: topBarColor
+    property color backgroundColorDefault: buttonColorDefault
 
 
     contentItem: Rectangle {
@@ -18,7 +18,7 @@ ScrollBar {
         radius: width / 2
         color: control.pressed ? btnColorDefault : backgroundColorDefault/*"#80dcf3"*/
         // Hide the ScrollBar when it's not needed.
-        opacity: control.policy === ScrollBar.AlwaysOn || (control.active && control.size < 1.0) ? 0.75 : 0
+        opacity:1 /*control.policy === ScrollBar.AlwaysOn || (control.active && control.size < 1.0) ? 1 : 0.75*/
 
         // Animate the changes in opacity (default duration is 250 ms).
         Behavior on opacity {

@@ -13,6 +13,9 @@ function create(selectedFile) {
     newObject.y += objectHeight 
     fileObjects.push(newObject)
     objectHeight += 40
+    if(fileObjects.length > 17) {
+        flickableContentHeight += 40
+    }
 }
 
 var splitTest = function (str) {
@@ -39,5 +42,6 @@ function reset() {
     files = []
     fileObjects = []
     filesBasename = []
-    objectHeight = 20
+    objectHeight = 10
+    flickableContentHeight = 696
 }
