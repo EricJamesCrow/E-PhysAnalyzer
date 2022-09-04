@@ -3,9 +3,15 @@ import QtQuick.Controls 2.5
 import "../controls/custom"
 import "../controls/buttons"
 import "settings"
+import "../javascript/graph-settings.js" as GraphSettings
 
 Item {
     id: settingsPage
+    // Properties for editing
+    width: 663
+    height: 704
+    Component.onCompleted: backend.run_starting_animation()
+
 
     Rectangle {
         id: rightContentLoader
@@ -67,6 +73,15 @@ Item {
             id: regions
             x: 26
             y: 61
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: regionsOpacity
+                from: 0
+                to: 1.0
+                duration: 250
+                running: false
+            }
         }
 
 
@@ -81,6 +96,15 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 207
             anchors.leftMargin: 279
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: postAnalysisOpacity
+                from: 0
+                to: 1.0
+                duration: 200
+                running: false
+            }
         }
 
 
@@ -94,6 +118,15 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 207
             anchors.leftMargin: 279
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: minuteAveragedOpacity
+                from: 0
+                to: 1.0
+                duration: 200
+                running: false
+            }
         }
 
 
@@ -107,6 +140,15 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 13
             anchors.leftMargin: 473
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: colorCodeOpacity
+                from: 0
+                to: 1.0
+                duration: 200
+                running: false
+            }
         }
 
 
@@ -125,6 +167,15 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 13
             anchors.leftMargin: 473
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: baselineOpacity
+                from: 0
+                to: 1.0
+                duration: 200
+                running: false
+            }
         }
 
 
@@ -141,6 +192,15 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 207
             anchors.leftMargin: 279
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: zScoreOpacity
+                from: 0
+                to: 1.0
+                duration: 200
+                running: false
+            }
         }
 
 
@@ -148,13 +208,19 @@ Item {
 
 
 
-        CustomButton {
+        GeneratePattern{
             id: generatePatternBnt
             x: 26
             y: 25
-            width: 112
-            height: 20
-            text: "Generate Pattern"
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: generatePatternOpacity
+                from: 0
+                to: 1.0
+                duration: 100
+                running: false
+            }
         }
 
 
@@ -164,13 +230,21 @@ Item {
 
 
 
-        CustomButton {
-            id: newRegionBtn
+        NewRegion {
+            id: newRegionBtn1
             x: 144
             y: 25
             width: 112
             height: 20
-            text: "New Region"
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: newRegionOpacity
+                from: 0
+                to: 1.0
+                duration: 100
+                running: false
+            }
         }
 
 
@@ -186,6 +260,22 @@ Item {
             width: 78
             height: 20
             text: "Reset"
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: resetBtnOpacity
+                from: 0
+                to: 1.0
+                duration: 100
+                running: false
+            }
+        }
+    }
+
+    Connections {
+        target: backend
+        function onAnimateObject(object) {
+            GraphSettings.animate(object)
         }
     }
 
@@ -194,6 +284,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.75}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/
