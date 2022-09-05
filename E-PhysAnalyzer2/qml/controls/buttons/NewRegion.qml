@@ -3,7 +3,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.5
 import "../custom"
 import "../../controls"
-import "../../javascript/new-region.js" as NewRegion
+import "../../javascript/region.js" as Region
 
 
 Button {
@@ -26,16 +26,16 @@ Button {
     Connections {
         target: regions
         function onEmitRegionErrorMessage(msg) {
-            NewRegion.regionErrorMsg(msg)
+            Region.regionErrorMsg(msg)
         }
     }
 
-    onClicked: NewRegion.expandDialogBox()
+    onClicked: Region.expandDialogBox()
 
     Connections {
         target: backend
         function onDestroyMsg() {
-            NewRegion.destroyErrorMsg()
+            Region.destroyErrorMsg()
         }
     }
 
@@ -105,7 +105,7 @@ Button {
             MouseArea {
                 id: closeDialogBoxMouseArea
                 anchors.fill: parent
-                onClicked: {NewRegion.expandDialogBox()}
+                onClicked: {Region.expandDialogBox()}
             }
         }
 

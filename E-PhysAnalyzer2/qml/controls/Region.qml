@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.5
 import "buttons"
-import "../javascript/new-region.js" as NewRegion
+import "../javascript/region.js" as Region
 
 Item {
     id: region
@@ -91,7 +91,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 10
-            onClicked: NewRegion.deleteRegion(regionNumber)
+            onClicked: Region.deleteRegion(regionNumber)
         }
     }
 }

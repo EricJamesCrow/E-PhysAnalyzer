@@ -222,7 +222,7 @@ Item {
                 Loader {
                     id: rightContentLoader
                     x: 0
-                    source: "SettingsPage.qml"
+                    source: "GraphSettings.qml"
                     clip: true
                     anchors.left: parent.left
                     anchors.right: parent.right
@@ -648,6 +648,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:16}D{i:13}D{i:29}D{i:44}D{i:42}D{i:45}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/

@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 import "../../controls/buttons"
-import "../../columns"
 import "../../javascript/app.js" as App
 
 Item {

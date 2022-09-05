@@ -3,7 +3,7 @@ import QtQuick.Controls 2.5
 import "../../controls/buttons"
 import "../../controls/custom"
 import "../../controls"
-import "../../javascript/new-region.js" as NewRegion
+import "../../javascript/region.js" as Region
 
 Rectangle {
     id: regions
@@ -14,6 +14,7 @@ Rectangle {
     color: "#00000000"
 
     property var regionObjects: []
+    property var objectsToMove: []
     property var currentRegionObject: []
     property int currentRegionY : 0
     property int regionAxis: 5
@@ -146,13 +147,13 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 15
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: NewRegion.clearRegions()
+        onClicked: Region.clearRegions()
     }
 
     Connections {
         target: newRegionBtn1
         function onNewRegion(greaterThan, lessThan) {
-            NewRegion.createNewRegion(greaterThan, lessThan)
+            Region.createNewRegion(greaterThan, lessThan)
         }
     }
 

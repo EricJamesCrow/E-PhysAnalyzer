@@ -14,10 +14,6 @@ function determineScaleFactor(platform, screen){
     }
 }
 
-function checkForUpdates() {
-    updateBarAnimation.running = true
-}
-
 function displayDropDownMenuPages(menuPage) {
     if(menuPage === "settings") {
         if(settingsPageOverlay.visible == false && settingsPage.visible == false) {

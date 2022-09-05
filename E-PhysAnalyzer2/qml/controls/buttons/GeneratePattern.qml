@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick 2.15
 import QtQuick.Controls 2.5
 import "../custom"
-import "../../javascript/new-region.js" as NewRegion
+import "../../javascript/region.js" as Region
 
 
 Button {
@@ -18,7 +18,7 @@ Button {
     property color fontColorDefault: "#087589"
     property color fontColorMouseOver: "#ffffff"//buttonColorDefault
     property color fontColorPressed: "#ffffff"
-    onClicked: NewRegion.expandDialogBox()
+    onClicked: Region.expandDialogBox()
 
     hoverEnabled: true
     down: false
@@ -84,7 +84,7 @@ Button {
             MouseArea {
                 id: closeDialogBoxMouseArea
                 anchors.fill: parent
-                onClicked: NewRegion.expandDialogBox()
+                onClicked: Region.expandDialogBox()
             }
         }
 
