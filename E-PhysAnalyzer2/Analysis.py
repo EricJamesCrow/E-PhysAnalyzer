@@ -1,5 +1,6 @@
 import importlib
 import os
+from pickletools import float8
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -58,16 +59,17 @@ class MainProgram:
             traces_per_minute = round(1 / self.time_between_traces_min)
             return traces_per_minute
 
-    def analyze_data(self, files, drugAdded, whenDrug: int, excludedTraces, colorCode, colorCodes, z_limit, z_checking, user_baseline, graphPoints):
+    def analyze_data(self, files, drug_name: str, when_drug: int, excluded_traces: list, z_limit: int,
+                        z_checking: bool, user_baseline: int, color_regions_dict: dict, default_color: str):
         '''Analyzes the data file to create the .tsv files for use by the graphing software'''
         
         # if removing values based on standard deviations from mean, this calculates both values
-        if z_checking: self.calc_standard_dev(files, excludedTraces)
+        if z_checking: self.calc_standard_dev(files, excluded_traces)
         
         # initializing variables used
-        baseline_start = whenDrug - (user_baseline * traces_per_minute + 1)
+        baseline_start = when_drug - (user_baseline * traces_per_minute + 1)
         traces_per_minute = self.calc_traces_per_min(files)
-        excludedTraces = list(map(int, excludedTraces))
+        excluded_traces = list(map(int, excluded_traces))
         exTracesInBaseine = []
         ampTotal = 0
         traces_in_baseline = 0
@@ -75,8 +77,8 @@ class MainProgram:
         with open(files, 'r') as atf_file:
 
             # looks for excluded traces that occur in the baseline time period and append the list
-            for exTrace in excludedTraces:
-                if int(exTrace) in range(baseline_start, whenDrug): exTracesInBaseine.append(int(exTrace))
+            for exTrace in excluded_traces:
+                if int(exTrace) in range(baseline_start, when_drug): exTracesInBaseine.append(int(exTrace))
             
             for line in atf_file:
                 
@@ -92,17 +94,19 @@ class MainProgram:
 
 
                 # also excludes traces in the user list of inputted traces
-                if trace in excludedTraces:
+                if trace in excluded_traces:
                     continue
                 # excludes traces that have a z-score that is higher than the one inputted by user
-                if z_checking and abs(float(self.calc_z_score(peak_amp)) > z_limit):
+                elif z_checking and abs(float(self.calc_z_score(peak_amp)) > z_limit):
                     continue
                 # if the trace is within the baseline, it adds them together to calculate the baseline
+                elif trace < baseline_start:
+                    continue
+                elif (trace >= baseline_start) and (trace < when_drug):
+                    ampTotal += absolute_amp
+                    traces_in_baseline += 1
                 else:
-                    if (trace >= (baseline_start)) and (trace < whenDrug):
-                        ampTotal += absolute_amp
-                        traces_in_baseline += 1
-                    timeInMinutes.append((float(trace_time) - float(self.offset_start)) / 60000)
+                    break
             baseline = ampTotal / traces_in_baseline
 
             # resets the file to data before moving on
@@ -110,18 +114,17 @@ class MainProgram:
             for _ in range(3): atf_file.readline()
 
             # analyzes the data and writes to a new file
-            with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.tsv'), 'w') as newTSV:
+            with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'w') as newTSV:
 
                 # write the headers of the data file
                 newTSV.write('\t'.join(['Trace', 'Trace Start (ms)', 'Trace Start (minutes)', 'R1S1 Peak Amp (pA)',
-                                       'Abs Val R1S1 Peak Amp (pA)',
-                                       'Normalized to Baseline (' + str(baseline)[:8] + ')',
-                                       'Time From ' + drugAdded + ' Addition', 'Color Code', 'Z-score']) + '\n')
-                
-    #######################################################################################################################################
+                                       'Abs Val R1S1 Peak Amp (pA)', 'Normalized to Baseline (' + str(baseline)[:8] + ')',
+                                       'Time From ' + drug_name + ' Addition', 'Color Code', 'Z-score']) + '\n')
                 
                 i = 0
                 for line in atf_file:
+                    
+                    # initialize variables
                     tsv = line.strip().split('\t')
                     trace = tsv[1]
                     trace_int = int(trace)
@@ -129,6 +132,16 @@ class MainProgram:
                     peak_amp = tsv[3]
                     absolute_amp = abs(float(peak_amp))
                     normalized_amp = absolute_amp / baseline * 100
+                    time_in_minutes = (float(trace_time) - float(self.offset_start)) / 60000
+                    
+                    # sets up regions to apply certian color filters
+                    current_region = 'region0'
+                    if time_in_minutes < color_regions_dict[current_region][0]:
+                        color = default_color
+                    elif time_in_minutes >= color_regions_dict[current_region][0] and time_in_minutes < color_regions_dict[current_region][1]:
+                        color = color_regions_dict[2]
+                    
+
 
                     a1 = graphPoints[0]
                     a2 = graphPoints[1]
@@ -149,21 +162,21 @@ class MainProgram:
                     # color codes the trace depending on the time frame its in
                     # with the int being the time relative to drug addition
                     if colorCode:
-                        if trace_int >= (whenDrug+1 + a1 * traces_per_minute) and trace_int < (whenDrug+1 + a2 * traces_per_minute):
+                        if trace_int >= (when_drug+1 + a1 * traces_per_minute) and trace_int < (when_drug+1 + a2 * traces_per_minute):
                             color = colorCodes[0]
-                        elif trace_int >= (whenDrug+1 + b1 * traces_per_minute) and trace_int < (whenDrug+1 + b2 * traces_per_minute):
+                        elif trace_int >= (when_drug+1 + b1 * traces_per_minute) and trace_int < (when_drug+1 + b2 * traces_per_minute):
                             color = colorCodes[1]
-                        elif trace_int >= (whenDrug+1 + c1 * traces_per_minute) and trace_int < (whenDrug+1 + c2 * traces_per_minute):
+                        elif trace_int >= (when_drug+1 + c1 * traces_per_minute) and trace_int < (when_drug+1 + c2 * traces_per_minute):
                             color = colorCodes[2]
-                        elif trace_int >= (whenDrug+1 + d1 * traces_per_minute) and trace_int < (whenDrug+1 + d2 * traces_per_minute):
+                        elif trace_int >= (when_drug+1 + d1 * traces_per_minute) and trace_int < (when_drug+1 + d2 * traces_per_minute):
                             color = colorCodes[3]
-                        elif trace_int >= (whenDrug+1 + e1 * traces_per_minute) and trace_int < (whenDrug+1 + e2 * traces_per_minute):
+                        elif trace_int >= (when_drug+1 + e1 * traces_per_minute) and trace_int < (when_drug+1 + e2 * traces_per_minute):
                             color = colorCodes[4]
-                        elif trace_int >= (whenDrug+1 + f1 * traces_per_minute) and trace_int < (whenDrug+1 + f2 * traces_per_minute):
+                        elif trace_int >= (when_drug+1 + f1 * traces_per_minute) and trace_int < (when_drug+1 + f2 * traces_per_minute):
                             color = colorCodes[5]
-                        elif trace_int >= (whenDrug+1 + g1 * traces_per_minute) and trace_int < (whenDrug+1 + g2 * traces_per_minute):
+                        elif trace_int >= (when_drug+1 + g1 * traces_per_minute) and trace_int < (when_drug+1 + g2 * traces_per_minute):
                             color = colorCodes[6]
-                        elif trace_int >= (whenDrug+1 + h1 * traces_per_minute) and trace_int < (whenDrug+1 + h2 * traces_per_minute):
+                        elif trace_int >= (when_drug+1 + h1 * traces_per_minute) and trace_int < (when_drug+1 + h2 * traces_per_minute):
                             color = colorCodes[7]
                         else:
                             color = 'gray'
@@ -171,13 +184,13 @@ class MainProgram:
                         color = 'royalblue'
                     # if the trace is part of the excluded traces, or is going to be ignored for its z-score
                     # then the file will skip through the lines and ignore them
-                    if trace_int in excludedTraces:
+                    if trace_int in excluded_traces:
                         continue
                     if z_checking and abs(float(self.calc_z_score(self.mean, self.standDev, peak_amp)) > z_limit):
                         continue
                     else:
                         # time from drug calculation based on given metrics
-                        time_from_drug = timeInMinutes[i] - (float(whenDrug)-1) / traces_per_minute
+                        time_from_drug = timeInMinutes[i] - (float(when_drug)-1) / traces_per_minute
 
                         # since there is no '0' time point, we are removing that by noting when it becomes positive
                         if time_from_drug >= 0:
@@ -202,7 +215,7 @@ class MainProgram:
         with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'w') as minute_averaged_csv:
             with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'r') as full_analysis_csv:
                 minute_averaged_csv.write(
-                    f"Time from {drugAdded} Addition (min),Abs Val R1S1 Peak Amp Normalized to Baseline (pA),Trace Numbers Used in Average,Color Code\n")
+                    f"Time from {drug_name} Addition (min),Abs Val R1S1 Peak Amp Normalized to Baseline (pA),Trace Numbers Used in Average,Color Code\n")
                 minuteTimes = []
                 traceNumbers = []
                 traces = ''
@@ -220,10 +233,10 @@ class MainProgram:
                     normalized_amplitude = tsv[5]
                     trace = tsv[0]
                     color = tsv[7]
-                    if time_from_drug[0] == '-' and int(trace) + 1 < (whenDrug - (user_baseline * traces_per_minute)):
+                    if time_from_drug[0] == '-' and int(trace) + 1 < (when_drug - (user_baseline * traces_per_minute)):
                         continue
 
-                    if (int(trace) + 1 >= (whenDrug + (minute_counter * traces_per_minute + 1))):
+                    if (int(trace) + 1 >= (when_drug + (minute_counter * traces_per_minute + 1))):
                         minute_counter += 1
                         for entry in range(0, len(minuteTimes)): total += float(minuteTimes[entry])
                         avg = total / len(minuteTimes)
