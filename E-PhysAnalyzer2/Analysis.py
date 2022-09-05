@@ -13,6 +13,7 @@ from uncertainties import ufloat
 
 class MainProgram:
     def calc_standard_dev(self, files, excludedTraces):
+        '''Calculates standard deviation for all the values in the file and uses them throughout the analysis.'''
         with open(files, 'r') as atfFile:
             for _ in range(3): atfFile.readline()
             totalPA = 0
@@ -36,6 +37,7 @@ class MainProgram:
             self.standDev = (sigma / totalTraces) ** (1 / 2)
 
     def calc_z_score(self, peakAmp):
+        '''Calculates the number of standard deviations away from the mean? Or some stats stuff.'''
         self.z_score = ((abs(float(peakAmp)) - self.mean) / self.standDev)
         return str(self.z_score)
 
@@ -70,42 +72,42 @@ class MainProgram:
         ampTotal = 0
         traces_in_baseline = 0
         timeInMinutes = []
-        with open(files, 'r') as atfFile:
+        with open(files, 'r') as atf_file:
 
             # looks for excluded traces that occur in the baseline time period and append the list
             for exTrace in excludedTraces:
                 if int(exTrace) in range(baseline_start, whenDrug): exTracesInBaseine.append(int(exTrace))
             
-            for line in atfFile:
+            for line in atf_file:
                 
                 # reads past the headers in first 3 lines
-                for _ in range(3): atfFile.readline()
+                for _ in range(3): atf_file.readline()
 
                 # initializes variables from each line in the file
                 tsv = line.strip().split('\t')
                 trace = int(tsv[1])
-                traceTime = tsv[2]
-                peakAmp = tsv[3]
-                absAmp = abs(float(peakAmp))
+                trace_time = tsv[2]
+                peak_amp = tsv[3]
+                absolute_amp = abs(float(peak_amp))
 
 
                 # also excludes traces in the user list of inputted traces
                 if trace in excludedTraces:
                     continue
                 # excludes traces that have a z-score that is higher than the one inputted by user
-                if z_checking and abs(float(self.calc_z_score(peakAmp)) > z_limit):
+                if z_checking and abs(float(self.calc_z_score(peak_amp)) > z_limit):
                     continue
                 # if the trace is within the baseline, it adds them together to calculate the baseline
                 else:
                     if (trace >= (baseline_start)) and (trace < whenDrug):
-                        ampTotal += absAmp
+                        ampTotal += absolute_amp
                         traces_in_baseline += 1
-                    timeInMinutes.append((float(traceTime) - float(self.offset_start)) / 60000)
+                    timeInMinutes.append((float(trace_time) - float(self.offset_start)) / 60000)
             baseline = ampTotal / traces_in_baseline
 
             # resets the file to data before moving on
-            atfFile.seek(0)
-            for _ in range(3): atfFile.readline()
+            atf_file.seek(0)
+            for _ in range(3): atf_file.readline()
 
             # analyzes the data and writes to a new file
             with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.tsv'), 'w') as newTSV:
@@ -119,17 +121,14 @@ class MainProgram:
     #######################################################################################################################################
                 
                 i = 0
-                for line in atfFile:
-                    # if the trace is part of the excluded traces, or is going to be ignored for its z-score
-                    # then the file will skip through the lines and ignore them
-
+                for line in atf_file:
                     tsv = line.strip().split('\t')
                     trace = tsv[1]
                     trace_int = int(trace)
-                    traceTime = tsv[2]
-                    peakAmp = tsv[3]
-                    absAmp = abs(float(peakAmp))
-                    normalizedAmp = absAmp / baseline * 100
+                    trace_time = tsv[2]
+                    peak_amp = tsv[3]
+                    absolute_amp = abs(float(peak_amp))
+                    normalized_amp = absolute_amp / baseline * 100
 
                     a1 = graphPoints[0]
                     a2 = graphPoints[1]
@@ -170,10 +169,11 @@ class MainProgram:
                             color = 'gray'
                     else:
                         color = 'royalblue'
-
+                    # if the trace is part of the excluded traces, or is going to be ignored for its z-score
+                    # then the file will skip through the lines and ignore them
                     if trace_int in excludedTraces:
                         continue
-                    if z_checking and abs(float(self.calc_z_score(self.mean, self.standDev, peakAmp)) > z_limit):
+                    if z_checking and abs(float(self.calc_z_score(self.mean, self.standDev, peak_amp)) > z_limit):
                         continue
                     else:
                         # time from drug calculation based on given metrics
@@ -181,21 +181,21 @@ class MainProgram:
 
                         # since there is no '0' time point, we are removing that by noting when it becomes positive
                         if time_from_drug >= 0:
-                            time_from_drug += (time_between_traces_min)
+                            time_from_drug += (self.time_between_traces_min)
                             newTSV.write(','.join(
-                                [str(trace), str(traceTime), str(timeInMinutes[i]),
-                                 str(peakAmp), str(absAmp), str(normalizedAmp),
+                                [str(trace), str(trace_time), str(timeInMinutes[i]),
+                                 str(peak_amp), str(absolute_amp), str(normalized_amp),
                                  str(time_from_drug)]))
-                            newTSV.write(',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peakAmp) + '\n')
+                            newTSV.write(',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
 
                         # anytime before the '0' time point
                         else:
                             newTSV.write(','.join(
-                                [str(trace), str(traceTime), str(timeInMinutes[i]),
-                                 str(peakAmp), str(absAmp), str(normalizedAmp),
+                                [str(trace), str(trace_time), str(timeInMinutes[i]),
+                                 str(peak_amp), str(absolute_amp), str(normalized_amp),
                                  str(time_from_drug)]))
                             newTSV.write(
-                                ',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peakAmp) + '\n')
+                                ',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
                         i += 1
 
 
