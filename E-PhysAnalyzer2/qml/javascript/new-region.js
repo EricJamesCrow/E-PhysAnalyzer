@@ -29,7 +29,7 @@ function destroyErrorMsg() {
 function createNewRegion(greaterThan, lessThan) {
     try {
         if(greaterThan !== "" && lessThan !== "" && parseInt(greaterThan) >= parseInt(regionObjects.slice(-1)[0].lessThanText)) {
-            if(parseInt(greaterThan) < parseInt(lessThan)) {
+            if(parseInt(greaterThan) > parseInt(lessThan)) {
                 newRegion(greaterThan, lessThan)
             } else {
                 emitRegionErrorMessage("Conflict with region values.")
