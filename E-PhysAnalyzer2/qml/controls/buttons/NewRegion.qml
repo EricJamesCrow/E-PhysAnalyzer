@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick 2.15
 import QtQuick.Controls 2.5
 import "../custom"
+import "../../controls"
 import "../../javascript/new-region.js" as NewRegion
 
 
@@ -19,9 +20,24 @@ Button {
     property color fontColorMouseOver: "#ffffff"//buttonColorDefault
     property color fontColorPressed: "#ffffff"
 
-    signal newRegion(string greaterThan, string lessThan)
+    signal newRegion(string greaterThan, string lessThan) // Sends this to Regions.qml
+    property var errorMessage: ""
+
+    Connections {
+        target: regions
+        function onEmitRegionErrorMessage() {
+            NewRegion.regionErrorMsg()
+        }
+    }
 
     onClicked: NewRegion.expandDialogBox()
+
+    Connections {
+        target: backend
+        function onDestroyMsg() {
+            NewRegion.destroyErrorMsg()
+        }
+    }
 
     hoverEnabled: true
     down: false
@@ -30,7 +46,7 @@ Button {
     FontLoader {
         id: pragmaticaFont
         source: "../../fonts/PT Pragmatica Book.ttf"
-//          source:"../fonts/LDFComicSans.ttf"
+        //          source:"../fonts/LDFComicSans.ttf"
     }
 
     QtObject{
@@ -51,6 +67,7 @@ Button {
         border.color: "#087589"
         border.width: 2
         anchors.left: parent.right
+        clip: false
         anchors.leftMargin: 0
 
         OpacityAnimator on opacity{
@@ -71,6 +88,7 @@ Button {
             running: false
         }
 
+
         Image {
             id: closeDialogBox
             x: 204
@@ -87,9 +105,11 @@ Button {
             MouseArea {
                 id: closeDialogBoxMouseArea
                 anchors.fill: parent
-                onClicked: NewRegion.expandDialogBox()
+                onClicked: {NewRegion.expandDialogBox()}
             }
         }
+
+
 
         CustomTextField {
             id: greaterThanOrEqualEntry
@@ -99,6 +119,8 @@ Button {
             height: 20
         }
 
+
+
         CustomTextField {
             id: lessThanEntry
             x: 130
@@ -106,6 +128,8 @@ Button {
             height: 20
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
+
+
 
         Label {
             id: greaterThanOrEqualLabel
@@ -115,6 +139,8 @@ Button {
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
 
+
+
         Label {
             id: lessThanLabel
             x: 108
@@ -122,6 +148,8 @@ Button {
             text: qsTr("<")
             anchors.verticalCenter: greaterThanOrEqualLabel.verticalCenter
         }
+
+
 
         Label {
             id: xLabel
@@ -133,6 +161,8 @@ Button {
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
 
+
+
         Rectangle {
             id: rectangle
             x: 175
@@ -143,6 +173,8 @@ Button {
             border.width: 2
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
+
+
 
         CustomButton {
             id: submitButton
@@ -179,6 +211,6 @@ Button {
 }
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:1.33}
+    D{i:0;formeditorZoom:1.25}
 }
 ##^##*/

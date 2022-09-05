@@ -12,7 +12,8 @@ from threading import *
 
 class Backend(QObject):
     addObject = Signal(str)
-    animateObject = Signal(int)  
+    animateObject = Signal(int)
+    destroyMsg = Signal()  
 
     @Slot()
     def run_starting_animation(self):
@@ -23,6 +24,11 @@ class Backend(QObject):
     def create_objects(self, selected_files):
         input_fields = InputFields(self, selected_files)
         input_fields.start()
+
+    @Slot()
+    def destroy_new_region_error_msg(self):
+        error_message = ErrorMessage(self)
+        error_message.start()
 
 class StartingAnimation(Thread):
     def __init__(self, backend):
@@ -45,6 +51,15 @@ class InputFields(Thread):
         for i in range(len(self.selected_files)):
             time.sleep(0.03)
             self.backend.addObject.emit(self.selected_files[i])
+
+class ErrorMessage(Thread):
+    def __init__(self, backend):
+        super(ErrorMessage, self).__init__()
+        self.backend = backend
+    
+    def run(self):
+        time.sleep(1)
+        self.backend.destroyMsg.emit()
 
 if __name__ == "__main__":
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)

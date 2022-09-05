@@ -7,6 +7,32 @@ function expandDialogBox() {
     }
 }
 
+function regionErrorMsg() {
+    var newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
+        x: 30;
+        y: 51;
+        width: 168;
+        height: 36;
+        opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration: 150; running: true} PropertyAnimation {target: errorMessage; property: "y"; to: 28; duration: 150; running: true}}`,
+        dialogBox,
+    "regionErrorMsg");
+    errorMessage = newObject
+    backend.destroy_new_region_error_msg()
+}
+
+function destroyErrorMsg() {
+    errorMessage.destroy()
+}
+
+
+function createNewRegion(greaterThan, lessThan) {
+    if(greaterThan !== "" && lessThan !== "") {
+        newRegion(greaterThan, lessThan)
+    } else {
+        emitRegionErrorMessage()
+    }
+}
+
 function newRegion(greaterThan, lessThan) {
     var newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200; height: 19; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
     regionsLoader,

@@ -18,6 +18,8 @@ Rectangle {
     property int currentRegionY : 0
     property int regionAxis: 5
 
+    signal emitRegionErrorMessage() // Sends this to NewRegion.qml
+
     Rectangle {
         id: regionsTopBar
         y: 0
@@ -150,7 +152,7 @@ Rectangle {
     Connections {
         target: newRegionBtn1
         function onNewRegion(greaterThan, lessThan) {
-            NewRegion.newRegion(greaterThan, lessThan)
+            NewRegion.createNewRegion(greaterThan, lessThan)
         }
     }
 
