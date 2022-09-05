@@ -25,8 +25,8 @@ Button {
 
     Connections {
         target: regions
-        function onEmitRegionErrorMessage() {
-            NewRegion.regionErrorMsg()
+        function onEmitRegionErrorMessage(msg) {
+            NewRegion.regionErrorMsg(msg)
         }
     }
 

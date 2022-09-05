@@ -18,7 +18,7 @@ Rectangle {
     property int currentRegionY : 0
     property int regionAxis: 5
 
-    signal emitRegionErrorMessage() // Sends this to NewRegion.qml
+    signal emitRegionErrorMessage(string msg) // Sends this to NewRegion.qml
 
     Rectangle {
         id: regionsTopBar

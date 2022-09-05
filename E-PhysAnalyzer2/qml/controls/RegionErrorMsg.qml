@@ -17,7 +17,7 @@ Rectangle {
         text: qsTr("Error")
         color: "red"
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: -12
+        anchors.verticalCenterOffset: -8
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
@@ -27,6 +27,6 @@ Rectangle {
         color: "red"
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenterOffset: 3
+        anchors.verticalCenterOffset: 7
     }
 }
