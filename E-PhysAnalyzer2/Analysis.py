@@ -115,6 +115,9 @@ class MainProgram:
                                        'Abs Val R1S1 Peak Amp (pA)',
                                        'Normalized to Baseline (' + str(baseline)[:8] + ')',
                                        'Time From ' + drugAdded + ' Addition', 'Color Code', 'Z-score']) + '\n')
+                
+    #######################################################################################################################################
+                
                 i = 0
                 for line in atfFile:
                     # if the trace is part of the excluded traces, or is going to be ignored for its z-score
