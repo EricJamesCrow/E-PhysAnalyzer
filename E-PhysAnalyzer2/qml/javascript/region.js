@@ -8,6 +8,11 @@ function expandDialogBox() {
     }
 }
 
+function generatePattern(everyMinute, startTime, endTime) {
+    gPclearRegions()
+    backend.run_generate_pattern(Math.abs(parseInt(everyMinute)), parseInt(startTime), parseInt(endTime))
+}
+
 function regionErrorMsg(msg) {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
         x: 30;
@@ -18,11 +23,13 @@ function regionErrorMsg(msg) {
         dialogBox,
     "regionErrorMsg");
     errorMessage.errorMessageString = msg
+    submitButton.enabled = false // Disable dialog submit button while error message is visible
     backend.destroy_new_region_error_msg() // Need to call a Python thread so the message is destroyed after 1 second
 }
 
 function destroyErrorMsg() {
     errorMessage.destroy()
+    submitButton.enabled = true // Re-enable submit button
 }
 
 // Checks to see whether the region should go first, inbetween other regions, or last

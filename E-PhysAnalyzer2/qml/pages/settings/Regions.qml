@@ -151,7 +151,21 @@ Rectangle {
     }
 
     Connections {
-        target: newRegionBtn1
+        target: newRegionBtn1 // Recieves the signal from NewRegion.qml
+        function onNewRegion(greaterThan, lessThan) {
+            Region.createNewRegion(greaterThan, lessThan)
+        }
+    }
+
+    Connections {
+        target: generatePatternBnt
+        function onGPclearRegions(){
+            Region.clearRegions()
+        }
+    }
+
+    Connections {
+        target: backend
         function onNewRegion(greaterThan, lessThan) {
             Region.createNewRegion(greaterThan, lessThan)
         }
