@@ -58,6 +58,7 @@ color: "#4089f7fe"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: 33
         placeholderText: "25"
+        RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
         CustomTextField {
@@ -68,6 +69,7 @@ color: "#4089f7fe"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: 33
         placeholderText: "225"
+        RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
         Label {

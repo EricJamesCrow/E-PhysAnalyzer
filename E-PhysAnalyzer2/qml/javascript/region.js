@@ -34,13 +34,16 @@ function destroyErrorMsg() {
 
 // Checks to see whether the region should go first, inbetween other regions, or last
 function checkRegions(greaterThan, lessThan) {
-    if(regionObjects.length === 0) { // No other objects created
+    // No other objects created yet
+    if(regionObjects.length === 0) { 
         return "Initial"
     }
+    
+    // Checks if all of the integer values in the regionObject's array are greater than the newObject's lessThan
     const checkEvery = (arr = [], limit = 1) => {
         const allGreater = arr.every(el => { 
         return el >= limit;
-        }); // Checks if all of the integer values in the array are greater than the given value
+        }); 
         return allGreater;
     };
     var arrayOfNumbers = []
@@ -49,20 +52,23 @@ function checkRegions(greaterThan, lessThan) {
         arrayOfNumbers.push(parseInt(regionObjects[y].lessThanText))
     }
     if(checkEvery(arrayOfNumbers, parseInt(lessThan))) { 
-        return "First" // Checks if all of the integer values in the regionObject's array are greater than the newObject's lessThan
-    } else {
-        for(let i=0; i<regionObjects.length; i++) { // Nested for loop finds if the object meet's the criteria for the moveObjectInbetween() function
-            for(let x=0+i; x<regionObjects.length; x++) {
-                if(parseInt(greaterThan) >= parseInt(regionObjects[i].lessThanText) && parseInt(lessThan) <= parseInt(regionObjects[x].greaterThanEqualToText) && regionObjects[x].regionNumber - regionObjects[i].regionNumber === 1) {
-                    return regionObjects[x].regionNumber
-                }
+        return "First" 
+    }
+    
+    // Nested for loop finds if the object meet's the criteria for the moveObjectInbetween() function
+    for(let i=0; i<regionObjects.length; i++) { 
+        for(let x=0+i; x<regionObjects.length; x++) {
+            if(parseInt(greaterThan) >= parseInt(regionObjects[i].lessThanText) && parseInt(lessThan) <= parseInt(regionObjects[x].greaterThanEqualToText) && regionObjects[x].regionNumber - regionObjects[i].regionNumber === 1) {
+                return regionObjects[x].regionNumber
             }
         }
     }
+
+    // Checks if the newObject should be placed last; else return an error message in NewRegion.qml's dialog box
     if(parseInt(greaterThan) >= parseInt(regionObjects.slice(-1)[0].lessThanText)) {
-        return "Last" // Checks if the newObject should be placed last
+        return "Last" 
     } else {
-        return "Error" // Returns an error message in NewRegion.qml's dialog box
+        return "Error" 
     }
 }
 
