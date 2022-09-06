@@ -45,6 +45,7 @@ class StartingAnimation(Thread):
 
 class InputFields(Thread):
     def __init__(self, selected_files):
+        super(InputFields, self).__init__()
         self.selected_files = selected_files
 
     def run(self):
