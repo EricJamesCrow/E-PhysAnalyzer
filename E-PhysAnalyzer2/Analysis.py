@@ -121,7 +121,6 @@ class MainProgram:
                                        'Abs Val R1S1 Peak Amp (pA)', 'Normalized to Baseline (' + str(baseline)[:8] + ')',
                                        'Time From ' + drug_name + ' Addition', 'Color Code', 'Z-score']) + '\n')
                 region_number = 0
-                i = 0
                 for line in atf_file:
                     
                     # initialize variables
@@ -162,30 +161,29 @@ class MainProgram:
                         continue
                     else:
                         # time from drug calculation based on given metrics
-                        time_from_drug = timeInMinutes[i] - (float(when_drug)-1) / traces_per_minute
+                        time_from_drug = timeInMinutes - (float(when_drug)-1) / traces_per_minute
 
                         # since there is no '0' time point, we are removing that by noting when it becomes positive
                         if time_from_drug >= 0:
                             time_from_drug += (self.time_between_traces_min)
-                            newTSV.write(','.join(
-                                [str(trace), str(trace_time), str(timeInMinutes[i]),
+                            newTSV.write('\t'.join(
+                                [str(trace), str(trace_time), str(timeInMinutes),
                                  str(peak_amp), str(absolute_amp), str(normalized_amp),
                                  str(time_from_drug)]))
-                            newTSV.write(',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
+                            newTSV.write('\t' + color + '\t' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
 
                         # anytime before the '0' time point
                         else:
-                            newTSV.write(','.join(
-                                [str(trace), str(trace_time), str(timeInMinutes[i]),
+                            newTSV.write('\t'.join(
+                                [str(trace), str(trace_time), str(timeInMinutes),
                                  str(peak_amp), str(absolute_amp), str(normalized_amp),
                                  str(time_from_drug)]))
                             newTSV.write(
-                                ',' + color + ',' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
-                        i += 1
+                                '\t' + color + '\t' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
 
 
-        with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'w') as minute_averaged_csv:
-            with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'r') as full_analysis_csv:
+        with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.tsv'), 'w') as minute_averaged_csv:
+            with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.tsv'), 'r') as full_analysis_csv:
                 minute_averaged_csv.write(
                     f"Time from {drug_name} Addition (min),Abs Val R1S1 Peak Amp Normalized to Baseline (pA),Trace Numbers Used in Average,Color Code\n")
                 minuteTimes = []
