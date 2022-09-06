@@ -61,7 +61,7 @@ function checkRegions(greaterThan, lessThan) {
 
 function createNewRegion(greaterThan, lessThan) {
     // Checks if input fields are correct.
-    if(greaterThan === "" && lessThan === "") {
+    if(greaterThan === "" || lessThan === "") {
         return emitRegionErrorMessage("Please enter your values.")
     } else if(parseInt(greaterThan) >= parseInt(lessThan)) {
         return emitRegionErrorMessage("Please fix your values.")
