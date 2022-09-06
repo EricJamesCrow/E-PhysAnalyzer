@@ -120,7 +120,7 @@ class MainProgram:
                 newTSV.write('\t'.join(['Trace', 'Trace Start (ms)', 'Trace Start (minutes)', 'R1S1 Peak Amp (pA)',
                                        'Abs Val R1S1 Peak Amp (pA)', 'Normalized to Baseline (' + str(baseline)[:8] + ')',
                                        'Time From ' + drug_name + ' Addition', 'Color Code', 'Z-score']) + '\n')
-                
+                region_number = 0
                 i = 0
                 for line in atf_file:
                     
@@ -135,53 +135,25 @@ class MainProgram:
                     time_in_minutes = (float(trace_time) - float(self.offset_start)) / 60000
                     
                     # sets up regions to apply certian color filters
-                    current_region = 'region0'
+                    current_region = 'region'+str(region_number)
+                    next_region = 'region'+str(region_number+1)
+                    try:
+                        color_regions_dict[next_region]
+                    except KeyError:
+                        last_region = True
+                    except:
+                        print('I do not work properly (I\'m at line 140 in Analysis.py).')
+
                     if time_in_minutes < color_regions_dict[current_region][0]:
                         color = default_color
                     elif time_in_minutes >= color_regions_dict[current_region][0] and time_in_minutes < color_regions_dict[current_region][1]:
                         color = color_regions_dict[2]
-                    
-
-
-                    a1 = graphPoints[0]
-                    a2 = graphPoints[1]
-                    b1 = graphPoints[2]
-                    b2 = graphPoints[3]
-                    c1 = graphPoints[4]
-                    c2 = graphPoints[5]
-                    d1 = graphPoints[6]
-                    d2 = graphPoints[7]
-                    e1 = graphPoints[8]
-                    e2 = graphPoints[9]
-                    f1 = graphPoints[10]
-                    f2 = graphPoints[11]
-                    g1 = graphPoints[12]
-                    g2 = graphPoints[13]
-                    h1 = graphPoints[14]
-                    h2 = graphPoints[15]
-                    # color codes the trace depending on the time frame its in
-                    # with the int being the time relative to drug addition
-                    if colorCode:
-                        if trace_int >= (when_drug+1 + a1 * traces_per_minute) and trace_int < (when_drug+1 + a2 * traces_per_minute):
-                            color = colorCodes[0]
-                        elif trace_int >= (when_drug+1 + b1 * traces_per_minute) and trace_int < (when_drug+1 + b2 * traces_per_minute):
-                            color = colorCodes[1]
-                        elif trace_int >= (when_drug+1 + c1 * traces_per_minute) and trace_int < (when_drug+1 + c2 * traces_per_minute):
-                            color = colorCodes[2]
-                        elif trace_int >= (when_drug+1 + d1 * traces_per_minute) and trace_int < (when_drug+1 + d2 * traces_per_minute):
-                            color = colorCodes[3]
-                        elif trace_int >= (when_drug+1 + e1 * traces_per_minute) and trace_int < (when_drug+1 + e2 * traces_per_minute):
-                            color = colorCodes[4]
-                        elif trace_int >= (when_drug+1 + f1 * traces_per_minute) and trace_int < (when_drug+1 + f2 * traces_per_minute):
-                            color = colorCodes[5]
-                        elif trace_int >= (when_drug+1 + g1 * traces_per_minute) and trace_int < (when_drug+1 + g2 * traces_per_minute):
-                            color = colorCodes[6]
-                        elif trace_int >= (when_drug+1 + h1 * traces_per_minute) and trace_int < (when_drug+1 + h2 * traces_per_minute):
-                            color = colorCodes[7]
-                        else:
-                            color = 'gray'
+                    elif not last_region and time_in_minutes >= color_regions_dict[next_region][1] and time_in_minutes < color_regions_dict[next_region][1]:
+                        color = color_regions_dict[2]
+                        region_number += 1
                     else:
-                        color = 'royalblue'
+                        color = default_color
+
                     # if the trace is part of the excluded traces, or is going to be ignored for its z-score
                     # then the file will skip through the lines and ignore them
                     if trace_int in excluded_traces:
