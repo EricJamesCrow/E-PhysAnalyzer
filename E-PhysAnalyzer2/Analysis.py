@@ -155,9 +155,9 @@ class MainProgram:
 
                     # if the trace is part of the excluded traces, or is going to be ignored for its z-score
                     # then the file will skip through the lines and ignore them
-                    if trace_int in excluded_traces:
-                        continue
                     if z_checking and abs(float(self.calc_z_score(self.mean, self.standDev, peak_amp)) > z_limit):
+                        continue
+                    if trace_int in excluded_traces:
                         continue
                     else:
                         # time from drug calculation based on given metrics
@@ -182,9 +182,9 @@ class MainProgram:
                                 '\t' + color + '\t' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
 
 
-        with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.tsv'), 'w') as minute_averaged_csv:
-            with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.tsv'), 'r') as full_analysis_csv:
-                minute_averaged_csv.write(
+        with open(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averaged.tsv'), 'w') as minute_averaged_tsv:
+            with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'r') as full_analysis_tsv:
+                minute_averaged_tsv.write(
                     f"Time from {drug_name} Addition (min),Abs Val R1S1 Peak Amp Normalized to Baseline (pA),Trace Numbers Used in Average,Color Code\n")
                 minuteTimes = []
                 traceNumbers = []
@@ -194,12 +194,11 @@ class MainProgram:
                 minute_counter = -user_baseline + 1
 
                 # skip past headers
-                full_analysis_csv.readline()
+                full_analysis_tsv.readline()
 
-                for line in full_analysis_csv:
+                for line in full_analysis_tsv:
                     tsv = line.strip().split(',')
                     time_from_drug = tsv[6]
-                    time_from_drug_float = float(time_from_drug)
                     normalized_amplitude = tsv[5]
                     trace = tsv[0]
                     color = tsv[7]
@@ -211,7 +210,7 @@ class MainProgram:
                         for entry in range(0, len(minuteTimes)): total += float(minuteTimes[entry])
                         avg = total / len(minuteTimes)
                         traces = ' '.join(traceNumbers)
-                        minute_averaged_csv.write(','.join([str(drugTime), str(float(avg)), traces, color]) + '\n')
+                        minute_averaged_tsv.write(','.join([str(drugTime), str(float(avg)), traces, color]) + '\n')
                         total = 0
                         traces = ''
                         minuteTimes = []
@@ -229,7 +228,7 @@ class MainProgram:
                 if len(minuteTimes) > 0:
                     traces = ' '.join(traceNumbers)
                     avg = total / len(minuteTimes)
-                    minute_averaged_csv.write(','.join([str(int(drugTime)), str(float(avg)), traces, color]) + '\n')
+                    minute_averaged_tsv.write(','.join([str(int(drugTime)), str(float(avg)), traces, color]) + '\n')
 
     def make_graphs(self, dpi, baseline, baseline_color, axis_limits):
         # Creates the Minute Averaged graph
