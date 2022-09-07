@@ -20,6 +20,8 @@ Button {
     property color fontColorPressed: "#ffffff"
     onClicked: Region.expandDialogBox()
 
+    signal gPclearRegions()
+
     hoverEnabled: true
     down: false
     flat: true
@@ -93,6 +95,7 @@ Button {
             x: 71
             width: 28
             height: 20
+            validator: IntValidator {bottom: 1; top: 100}
             anchors.verticalCenter: everyLabel.verticalCenter
             anchors.verticalCenterOffset: 0
         }
@@ -102,6 +105,7 @@ Button {
             x: 71
             width: 28
             height: 20
+            validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
             anchors.verticalCenter: every_minutesTextField.verticalCenter
             anchors.verticalCenterOffset: 29
         }
@@ -111,6 +115,7 @@ Button {
             x: 71
             width: 28
             height: 20
+            validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
             anchors.verticalCenter: every_minutesTextField.verticalCenter
             anchors.verticalCenterOffset: 58
         }
@@ -122,6 +127,7 @@ Button {
             width: 48
             height: 15
             text: "Submit"
+            onClicked: Region.generatePattern(every_minutesTextField.text, startTimeEntry.text, endTimeEntry.text)
         }
 
 

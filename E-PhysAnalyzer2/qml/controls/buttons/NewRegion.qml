@@ -117,6 +117,7 @@ Button {
             y: 8
             width: 28
             height: 20
+            validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
 
@@ -126,6 +127,7 @@ Button {
             x: 130
             width: 28
             height: 20
+            validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
 
@@ -184,6 +186,7 @@ Button {
             height: 15
             text: "Submit"
             onClicked: newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text)
+            enabled: true
         }
     }
 

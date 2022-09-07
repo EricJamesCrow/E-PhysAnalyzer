@@ -8,6 +8,11 @@ function expandDialogBox() {
     }
 }
 
+function generatePattern(everyMinute, startTime, endTime) {
+    gPclearRegions()
+    backend.run_generate_pattern(Math.abs(parseInt(everyMinute)), parseInt(startTime), parseInt(endTime))
+}
+
 function regionErrorMsg(msg) {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
         x: 30;
@@ -18,22 +23,27 @@ function regionErrorMsg(msg) {
         dialogBox,
     "regionErrorMsg");
     errorMessage.errorMessageString = msg
+    submitButton.enabled = false // Disable dialog submit button while error message is visible
     backend.destroy_new_region_error_msg() // Need to call a Python thread so the message is destroyed after 1 second
 }
 
 function destroyErrorMsg() {
     errorMessage.destroy()
+    submitButton.enabled = true // Re-enable submit button
 }
 
 // Checks to see whether the region should go first, inbetween other regions, or last
 function checkRegions(greaterThan, lessThan) {
-    if(regionObjects.length === 0) { // No other objects created
+    // No other objects created yet
+    if(regionObjects.length === 0) { 
         return "Initial"
     }
+    
+    // Checks if all of the integer values in the regionObject's array are greater than the newObject's lessThan
     const checkEvery = (arr = [], limit = 1) => {
         const allGreater = arr.every(el => { 
         return el >= limit;
-        }); // Checks if all of the integer values in the array are greater than the given value
+        }); 
         return allGreater;
     };
     var arrayOfNumbers = []
@@ -42,20 +52,23 @@ function checkRegions(greaterThan, lessThan) {
         arrayOfNumbers.push(parseInt(regionObjects[y].lessThanText))
     }
     if(checkEvery(arrayOfNumbers, parseInt(lessThan))) { 
-        return "First" // Checks if all of the integer values in the regionObject's array are greater than the newObject's lessThan
-    } else {
-        for(let i=0; i<regionObjects.length; i++) { // Nested for loop finds if the object meet's the criteria for the moveObjectInbetween() function
-            for(let x=0+i; x<regionObjects.length; x++) {
-                if(parseInt(greaterThan) >= parseInt(regionObjects[i].lessThanText) && parseInt(lessThan) <= parseInt(regionObjects[x].greaterThanEqualToText) && regionObjects[x].regionNumber - regionObjects[i].regionNumber === 1) {
-                    return regionObjects[x].regionNumber
-                }
+        return "First" 
+    }
+    
+    // Nested for loop finds if the object meet's the criteria for the moveObjectInbetween() function
+    for(let i=0; i<regionObjects.length; i++) { 
+        for(let x=0+i; x<regionObjects.length; x++) {
+            if(parseInt(greaterThan) >= parseInt(regionObjects[i].lessThanText) && parseInt(lessThan) <= parseInt(regionObjects[x].greaterThanEqualToText) && regionObjects[x].regionNumber - regionObjects[i].regionNumber === 1) {
+                return regionObjects[x].regionNumber
             }
         }
     }
+
+    // Checks if the newObject should be placed last; else return an error message in NewRegion.qml's dialog box
     if(parseInt(greaterThan) >= parseInt(regionObjects.slice(-1)[0].lessThanText)) {
-        return "Last" // Checks if the newObject should be placed last
+        return "Last" 
     } else {
-        return "Error" // Returns an error message in NewRegion.qml's dialog box
+        return "Error" 
     }
 }
 

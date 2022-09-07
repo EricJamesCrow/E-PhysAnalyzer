@@ -48,6 +48,7 @@ color: "#4089f7fe"
     height: 20
     anchors.horizontalCenter: parent.horizontalCenter
     placeholderText: "Baseline value: 10"
+    validator: IntValidator {bottom: 1; top: 100}
     }
 
     Label {

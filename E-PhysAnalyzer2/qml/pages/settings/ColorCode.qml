@@ -62,6 +62,7 @@ color: "#4089f7fe"
     width: 53
     height: 20
     visible: graphQuality.currentIndex === 4
+    validator: IntValidator {bottom: 1; top: 1000}
     Label {
     id: dpiLabel
     width: 25
