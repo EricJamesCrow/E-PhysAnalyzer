@@ -1,6 +1,5 @@
 import importlib
 import os
-from pickletools import float8
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -137,18 +136,18 @@ class MainProgram:
                     current_region = 'region'+str(region_number)
                     next_region = 'region'+str(region_number+1)
                     try:
-                        color_regions_dict[next_region]
+                        _ = color_regions_dict[next_region]
                     except KeyError:
                         last_region = True
                     except:
-                        print('I do not work properly (I\'m at line 140 in Analysis.py).')
+                        print('I do not work properly (I\'m at line 140 in Analysis.py). Come find me bitch!')
 
                     if time_in_minutes < color_regions_dict[current_region][0]:
                         color = default_color
                     elif time_in_minutes >= color_regions_dict[current_region][0] and time_in_minutes < color_regions_dict[current_region][1]:
-                        color = color_regions_dict[2]
+                        color = color_regions_dict[current_region][2]
                     elif not last_region and time_in_minutes >= color_regions_dict[next_region][1] and time_in_minutes < color_regions_dict[next_region][1]:
-                        color = color_regions_dict[2]
+                        color = color_regions_dict[next_region][2]
                         region_number += 1
                     else:
                         color = default_color
