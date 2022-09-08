@@ -12,6 +12,8 @@ Item {
     property string colorSelected: "Red"
     property int regionNumber: 0
     property var regionObjectsSlice: []
+    property color chosenRegionColor: "#f81010"
+    property color colorName: colorPicker.chosenColorName
 
 
     Rectangle {
@@ -75,13 +77,14 @@ Item {
             anchors.verticalCenterOffset: 0
         }
 
-        Label {
-            id: colorLabel
-            x: 160
-            color: "#f70808"
-            text: colorSelected
-            anchors.verticalCenter: parent.verticalCenter
-            font.family: "PragmaticaLightC"
+        ColorPicker {
+            id: colorPicker
+            x: 167
+            y: 2
+            width: 15
+            height: 15
+            colorPickerAxis: -75
+            chosenColor: chosenRegionColor
         }
 
         Delete {

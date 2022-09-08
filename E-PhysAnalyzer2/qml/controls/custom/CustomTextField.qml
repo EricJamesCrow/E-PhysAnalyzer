@@ -2,10 +2,12 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 TextField {
+    property real fontSize: 9 * scaleFactor
+
     id: customTextField
     width: 202*scaleFactor
     height: 20*scaleFactor
-    font.pointSize: 9*scaleFactor
+    font.pointSize: fontSize
     color: fontColorDefault
     placeholderText: customTextField.text
     placeholderTextColor: fontColorDefault

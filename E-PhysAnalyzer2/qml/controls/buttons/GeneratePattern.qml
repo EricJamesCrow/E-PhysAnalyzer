@@ -127,6 +127,7 @@ Button {
             width: 48
             height: 15
             text: "Submit"
+            enabled: dialogBox.opacity === 1.0
             onClicked: Region.generatePattern(every_minutesTextField.text, startTimeEntry.text, endTimeEntry.text)
         }
 

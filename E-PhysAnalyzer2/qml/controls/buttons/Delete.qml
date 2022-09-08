@@ -3,9 +3,6 @@ import QtQuick.Controls 2.5
 
 Button {
     id: circle
-    anchors.verticalCenter: parent.verticalCenter
-    anchors.left: parent.left
-    anchors.leftMargin: 10
 
     property color colorDefault: "white"
     property color colorMouseOver: "#FF9E9E"

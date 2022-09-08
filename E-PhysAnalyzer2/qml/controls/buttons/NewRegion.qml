@@ -1,9 +1,11 @@
 import QtQuick
-import QtQuick 2.15
+import QtQuick 2.2
 import QtQuick.Controls 2.5
+import Qt.labs.platform
 import "../custom"
 import "../../controls"
 import "../../javascript/region.js" as Region
+import "../../javascript/color-picker.js" as ColorPicker
 
 
 Button {
@@ -20,8 +22,12 @@ Button {
     property color fontColorMouseOver: "#ffffff"//buttonColorDefault
     property color fontColorPressed: "#ffffff"
 
-    signal newRegion(string greaterThan, string lessThan) // Sends this to Regions.qml
+    signal newRegion(string greaterThan, string lessThan, string chosenRegionColor, string chosenRegionColorName) // Sends this to Regions.qml
+//    signal closeColorDialogBox()
     property var errorMessage: ""
+    property color chosenRegionColor: colorPicker1.chosenColor
+    property color regionColorName: colorPicker1.chosenColorName
+
 
     Connections {
         target: regions
@@ -46,7 +52,6 @@ Button {
     FontLoader {
         id: pragmaticaFont
         source: "../../fonts/PT Pragmatica Book.ttf"
-        //          source:"../fonts/LDFComicSans.ttf"
     }
 
     QtObject{
@@ -58,9 +63,10 @@ Button {
 
     Rectangle {
         id: dialogBox
+        y: 0
         opacity: 0
         visible: true
-        width: 226
+        width: 178
         height: 67
         color: "#ffffff"
         radius: 5
@@ -69,6 +75,7 @@ Button {
         anchors.left: parent.right
         clip: false
         anchors.leftMargin: 0
+        onOpacityChanged: if(dialogBoxOpacityOff.running === true && dialogBox.opacity === 0) return dialogBox.visible = false
 
         OpacityAnimator on opacity{
             id: dialogBoxOpacityOn
@@ -97,6 +104,7 @@ Button {
             anchors.right: parent.right
             anchors.top: parent.top
             source: "../../../images/svg_images/close_icon.svg"
+            clip: false
             z: 0
             anchors.topMargin: 5
             anchors.rightMargin: 5
@@ -165,27 +173,25 @@ Button {
 
 
 
-        Rectangle {
-            id: rectangle
-            x: 175
-            width: 23
+        ColorPicker {
+            id: colorPicker1
+            x: 13
+            width: 20
             height: 20
-            color: "#f81010"
-            radius: 5
-            border.width: 2
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
+            anchors.verticalCenterOffset: 31
         }
 
 
 
         CustomButton {
             id: submitButton
-            x: 163
+            x: 120
             y: 44
             width: 48
             height: 15
             text: "Submit"
-            onClicked: newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text)
+            onClicked: newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName)
             enabled: true
         }
     }
@@ -211,6 +217,7 @@ Button {
         border.width: 2
         radius: 5
     }
+
 }
 /*##^##
 Designer {

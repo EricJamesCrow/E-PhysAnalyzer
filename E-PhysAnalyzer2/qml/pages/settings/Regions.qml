@@ -18,6 +18,8 @@ Rectangle {
     property var currentRegionObject: []
     property int currentRegionY : 0
     property int regionAxis: 5
+    property color chosenRegionColor: "#f81010"
+    property color chosenRegionColorName: "red"
 
     signal emitRegionErrorMessage(string msg) // Sends this to NewRegion.qml
 
@@ -152,7 +154,9 @@ Rectangle {
 
     Connections {
         target: newRegionBtn1 // Recieves the signal from NewRegion.qml
-        function onNewRegion(greaterThan, lessThan) {
+        function onNewRegion(greaterThan, lessThan, regionColor, regionColorName) {
+            chosenRegionColor = regionColor
+            chosenRegionColorName = regionColorName
             Region.createNewRegion(greaterThan, lessThan)
         }
     }
