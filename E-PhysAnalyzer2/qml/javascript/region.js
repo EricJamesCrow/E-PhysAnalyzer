@@ -133,6 +133,9 @@ function newRegion(greaterThan, lessThan) {
     newObject.colorName = getKeyByValue(colorDict, chosenRegionColor.toString().toUpperCase())
     regionObjects.push(newObject)
     regionAxis += 22
+    for(let i=0; i<regionObjects.length; i++) {
+        regionObjects[i].z += 1
+    }
 }
 
 function getKeyByValue(object, value) {
