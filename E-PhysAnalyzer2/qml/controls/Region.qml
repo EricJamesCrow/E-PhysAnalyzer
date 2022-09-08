@@ -12,7 +12,7 @@ Item {
     property string colorSelected: "Red"
     property int regionNumber: 0
     property var regionObjectsSlice: []
-    property color chosenRegionColor: "#f81010"
+    property color chosenRegionColor: colorPicker.chosenColor
     property color colorName: colorPicker.chosenColorName
 
 
@@ -85,6 +85,7 @@ Item {
             height: 15
             colorPickerAxis: -75
             chosenColor: chosenRegionColor
+            onChosenColorChanged: chosenRegionColor = colorPicker.chosenColor
         }
 
         Delete {
