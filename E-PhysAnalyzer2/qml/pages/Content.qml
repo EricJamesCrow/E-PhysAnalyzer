@@ -6,6 +6,7 @@ import "../controls"
 import "../controls/buttons"
 import "../controls/custom" // For creating dynamic object, delete this import statement later
 import "../javascript/input-fields.js" as InputFields
+import "../javascript/graph-settings.js" as GraphSettings
 //import Qt5Compat.GraphicalEffects
 
 Item {
@@ -22,6 +23,11 @@ Item {
     property var filesBasename: []
     property int objectHeight: 10
     property int flickableContentHeight: 696
+
+    //List for graphsettings pages
+    //May change this to a doubly linked list; ability to add pages
+    property var graphSettingsPage: ["GraphSettings.qml", "GraphSettings2.qml", "GraphSettings3.qml"]
+    property int pageSelected: 1
 
     // Properties for editing
     property int scaleFactor: 1
@@ -95,28 +101,42 @@ Item {
                 }
 
                 EphysArrow {
-                    id: triangle
+                    id: leftArrow
                     y: 318 * scaleFactor
-                    width: 62
-                    height: 63 * scaleFactor
+                    width: 20
+                    height: 20
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
+                    anchors.verticalCenterOffset: 5
                     anchors.leftMargin: 100
                     z: 1
-                    anchors.verticalCenterOffset: 7 * scaleFactor
+                    checkedState: false
                     arrowRotation: 0
+
+                    MouseArea {
+                        id: leftArrowMouseArea
+                        anchors.fill: parent
+                        onClicked: GraphSettings.prevPage()
+                    }
                 }
 
                 EphysArrow {
-                    id: triangle1
+                    id: rightArrow
                     x: 600
-                    width: 94
-                    height: 75 * scaleFactor
+                    width: 20
+                    height: 20
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.right: parent.right
                     anchors.rightMargin: 100
-                    anchors.verticalCenterOffset: 7
+                    anchors.verticalCenterOffset: 5
                     arrowRotation: 180
+                    checkedState: true
+
+                    MouseArea {
+                        id: rightAreaMouseArea
+                        anchors.fill: parent
+                        onClicked: GraphSettings.nextPage()
+                    }
                 }
 
                 Button {
@@ -131,8 +151,9 @@ Item {
                     flat: true
                     down: false
                     background: Rectangle {
+                        id: selectedPage2
                         radius: width * 0.5
-                        color: "#802aafd3"//"#4abece"
+                        color: pageSelected === 2 ? "#2aafd3" : "#802aafd3"
                         border.width: 0
                         implicitWidth: 140 * scaleFactor
                         implicitHeight: width
@@ -151,10 +172,11 @@ Item {
                         flat: true
                         down: false
                         background: Rectangle {
+                            id: selectedPage1
                             implicitWidth: 140 * scaleFactor
                             implicitHeight: width
                             border.width: 0
-                            color: terminalText //"#4abece"
+                            color: pageSelected === 1 ? "#2aafd3" : "#802aafd3"
                             radius: width * 0.5
                         }
 
@@ -173,9 +195,10 @@ Item {
                         anchors.leftMargin: 30
                         display: AbstractButton.IconOnly
                         background: Rectangle {
+                            id: selectedPage3
                             radius: width * 0.5
                             border.width: 0
-                            color: "#802aafd3"//"#4abece"
+                            color: pageSelected === 3 ? "#2aafd3" : "#802aafd3"
                             implicitWidth: 140 * scaleFactor
                             implicitHeight: width
                         }
@@ -648,6 +671,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}
+    D{i:0;formeditorZoom:0.66}D{i:6}D{i:8}
 }
 ##^##*/

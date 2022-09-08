@@ -5,15 +5,17 @@ import "../../controls"
 Button {
     id: button
     onHoveredChanged: triangle.requestPaint()
+    onCheckedStateChanged: triangle.requestPaint()
 
     QtObject{
         id: internal
         property var dynamicColor: button.hovered ? colorMouseOver : colorDefault
     }
 
-    property color colorDefault: settings.terminalText
+    property color colorDefault: checkedState === true ? settings.terminalText : "#802aafd3"
     property color colorMouseOver: settings.backgroundColor
     property int arrowRotation: 0
+    property bool checkedState: true
 
     down: false
     flat: true

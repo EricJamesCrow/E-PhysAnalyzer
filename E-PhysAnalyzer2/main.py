@@ -14,7 +14,9 @@ class Backend(QObject):
     addObject = Signal(str)
     animateObject = Signal(int)
     newRegion = Signal(str, str)
-    destroyMsg = Signal()  
+    destroyMsg = Signal()
+    starting_animation_time = 0.2
+    object_animation_time = 0.1  
 
     @Slot()
     def run_starting_animation(self):
@@ -38,10 +40,12 @@ class Backend(QObject):
 
 class StartingAnimation(Thread):
     def run(self):
-        time.sleep(0.2)
+        time.sleep(backend.starting_animation_time)
+        backend.starting_animation_time = 0
         for i in range(9):
-            time.sleep(0.1)
+            time.sleep(backend.object_animation_time)
             backend.animateObject.emit(i)
+        backend.object_animation_time = 0.05
 
 class InputFields(Thread):
     def __init__(self, selected_files):
