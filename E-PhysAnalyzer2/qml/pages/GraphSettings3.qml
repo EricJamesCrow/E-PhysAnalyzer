@@ -1,16 +1,35 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.5
+import Qt.labs.settings 1.0
 import "../controls/custom"
 import "../controls/buttons"
 import "settings"
 import "../javascript/graph-settings.js" as GraphSettings
 
 Item {
-    id: settingsPage
+    id: settingsPage3
     // Properties for editing
     width: 663
     height: 704
-    Component.onCompleted: backend.run_starting_animation()
+    Component.onCompleted:{ runDeserialization3(graphSettings3.objects3, graphSettings3.regionAxis3); backend.run_starting_animation();}
+    Component.onDestruction: runSerialization3()
+
+    signal runSerialization3()
+    signal runDeserialization3(var objects)
+
+    Connections {
+        target: regions
+        function onEmitSerializedObjects3(objects, axis) {
+            graphSettings3.objects3 = objects
+            graphSettings3.regionAxis3 = axis
+        }
+    }
+
+    Settings {
+        id: graphSettings3
+        property var objects3: []
+        property int regionAxis3: 5
+    }
 
 
     Rectangle {

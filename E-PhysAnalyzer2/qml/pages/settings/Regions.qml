@@ -4,11 +4,10 @@ import "../../controls/buttons"
 import "../../controls/custom"
 import "../../controls"
 import "../../javascript/region.js" as Region
+import "../../javascript/graph-settings.js" as GraphSettings
 
 Rectangle {
     id: regions
-    //x: 26
-    //y: 61
     width: 230
     height: 518
     color: "#00000000"
@@ -22,6 +21,56 @@ Rectangle {
     property string chosenRegionColorName: "#FF0000"
 
     signal emitRegionErrorMessage(string msg) // Sends this to NewRegion.qml
+    signal emitSerializedObjects1(var objects, int axis)
+    signal emitSerializedObjects2(var objects, int axis)
+    signal emitSerializedObjects3(var objects, int axis)
+
+    property var serializedObjects: []
+
+    Connections {
+        target: settingsPage1
+        function onRunSerialization() {
+            if(regionObjects.length === 0) {
+                return emitSerializedObjects1([], 5)
+            }
+            GraphSettings.serialize()
+            emitSerializedObjects1(serializedObjects, regionAxis)
+        }
+        function onRunDeserialization(objects1, axis) {
+            GraphSettings.deserialize(objects1)
+            regionAxis = axis
+        }
+    }
+
+    Connections {
+        target: settingsPage2
+        function onRunSerialization() {
+            if(regionObjects.length === 0) {
+                return emitSerializedObjects2([], 5)
+            }
+            GraphSettings.serialize()
+            emitSerializedObjects2(serializedObjects, regionAxis)
+        }
+        function onRunDeserialization(objects2, axis) {
+            GraphSettings.deserialize(objects2)
+            regionAxis = axis
+        }
+    }
+
+    Connections {
+        target: settingsPage3
+        function onRunSerialization3() {
+            if(regionObjects.length === 0) {
+                return emitSerializedObjects3([], 5)
+            }
+            GraphSettings.serialize()
+            emitSerializedObjects3(serializedObjects, regionAxis)
+        }
+        function onRunDeserialization3(objects3, axis) {
+            GraphSettings.deserialize(objects3)
+            regionAxis = axis
+        }
+    }
 
     Rectangle {
         id: regionsTopBar
