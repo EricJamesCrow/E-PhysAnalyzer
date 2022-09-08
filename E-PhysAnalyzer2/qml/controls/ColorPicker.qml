@@ -10,8 +10,8 @@ Item {
     height: 20
     width: 20
 
-    property color chosenColor: "#f81010"
-    property string chosenColorName: "red"
+    property string chosenColor: "#FF0000"
+    property string chosenColorName: chosenColor
     property int colorPickerAxis: 0
 
 //    Connections {
@@ -81,10 +81,10 @@ Item {
             y: 6
             width: colorPicker.width
             height: colorPicker.height
-            selectedColor: "#f81010"
+            selectedColor: "#FF0000"
             anchors.left: parent.left
             anchors.leftMargin: 5
-            onClicked: {chosenColor = red.selectedColor; chosenColorName = "red"}
+            onClicked: chosenColor = red.selectedColor
 
             ColorPickerBtn {
                 id: blue
@@ -95,7 +95,7 @@ Item {
                 selectedColor: "#0000ff"
                 anchors.left: red.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = blue.selectedColor; chosenColorName = "blue"}
+                onClicked: chosenColor = blue.selectedColor;
             }
 
             ColorPickerBtn {
@@ -107,7 +107,7 @@ Item {
                 selectedColor: "#008000"
                 anchors.left: blue.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = green.selectedColor; chosenColorName = "green"}
+                onClicked: chosenColor = green.selectedColor
             }
 
             ColorPickerBtn {
@@ -119,7 +119,7 @@ Item {
                 selectedColor: "#800080"
                 anchors.left: green.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = purple.selectedColor; chosenColorName = "purple"}
+                onClicked: chosenColor = purple.selectedColor
             }
         }
 
@@ -133,7 +133,7 @@ Item {
             anchors.top: red.bottom
             anchors.topMargin: 5
             anchors.leftMargin: 5
-            onClicked: {chosenColor = crimson.selectedColor; chosenColorName = "crimson"}
+            onClicked: chosenColor = crimson.selectedColor
 
             ColorPickerBtn {
                 id: navy
@@ -144,7 +144,7 @@ Item {
                 selectedColor: "#000080"
                 anchors.left: crimson.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = navy.selectedColor; chosenColorName = "navy"}
+                onClicked: chosenColor = navy.selectedColor
             }
 
             ColorPickerBtn {
@@ -156,7 +156,7 @@ Item {
                 selectedColor: "#556b2f"
                 anchors.left: navy.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = darkolivegreen.selectedColor; chosenColorName = "darkolivegreen"}
+                onClicked: chosenColor = darkolivegreen.selectedColor
             }
 
             ColorPickerBtn {
@@ -168,7 +168,7 @@ Item {
                 selectedColor: "#9370db"
                 anchors.left: darkolivegreen.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = mediumpurple.selectedColor; chosenColorName = "mediumpurple"}
+                onClicked: chosenColor = mediumpurple.selectedColor
             }
         }
 
@@ -182,7 +182,7 @@ Item {
             anchors.top: crimson.bottom
             anchors.topMargin: 5
             anchors.leftMargin: 5
-            onClicked: {chosenColor = orange.selectedColor; chosenColorName = "orange"}
+            onClicked: chosenColor = orange.selectedColor
 
             ColorPickerBtn {
                 id: brown
@@ -193,7 +193,7 @@ Item {
                 selectedColor: "#a52a2a"
                 anchors.left: orange.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = brown.selectedColor; chosenColorName = "brown"}
+                onClicked: chosenColor = brown.selectedColor
             }
 
             ColorPickerBtn {
@@ -205,7 +205,7 @@ Item {
                 selectedColor: "#8b4513"
                 anchors.left: brown.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = saddlebrown.selectedColor; chosenColorName = "saddlebrown"}
+                onClicked: chosenColor = saddlebrown.selectedColor
             }
 
             ColorPickerBtn {
@@ -217,7 +217,7 @@ Item {
                 selectedColor: "#000000"
                 anchors.left: saddlebrown.right
                 anchors.leftMargin: 5
-                onClicked: {chosenColor = black.selectedColor; chosenColorName = "black"}
+                onClicked: chosenColor = black.selectedColor
             }
             anchors.verticalCenterOffset: 3
         }
@@ -232,7 +232,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             width: colorPicker.height * 2.5
             onTextChanged: try{
-                               chosenColor = ColorPicker.colorDict[customColorEntry.text]; chosenColorName = customColorEntry.text
+                               chosenColor = ColorPicker.colorDict[customColorEntry.text]
                            } catch(err) {
                            }
 

@@ -18,8 +18,8 @@ Rectangle {
     property var currentRegionObject: []
     property int currentRegionY : 0
     property int regionAxis: 5
-    property color chosenRegionColor: "#f81010"
-    property color chosenRegionColorName: "red"
+    property string chosenRegionColor: "#FF0000"
+    property string chosenRegionColorName: "#FF0000"
 
     signal emitRegionErrorMessage(string msg) // Sends this to NewRegion.qml
 
