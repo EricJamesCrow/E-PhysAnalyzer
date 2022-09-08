@@ -43,6 +43,7 @@ Item {
         anchors.top: parent.bottom
         anchors.topMargin: 0
         clip: false
+        onOpacityChanged: if(dialogBox.opacity === 0) return dialogBox.visible = false
 
 
         OpacityAnimator on opacity{
