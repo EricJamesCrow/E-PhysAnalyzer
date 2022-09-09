@@ -12,6 +12,10 @@ GradientStop {
 position: 0
 color: "#4089f7fe"
 }
+        property var xmin: paXmin.text
+        property var xmax: paXmax.text
+        property var ymin: paYmin.text
+        property var ymax: paYmax.text
 
         GradientStop {
         position: 1

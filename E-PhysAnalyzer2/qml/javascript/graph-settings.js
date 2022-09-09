@@ -19,6 +19,7 @@ function deserialize(settingsObject) {
         regionObjects.slice(-1)[0].lessThanText = jsonObject["Values"][1] 
         regionObjects.slice(-1)[0].chosenRegionColor = jsonObject["Colors"][0].toString()
         regionObjects.slice(-1)[0].colorName = jsonObject["Colors"][1].toString()
+        regionAxis += 22
             }
         settingsObject = []
 }

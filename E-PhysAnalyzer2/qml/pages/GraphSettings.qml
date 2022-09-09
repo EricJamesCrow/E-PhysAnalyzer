@@ -31,6 +31,28 @@ Item {
         property int regionAxis1: 5
     }
 
+    Settings {
+        id: postAnalysisSettings1
+        property var xmin: ""
+        property var xmax: ""
+        property var ymin: ""
+        property var ymax: ""
+    }
+
+    Settings {
+        id: minuteAveragedSettings1
+        property var xmin: ""
+        property var xmax: ""
+        property var ymin: ""
+        property var ymax: ""
+    }
+
+    Settings {
+        id: baselineSettings1
+        property var value: ""
+        property var time: ""
+    }
+
 
     Rectangle {
         id: rightContentLoader
