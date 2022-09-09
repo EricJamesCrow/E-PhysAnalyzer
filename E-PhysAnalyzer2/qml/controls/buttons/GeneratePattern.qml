@@ -29,7 +29,7 @@ Button {
     FontLoader {
         id: pragmaticaFont
         source: "../../fonts/PT Pragmatica Book.ttf"
-//          source:"../fonts/LDFComicSans.ttf"
+        //          source:"../fonts/LDFComicSans.ttf"
     }
 
     QtObject{
@@ -98,26 +98,28 @@ Button {
             validator: IntValidator {bottom: 1; top: 100}
             anchors.verticalCenter: everyLabel.verticalCenter
             anchors.verticalCenterOffset: 0
-        }
 
-        CustomTextField {
-            id: startTimeEntry
-            x: 71
-            width: 28
-            height: 20
-            validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
-            anchors.verticalCenter: every_minutesTextField.verticalCenter
-            anchors.verticalCenterOffset: 29
-        }
+            CustomTextField {
+                id: startTimeEntry
+                x: 0
+                y: 29
+                width: 28
+                height: 20
+                validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
+                anchors.verticalCenter: every_minutesTextField.verticalCenter
+                anchors.verticalCenterOffset: 29
 
-        CustomTextField {
-            id: endTimeEntry
-            x: 71
-            width: 28
-            height: 20
-            validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
-            anchors.verticalCenter: every_minutesTextField.verticalCenter
-            anchors.verticalCenterOffset: 58
+                CustomTextField {
+                    id: endTimeEntry
+                    x: 0
+                    y: 29
+                    width: 28
+                    height: 20
+                    validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
+                    anchors.verticalCenter: every_minutesTextField.verticalCenter
+                    anchors.verticalCenterOffset: 58
+                }
+            }
         }
 
         CustomButton {
@@ -192,6 +194,6 @@ Button {
 }
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:1.33}D{i:6}D{i:8}D{i:11}D{i:12}D{i:13}D{i:3}
+    D{i:0;formeditorZoom:1.33}
 }
 ##^##*/
