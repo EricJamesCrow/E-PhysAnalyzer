@@ -34,30 +34,36 @@ color: "#4089f7fe"
 
     CustomTextField {
     id: baselineColor
-    y: 48
-    width: 137
+    width: 46
     height: 20
+    anchors.verticalCenter: baselineValueLabel.verticalCenter
+    anchors.verticalCenterOffset: 0
+    font.pointSize: 8
+    anchors.horizontalCenterOffset: 45
     anchors.horizontalCenter: parent.horizontalCenter
-    placeholderText: "Baseline color"
+    placeholderText: "gray"
     }
 
     CustomTextField {
     id: baselineValue
-    y: 94
-    width: 136
+    width: 46
     height: 20
+    anchors.verticalCenter: baselineTimeLabel.verticalCenter
+    anchors.verticalCenterOffset: 0
+    anchors.horizontalCenterOffset: 45
     anchors.horizontalCenter: parent.horizontalCenter
-    placeholderText: "Baseline value: 10"
+    placeholderText: "10"
     validator: IntValidator {bottom: 1; top: 100}
     }
 
     Label {
     id: baselineTimeLabel
-    y: 74
+    y: 90
     color: "#087589"
-    text: qsTr("Baseline time (min)")
+    text: qsTr("Baseline time (min):")
+    font.pointSize: 7
     anchors.horizontalCenter: parent.horizontalCenter
-    anchors.horizontalCenterOffset: 0
+    anchors.horizontalCenterOffset: -26
     font.family: "PragmaticaLightC"
     }
 
@@ -83,10 +89,21 @@ color: "#4089f7fe"
     }
 
     Rectangle {
-    id: baselineBg
-    color: backgroundColor
-    radius: 10
-    anchors.fill: parent
-    z: -2
+        id: baselineBg
+        color: backgroundColor
+        radius: 10
+        anchors.fill: parent
+        z: -2
+    }
+
+    Label {
+        id: baselineValueLabel
+        y: 50
+        color: "#087589"
+        text: qsTr("Baseline value:")
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.family: "PragmaticaLightC"
+        anchors.horizontalCenterOffset: -25
+        font.pointSize: 8
     }
 }
