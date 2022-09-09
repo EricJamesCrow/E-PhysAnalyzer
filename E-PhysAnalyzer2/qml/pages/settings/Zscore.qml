@@ -38,6 +38,7 @@ color: "#4089f7fe"
     width: 38
     height: 20
     placeholderText: "2.5"
+    validator: RegularExpressionValidator { regularExpression: /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/ }
     }
 
     Label {
@@ -49,6 +50,7 @@ color: "#4089f7fe"
     text: qsTr("Z-Score >")
     anchors.verticalCenter: zScoreEntry.verticalCenter
     anchors.right: zScoreEntry.left
+    font.bold: true
     anchors.rightMargin: 5
     }
 

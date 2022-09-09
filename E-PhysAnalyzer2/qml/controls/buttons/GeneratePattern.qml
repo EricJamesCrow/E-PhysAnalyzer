@@ -118,19 +118,19 @@ Button {
                     validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
                     anchors.verticalCenter: every_minutesTextField.verticalCenter
                     anchors.verticalCenterOffset: 58
+
+                    CustomButton {
+                        id: submitButton
+                        x: 40
+                        y: 2
+                        width: 48
+                        height: 15
+                        text: "Submit"
+                        enabled: dialogBox.opacity === 1.0
+                        onClicked: Region.generatePattern(every_minutesTextField.text, startTimeEntry.text, endTimeEntry.text)
+                    }
                 }
             }
-        }
-
-        CustomButton {
-            id: submitButton
-            x: 111
-            y: 70
-            width: 48
-            height: 15
-            text: "Submit"
-            enabled: dialogBox.opacity === 1.0
-            onClicked: Region.generatePattern(every_minutesTextField.text, startTimeEntry.text, endTimeEntry.text)
         }
 
 

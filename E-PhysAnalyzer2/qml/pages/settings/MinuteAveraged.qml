@@ -39,6 +39,7 @@ color: "#4089f7fe"
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.horizontalCenterOffset: 33
     placeholderText: "-Baseline"
+    validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
     }
 
     CustomTextField {
@@ -49,6 +50,7 @@ color: "#4089f7fe"
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.horizontalCenterOffset: 33
     placeholderText: "None"
+    validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
     }
 
     CustomTextField {
@@ -59,7 +61,7 @@ color: "#4089f7fe"
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.horizontalCenterOffset: 33
     placeholderText: "25"
-    RegularExpressionValidator { regularExpression: /^-?\d+$/ }
+    validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
     }
 
     CustomTextField {
@@ -70,7 +72,7 @@ color: "#4089f7fe"
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.horizontalCenterOffset: 33
     placeholderText: "225"
-    RegularExpressionValidator { regularExpression: /^-?\d+$/ }
+    validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
     }
 
     Label {
