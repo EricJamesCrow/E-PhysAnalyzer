@@ -23,11 +23,8 @@ Button {
             }
         }
 
-        property var dynamicColor: if(filterCheckBox.down){
-                                        filterCheckBox.down ? buttonColorPressed : buttonColorDefault
-                                   }else{
-                                        filterCheckBox.hovered ? checkBoxHighlighted: buttonColorDefault;
-                                   }
+        property var dynamicColor: filterCheckBox.hovered ? checkBoxHighlighted: buttonColorDefault;
+
 
         property var checkedButton: if(filterCheckBox.down && checkedState === false) {
                                     checkedState = true
@@ -42,7 +39,7 @@ Button {
         implicitWidth: filterCheckBox.width /*100 */
         implicitHeight: filterCheckBox.height /*26 */
         visible: true
-        color: if(checkedState) return backgroundColor; else return "#ffffff"
+        color: "#ffffff"
         radius: 3
         clip: true
         border.color: internal.dynamicColor
