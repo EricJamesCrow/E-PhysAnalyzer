@@ -191,7 +191,10 @@ Button {
             width: 48
             height: 15
             text: "Submit"
-            onClicked: newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName)
+            onClicked: {newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName);
+                greaterThanOrEqualEntry.text = "";
+                lessThanEntry.text = "";
+                greaterThanOrEqualEntry.focus = true}
             enabled: true
         }
     }
