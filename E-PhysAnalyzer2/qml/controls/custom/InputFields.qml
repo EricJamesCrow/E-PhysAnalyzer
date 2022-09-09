@@ -1,4 +1,5 @@
-import QtQuick 2.0
+import QtQuick
+import QtQuick 2.15
 import QtQuick.Controls 2.5
 
 Rectangle {
@@ -43,6 +44,7 @@ Rectangle {
         width: 128
         height: 20
         anchors.verticalCenter: parent.verticalCenter
+        validator: RegularExpressionValidator { regularExpression: /^[0-9]+$/ }
                     }
 
     CustomTextField {
@@ -54,5 +56,6 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: 20
         anchors.verticalCenterOffset: 0
+        validator: RegularExpressionValidator { regularExpression: /^[,0-9]+$/ }
                     }
 }
