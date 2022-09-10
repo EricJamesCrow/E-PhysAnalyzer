@@ -512,7 +512,7 @@ Item {
                 anchors.top: leftContentTopBar.bottom
                 anchors.bottom: parent.bottom
                 contentWidth: 847 * scaleFactor
-                contentHeight: flickableContentHeight * scaleFactor
+                contentHeight: flickableContentHeight
                 anchors.rightMargin: 0
                 z: -1
                 anchors.topMargin: 8

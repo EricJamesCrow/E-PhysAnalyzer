@@ -86,7 +86,7 @@ Rectangle {
         height: 29 * scaleFactor
         opacity: 1
         color: "#02323a"
-        radius: 10
+        radius: 10 * scaleFactor
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.leftMargin: 0
@@ -128,7 +128,7 @@ Rectangle {
         opacity: 0.25
         visible: true
         color: "#000000"
-        radius: 10
+        radius: 10 * scaleFactor
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
@@ -146,7 +146,7 @@ Rectangle {
         x: 0
         height: 496 * scaleFactor
         color: "#ffffff"
-        radius: 10
+        radius: 10 * scaleFactor
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: regionsTopBar.bottom
@@ -156,7 +156,7 @@ Rectangle {
             id: regionsBg1
             visible: true
             color: backgroundColor
-            radius: 10
+            radius: 10 * scaleFactor
             anchors.fill: parent
             z: -1
         }

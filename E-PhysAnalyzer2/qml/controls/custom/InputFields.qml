@@ -9,7 +9,7 @@ Rectangle {
     id: objectBg
     height: 35 * scaleFactor
     color: columnColor
-    radius: 5
+    radius: 5 * scaleFactor
     border.color: topBarColor
     border.width: 0
 

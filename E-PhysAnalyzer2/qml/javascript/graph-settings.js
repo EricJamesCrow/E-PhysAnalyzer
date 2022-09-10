@@ -58,7 +58,6 @@ function deserialize(settingsObject) {
         regionObjects.slice(-1)[0].regionNumber = jsonObject["Index"]
         regionObjects.slice(-1)[0].y = jsonObject["Position"][0]
         regionObjects.slice(-1)[0].y = regionObjects.slice(-1)[0].y * scaleFactor
-        console.log(regionObjects.slice(-1)[0].y)
         regionObjects.slice(-1)[0].z = jsonObject["Position"][1]
         regionObjects.slice(-1)[0].greaterThanEqualToText = jsonObject["Values"][0]
         regionObjects.slice(-1)[0].lessThanText = jsonObject["Values"][1] 

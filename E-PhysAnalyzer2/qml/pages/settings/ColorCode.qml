@@ -72,7 +72,7 @@ Rectangle {
     id: colorCodeSection
     height: 131 * scaleFactor
     color: "#ffffff"
-    radius: 10
+    radius: 10 * scaleFactor
     gradient: Gradient {
         GradientStop {
             position: 0
@@ -157,7 +157,7 @@ Rectangle {
         opacity: 0.25
         visible: true
         color: "#000000"
-        radius: 10
+        radius: 10 * scaleFactor
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
@@ -173,7 +173,7 @@ Rectangle {
     Rectangle {
         id: ccBg
         color: backgroundColor
-        radius: 10
+        radius: 10 * scaleFactor
         anchors.fill: parent
         z: -2
     }

@@ -1,8 +1,12 @@
 function adjustInputFields(scale) {
     objectHeight = 10 * scale
+    flickableContentHeight = 696 * scale
     for(let i=0; i<fileObjects.length; i++) {
         fileObjects[i].y = objectHeight
         objectHeight += 40 * scale
+        if(i > 16) {
+            flickableContentHeight += 40 * scale
+        }
     }
 }
 

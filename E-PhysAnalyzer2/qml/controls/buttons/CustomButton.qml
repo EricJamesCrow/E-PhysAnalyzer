@@ -47,8 +47,8 @@ Button {
     background: Rectangle{
         color: internal.dynamicColor
         border.color: colorDefault
-        border.width: 2
-        radius: 5
+        border.width: 2 * scaleFactor
+        radius: 5 * scaleFactor
     }
 }
 /*##^##

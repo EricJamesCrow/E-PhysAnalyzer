@@ -83,7 +83,7 @@ Rectangle {
 id: postAnalysisSection
 height: 140 * scaleFactor
 color: "#4089f7fe"
-radius: 10
+radius: 10 * scaleFactor
 gradient: Gradient {
 GradientStop {
 position: 0
@@ -214,7 +214,7 @@ color: "#4089f7fe"
         opacity: 0.25
         visible: true
         color: "#000000"
-        radius: 10
+        radius: 10 * scaleFactor
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
@@ -230,7 +230,7 @@ color: "#4089f7fe"
         Rectangle {
         id: paBg
         color: backgroundColor
-        radius: 10
+        radius: 10 * scaleFactor
         anchors.fill: parent
         z: -2
         }
