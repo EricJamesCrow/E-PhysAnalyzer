@@ -6,7 +6,7 @@ import time
 
 from PySide6 import QtCore
 from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtGui import QGuiApplication
+from PySide6.QtGui import QGuiApplication, QIcon
 from PySide6.QtCore import QObject, Slot, Signal
 from threading import *
 
@@ -50,7 +50,7 @@ class StartingAnimation(Thread):
         for i in range(9):
             time.sleep(backend.object_animation_time)
             backend.animateObject.emit(i)
-        backend.object_animation_time = 0.05
+        backend.object_animation_time = 0.04
 
 class InputFields(Thread):
     def __init__(self, selected_files):
@@ -88,6 +88,7 @@ if __name__ == "__main__":
     app.setOrganizationName("Washington State University")
     app.setOrganizationDomain("github.com/EricJamesCrow/E-PhysAnalyzer")
     app.setApplicationName("E-PhysAnalyzer")
+    app.setWindowIcon(QIcon("images/activity.png"))
     engine = QQmlApplicationEngine()
     backend = Backend()
     engine.rootContext().setContextProperty("backend", backend)
