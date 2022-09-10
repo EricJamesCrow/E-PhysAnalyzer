@@ -11,11 +11,17 @@ Item {
     // Properties for editing
     width: 663
     height: 704
-    Component.onCompleted:{ runDeserialization(graphSettings1.objects1, graphSettings1.regionAxis1); backend.run_starting_animation()}
-    Component.onDestruction: { runSerialization() }
+    Component.onCompleted: GraphSettings.startDeserialization(graphSettings1, postAnalysisSettings1, minuteAveragedSettings1, graphQualitySettings1, baselineSettings1, zscoreSettings1)
+    Component.onDestruction: runSerialization()
 
     signal runSerialization()
     signal runDeserialization(var objects)
+    signal postAnalysisSettings(string xmin, string xmax, string ymin, string ymax)
+    signal minuteAveragedSettings(string xmin, string xmax, string ymin, string ymax)
+    signal graphQualitySettings(bool single, int quality, string dpi, string defaultColor)
+    signal baselineSettings(string color, string time, bool display)
+    signal zscoreSettings(bool remove, string score)
+    signal reset()
 
     Connections {
         target: regions
@@ -33,30 +39,44 @@ Item {
 
     Settings {
         id: postAnalysisSettings1
-        property var xmin: ""
-        property var xmax: ""
-        property var ymin: ""
-        property var ymax: ""
+        property string xmin: ""
+        property string xmax: ""
+        property string ymin: ""
+        property string ymax: ""
     }
 
     Settings {
         id: minuteAveragedSettings1
-        property var xmin: ""
-        property var xmax: ""
-        property var ymin: ""
-        property var ymax: ""
+        property string maxmin: ""
+        property string maxmax: ""
+        property string maymin: ""
+        property string maymax: ""
+    }
+
+    Settings {
+        id: graphQualitySettings1
+        property bool single: false
+        property int quality: 1
+        property string dpi: ""
+        property string defaultColor: ""
     }
 
     Settings {
         id: baselineSettings1
-        property var value: ""
-        property var time: ""
+        property string color: ""
+        property string time: ""
+        property bool display: true
+    }
+
+    Settings {
+        id: zscoreSettings1
+        property bool remove: true
+        property string score: ""
     }
 
 
     Rectangle {
         id: rightContentLoader
-
         // Images
         property string addFilterSvgIcon: "../../images/svg_images/plus_icon_087589.svg"
         property string closeBtnSvgIcon: "../../images/svg_images/close_icon.svg"
@@ -108,8 +128,6 @@ Item {
         }
 
 
-
-
         Regions {
             id: regions
             x: 26
@@ -134,6 +152,11 @@ Item {
             anchors.rightMargin: 207
             anchors.leftMargin: 279
             opacity: 0
+            // GraphSettings.qml
+            onXminChanged: postAnalysisSettings1.xmin = postAnalysisSection.xmin
+            onXmaxChanged: postAnalysisSettings1.xmax = postAnalysisSection.xmax
+            onYminChanged: postAnalysisSettings1.ymin = postAnalysisSection.ymin
+            onYmaxChanged: postAnalysisSettings1.ymax = postAnalysisSection.ymax
 
             OpacityAnimator on opacity {
                 id: postAnalysisOpacity
@@ -144,9 +167,6 @@ Item {
             }
         }
 
-
-
-
         MinuteAveraged {
             id: minuteAveragedSection
             x: 19
@@ -156,6 +176,11 @@ Item {
             anchors.rightMargin: 207
             anchors.leftMargin: 279
             opacity: 0
+            // GraphSettings.qml
+            onXminChanged: minuteAveragedSettings1.maxmin = minuteAveragedSection.xmin
+            onXmaxChanged: minuteAveragedSettings1.maxmax = minuteAveragedSection.xmax
+            onYminChanged: minuteAveragedSettings1.maymin = minuteAveragedSection.ymin
+            onYmaxChanged: minuteAveragedSettings1.maymax = minuteAveragedSection.ymax
 
             OpacityAnimator on opacity {
                 id: minuteAveragedOpacity
@@ -167,17 +192,21 @@ Item {
         }
 
 
-
-
         ColorCode {
             id: colorCodeSection
             x: 21
             y: 90
+            height: 140
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.rightMargin: 13
             anchors.leftMargin: 473
             opacity: 0
+            // GraphSettings.qml
+            onSingleChanged: graphQualitySettings1.single = colorCodeSection.single
+            onQualityChanged: graphQualitySettings1.quality = colorCodeSection.quality
+            onDpiChanged: graphQualitySettings1.dpi = colorCodeSection.dpi
+            onDefaultColorChanged: graphQualitySettings1.defaultColor = colorCodeSection.defaultColor
 
             OpacityAnimator on opacity {
                 id: colorCodeOpacity
@@ -188,23 +217,20 @@ Item {
             }
         }
 
-
-
-
-
-
-
-
-
         Baseline {
             id: baselineSection
             x: 32
             y: 236
+            height: 140
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.rightMargin: 13
             anchors.leftMargin: 473
             opacity: 0
+            // GraphSettings.qml
+            onColorChanged: baselineSettings1.color = baselineSection.color
+            onTimeChanged: baselineSettings1.time = baselineSection.time
+            onDisplayChanged: baselineSettings1.display = baselineSection.display
 
             OpacityAnimator on opacity {
                 id: baselineOpacity
@@ -216,11 +242,6 @@ Item {
         }
 
 
-
-
-
-
-
         Zscore {
             id: zScoreSection
             x: 28
@@ -230,6 +251,9 @@ Item {
             anchors.rightMargin: 207
             anchors.leftMargin: 279
             opacity: 0
+            // GraphSettings.qml
+            onRemoveChanged: zscoreSettings1.remove = zScoreSection.remove
+            onScoreChanged: zscoreSettings1.score = zScoreSection.score
 
             OpacityAnimator on opacity {
                 id: zScoreOpacity
@@ -239,10 +263,6 @@ Item {
                 running: false
             }
         }
-
-
-
-
 
 
         GeneratePattern{
@@ -259,12 +279,6 @@ Item {
                 running: false
             }
         }
-
-
-
-
-
-
 
 
         NewRegion {
@@ -298,6 +312,8 @@ Item {
             height: 20
             text: "Reset"
             opacity: 0
+            onClicked: reset()
+
 
             OpacityAnimator on opacity {
                 id: resetBtnOpacity

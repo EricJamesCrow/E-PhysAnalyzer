@@ -3,6 +3,49 @@ import QtQuick.Controls 2.5
 import "../../controls/custom"
 
 Rectangle {
+    property bool remove: removeOutliers.checkedState
+    property string score: zScoreEntry.text
+
+
+    Connections {
+        target: settingsPage1
+        function onZscoreSettings(remove, score) {
+            removeOutliers.checkedState = remove
+            if(score !== "") {
+                zScoreEntry.text = score
+            }
+        }
+        function onReset() {
+            removeOutliers.checkedState = true
+            zScoreEntry.text = ""
+        }
+    }
+    Connections {
+        target: settingsPage2
+        function onZscoreSettings(remove, score) {
+            removeOutliers.checkedState = remove
+            if(score !== "") {
+                zScoreEntry.text = score
+            }
+        }
+        function onReset() {
+            removeOutliers.checkedState = true
+            zScoreEntry.text = ""
+        }
+    }
+    Connections {
+        target: settingsPage3
+        function onZscoreSettings(remove, score) {
+            removeOutliers.checkedState = remove
+            if(score !== "") {
+                zScoreEntry.text = score
+            }
+        }
+        function onReset() {
+            removeOutliers.checkedState = true
+            zScoreEntry.text = ""
+        }
+    }
 id: zScoreSection
 height: 91
 color: "#ffffff"
@@ -12,6 +55,7 @@ GradientStop {
 position: 0
 color: "#4089f7fe"
 }
+
 
     GradientStop {
     position: 1
@@ -29,6 +73,7 @@ color: "#4089f7fe"
     text: "Remove Outliers"
     anchors.horizontalCenter: parent.horizontalCenter
     clip: false
+    checkedState: true
     }
 
     CustomTextField {

@@ -3,6 +3,83 @@ import QtQuick.Controls 2.5
 import "../../controls/custom"
 
 Rectangle {
+        // Properties
+        property string xmin: paXmin.text
+        property string xmax: paXmax.text
+        property string ymin: paYmin.text
+        property string ymax: paYmax.text
+
+        Connections {
+           target: settingsPage1
+           function onPostAnalysisSettings(xmin, xmax, ymin, ymax) {
+                if(xmin !== "") {
+                        paXmin.text = xmin
+                }
+                if(xmax !== "") {
+                        paXmax.text = xmax
+                }
+                if(ymin !== "") {
+                        paYmin.text = ymin
+                }
+                if(ymax !== "") {
+                        paYmax.text = ymax
+                }
+           }
+        function onReset() {
+            paXmin.text = ""
+            paXmax.text = ""
+            paYmin.text = ""
+            paYmax.text = ""
+        }
+        }
+
+        Connections {
+           target: settingsPage2
+           function onPostAnalysisSettings(xmin, xmax, ymin, ymax) {
+                if(xmin !== "") {
+                        paXmin.text = xmin
+                }
+                if(xmax !== "") {
+                        paXmax.text = xmax
+                }
+                if(ymin !== "") {
+                        paYmin.text = ymin
+                }
+                if(ymax !== "") {
+                        paYmax.text = ymax
+                }
+           }
+        function onReset() {
+            paXmin.text = ""
+            paXmax.text = ""
+            paYmin.text = ""
+            paYmax.text = ""
+        }
+        }
+
+        Connections {
+           target: settingsPage3
+           function onPostAnalysisSettings(xmin, xmax, ymin, ymax) {
+                if(xmin !== "") {
+                        paXmin.text = xmin
+                }
+                if(xmax !== "") {
+                        paXmax.text = xmax
+                }
+                if(ymin !== "") {
+                        paYmin.text = ymin
+                }
+                if(ymax !== "") {
+                        paYmax.text = ymax
+                }
+           }
+        function onReset() {
+            paXmin.text = ""
+            paXmax.text = ""
+            paYmin.text = ""
+            paYmax.text = ""
+        }
+        }
 id: postAnalysisSection
 height: 140
 color: "#4089f7fe"
@@ -12,10 +89,6 @@ GradientStop {
 position: 0
 color: "#4089f7fe"
 }
-        property var xmin: paXmin.text
-        property var xmax: paXmax.text
-        property var ymin: paYmin.text
-        property var ymax: paYmax.text
 
         GradientStop {
         position: 1

@@ -3,15 +3,73 @@ import QtQuick.Controls 2.5
 import "../../controls/custom"
 
 Rectangle {
-id: baselineSection
-height: 131
-color: "#ffffff"
-radius: 10
-gradient: Gradient {
-GradientStop {
-position: 0
-color: "#4089f7fe"
-}
+    property string color: baselineColor.text
+    property string time: baselineValue.text
+    property bool display: displayBaseline.checkedState
+
+    Connections {
+        target: settingsPage1
+        function onBaselineSettings(color, time, display) {
+            if(color !== "") {
+                baselineColor.text = color
+            }
+            if(time !== "") {
+                baselineValue.text = time
+            }
+            displayBaseline.checkedState = display
+        }
+        function onReset() {
+            baselineColor.text = ""
+            baselineValue.text = ""
+            displayBaseline.checkedState = true
+        }
+    }
+
+    Connections {
+        target: settingsPage2
+        function onBaselineSettings(color, time, display) {
+            if(color !== "") {
+                baselineColor.text = color
+            }
+            if(time !== "") {
+                baselineValue.text = time
+            }
+            displayBaseline.checkedState = display
+        }
+        function onReset() {
+            baselineColor.text = ""
+            baselineValue.text = ""
+            displayBaseline.checkedState = true
+        }
+    }
+
+    Connections {
+        target: settingsPage3
+        function onBaselineSettings(color, time, display) {
+            if(color !== "") {
+                baselineColor.text = color
+            }
+            if(time !== "") {
+                baselineValue.text = time
+            }
+            displayBaseline.checkedState = display
+        }
+        function onReset() {
+            baselineColor.text = ""
+            baselineValue.text = ""
+            displayBaseline.checkedState = true
+        }
+    }
+        
+        
+    id: baselineSection
+    height: 131
+    radius: 10
+    gradient: Gradient {
+    GradientStop {
+    position: 0
+    color: "#4089f7fe"
+    }
 
     GradientStop {
     position: 1
@@ -27,6 +85,7 @@ color: "#4089f7fe"
     width: 137
     height: 26
     text: "Display Baseline"
+    checkedState: true
     anchors.horizontalCenter: parent.horizontalCenter
     clip: false
     font.family: "PragmaticaLightC"

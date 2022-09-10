@@ -3,6 +3,87 @@ import QtQuick.Controls 2.5
 import "../../controls/custom"
 
 Rectangle {
+    // Properties
+    property string xmin: maXmin.text
+    property string xmax: maXmax.text
+    property string ymin: maYmin.text
+    property string ymax: maYmax.text
+
+    Connections {
+        target: settingsPage1
+        function onMinuteAveragedSettings(xmin, xmax, ymin, ymax) {
+            if(xmin !== "") {
+                    maXmin.text = xmin
+            }
+            if(xmax !== "") {
+                    maXmax.text = xmax
+            }
+            if(ymin !== "") {
+                    maYmin.text = ymin
+            }
+            if(ymax !== "") {
+                    maYmax.text = ymax
+            }
+        }
+        function onReset() {
+            maXmin.text = ""
+            maXmax.text = ""
+            maYmin.text = ""
+            maYmax.text = ""
+        }
+        }
+
+    Connections {
+        target: settingsPage2
+        function onMinuteAveragedSettings(xmin, xmax, ymin, ymax) {
+            if(xmin !== "") {
+                    maXmin.text = xmin
+            }
+            if(xmax !== "") {
+                    maXmax.text = xmax
+            }
+            if(ymin !== "") {
+                    maYmin.text = ymin
+            }
+            if(ymax !== "") {
+                    maYmax.text = ymax
+            }
+        }
+        function onReset() {
+            maXmin.text = ""
+            maXmax.text = ""
+            maYmin.text = ""
+            maYmax.text = ""
+        }
+        }
+
+    Connections {
+        target: settingsPage3
+        function onMinuteAveragedSettings(xmin, xmax, ymin, ymax) {
+            if(xmin !== "") {
+                    maXmin.text = xmin
+            }
+            if(xmax !== "") {
+                    maXmax.text = xmax
+            }
+            if(ymin !== "") {
+                    maYmin.text = ymin
+            }
+            if(ymax !== "") {
+                    maYmax.text = ymax
+            }
+        }
+        function onReset() {
+            maXmin.text = ""
+            maXmax.text = ""
+            maYmin.text = ""
+            maYmax.text = ""
+        }
+        }
+
+
+
+
 id: minuteAveragedSection
 width: 177
 height: 140
@@ -13,6 +94,7 @@ GradientStop {
 position: 0
 color: "#4089f7fe"
 }
+
 
     GradientStop {
     position: 1

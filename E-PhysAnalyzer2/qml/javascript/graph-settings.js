@@ -1,3 +1,46 @@
+function startDeserialization(graphSettings, postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
+    runDeserialization(graphSettings.objects1, graphSettings.regionAxis1);
+    setSettings1(postAnalysis, minuteAveraged, graphQuality, baseline, zscore)
+    backend.run_starting_animation()
+}
+
+function startDeserialization2(graphSettings, postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
+    runDeserialization(graphSettings.objects2, graphSettings.regionAxis2);
+    setSettings2(postAnalysis, minuteAveraged, graphQuality, baseline, zscore)
+    backend.run_starting_animation()
+}
+
+function startDeserialization3(graphSettings, postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
+    runDeserialization3(graphSettings.objects3, graphSettings.regionAxis3);
+    setSettings3(postAnalysis, minuteAveraged, graphQuality, baseline, zscore)
+    backend.run_starting_animation()
+}
+
+// NEED TO REWRITE THESE AS ONE FUNCTION !!!!!
+function setSettings1(postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
+    postAnalysisSettings(postAnalysis.xmin,postAnalysis.xmax,postAnalysis.ymin,postAnalysis.ymax);
+    minuteAveragedSettings(minuteAveraged.maxmin,minuteAveraged.maxmax,minuteAveraged.maymin,minuteAveraged.maymax);
+    graphQualitySettings(graphQuality.single, graphQuality.quality, graphQuality.dpi, graphQuality.defaultColor);
+    baselineSettings(baseline.color, baseline.time, baseline.display);
+    zscoreSettings(zscore.remove, zscore.score);
+}
+
+function setSettings2(postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
+    postAnalysisSettings(postAnalysis.xmin2,postAnalysis.xmax2,postAnalysis.ymin2,postAnalysis.ymax2);
+    minuteAveragedSettings(minuteAveraged.maxmin2,minuteAveraged.maxmax2,minuteAveraged.maymin2,minuteAveraged.maymax2);
+    graphQualitySettings(graphQuality.single2, graphQuality.quality2, graphQuality.dpi2, graphQuality.defaultColor2);
+    baselineSettings(baseline.color2, baseline.time2, baseline.display2);
+    zscoreSettings(zscore.remove2, zscore.score2);
+}
+
+function setSettings3(postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
+    postAnalysisSettings(postAnalysis.xmin3,postAnalysis.xmax3,postAnalysis.ymin3,postAnalysis.ymax3);
+    minuteAveragedSettings(minuteAveraged.maxmin3,minuteAveraged.maxmax3,minuteAveraged.maymin3,minuteAveraged.maymax3);
+    graphQualitySettings(graphQuality.single3, graphQuality.quality3, graphQuality.dpi3, graphQuality.defaultColor3);
+    baselineSettings(baseline.color3, baseline.time3, baseline.display3);
+    zscoreSettings(zscore.remove3, zscore.score3);
+}
+
 function serialize() {
     for(let i=0; i<regionObjects.length; i++){
         var serializedObject = {"Index": regionObjects[i].regionNumber, "Position": [regionObjects[i].y, regionObjects[i].z], "Values": [regionObjects[i].greaterThanEqualToText, regionObjects[i].lessThanText], "Colors": [regionObjects[i].chosenRegionColor.toString(), regionObjects[i].colorName.toString()]}

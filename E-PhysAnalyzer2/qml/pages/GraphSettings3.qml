@@ -11,11 +11,17 @@ Item {
     // Properties for editing
     width: 663
     height: 704
-    Component.onCompleted:{ runDeserialization3(graphSettings3.objects3, graphSettings3.regionAxis3); backend.run_starting_animation();}
+    Component.onCompleted: GraphSettings.startDeserialization3(graphSettings3, postAnalysisSettings3, minuteAveragedSettings3, graphQualitySettings3, baselineSettings3, zscoreSettings3)
     Component.onDestruction: runSerialization3()
 
     signal runSerialization3()
     signal runDeserialization3(var objects)
+    signal postAnalysisSettings(string xmin, string xmax, string ymin, string ymax)
+    signal minuteAveragedSettings(string xmin, string xmax, string ymin, string ymax)
+    signal graphQualitySettings(bool single, int quality, string dpi, string defaultColor)
+    signal baselineSettings(string color, string time, bool display)
+    signal zscoreSettings(bool remove, string score)
+    signal reset()
 
     Connections {
         target: regions
@@ -29,6 +35,43 @@ Item {
         id: graphSettings3
         property var objects3: []
         property int regionAxis3: 5
+    }
+
+    Settings {
+        id: postAnalysisSettings3
+        property string xmin3: ""
+        property string xmax3: ""
+        property string ymin3: ""
+        property string ymax3: ""
+    }
+
+    Settings {
+        id: minuteAveragedSettings3
+        property string maxmin3: ""
+        property string maxmax3: ""
+        property string maymin3: ""
+        property string maymax3: ""
+    }
+
+    Settings {
+        id: graphQualitySettings3
+        property bool single3: false
+        property int quality3: 1
+        property string dpi3: ""
+        property string defaultColor3: ""
+    }
+
+    Settings {
+        id: baselineSettings3
+        property string color3: ""
+        property string time3: ""
+        property bool display3: true
+    }
+
+    Settings {
+        id: zscoreSettings3
+        property bool remove3: true
+        property string score3: ""
     }
 
 
@@ -116,6 +159,11 @@ Item {
             anchors.rightMargin: 207
             anchors.leftMargin: 279
             opacity: 0
+            // GraphSettings3.qml
+            onXminChanged: postAnalysisSettings3.xmin3 = postAnalysisSection.xmin
+            onXmaxChanged: postAnalysisSettings3.xmax3 = postAnalysisSection.xmax
+            onYminChanged: postAnalysisSettings3.ymin3 = postAnalysisSection.ymin
+            onYmaxChanged: postAnalysisSettings3.ymax3 = postAnalysisSection.ymax
 
             OpacityAnimator on opacity {
                 id: postAnalysisOpacity
@@ -138,6 +186,11 @@ Item {
             anchors.rightMargin: 207
             anchors.leftMargin: 279
             opacity: 0
+            // GraphSettings3.qml
+            onXminChanged: minuteAveragedSettings3.maxmin3 = minuteAveragedSection.xmin
+            onXmaxChanged: minuteAveragedSettings3.maxmax3 = minuteAveragedSection.xmax
+            onYminChanged: minuteAveragedSettings3.maymin3 = minuteAveragedSection.ymin
+            onYmaxChanged: minuteAveragedSettings3.maymax3 = minuteAveragedSection.ymax
 
             OpacityAnimator on opacity {
                 id: minuteAveragedOpacity
@@ -155,11 +208,17 @@ Item {
             id: colorCodeSection
             x: 21
             y: 90
+            height: 140
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.rightMargin: 13
             anchors.leftMargin: 473
             opacity: 0
+            // GraphSettings3.qml
+            onSingleChanged: graphQualitySettings3.single3 = colorCodeSection.single
+            onQualityChanged: graphQualitySettings3.quality3 = colorCodeSection.quality
+            onDpiChanged: graphQualitySettings3.dpi3 = colorCodeSection.dpi
+            onDefaultColorChanged: graphQualitySettings3.defaultColor3 = colorCodeSection.defaultColor
 
             OpacityAnimator on opacity {
                 id: colorCodeOpacity
@@ -170,23 +229,20 @@ Item {
             }
         }
 
-
-
-
-
-
-
-
-
         Baseline {
             id: baselineSection
             x: 32
             y: 236
+            height: 140
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.rightMargin: 13
             anchors.leftMargin: 473
             opacity: 0
+            // GraphSettings3.qml
+            onColorChanged: baselineSettings3.color3 = baselineSection.color
+            onTimeChanged: baselineSettings3.time3 = baselineSection.time
+            onDisplayChanged: baselineSettings3.display3 = baselineSection.display
 
             OpacityAnimator on opacity {
                 id: baselineOpacity
@@ -198,11 +254,6 @@ Item {
         }
 
 
-
-
-
-
-
         Zscore {
             id: zScoreSection
             x: 28
@@ -212,6 +263,9 @@ Item {
             anchors.rightMargin: 207
             anchors.leftMargin: 279
             opacity: 0
+            // GraphSettings3.qml
+            onRemoveChanged: zscoreSettings3.remove3 = zScoreSection.remove
+            onScoreChanged: zscoreSettings3.score3 = zScoreSection.score
 
             OpacityAnimator on opacity {
                 id: zScoreOpacity
@@ -280,6 +334,7 @@ Item {
             height: 20
             text: "Reset"
             opacity: 0
+            onClicked: reset()
 
             OpacityAnimator on opacity {
                 id: resetBtnOpacity
