@@ -13,7 +13,9 @@ import "javascript/app.js" as App
 
 Window {
     // Scale Factor
+    signal adjustHeight(var scale)
     property var scaleFactor: settings.scaleFactor
+    onScaleFactorChanged: adjustHeight(scaleFactor)
 
     Settings {
         id: settings

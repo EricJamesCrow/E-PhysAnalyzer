@@ -1,3 +1,20 @@
+function adjustInputFields(scale) {
+    objectHeight = 10 * scale
+    for(let i=0; i<fileObjects.length; i++) {
+        fileObjects[i].y = objectHeight
+        objectHeight += 40 * scale
+    }
+}
+
+function adjustRegionHeight(scale) {
+    regionAxis = 5 * scale
+    for(let i=0; i<regionObjects.length; i++) {
+        regionObjects[i].y = regionAxis
+        console.log(regionObjects[i].y)
+        regionAxis += 22 * scale
+}
+}
+
 var scaleFactorDict = {
     0.5: 0,
     0.6: 1,
@@ -34,9 +51,7 @@ function updateScaleFactor(index){
 }
 
 function resetSettings(determineScaleFactor) {
-    settings.mtkDefaultOutputPath = Qt.resolvedUrl("./../../").toString().slice(8)
     settings.scaleFactor = determineScaleFactor
-    lightTheme()
 }
 
 function logDeviceInformation() {
@@ -52,13 +67,4 @@ function logDeviceInformation() {
     mutationspectra.terminal_update_info(`Model: ${Screen.model}`)
     mutationspectra.terminal_update_info(`Name: ${Screen.name}`)
     mutationspectra.terminal_update_info(`Serial Number: ${Screen.serialNumber}`)
-}
-
-// Connections
-function onUpdateDirectory(dir) {
-    settings.mtkDefaultOutputPath = dir
-}
-
-function onGetCwd() {
-    pptools.push_cwd(settings.mtkDefaultOutputPath)
 }

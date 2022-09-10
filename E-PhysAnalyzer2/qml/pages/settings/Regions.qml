@@ -5,6 +5,7 @@ import "../../controls/custom"
 import "../../controls"
 import "../../javascript/region.js" as Region
 import "../../javascript/graph-settings.js" as GraphSettings
+import "../../javascript/settings.js" as Settings
 
 Rectangle {
     id: regions
@@ -26,6 +27,14 @@ Rectangle {
     signal emitSerializedObjects3(var objects, int axis)
 
     property var serializedObjects: []
+
+    Connections {
+        target: mainWindow
+        function onAdjustHeight(scale) {
+            console.log("This is triggered")
+            Settings.adjustRegionHeight(scale)
+        }
+    }
 
     Connections {
         target: settingsPage1

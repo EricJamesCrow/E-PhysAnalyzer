@@ -7,6 +7,7 @@ import "../controls/buttons"
 import "../controls/custom" // For creating dynamic object, delete this import statement later
 import "../javascript/input-fields.js" as InputFields
 import "../javascript/graph-settings.js" as GraphSettings
+import "../javascript/settings.js" as Settings
 //import Qt5Compat.GraphicalEffects
 
 Item {
@@ -27,7 +28,7 @@ Item {
     //List for graphsettings pages
     //May change this to a doubly linked list; ability to add pages
     property var graphSettingsPage: ["GraphSettings.qml", "GraphSettings2.qml", "GraphSettings3.qml"]
-//    property int pageSelected: 1
+    property int pageSelected: 1
 
     // Properties for editing
 //    property int scaleFactor: settings.scaleFactor
@@ -44,6 +45,13 @@ Item {
     property color menuDropDownMouseOverColor: "#af025967"
 
     x: 10
+
+    Connections {
+        target: mainWindow
+        function onAdjustHeight(scale) {
+            Settings.adjustInputFields(scale)
+        }
+    }
 
     Rectangle {
         id: bg
@@ -511,6 +519,7 @@ Item {
                 ScrollBar.vertical: CustomScrollBar {
                     id: scrollBarVerticalLeftContent2
                     width: 10* scaleFactor
+                    opacity: 0
                 }
                 anchors.bottomMargin: 0
                 clip: true
@@ -671,6 +680,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.25}
+    D{i:0;formeditorZoom:0.25}D{i:46}
 }
 ##^##*/

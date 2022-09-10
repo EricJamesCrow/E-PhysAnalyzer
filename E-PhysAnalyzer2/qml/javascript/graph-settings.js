@@ -51,12 +51,13 @@ function serialize() {
 function deserialize(settingsObject) {
     for (let i=0; i<settingsObject.length; i++) { 
         var jsonObject = JSON.parse(settingsObject[i]) // Convert back to a JSON object
-        var newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200; height: 19; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
+        var newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200 * scaleFactor; height: 19 * scaleFactor; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
         regionsLoader,
         "dynamicRegion");
         regionObjects.push(newObject);
         regionObjects.slice(-1)[0].regionNumber = jsonObject["Index"]
         regionObjects.slice(-1)[0].y = jsonObject["Position"][0]
+        regionObjects.slice(-1)[0].y = regionObjects.slice(-1)[0].y * scaleFactor
         regionObjects.slice(-1)[0].z = jsonObject["Position"][1]
         regionObjects.slice(-1)[0].greaterThanEqualToText = jsonObject["Values"][0]
         regionObjects.slice(-1)[0].lessThanText = jsonObject["Values"][1] 
@@ -65,6 +66,11 @@ function deserialize(settingsObject) {
         regionAxis += 22 * scaleFactor
             }
         settingsObject = []
+    // regionAxis = 5 * scaleFactor
+    // for (let i=0; i<regionObjects.length; i++) {
+    //     regionObjects[i].y = regionAxis // For loop is necessary if scaleFactor is ever changed
+    //     regionAxis += 22 * scaleFactor
+    // }
 }
 
 

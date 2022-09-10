@@ -14,7 +14,7 @@ ScrollBar {
 
     contentItem: Rectangle {
         implicitWidth: 6*scaleFactor
-        implicitHeight: 100*scaleFactor
+//        implicitHeight: 100*scaleFactor
         radius: width / 2
         color: control.pressed ? btnColorDefault : backgroundColorDefault/*"#80dcf3"*/
         // Hide the ScrollBar when it's not needed.
