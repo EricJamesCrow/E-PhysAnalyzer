@@ -9,8 +9,8 @@ import "../javascript/graph-settings.js" as GraphSettings
 Item {
     id: settingsPage1
     // Properties for editing
-    width: 663 * scaleFactor
-    height: 704 * scaleFactor
+//    width: 663 * scaleFactor
+//    height: 704 * scaleFactor
     Component.onCompleted: GraphSettings.startDeserialization(graphSettings1, postAnalysisSettings1, minuteAveragedSettings1, graphQualitySettings1, baselineSettings1, zscoreSettings1)
     Component.onDestruction: runSerialization()
 

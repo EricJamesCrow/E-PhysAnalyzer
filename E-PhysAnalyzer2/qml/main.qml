@@ -97,7 +97,7 @@ Window {
     Rectangle {
         id: bg
         color: settings.backgroundColor
-        radius: 10
+        radius: 10 * scaleFactor
         border.color: settings.backgroundColor
         border.width: 1  * scaleFactor
         anchors.left: parent.left
@@ -114,7 +114,7 @@ Window {
             id: appContainer
             visible: true
             color: "#00000000"
-            radius: 0
+            radius: 10 * scaleFactor
             anchors.fill: parent
             anchors.rightMargin: 0
             anchors.leftMargin: 0
@@ -204,7 +204,7 @@ Window {
                 anchors.right: parent.right
                 anchors.top: parent.top
                 clip: false
-                radius: 10
+                radius: 10 * scaleFactor
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
                 anchors.topMargin: 0

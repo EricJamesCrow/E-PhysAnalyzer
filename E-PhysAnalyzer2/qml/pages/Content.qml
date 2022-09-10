@@ -11,8 +11,8 @@ import "../javascript/settings.js" as Settings
 //import Qt5Compat.GraphicalEffects
 
 Item {
-    width: 1580
-    height: 820
+    width: 1580 * scaleFactor
+    height: 820 * scaleFactor
 
     //    property color topBarColor: settings.topBarColor
     //    property color terminalText: settings.terminalText
@@ -226,29 +226,29 @@ Item {
                 anchors.leftMargin: 0
                 anchors.topMargin: 0
                 // flickable settings
-                contentWidth: 663 * scaleFactor
-                contentHeight: 704 * scaleFactor
+//                contentWidth: 663 * scaleFactor
+//                contentHeight: 704 * scaleFactor
                 clip: true
-                ScrollBar.vertical: CustomScrollBar {
-                    id: scrollBarVerticalLeftContent1
-                    //                    parent: rightContentFlickable.parent
-                    //                    anchors.right: rightContentFlickable.right
-                    //                    anchors.top: rightContentFlickable.top
-                    //                    anchors.bottom: rightContentFlickable.bottom
-                    btnColorDefault: settings.buttonColorDefault
-                    backgroundColorDefault: settings.backgroundColor
-                    width: 10* scaleFactor
-                }
-                ScrollBar.horizontal: CustomScrollBar {
-                    id: scrollBarHorizontalRightContent
-                    //                    parent: rightContentFlickable.parent
-                    //                    anchors.left: rightContentFlickable.left
-                    //                    anchors.right: rightContentFlickable.right
-                    //                    anchors.bottom: rightContentFlickable.bottom
-                    btnColorDefault: settings.buttonColorDefault
-                    backgroundColorDefault: settings.backgroundColor
-                    height: 17 * scaleFactor
-                }
+//                ScrollBar.vertical: CustomScrollBar {
+//                    id: scrollBarVerticalLeftContent1
+//                    //                    parent: rightContentFlickable.parent
+//                    //                    anchors.right: rightContentFlickable.right
+//                    //                    anchors.top: rightContentFlickable.top
+//                    //                    anchors.bottom: rightContentFlickable.bottom
+//                    btnColorDefault: settings.buttonColorDefault
+//                    backgroundColorDefault: settings.backgroundColor
+//                    width: 10* scaleFactor
+//                }
+//                ScrollBar.horizontal: CustomScrollBar {
+//                    id: scrollBarHorizontalRightContent
+//                    //                    parent: rightContentFlickable.parent
+//                    //                    anchors.left: rightContentFlickable.left
+//                    //                    anchors.right: rightContentFlickable.right
+//                    //                    anchors.bottom: rightContentFlickable.bottom
+//                    btnColorDefault: settings.buttonColorDefault
+//                    backgroundColorDefault: settings.backgroundColor
+//                    height: 17 * scaleFactor
+//                }
 
                 Loader {
                     id: rightContentLoader
@@ -680,6 +680,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.25}D{i:46}
+    D{i:0;formeditorZoom:0.25}D{i:44}
 }
 ##^##*/
