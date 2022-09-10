@@ -96,25 +96,17 @@ Button {
         }
 
 
-        Image {
+        Delete {
             id: closeDialogBox
             x: 204 * scaleFactor
-            width: 12 * scaleFactor
+            width: 14 * scaleFactor
             height: 14 * scaleFactor
             anchors.right: parent.right
             anchors.top: parent.top
-            source: "../../../images/svg_images/close_icon.svg"
-            clip: false
+            onClicked: Region.expandDialogBox()
             z: 0
             anchors.topMargin: 5 * scaleFactor
             anchors.rightMargin: 5 * scaleFactor
-            fillMode: Image.PreserveAspectFit
-
-            MouseArea {
-                id: closeDialogBoxMouseArea
-                anchors.fill: parent
-                onClicked: {Region.expandDialogBox()}
-            }
         }
 
 
