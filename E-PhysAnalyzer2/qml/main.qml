@@ -10,6 +10,7 @@ import "pages/menu"
 import Qt.labs.platform 1.1
 import Qt.labs.settings 1.1
 import "javascript/app.js" as App
+import "javascript/settings.js" as Settings
 
 Window {
     // Scale Factor
@@ -121,6 +122,45 @@ Window {
             anchors.bottomMargin: 0
             anchors.topMargin: 0
             clip: true
+            focus: true
+            property bool ctrlPressed: false
+            property bool shiftPressed: false
+            property bool plusPressed: false
+            property bool minusPressed: false
+            Keys.onPressed: {
+                if (event.key === Qt.Key_Control) {
+                    ctrlPressed = true
+                }
+                if (event.key === Qt.Key_Shift) {
+                    shiftPressed = true
+                }
+                if (event.key === Qt.Key_Underscore) {
+                    minusPressed = true
+                    if(ctrlPressed && shiftPressed && minusPressed) {
+                        Settings.decreaseScale()
+                    }
+                }
+                if (event.key === Qt.Key_Plus) {
+                    plusPressed = true
+                    if(ctrlPressed && shiftPressed && plusPressed) {
+                        Settings.increaseScale()
+                    }
+                }
+            }
+            Keys.onReleased: {
+                if (event.key === Qt.Key_Control) {
+                    ctrlPressed = false
+                }
+                if (event.key === Qt.Key_Shift) {
+                    shiftPressed = false
+                }
+                if (event.key === Qt.Key_Plus) {
+                    plusPressed = false
+                }
+                if (event.key === Qt.Key_Minus) {
+                    minusPressed = false
+                }
+            }
 
             Content {
                 id: content

@@ -9,8 +9,8 @@ import "../javascript/graph-settings.js" as GraphSettings
 Item {
     id: settingsPage3
     // Properties for editing
-    width: 663 * scaleFactor
-    height: 704 * scaleFactor
+//    width: 663 * scaleFactor
+//    height: 704 * scaleFactor
     Component.onCompleted: GraphSettings.startDeserialization3(graphSettings3, postAnalysisSettings3, minuteAveragedSettings3, graphQualitySettings3, baselineSettings3, zscoreSettings3)
     Component.onDestruction: runSerialization3()
 
@@ -152,12 +152,14 @@ Item {
 
         PostAnalysis {
             id: postAnalysisSection
-            x: 26 * scaleFactor
+//            x: 26 * scaleFactor
             y: 90 * scaleFactor
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.rightMargin: 207 * scaleFactor
-            anchors.leftMargin: 279 * scaleFactor
+            x: 279 * scaleFactor
+            width: 177 * scaleFactor
+//            anchors.left: parent.left
+//            anchors.right: parent.right
+//            anchors.rightMargin: 207 * scaleFactor
+//            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
             // GraphSettings3.qml
             onXminChanged: postAnalysisSettings3.xmin3 = postAnalysisSection.xmin
@@ -179,12 +181,14 @@ Item {
 
         MinuteAveraged {
             id: minuteAveragedSection
-            x: 19 * scaleFactor
+//            x: 19 * scaleFactor
             y: 236 * scaleFactor
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.rightMargin: 207 * scaleFactor
-            anchors.leftMargin: 279 * scaleFactor
+            x: 279 * scaleFactor
+            width: 177 * scaleFactor
+//            anchors.left: parent.left
+//            anchors.right: parent.right
+//            anchors.rightMargin: 207 * scaleFactor
+//            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
             // GraphSettings3.qml
             onXminChanged: minuteAveragedSettings3.maxmin3 = minuteAveragedSection.xmin
@@ -206,13 +210,15 @@ Item {
 
         ColorCode {
             id: colorCodeSection
-            x: 21 * scaleFactor
+//            x: 21 * scaleFactor
             y: 90 * scaleFactor
+            x: 473 * scaleFactor
+            width: 177 * scaleFactor
             height: 140 * scaleFactor
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.rightMargin: 13 * scaleFactor
-            anchors.leftMargin: 473 * scaleFactor
+//            anchors.left: parent.left
+//            anchors.right: parent.right
+//            anchors.rightMargin: 13 * scaleFactor
+//            anchors.leftMargin: 473 * scaleFactor
             opacity: 0
             // GraphSettings3.qml
             onSingleChanged: graphQualitySettings3.single3 = colorCodeSection.single
@@ -231,13 +237,15 @@ Item {
 
         Baseline {
             id: baselineSection
-            x: 32 * scaleFactor
+//            x: 32 * scaleFactor
             y: 236 * scaleFactor
+            x: 473 * scaleFactor
+            width: 177 * scaleFactor
             height: 140 * scaleFactor
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.rightMargin: 13 * scaleFactor
-            anchors.leftMargin: 473 * scaleFactor
+//            anchors.left: parent.left
+//            anchors.right: parent.right
+//            anchors.rightMargin: 13 * scaleFactor
+//            anchors.leftMargin: 473 * scaleFactor
             opacity: 0
             // GraphSettings3.qml
             onColorChanged: baselineSettings3.color3 = baselineSection.color
@@ -256,12 +264,14 @@ Item {
 
         Zscore {
             id: zScoreSection
-            x: 28 * scaleFactor
+//            x: 28 * scaleFactor
             y: 388 * scaleFactor
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.rightMargin: 207 * scaleFactor
-            anchors.leftMargin: 279 * scaleFactor
+            x: 279 * scaleFactor
+            width: 177 * scaleFactor
+//            anchors.left: parent.left
+//            anchors.right: parent.right
+//            anchors.rightMargin: 207 * scaleFactor
+//            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
             // GraphSettings3.qml
             onRemoveChanged: zscoreSettings3.remove3 = zScoreSection.remove

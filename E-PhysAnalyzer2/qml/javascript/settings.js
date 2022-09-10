@@ -46,6 +46,14 @@ var updateScaleDict = {
     10: 1.5
 };
 
+function increaseScale() {
+    return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()+1)
+}
+
+function decreaseScale() {
+   return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()-1) 
+}
+
 function scaleFactorDictFunction(){
     return scaleFactorDict[settings.scaleFactor]
 }

@@ -64,7 +64,7 @@ Item {
             opacity: 1
             visible: true
             color: "#00000000"
-            radius: 10
+            radius: 10 * scaleFactor
             anchors.left: leftContent.right
             anchors.right: parent.right
             anchors.top: parent.top
@@ -87,7 +87,7 @@ Item {
                 height: 36 * scaleFactor
                 opacity: 1
                 color: topBarColor//"#001434"
-                radius: 10
+                radius: 10 * scaleFactor
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -411,7 +411,7 @@ Item {
             width: 847 * scaleFactor
             opacity: 1
             color: "#00000000"
-            radius: 10
+            radius: 10 * scaleFactor
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -430,7 +430,7 @@ Item {
                 height: 36 * scaleFactor
                 opacity: 1
                 color: topBarColor//"#001434"
-                radius: 10
+                radius: 10* scaleFactor
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -524,6 +524,8 @@ Item {
                 anchors.bottomMargin: 0
                 clip: true
                 anchors.leftMargin: 0
+                Keys.onUpPressed: scrollBarVerticalLeftContent2.decrease()
+                Keys.onDownPressed: scrollBarVerticalLeftContent2.increase()
 
                 Rectangle {
                     id: leftContentLoader
