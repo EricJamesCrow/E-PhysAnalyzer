@@ -630,7 +630,7 @@ Window {
                     z: 1
                     anchors.leftMargin: 217 * scaleFactor
                     anchors.topMargin: 107 * scaleFactor
-                    onClicked: {backend.reset_settings(); mainWindow.close()}
+                    onClicked: {mainWindow.close()}
                 }
 
                 CustomButton {
