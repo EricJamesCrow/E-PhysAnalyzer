@@ -127,6 +127,7 @@ Window {
             property bool shiftPressed: false
             property bool plusPressed: false
             property bool minusPressed: false
+            Keys.onEscapePressed: App.closeWindow()
             Keys.onPressed: {
                 if (event.key === Qt.Key_Control) {
                     ctrlPressed = true
