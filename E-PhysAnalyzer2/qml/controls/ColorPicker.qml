@@ -7,8 +7,8 @@ import "../javascript/color-picker.js" as ColorPicker
 
 Item {
     id: colorPicker
-    height: 20
-    width: 20
+    height: 20 * scaleFactor
+    width: 20 * scaleFactor
 
     property string chosenColor: "#FF0000"
     property string chosenColorName: chosenColor
@@ -37,9 +37,9 @@ Item {
         width: colorPicker.width * 6
         height: colorPicker.height * 5.5
         color: "#ffffff"
-        radius: 5
+        radius: 5 * scaleFactor
         border.color: "#087589"
-        border.width: 2
+        border.width: 2 * scaleFactor
         anchors.top: parent.bottom
         anchors.topMargin: 0
         clip: false
@@ -67,171 +67,171 @@ Item {
         Delete {
             id: closeBtn
             x: 100
-            height:colorPicker.height / 1.8
-            width: colorPicker.width / 1.8
+            height:colorPicker.height / 1.8 * scaleFactor
+            width: colorPicker.width / 1.8 * scaleFactor
             anchors.right: parent.right
             anchors.top: parent.top
-            anchors.topMargin: 3
-            anchors.rightMargin: 3
+            anchors.topMargin: 3 * scaleFactor
+            anchors.rightMargin: 3 * scaleFactor
             onClicked: Region.expandDialogBox()
         }
 
         ColorPickerBtn {
             id: red
-            x: 5
-            y: 6
-            width: colorPicker.width
-            height: colorPicker.height
+            x: 5 * scaleFactor
+            y: 6 * scaleFactor
+            width: colorPicker.width // 20 * scaleFactor
+            height: colorPicker.height // 20 * scaleFactor
             selectedColor: "#FF0000"
             anchors.left: parent.left
-            anchors.leftMargin: 5
+            anchors.leftMargin: 5 * scaleFactor
             onClicked: chosenColor = red.selectedColor
 
             ColorPickerBtn {
                 id: blue
-                x: 25
+                x: 25 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#0000ff"
                 anchors.left: red.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = blue.selectedColor;
             }
 
             ColorPickerBtn {
                 id: green
-                x: 50
+                x: 50 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#008000"
                 anchors.left: blue.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = green.selectedColor
             }
 
             ColorPickerBtn {
                 id: purple
-                x: 75
+                x: 75 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#800080"
                 anchors.left: green.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = purple.selectedColor
             }
         }
 
         ColorPickerBtn {
             id: crimson
-            x: 11
+            x: 11 * scaleFactor
             width: colorPicker.width
             height: colorPicker.height
             selectedColor: "#dc143c"
             anchors.left: parent.left
             anchors.top: red.bottom
-            anchors.topMargin: 5
-            anchors.leftMargin: 5
+            anchors.topMargin: 5 * scaleFactor
+            anchors.leftMargin: 5 * scaleFactor
             onClicked: chosenColor = crimson.selectedColor
 
             ColorPickerBtn {
                 id: navy
-                x: 25
+                x: 25 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#000080"
                 anchors.left: crimson.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = navy.selectedColor
             }
 
             ColorPickerBtn {
                 id: darkolivegreen
-                x: 50
+                x: 50 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#556b2f"
                 anchors.left: navy.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = darkolivegreen.selectedColor
             }
 
             ColorPickerBtn {
                 id: mediumpurple
-                x: 75
+                x: 75 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#9370db"
                 anchors.left: darkolivegreen.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = mediumpurple.selectedColor
             }
         }
 
         ColorPickerBtn {
             id: orange
-            x: 5
+            x: 5 * scaleFactor
             width: colorPicker.width
             height: colorPicker.height
             selectedColor: "#ffa500"
             anchors.left: parent.left
             anchors.top: crimson.bottom
-            anchors.topMargin: 5
-            anchors.leftMargin: 5
+            anchors.topMargin: 5 * scaleFactor
+            anchors.leftMargin: 5 * scaleFactor
             onClicked: chosenColor = orange.selectedColor
 
             ColorPickerBtn {
                 id: brown
-                x: 25
+                x: 25 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#a52a2a"
                 anchors.left: orange.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = brown.selectedColor
             }
 
             ColorPickerBtn {
                 id: saddlebrown
-                x: 50
+                x: 50 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#8b4513"
                 anchors.left: brown.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = saddlebrown.selectedColor
             }
 
             ColorPickerBtn {
                 id: black
-                x: 75
+                x: 75 * scaleFactor
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
                 selectedColor: "#000000"
                 anchors.left: saddlebrown.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = black.selectedColor
             }
-            anchors.verticalCenterOffset: 3
+            anchors.verticalCenterOffset: 3 * scaleFactor
         }
 
         CustomTextField {
             id:customColorEntry
-            fontSize: colorPicker.height / 2.85
-            height: colorPicker.height / 1.3
+            fontSize: colorPicker.height / 2.85 * scaleFactor
+            height: colorPicker.height / 1.3 * scaleFactor
             anchors.top: orange.bottom
-            anchors.topMargin:colorPicker.height / 2.5
-            anchors.horizontalCenterOffset: colorPicker.height / 1.3
+            anchors.topMargin:colorPicker.height / 2.5 * scaleFactor
+            anchors.horizontalCenterOffset: colorPicker.height / 1.3 * scaleFactor
             anchors.horizontalCenter: parent.horizontalCenter
-            width: colorPicker.height * 2.5
+            width: colorPicker.height * 2.5 * scaleFactor
             onTextChanged: try{
                                chosenColor = ColorPicker.colorDict[customColorEntry.text]
                            } catch(err) {
@@ -239,14 +239,14 @@ Item {
 
             Label {
                 id: label
-                x: -41
-                y: 3
+                x: -41 * scaleFactor
+                y: 3 * scaleFactor
                 text: qsTr("Custom:")
                 color: "#087589"
                 anchors.verticalCenter: customColorEntry.verticalCenter
                 anchors.right: customColorEntry.left
-                anchors.rightMargin: 4
-                font.pointSize: colorPicker.height / 2.85
+                anchors.rightMargin: 4 * scaleFactor
+                font.pointSize: colorPicker.height / 2.85 * scaleFactor
                 font.family: "PragmaticaLightC"
             }
         }

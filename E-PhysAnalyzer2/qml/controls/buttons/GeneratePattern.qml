@@ -7,8 +7,8 @@ import "../../javascript/region.js" as Region
 
 Button {
     id: button
-    width: 112
-    height: 20
+    width: 112 * scaleFactor
+    height: 20 * scaleFactor
 
     // Custom Properties
     property color borderColor: "#087589"//buttonColorDefault
@@ -43,12 +43,12 @@ Button {
         id: dialogBox
         opacity: 0
         visible: true
-        width: 167
-        height: 93
+        width: 167 * scaleFactor
+        height: 93 * scaleFactor
         color: "#ffffff"
         radius: 5
         border.color: "#087589"
-        border.width: 2
+        border.width: 2 * scaleFactor
         anchors.top: parent.bottom
         anchors.topMargin: 0
 
@@ -72,15 +72,15 @@ Button {
 
         Image {
             id: closeDialogBox
-            x: 204
-            width: 12
-            height: 14
+            x: 204 * scaleFactor
+            width: 12 * scaleFactor
+            height: 14 * scaleFactor
             anchors.right: parent.right
             anchors.top: parent.top
             source: "../../../images/svg_images/close_icon.svg"
             z: 0
-            anchors.topMargin: 5
-            anchors.rightMargin: 5
+            anchors.topMargin: 5 * scaleFactor
+            anchors.rightMargin: 5 * scaleFactor
             fillMode: Image.PreserveAspectFit
 
             MouseArea {
@@ -92,39 +92,43 @@ Button {
 
         CustomTextField {
             id: every_minutesTextField
-            x: 71
-            width: 28
-            height: 20
+            x: 71 * scaleFactor
+            width: 28 * scaleFactor
+            height: 20 * scaleFactor
             validator: IntValidator {bottom: 1; top: 100}
             anchors.verticalCenter: everyLabel.verticalCenter
             anchors.verticalCenterOffset: 0
+            font.pointSize: 9 * scaleFactor
 
             CustomTextField {
                 id: startTimeEntry
                 x: 0
-                y: 29
-                width: 28
-                height: 20
+                y: 29 * scaleFactor
+                width: 28 * scaleFactor
+                height: 20 * scaleFactor
                 validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
                 anchors.verticalCenter: every_minutesTextField.verticalCenter
-                anchors.verticalCenterOffset: 29
+                font.pointSize: 9 * scaleFactor
+                anchors.verticalCenterOffset: 29 * scaleFactor
 
                 CustomTextField {
                     id: endTimeEntry
                     x: 0
-                    y: 29
-                    width: 28
-                    height: 20
+                    y: 29 * scaleFactor
+                    width: 28 * scaleFactor
+                    height: 20 * scaleFactor
                     validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
                     anchors.verticalCenter: every_minutesTextField.verticalCenter
-                    anchors.verticalCenterOffset: 58
+                    anchors.verticalCenterOffset: 58 * scaleFactor
+                    font.pointSize: 9 * scaleFactor
 
                     CustomButton {
                         id: submitButton
-                        x: 40
-                        y: 2
-                        width: 48
-                        height: 15
+                        x: 40 * scaleFactor
+                        y: 2 * scaleFactor
+                        width: 48 * scaleFactor
+                        height: 15 * scaleFactor
+                        font.pointSize: 9 * scaleFactor
                         text: "Submit"
                         enabled: dialogBox.opacity === 1.0
                         onClicked: Region.generatePattern(every_minutesTextField.text, startTimeEntry.text, endTimeEntry.text)
@@ -136,36 +140,40 @@ Button {
 
         Label {
             id: everyLabel
-            x: 37
-            y: 12
+            x: 37 * scaleFactor
+            y: 12 * scaleFactor
             color: "#087589"
             text: qsTr("Every")
+            font.pointSize: 9 * scaleFactor
         }
 
 
         Label {
             id: minutesLabel
-            x: 105
+            x: 105 * scaleFactor
             color: "#087589"
             text: qsTr("minutes")
             anchors.verticalCenter: everyLabel.verticalCenter
             anchors.verticalCenterOffset: 0
+            font.pointSize: 9 * scaleFactor
         }
 
         Label {
             id: everyLabel2
-            x: 13
-            y: 38
+            x: 13 * scaleFactor
+            y: 38 * scaleFactor
             color: "#087589"
             text: qsTr("Start time")
+            font.pointSize: 9 * scaleFactor
         }
 
         Label {
             id: everyLabel3
-            x: 13
-            y: 70
+            x: 13 * scaleFactor
+            y: 70 * scaleFactor
             color: "#087589"
             text: qsTr("End time")
+            font.pointSize: 9 * scaleFactor
         }
 
     }
@@ -188,8 +196,8 @@ Button {
     background: Rectangle{
         color: internal.dynamicColor
         border.color: borderColor
-        border.width: 2
-        radius: 5
+        border.width: 2 * scaleFactor
+        radius: 5 * scaleFactor
     }
 }
 /*##^##

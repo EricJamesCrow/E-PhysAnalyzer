@@ -5,8 +5,8 @@ Rectangle {
     property string errorMessageString: "Please enter your values."
 
     id: errorMessage
-    width: 168
-    height: 36
+    width: 168 * scaleFactor
+    height: 36 * scaleFactor
     color: "#ff9e9e"
     radius: 5
 
@@ -17,7 +17,7 @@ Rectangle {
         text: qsTr("Error")
         color: "red"
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: -8
+        anchors.verticalCenterOffset: -8 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
@@ -27,6 +27,6 @@ Rectangle {
         color: "red"
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenterOffset: 7
+        anchors.verticalCenterOffset: 7 * scaleFactor
     }
 }

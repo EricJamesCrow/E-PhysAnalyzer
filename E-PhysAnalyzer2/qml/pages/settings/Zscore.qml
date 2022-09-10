@@ -47,7 +47,7 @@ Rectangle {
         }
     }
 id: zScoreSection
-height: 91
+height: 91 * scaleFactor
 color: "#ffffff"
 radius: 10
 gradient: Gradient {
@@ -67,9 +67,9 @@ color: "#4089f7fe"
 
     CustomCheckBoxLabel {
     id: removeOutliers
-    y: 11
-    width: 150
-    height: 26
+    y: 11 * scaleFactor
+    width: 150 * scaleFactor
+    height: 26 * scaleFactor
     text: "Remove Outliers"
     anchors.horizontalCenter: parent.horizontalCenter
     clip: false
@@ -78,32 +78,33 @@ color: "#4089f7fe"
 
     CustomTextField {
     id: zScoreEntry
-    x: 101
-    y: 57
-    width: 38
-    height: 20
+    x: 101 * scaleFactor
+    y: 57 * scaleFactor
+    width: 38 * scaleFactor
+    height: 20 * scaleFactor
     placeholderText: "2.5"
     validator: RegularExpressionValidator { regularExpression: /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/ }
     }
 
     Label {
     id: zScoreLabel
-    x: 31
-    width: 59
-    height: 16
+    x: 31 * scaleFactor
+    width: 59 * scaleFactor
+    height: 16 * scaleFactor
+    font.pointSize: 9 * scaleFactor
     color: "#087589"
     text: qsTr("Z-Score >")
     anchors.verticalCenter: zScoreEntry.verticalCenter
     anchors.right: zScoreEntry.left
     font.bold: true
-    anchors.rightMargin: 5
+    anchors.rightMargin: 5 * scaleFactor
     }
 
     Rectangle {
     id: zScoreDropShadow
-    x: 2
-    y: 2
-    height: 740
+    x: 2 * scaleFactor
+    y: 2 * scaleFactor
+    height: 740 * scaleFactor
     opacity: 0.25
     visible: true
     color: "#000000"
@@ -112,10 +113,10 @@ color: "#4089f7fe"
     anchors.right: parent.right
     anchors.top: parent.top
     anchors.bottom: parent.bottom
-    anchors.topMargin: 2
-    anchors.rightMargin: -2
-    anchors.bottomMargin: -2
-    anchors.leftMargin: 2
+    anchors.topMargin: 2 * scaleFactor
+    anchors.rightMargin: -2 * scaleFactor
+    anchors.bottomMargin: -2 * scaleFactor
+    anchors.leftMargin: 2 * scaleFactor
     z: -3
     clip: true
     }

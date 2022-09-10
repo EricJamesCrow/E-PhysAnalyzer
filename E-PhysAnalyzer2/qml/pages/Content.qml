@@ -21,16 +21,16 @@ Item {
     property var files: []
     property var fileObjects: []
     property var filesBasename: []
-    property int objectHeight: 10
-    property int flickableContentHeight: 696
+    property int objectHeight: 10 * scaleFactor
+    property int flickableContentHeight: 696 * scaleFactor
 
     //List for graphsettings pages
     //May change this to a doubly linked list; ability to add pages
     property var graphSettingsPage: ["GraphSettings.qml", "GraphSettings2.qml", "GraphSettings3.qml"]
-    property int pageSelected: 1
+//    property int pageSelected: 1
 
     // Properties for editing
-    property int scaleFactor: 1
+//    property int scaleFactor: settings.scaleFactor
     property color topBarColor: "#02323a"
     property color topBarSecondaryColor: "#015967"
     property color columnColor: "#5ac1d0"
@@ -103,12 +103,12 @@ Item {
                 EphysArrow {
                     id: leftArrow
                     y: 318 * scaleFactor
-                    width: 20
-                    height: 20
+                    width: 20 * scaleFactor
+                    height: 20 * scaleFactor
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    anchors.verticalCenterOffset: 5
-                    anchors.leftMargin: 100
+                    anchors.verticalCenterOffset: 5 * scaleFactor
+                    anchors.leftMargin: 100 * scaleFactor
                     z: 1
                     checkedState: false
                     arrowRotation: 0
@@ -122,13 +122,13 @@ Item {
 
                 EphysArrow {
                     id: rightArrow
-                    x: 600
-                    width: 20
-                    height: 20
+                    x: 600 * scaleFactor
+                    width: 20 * scaleFactor
+                    height: 20 * scaleFactor
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.right: parent.right
-                    anchors.rightMargin: 100
-                    anchors.verticalCenterOffset: 5
+                    anchors.rightMargin: 100 * scaleFactor
+                    anchors.verticalCenterOffset: 5 * scaleFactor
                     arrowRotation: 180
                     checkedState: true
 
@@ -141,11 +141,11 @@ Item {
 
                 Button {
                     id: circle1
-                    width: 10
-                    height: 10
+                    width: 10 * scaleFactor
+                    height: 10 * scaleFactor
                     text: "Circle button"
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.verticalCenterOffset: 5
+                    anchors.verticalCenterOffset: 5 * scaleFactor
                     anchors.horizontalCenter: parent.horizontalCenter
                     display: AbstractButton.IconOnly
                     flat: true
@@ -161,13 +161,13 @@ Item {
 
                     Button {
                         id: circle
-                        x: 325
-                        width: 10
-                        height: 10
+                        x: 325 * scaleFactor
+                        width: 10 * scaleFactor
+                        height: 10 * scaleFactor
                         text: "Circle button"
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        anchors.rightMargin: 30
+                        anchors.rightMargin: 30 * scaleFactor
                         display: AbstractButton.IconOnly
                         flat: true
                         down: false
@@ -184,15 +184,15 @@ Item {
 
                     Button {
                         id: circle2
-                        x: 60
-                        width: 10
-                        height: 10
+                        x: 60 * scaleFactor
+                        width: 10 * scaleFactor
+                        height: 10 * scaleFactor
                         flat: true
                         down: false
                         text: "Circle button"
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
-                        anchors.leftMargin: 30
+                        anchors.leftMargin: 30 * scaleFactor
                         display: AbstractButton.IconOnly
                         background: Rectangle {
                             id: selectedPage3
@@ -218,8 +218,8 @@ Item {
                 anchors.leftMargin: 0
                 anchors.topMargin: 0
                 // flickable settings
-                contentWidth: 663
-                contentHeight: 704
+                contentWidth: 663 * scaleFactor
+                contentHeight: 704 * scaleFactor
                 clip: true
                 ScrollBar.vertical: CustomScrollBar {
                     id: scrollBarVerticalLeftContent1
@@ -258,76 +258,76 @@ Item {
                     anchors.topMargin: 0
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "topBarColor"
                         value: settings.topBarColor
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "topBarSecondaryColor"
                         value: settings.topBarSecondaryColor
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "columnColor"
                         value: settings.columnColor
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "backgroundColor"
                         value: settings.backgroundColor
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "backgroundBorderColor"
                         value: settings.backgroundBorderColor
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "buttonColorDefault"
                         value: settings.buttonColorDefault
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "buttonColorPressed"
                         value: settings.buttonColorPressed
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "checkBoxHighlighted"
                         value: settings.checkBoxHighlighted
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "terminalUnderlineColor"
                         value: settings.terminalUnderlineColor
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property:"addFilterSvgIcon"
                         value: settings.addFilterSvgIcon
                     }
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property:"checkBoxIcon"
                         value: settings.checkBoxIcon
                     }
 
 
                     Binding {
-                        target: leftContentBg.item
+                        target: rightContentLoader.item
                         property: "scaleFactor"
-                        value: settings.scaleFactor
+                        value: scaleFactor
                     }
                 }
             }
@@ -368,13 +368,13 @@ Item {
 
             Rectangle {
                 id: rightContentDropShadow
-                x: 2
-                y: 2
-                height: 740
-                anchors.bottomMargin: -2
-                anchors.rightMargin: -2
-                anchors.leftMargin: 2
-                anchors.topMargin: 2
+                x: 2 * scaleFactor
+                y: 2 * scaleFactor
+                height: 740 * scaleFactor
+                anchors.bottomMargin: -2 * scaleFactor
+                anchors.rightMargin: -2 * scaleFactor
+                anchors.leftMargin: 2 * scaleFactor
+                anchors.topMargin: 2 * scaleFactor
                 opacity: 0.25
                 visible: true
                 z: -4
@@ -419,7 +419,7 @@ Item {
             clip: false
             Rectangle {
                 id: leftContentTopBar
-                height: 36
+                height: 36 * scaleFactor
                 opacity: 1
                 color: topBarColor//"#001434"
                 radius: 10
@@ -458,7 +458,7 @@ Item {
 
                 Label {
                     id: drugNameLabel
-                    x: 243
+                    x: 243 * scaleFactor
                     y: 14 * scaleFactor
                     width: 93 * scaleFactor
                     height: 22 * scaleFactor
@@ -471,7 +471,7 @@ Item {
 
                 Label {
                     id: traceNumberLabel
-                    x: 425
+                    x: 425 * scaleFactor
                     y: 14 * scaleFactor
                     width: 111 * scaleFactor
                     height: 22 * scaleFactor
@@ -484,7 +484,7 @@ Item {
 
                 Label {
                     id: excludedTracesLabel
-                    x: 640
+                    x: 640 * scaleFactor
                     y: 14 * scaleFactor
                     width: 122 * scaleFactor
                     height: 22 * scaleFactor
@@ -503,8 +503,8 @@ Item {
                 anchors.right: parent.right
                 anchors.top: leftContentTopBar.bottom
                 anchors.bottom: parent.bottom
-                contentWidth: 847
-                contentHeight: flickableContentHeight
+                contentWidth: 847 * scaleFactor
+                contentHeight: flickableContentHeight * scaleFactor
                 anchors.rightMargin: 0
                 z: -1
                 anchors.topMargin: 8
@@ -519,7 +519,7 @@ Item {
                 Rectangle {
                     id: leftContentLoader
                     x: 0
-                    y: 36
+                    y: 36 * scaleFactor
                     color: "#00000000"
                     radius: 10
                     anchors.left: parent.left
@@ -536,14 +536,14 @@ Item {
             Rectangle {
                 id: leftContentBg
                 x: 0
-                y: 36
+                y: 36 * scaleFactor
                 color: "#3389f7fe"
                 radius: 10
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: leftContentTopBar.bottom
                 anchors.bottom: parent.bottom
-                anchors.topMargin: -36
+                anchors.topMargin: -36 * scaleFactor
                 clip: true
                 z: -1
                 gradient: Gradient {
@@ -579,9 +579,9 @@ Item {
 
             Rectangle {
                 id: leftContentDropShadow
-                x: 2
-                y: 2
-                height: 740
+                x: 2 * scaleFactor
+                y: 2 * scaleFactor
+                height: 740 * scaleFactor
                 opacity: 0.25
                 visible: true
                 color: "#000000"
@@ -590,11 +590,11 @@ Item {
                 anchors.right: parent.right
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                anchors.rightMargin: -2
-                anchors.leftMargin: 2
+                anchors.rightMargin: -2 * scaleFactor
+                anchors.leftMargin: 2 * scaleFactor
                 z: -4
-                anchors.topMargin: 2
-                anchors.bottomMargin: -2
+                anchors.topMargin: 2 * scaleFactor
+                anchors.bottomMargin: -2 * scaleFactor
                 clip: true
             }
 
@@ -671,6 +671,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}D{i:6}D{i:8}
+    D{i:0;formeditorZoom:0.25}
 }
 ##^##*/

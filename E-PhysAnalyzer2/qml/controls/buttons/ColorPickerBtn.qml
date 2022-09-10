@@ -23,17 +23,17 @@ Button {
 
     background: Rectangle {
         id: background
-        width: button.width
-        height: button.height
+        width: button.width * scaleFactor
+        height: button.height * scaleFactor
         color: selectedColor
-        radius: 3
+        radius: 3 * scaleFactor
         border.color: "#087589"
-        border.width: 1
+        border.width: 1 * scaleFactor
         clip: true
 
         Rectangle {
             anchors.fill: parent
-            radius: 3
+            radius: 3 * scaleFactor
             color: colorMouseOver
             visible: button.hovered
             opacity: 0.5

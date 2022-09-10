@@ -9,21 +9,21 @@ import "../../javascript/settings.js" as Settings
 Item {
     id: settingsPage
 
-        property color colColor:  settings.columnColor //"#5ac1d0"
-        property color btnColorDefault:  settings.buttonColorDefault //"#087589"
-        property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
-        property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
-        property color topBarColor: settings.topBarColor
+    property color colColor:  settings.columnColor //"#5ac1d0"
+    property color btnColorDefault:  settings.buttonColorDefault //"#087589"
+    property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
+    property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
+    property color topBarColor: settings.topBarColor
 
-//    // Properties for editing
-//    property color colColor: "#5ac1d0"
-//    property color btnColorDefault: "#087589"
-//    property color bckgrndColor: "#b8e3ee"
-//    property color btnColorPressed: "#357aac"
-//    property color topBarColor: "#02323a"
-//    property int scaleFactor: 1
-//    width: 750
-//    height: 800
+    //    // Properties for editing
+    //    property color colColor: "#5ac1d0"
+    //    property color btnColorDefault: "#087589"
+    //    property color bckgrndColor: "#b8e3ee"
+    //    property color btnColorPressed: "#357aac"
+//        property color topBarColor: "#02323a"
+//        property int scaleFactor: 1
+    //    width: 750
+    //    height: 800
 
     property url btnIconSource: "../../../images/svg_images/close_icon.svg"
 
@@ -35,84 +35,10 @@ Item {
         y: 339 * scaleFactor
         visible: true
         color: colColor
-//        radius: 5
+        //        radius: 5
         border.color: colColor
         anchors.fill: parent
         z: 1
-
-        CustomButton {
-            id: changeDefaultOutputDirectoryBtn
-            y: 84 * scaleFactor
-            colorDefault: btnColorDefault
-            colorMouseOver: bckgrndColor
-            colorPressed: settings.buttonColorPressed
-            fontColorMouseOver: btnColorDefault
-            width: 216 * scaleFactor
-            height: 25 * scaleFactor
-            text: "Change Default Output Directory"
-            anchors.left: settingsSideBar.right
-            anchors.leftMargin: 15 * scaleFactor
-            font.family: "PragmaticaLightC"
-            onClicked: backend.change_default_directory()
-
-            CustomTextField {
-                id: currentDirectoryTextField
-                x: 233 * scaleFactor
-                y: 3 * scaleFactor
-                width: 327 * scaleFactor
-                height: 20 * scaleFactor
-                clip: true
-                placeholderText: settings.mtkDefaultOutputPath
-                colorDefault: bckgrndColor
-                fontColorDefault: btnColorDefault
-            }
-
-            CustomButton {
-                id: lightThemeBtn
-                x: 5 * scaleFactor
-                y: 48 * scaleFactor
-                colorDefault: btnColorDefault
-                colorMouseOver: bckgrndColor
-                colorPressed: btnColorPressed
-                fontColorMouseOver: btnColorDefault
-                width: 80 * scaleFactor
-                height: 24 * scaleFactor
-                text: "Light Theme"
-                onClicked: Settings.lightTheme()
-
-                CustomButton {
-                    id: darkThemeBtn
-                    x: 110 * scaleFactor
-                    y: 0
-                    colorDefault: btnColorDefault
-                    colorMouseOver: bckgrndColor
-                    colorPressed: btnColorPressed
-                    fontColorMouseOver: btnColorDefault
-                    width: 80 * scaleFactor
-                    height: 24 * scaleFactor
-                    text: "Dark Theme"
-                    onClicked: Settings.darkTheme()
-                }
-
-                CustomComboBox {
-                    id: scaleComboBox
-                    x: 222 * scaleFactor
-                    y: -5 * scaleFactor
-                    width: 240 * scaleFactor
-                    height: 23 * scaleFactor
-                    model: ["50%", "60%", "70%", "80%", "90%", "100% (Recommended for Windows)", "110%", "120%", "130%", "140% (Recommended for Linux)", "150%"]
-                    anchors.top: parent.top
-                    anchors.horizontalCenterOffset: 304 * scaleFactor
-                    anchors.topMargin: 0
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    font.pointSize: 9 * scaleFactor
-                    currentIndex: Settings.scaleFactorDictFunction()
-                    onCurrentIndexChanged: settings.scaleFactor = Settings.updateScaleFactor(scaleComboBox.currentIndex)
-                    comboBoxTheme: settings.buttonColorDefault
-                    comboBoxThemeClicked: settings.backgroundColor
-                }
-            }
-        }
 
 
         CustomButton {
@@ -149,7 +75,7 @@ Item {
             id: settingsTopBar
             height: 30 * scaleFactor
             color: btnColorDefault
-//            radius: 5
+            //            radius: 5
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
@@ -195,13 +121,29 @@ Item {
             id: settingsSideBar
             width: 185 * scaleFactor
             color: topBarColor
-//            radius: 5
+            //            radius: 5
             anchors.left: parent.left
             anchors.top: settingsTopBar.bottom
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 0
             anchors.leftMargin: 0
             anchors.topMargin: 0
+        }
+
+        CustomComboBox {
+            id: scaleComboBox
+            x: 222 * scaleFactor
+            width: 240 * scaleFactor
+            height: 23 * scaleFactor
+            anchors.verticalCenter: parent.verticalCenter
+            model: ["50%", "60%", "70%", "80%", "90%", "100% (Recommended for Windows)", "110%", "120%", "130%", "140% (Recommended for Linux)", "150%"]
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pointSize: 9 * scaleFactor
+            currentIndex: Settings.scaleFactorDictFunction()
+            onCurrentIndexChanged: settings.scaleFactor = Settings.updateScaleFactor(scaleComboBox.currentIndex)
+            comboBoxTheme: settings.buttonColorDefault
+            comboBoxThemeClicked: settings.backgroundColor
         }
 
 
@@ -339,8 +281,9 @@ Item {
 
 
 
+
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}D{i:2}D{i:12}D{i:13}D{i:11}D{i:14}
+    D{i:0;formeditorZoom:0.33}D{i:8}
 }
 ##^##*/

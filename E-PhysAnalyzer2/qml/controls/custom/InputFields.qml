@@ -7,7 +7,7 @@ Rectangle {
     property string file: ""
 
     id: objectBg
-    height: 35
+    height: 35 * scaleFactor
     color: columnColor
     radius: 5
     border.color: topBarColor
@@ -15,8 +15,8 @@ Rectangle {
 
     Label {
         id: fileName
-        width: 195
-        height: 22
+        width: 195 * scaleFactor
+        height: 22 * scaleFactor
         color: "#f9f9f9"
         clip: true
         text: file
@@ -24,37 +24,37 @@ Rectangle {
         anchors.left: parent.left
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        anchors.leftMargin: 5
-        font.pointSize: 10
+        anchors.leftMargin: 5 * scaleFactor
+        font.pointSize: 10 * scaleFactor
         anchors.verticalCenterOffset: 0
             }
 
     CustomTextField {
         id: drugName
-        x: 213
-        width: 128
-        height: 20
+        x: 213 * scaleFactor
+        width: 128 * scaleFactor
+        height: 20 * scaleFactor
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
                     }
 
     CustomTextField {
         id: traceNumber
-        x: 405
-        width: 128
-        height: 20
+        x: 405 * scaleFactor
+        width: 128 * scaleFactor
+        height: 20 * scaleFactor
         anchors.verticalCenter: parent.verticalCenter
         validator: RegularExpressionValidator { regularExpression: /^[0-9]+$/ }
                     }
 
     CustomTextField {
         id: excludedTraces
-        x: 574
-        width: 230
-        height: 20
+        x: 574 * scaleFactor
+        width: 230 * scaleFactor
+        height: 20 * scaleFactor
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 20 * scaleFactor
         anchors.verticalCenterOffset: 0
         validator: RegularExpressionValidator { regularExpression: /^[,0-9]+$/ }
                     }

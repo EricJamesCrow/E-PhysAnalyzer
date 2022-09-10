@@ -9,8 +9,8 @@ import "../javascript/graph-settings.js" as GraphSettings
 Item {
     id: settingsPage1
     // Properties for editing
-    width: 663
-    height: 704
+    width: 663 * scaleFactor
+    height: 704 * scaleFactor
     Component.onCompleted: GraphSettings.startDeserialization(graphSettings1, postAnalysisSettings1, minuteAveragedSettings1, graphQualitySettings1, baselineSettings1, zscoreSettings1)
     Component.onDestruction: runSerialization()
 
@@ -22,6 +22,20 @@ Item {
     signal baselineSettings(string color, string time, bool display)
     signal zscoreSettings(bool remove, string score)
     signal reset()
+
+    // Properties for editing
+    property var scaleFactor: 1
+    property color topBarColor: "#02323a"
+    property color topBarSecondaryColor: "#015967"
+    property color columnColor: "#5ac1d0"
+    property color backgroundColor: "#b8e3ee"
+    property color backgroundBorderColor: "#e9efec"
+    property color buttonColorDefault: "#087589"
+    property color buttonColorPressed: "#357aac"
+    property color checkBoxHighlighted: "#33aac0"
+    property color terminalUnderlineColor: "#51abb9"
+    property color terminalText: "#2aafd3"
+    property color menuDropDownMouseOverColor: "#af025967"
 
     Connections {
         target: regions
@@ -83,21 +97,6 @@ Item {
         property string checkBoxIcon: "../../images/svg_images/checkmark_icon_087589.svg"
 
 
-        // Properties for editing
-        property int scaleFactor: 1
-        property color topBarColor: "#02323a"
-        property color topBarSecondaryColor: "#015967"
-        property color columnColor: "#5ac1d0"
-        property color backgroundColor: "#b8e3ee"
-        property color backgroundBorderColor: "#e9efec"
-        property color buttonColorDefault: "#087589"
-        property color buttonColorPressed: "#357aac"
-        property color checkBoxHighlighted: "#33aac0"
-        property color terminalUnderlineColor: "#51abb9"
-        property color terminalText: "#2aafd3"
-        property color menuDropDownMouseOverColor: "#af025967"
-
-
         FontLoader {
             id: pragmaticaFont
             source: "fonts/PT Pragmatica Book.ttf"
@@ -112,7 +111,7 @@ Item {
         anchors.rightMargin: 0
         anchors.leftMargin: 0
         anchors.topMargin: 0
-        height: 704
+        height: 704 * scaleFactor
         opacity: 1
         gradient: Gradient {
             GradientStop {
@@ -130,8 +129,8 @@ Item {
 
         Regions {
             id: regions
-            x: 26
-            y: 61
+            x: 26 * scaleFactor
+            y: 61 * scaleFactor
             opacity: 0
 
             OpacityAnimator on opacity {
@@ -145,12 +144,12 @@ Item {
 
         PostAnalysis {
             id: postAnalysisSection
-            x: 26
-            y: 90
+            x: 26 * scaleFactor
+            y: 90 * scaleFactor
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: 207
-            anchors.leftMargin: 279
+            anchors.rightMargin: 207 * scaleFactor
+            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
             // GraphSettings.qml
             onXminChanged: postAnalysisSettings1.xmin = postAnalysisSection.xmin
@@ -169,12 +168,12 @@ Item {
 
         MinuteAveraged {
             id: minuteAveragedSection
-            x: 19
-            y: 236
+            x: 19 * scaleFactor
+            y: 236 * scaleFactor
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: 207
-            anchors.leftMargin: 279
+            anchors.rightMargin: 207 * scaleFactor
+            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
             // GraphSettings.qml
             onXminChanged: minuteAveragedSettings1.maxmin = minuteAveragedSection.xmin
@@ -194,13 +193,13 @@ Item {
 
         ColorCode {
             id: colorCodeSection
-            x: 21
-            y: 90
-            height: 140
+            x: 21 * scaleFactor
+            y: 90 * scaleFactor
+            height: 140 * scaleFactor
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: 13
-            anchors.leftMargin: 473
+            anchors.rightMargin: 13 * scaleFactor
+            anchors.leftMargin: 473 * scaleFactor
             opacity: 0
             // GraphSettings.qml
             onSingleChanged: graphQualitySettings1.single = colorCodeSection.single
@@ -219,13 +218,13 @@ Item {
 
         Baseline {
             id: baselineSection
-            x: 32
-            y: 236
-            height: 140
+            x: 32 * scaleFactor
+            y: 236 * scaleFactor
+            height: 140 * scaleFactor
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: 13
-            anchors.leftMargin: 473
+            anchors.rightMargin: 13 * scaleFactor
+            anchors.leftMargin: 473 * scaleFactor
             opacity: 0
             // GraphSettings.qml
             onColorChanged: baselineSettings1.color = baselineSection.color
@@ -244,12 +243,12 @@ Item {
 
         Zscore {
             id: zScoreSection
-            x: 28
-            y: 388
+            x: 28 * scaleFactor
+            y: 388 * scaleFactor
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: 207
-            anchors.leftMargin: 279
+            anchors.rightMargin: 207 * scaleFactor
+            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
             // GraphSettings.qml
             onRemoveChanged: zscoreSettings1.remove = zScoreSection.remove
@@ -267,8 +266,8 @@ Item {
 
         GeneratePattern{
             id: generatePatternBnt
-            x: 26
-            y: 25
+            x: 26 * scaleFactor
+            y: 25 * scaleFactor
             opacity: 0
 
             OpacityAnimator on opacity {
@@ -283,10 +282,10 @@ Item {
 
         NewRegion {
             id: newRegionBtn1
-            x: 144
-            y: 25
-            width: 112
-            height: 20
+            x: 144 * scaleFactor
+            y: 25 * scaleFactor
+            width: 112 * scaleFactor
+            height: 20 * scaleFactor
             opacity: 0
 
             OpacityAnimator on opacity {
@@ -306,10 +305,10 @@ Item {
 
         CustomButton {
             id: resetBtn
-            x: 523
-            y: 424
-            width: 78
-            height: 20
+            x: 523 * scaleFactor
+            y: 424 * scaleFactor
+            width: 78 * scaleFactor
+            height: 20 * scaleFactor
             text: "Reset"
             opacity: 0
             onClicked: reset()

@@ -5,11 +5,11 @@ Canvas {
               id: triangle
               antialiasing: true
 
-              property int triangleWidth: 15
-              property int triangleHeight: 15
+              property int triangleWidth: 15 * scaleFactor
+              property int triangleHeight: 15 * scaleFactor
               property color strokeStyle:  "#ffffff"
               property color fillStyle: "#ffffff"
-              property int lineWidth: 3
+              property int lineWidth: 3 * scaleFactor
               property bool fill: false
               property bool stroke: true
               property real alpha: 1.0

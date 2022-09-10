@@ -70,7 +70,7 @@ Rectangle {
 
 
     id: colorCodeSection
-    height: 131
+    height: 131 * scaleFactor
     color: "#ffffff"
     radius: 10
     gradient: Gradient {
@@ -89,10 +89,10 @@ Rectangle {
 
     CustomCheckBoxLabel {
         id: colorCode
-        x: -191
-        y: 8
-        width: 118
-        height: 26
+        x: -191 * scaleFactor
+        y: 8 * scaleFactor
+        width: 118 * scaleFactor
+        height: 26 * scaleFactor
         text: "Single Color"
         anchors.horizontalCenterOffset: 0
         anchors.horizontalCenter: parent.horizontalCenter
@@ -102,10 +102,11 @@ Rectangle {
 
     CustomComboBox {
         id: graphQuality
-        x: -186
+        x: -186 * scaleFactor
         anchors.top: parent.top
         anchors.horizontalCenterOffset: 0
-        anchors.topMargin: 83
+        anchors.topMargin: 83 * scaleFactor
+        font.pointSize: 9*scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
         currentIndex: 1
         model: ["Low", "Medium", "High", "Ultra", "Custom"]
@@ -113,35 +114,36 @@ Rectangle {
 
     Label {
         id: graphQualityLabel
-        y: 49
-        width: 75
-        height: 16
+        y: 49 * scaleFactor
+        width: 75 * scaleFactor
+        height: 16 * scaleFactor
+        font.pointSize: 9 * scaleFactor
         color: "#087589"
         text: qsTr("Graph Quality")
         anchors.bottom: graphQuality.top
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 5
+        anchors.bottomMargin: 5 * scaleFactor
         font.family: "PragmaticaLightC"
     }
 
     CustomTextField {
         id: dpiEntry
-        x: 44
-        width: 53
-        height: 20
+        x: 44 * scaleFactor
+        width: 53 * scaleFactor
+        height: 20 * scaleFactor
         visible: graphQuality.currentIndex === 4
         anchors.top: graphQuality.bottom
-        anchors.topMargin: 7
+        anchors.topMargin: 7 * scaleFactor
         validator: IntValidator {bottom: 1; top: 1000}
         Label {
             id: dpiLabel
-            width: 25
-            height: 14
+            width: 25 * scaleFactor
+            height: 14 * scaleFactor
             color: "#087589"
             text: qsTr("DPI")
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.leftMargin: 69
+            anchors.leftMargin: 69 * scaleFactor
             anchors.verticalCenterOffset: 0
             font.family: "PragmaticaLightC"
         }
@@ -149,9 +151,9 @@ Rectangle {
 
     Rectangle {
         id: ccDropShadow
-        x: 2
-        y: 2
-        height: 740
+        x: 2 * scaleFactor
+        y: 2 * scaleFactor
+        height: 740 * scaleFactor
         opacity: 0.25
         visible: true
         color: "#000000"
@@ -160,10 +162,10 @@ Rectangle {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.topMargin: 2
-        anchors.rightMargin: -2
-        anchors.bottomMargin: -2
-        anchors.leftMargin: 2
+        anchors.topMargin: 2 * scaleFactor
+        anchors.rightMargin: -2 * scaleFactor
+        anchors.bottomMargin: -2 * scaleFactor
+        anchors.leftMargin: 2 * scaleFactor
         z: -3
         clip: true
     }
@@ -178,22 +180,22 @@ Rectangle {
 
     CustomTextField {
         id: defaultColor
-        y: 42
-        width: 52
-        height: 15
+        y: 42 * scaleFactor
+        width: 52 * scaleFactor
+        height: 15 * scaleFactor
         clip: true
-        font.pointSize: 7
+        font.pointSize: 7 * scaleFactor
         placeholderText: "gray"
-        anchors.horizontalCenterOffset: 19
+        anchors.horizontalCenterOffset: 19 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
     Label {
         id: defaultColorLabel
-        x: -45
-        y: 40
-        width: 42
-        height: 16
+        x: -45 * scaleFactor
+        y: 40 * scaleFactor
+        width: 42 * scaleFactor
+        height: 16 * scaleFactor
         color: "#087589"
         text: qsTr("Color:")
         anchors.verticalCenter: defaultColor.verticalCenter
@@ -201,8 +203,8 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         anchors.verticalCenterOffset: 0
-        font.pointSize: 8
-        anchors.rightMargin: 3
+        font.pointSize: 8 * scaleFactor
+        anchors.rightMargin: 3 * scaleFactor
         font.family: "PragmaticaLightC"
     }
 }

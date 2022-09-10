@@ -40,7 +40,7 @@ Button {
         implicitHeight: filterCheckBox.height /*26 */
         visible: true
         color: "#ffffff"
-        radius: 3
+        radius: 3 * scaleFactor
         clip: true
         border.color: internal.dynamicColor
 
@@ -70,7 +70,7 @@ Button {
             anchors.bottomMargin: 5* scaleFactor
             anchors.topMargin: 5* scaleFactor
             border.color: internal.dynamicColor
-            radius: 3
+            radius: 3 * scaleFactor
 
             Image {
                 id: checkmarkImg
@@ -80,10 +80,10 @@ Button {
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 source: checkboxSvgIcon
-                anchors.rightMargin: 2
-                anchors.leftMargin: 2
-                anchors.bottomMargin: 2
-                anchors.topMargin: 2
+                anchors.rightMargin: 2 * scaleFactor
+                anchors.leftMargin: 2 * scaleFactor
+                anchors.bottomMargin: 2 * scaleFactor
+                anchors.topMargin: 2 * scaleFactor
                 fillMode: Image.PreserveAspectFit
             }
         }
@@ -100,10 +100,10 @@ Button {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             clip: true
-            anchors.topMargin: 1
-            anchors.leftMargin: 1
-            anchors.rightMargin: -1
-            anchors.bottomMargin: -1
+            anchors.topMargin: 1 * scaleFactor
+            anchors.leftMargin: 1 * scaleFactor
+            anchors.rightMargin: -1 * scaleFactor
+            anchors.bottomMargin: -1 * scaleFactor
             z: -3
         }
 

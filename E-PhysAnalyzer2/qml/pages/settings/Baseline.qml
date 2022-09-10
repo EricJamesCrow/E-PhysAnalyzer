@@ -63,7 +63,7 @@ Rectangle {
         
         
     id: baselineSection
-    height: 131
+    height: 131 * scaleFactor
     radius: 10
     gradient: Gradient {
     GradientStop {
@@ -81,9 +81,9 @@ Rectangle {
 
     CustomCheckBoxLabel {
     id: displayBaseline
-    y: 13
-    width: 137
-    height: 26
+    y: 13 * scaleFactor
+    width: 137 * scaleFactor
+    height: 26 * scaleFactor
     text: "Display Baseline"
     checkedState: true
     anchors.horizontalCenter: parent.horizontalCenter
@@ -93,23 +93,23 @@ Rectangle {
 
     CustomTextField {
     id: baselineColor
-    width: 46
-    height: 20
+    width: 46 * scaleFactor
+    height: 20 * scaleFactor
     anchors.verticalCenter: baselineValueLabel.verticalCenter
     anchors.verticalCenterOffset: 0
-    font.pointSize: 8
-    anchors.horizontalCenterOffset: 45
+    font.pointSize: 8 * scaleFactor
+    anchors.horizontalCenterOffset: 45 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
     placeholderText: "gray"
     }
 
     CustomTextField {
     id: baselineValue
-    width: 46
-    height: 20
+    width: 46 * scaleFactor
+    height: 20 * scaleFactor
     anchors.verticalCenter: baselineTimeLabel.verticalCenter
     anchors.verticalCenterOffset: 0
-    anchors.horizontalCenterOffset: 45
+    anchors.horizontalCenterOffset: 45 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
     placeholderText: "10"
     validator: IntValidator {bottom: 1; top: 100}
@@ -117,20 +117,20 @@ Rectangle {
 
     Label {
     id: baselineTimeLabel
-    y: 90
+    y: 90 * scaleFactor
     color: "#087589"
     text: qsTr("Baseline time (min):")
-    font.pointSize: 7
+    font.pointSize: 7 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
-    anchors.horizontalCenterOffset: -26
+    anchors.horizontalCenterOffset: -26 * scaleFactor
     font.family: "PragmaticaLightC"
     }
 
     Rectangle {
     id: baselineDropShadow
-    x: 2
-    y: 2
-    height: 740
+    x: 2 * scaleFactor
+    y: 2 * scaleFactor
+    height: 740 * scaleFactor
     opacity: 0.25
     visible: true
     color: "#000000"
@@ -139,10 +139,10 @@ Rectangle {
     anchors.right: parent.right
     anchors.top: parent.top
     anchors.bottom: parent.bottom
-    anchors.topMargin: 2
-    anchors.rightMargin: -2
-    anchors.bottomMargin: -2
-    anchors.leftMargin: 2
+    anchors.topMargin: 2 * scaleFactor
+    anchors.rightMargin: -2 * scaleFactor
+    anchors.bottomMargin: -2 * scaleFactor
+    anchors.leftMargin: 2 * scaleFactor
     z: -3
     clip: true
     }
@@ -157,12 +157,12 @@ Rectangle {
 
     Label {
         id: baselineValueLabel
-        y: 50
+        y: 50 * scaleFactor
         color: "#087589"
         text: qsTr("Baseline value:")
         anchors.horizontalCenter: parent.horizontalCenter
         font.family: "PragmaticaLightC"
-        anchors.horizontalCenterOffset: -25
-        font.pointSize: 8
+        anchors.horizontalCenterOffset: -25 * scaleFactor
+        font.pointSize: 8 * scaleFactor
     }
 }

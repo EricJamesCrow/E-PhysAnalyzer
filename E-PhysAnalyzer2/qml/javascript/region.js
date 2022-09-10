@@ -15,11 +15,11 @@ function generatePattern(everyMinute, startTime, endTime) {
 
 function regionErrorMsg(msg) {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
-        x: 16;
-        y: 51;
-        width: 148;
-        height: 36;
-        opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration: 150; running: true} PropertyAnimation {target: errorMessage; property: "y"; to: 28; duration: 150; running: true}}`,
+        x: 16 * scaleFactor;
+        y: 51 * scaleFactor;
+        width: 148 * scaleFactor;
+        height: 36 * scaleFactor;
+        opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration: 150; running: true} PropertyAnimation {target: errorMessage; property: "y"; to: 28 * scaleFactor; duration: 150; running: true}}`,
         dialogBox,
     "regionErrorMsg");
     errorMessage.errorMessageString = msg
@@ -97,20 +97,20 @@ function createNewRegion(greaterThan, lessThan) {
 
 function moveObjectsFirst(greaterThan, lessThan) {
     const currentRegionAxis = regionAxis // store the current region axis in a variable
-    regionAxis = 5 // set back to inital value
+    regionAxis = 5 * scaleFactor // set back to inital value
     objectsToMove = regionObjects // put objects to be moved into a temporary variable
     regionObjects = [] // make list empty so newRegion() pushes the new object into index 0
     moveAndNew(greaterThan, lessThan, objectsToMove)
-    regionAxis = currentRegionAxis + 22
+    regionAxis = currentRegionAxis + 22 * scaleFactor
 }
 
 function moveObjectsInbetween(regionNumber, greaterThan, lessThan) {
     const currentRegionAxis = regionAxis // store the current region axis in a variable
-    regionAxis = regionObjects[regionNumber].y // set region axis to the regionObject that is going to be moved down
+    regionAxis = regionObjects[regionNumber].y * scaleFactor// set region axis to the regionObject that is going to be moved down
     objectsToMove = regionObjects.slice(regionNumber) // put objects to be moved into a temporary variable
     regionObjects = regionObjects.slice(0, regionNumber) // set regionObjects to all the objects that are not being animated
     moveAndNew(greaterThan, lessThan, objectsToMove)
-    regionAxis = currentRegionAxis + 22
+    regionAxis = currentRegionAxis + 22 * scaleFactor
 }
 
 function moveAndNew(greaterThan, lessThan, otm) {
@@ -122,7 +122,7 @@ function moveAndNew(greaterThan, lessThan, otm) {
 }
 
 function newRegion(greaterThan, lessThan) {
-    var newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200; height: 19; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
+    var newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200 * scaleFactor; height: 19 * scaleFactor; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
     regionsLoader,
     "dynamicRegion");
     newObject.y += regionAxis
@@ -132,7 +132,7 @@ function newRegion(greaterThan, lessThan) {
     newObject.chosenRegionColor = chosenRegionColor
     newObject.colorName = getKeyByValue(colorDict, chosenRegionColor.toString().toUpperCase())
     regionObjects.push(newObject)
-    regionAxis += 22
+    regionAxis += 22 * scaleFactor
     for(let i=0; i<regionObjects.length; i++) {
         regionObjects[i].z += 1
     }
@@ -147,13 +147,13 @@ function clearRegions() {
             regionObjects[i].destroy()
     }
     regionObjects = []
-    regionAxis = 5
+    regionAxis = 5 * scaleFactor
 }
 
 
 // Delete a region
 function deleteRegion(regionNumber) {
-    regionAxis -= 22
+    regionAxis -= 22 * scaleFactor
     regionObjects[regionNumber].destroy() // Removes/destroys region
     regionObjects.splice(regionNumber, 1) // Removes destroyed object from the list
     regionObjectsSlice = regionObjects.slice(regionNumber) // Get all of the objects after the destroyed object
@@ -164,10 +164,10 @@ function moveRegions(regionObjectsSlice, operator) {
         for(let i=0; i<regionObjectsSlice.length; i++) {
             currentRegionObject = regionObjectsSlice[i] // Have to assign current object to a variable held in QML in order for the PropertyAnimation to work
             if(operator === "subtract") {
-                currentRegionY = regionObjectsSlice[i].y - 22 
+                currentRegionY = regionObjectsSlice[i].y - 22  * scaleFactor
                 regionObjectsSlice[i].regionNumber -= 1 // Subtract one from regionNumber; necessary for finding the correct index when deleteRegion() is called
             } else if (operator === "add") {
-                currentRegionY = regionObjectsSlice[i].y + 22
+                currentRegionY = regionObjectsSlice[i].y + 22 * scaleFactor
                 regionObjectsSlice[i].regionNumber += 1
             }
         Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; PropertyAnimation {target: currentRegionObject; property: "y"; to: currentRegionY; duration: 150; running: true}`,

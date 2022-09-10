@@ -22,8 +22,8 @@ Button{
 
     }
 
-    width: 35
-    height: 35
+    width: 35 * scaleFactor
+    height: 35 * scaleFactor
     down: false
     flat: true
 
@@ -37,8 +37,8 @@ Button{
             source: btnIconSource
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            height: 16
-            width: 16
+            height: 16 * scaleFactor
+            width: 16 * scaleFactor
             visible: true
             fillMode: Image.PreserveAspectFit
             antialiasing: false

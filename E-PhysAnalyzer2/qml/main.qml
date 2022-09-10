@@ -906,16 +906,6 @@ Window {
     }
 
 
-
-
-
-
-
-
-
-
-
-
     Rectangle {
         id: bg1
         visible: false

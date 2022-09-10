@@ -22,10 +22,10 @@ Button {
         Image {
             id: iconBtn
             source: "../../../images/svg_images/close_icon.svg"
-            anchors.rightMargin: 2
-            anchors.leftMargin: 2
-            anchors.bottomMargin: 2
-            anchors.topMargin: 2
+            anchors.rightMargin: 2 * scaleFactor
+            anchors.leftMargin: 2 * scaleFactor
+            anchors.bottomMargin: 2 * scaleFactor
+            anchors.topMargin: 2 * scaleFactor
             visible: true
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit

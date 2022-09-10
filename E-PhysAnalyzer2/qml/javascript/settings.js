@@ -39,42 +39,6 @@ function resetSettings(determineScaleFactor) {
     lightTheme()
 }
 
-function lightTheme() {
-    settings.topBarColor = "#02323a"
-    settings.topBarSecondaryColor = "#015967"
-    settings.columnColor ="#5ac1d0"
-    settings.backgroundColor ="#b8e3ee"
-    settings.backgroundBorderColor = "#e9efec"
-    settings.buttonColorDefault = "#087589"
-    settings.buttonColorPressed = "#357aac"
-    settings.checkBoxHighlighted = "#33aac0"
-    settings.terminalUnderlineColor = "#51abb9"
-    settings.terminalText = "#2aafd3"
-    settings.menuDropDownMouseOverColor = "#af025967"
-    settings.addFilterSvgIcon = "../../images/svg_images/plus_icon_087589.svg"
-    settings.closeBtnSvgIcon = "../../../images/svg_images/close_icon.svg"
-    settings.checkBoxIcon = "../../../images/svg_images/checkmark_icon_087589.svg"
-    settingsPage.changeTheme()
-}
-
-function darkTheme() {
-    settings.topBarColor = "#1e202f" //"#282828"
-    settings.topBarSecondaryColor = "#292a3e"
-    settings.columnColor ="#282828" //"#6B3487"
-    settings.backgroundColor = "#212121"
-    settings.backgroundBorderColor = "#A0ACFB"
-    settings.buttonColorDefault = "#bb86fc" //"#B155DF"
-    settings.buttonColorPressed = "#CA62FF"
-    settings.checkBoxHighlighted = "#cda5fe" //"#760afa"
-    settings.terminalUnderlineColor = "#A951D6"
-    settings.terminalText = "#bb86fc"
-    settings.menuDropDownMouseOverColor = "#a762fd"
-    settings.addFilterSvgIcon = "../../images/svg_images/plus_icon_bb86fc.svg"
-    settings.closeBtnSvgIcon = "../../../images/svg_images/close_icon_white.svg"
-    settings.checkBoxIcon = "../../../images/svg_images/checkmark_icon_bb86fc.svg"
-    settingsPage.changeTheme()
-}
-
 function logDeviceInformation() {
     mutationspectra.terminal_update_info(`Operating System: ${Qt.platform.os}`)
     mutationspectra.terminal_update_info(`Pixel Density: ${Screen.pixelDensity}`)

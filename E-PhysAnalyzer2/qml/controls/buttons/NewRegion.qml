@@ -10,8 +10,8 @@ import "../../javascript/color-picker.js" as ColorPicker
 
 Button {
     id: button
-    width: 112
-    height: 20
+    width: 112 * scaleFactor
+    height: 20 * scaleFactor
 
     // Custom Properties
     property color borderColor: "#087589"//buttonColorDefault
@@ -66,8 +66,8 @@ Button {
         y: 0
         opacity: 0
         visible: true
-        width: 178
-        height: 67
+        width: 178 * scaleFactor
+        height: 67 * scaleFactor
         color: "#ffffff"
         radius: 5
         border.color: "#087589"
@@ -98,16 +98,16 @@ Button {
 
         Image {
             id: closeDialogBox
-            x: 204
-            width: 12
-            height: 14
+            x: 204 * scaleFactor
+            width: 12 * scaleFactor
+            height: 14 * scaleFactor
             anchors.right: parent.right
             anchors.top: parent.top
             source: "../../../images/svg_images/close_icon.svg"
             clip: false
             z: 0
-            anchors.topMargin: 5
-            anchors.rightMargin: 5
+            anchors.topMargin: 5 * scaleFactor
+            anchors.rightMargin: 5 * scaleFactor
             fillMode: Image.PreserveAspectFit
 
             MouseArea {
@@ -121,10 +121,10 @@ Button {
 
         CustomTextField {
             id: greaterThanOrEqualEntry
-            x: 8
-            y: 8
-            width: 28
-            height: 20
+            x: 8 * scaleFactor
+            y: 8 * scaleFactor
+            width: 28 * scaleFactor
+            height: 20 * scaleFactor
             validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
@@ -132,9 +132,9 @@ Button {
 
         CustomTextField {
             id: lessThanEntry
-            x: 130
-            width: 28
-            height: 20
+            x: 130 * scaleFactor
+            width: 28 * scaleFactor
+            height: 20 * scaleFactor
             validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
@@ -143,9 +143,10 @@ Button {
 
         Label {
             id: greaterThanOrEqualLabel
-            x: 50
+            x: 50 * scaleFactor
             color: "#087589"
             text: String.fromCharCode(0x2264)
+            font.pointSize: 9 * scaleFactor
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
 
@@ -153,9 +154,10 @@ Button {
 
         Label {
             id: lessThanLabel
-            x: 108
+            x: 108 * scaleFactor
             color: "#087589"
             text: qsTr("<")
+            font.pointSize: 9 * scaleFactor
             anchors.verticalCenter: greaterThanOrEqualLabel.verticalCenter
         }
 
@@ -163,11 +165,12 @@ Button {
 
         Label {
             id: xLabel
-            x: 83
-            width: 11
-            height: 16
+            x: 83 * scaleFactor
+            width: 11 * scaleFactor
+            height: 16 * scaleFactor
             color: "#087589"
             text: qsTr("X")
+            font.pointSize: 9 * scaleFactor
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }
 
@@ -175,21 +178,21 @@ Button {
 
         ColorPicker {
             id: colorPicker1
-            x: 13
-            width: 20
-            height: 20
+            x: 13 * scaleFactor
+            width: 20 * scaleFactor
+            height: 20 * scaleFactor
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
-            anchors.verticalCenterOffset: 31
+            anchors.verticalCenterOffset: 31 * scaleFactor
         }
 
 
 
         CustomButton {
             id: submitButton
-            x: 120
-            y: 44
-            width: 48
-            height: 15
+            x: 120 * scaleFactor
+            y: 44 * scaleFactor
+            width: 48 * scaleFactor
+            height: 15 * scaleFactor
             text: "Submit"
             onClicked: {newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName);
                 greaterThanOrEqualEntry.text = "";
@@ -217,8 +220,8 @@ Button {
     background: Rectangle{
         color: internal.dynamicColor
         border.color: borderColor
-        border.width: 2
-        radius: 5
+        border.width: 2 * scaleFactor
+        radius: 5 * scaleFactor
     }
 
 }

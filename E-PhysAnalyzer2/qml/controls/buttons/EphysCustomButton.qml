@@ -20,7 +20,7 @@ Button {
             id: buttonBackground
             opacity: 1
             color: internal.dynamicColor
-            radius: 10
+            radius: 10 * scaleFactor
             border.color: internal.dynamicColor
             border.width: 1
 

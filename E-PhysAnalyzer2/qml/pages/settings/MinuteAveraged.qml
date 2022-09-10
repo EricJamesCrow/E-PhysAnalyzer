@@ -85,8 +85,8 @@ Rectangle {
 
 
 id: minuteAveragedSection
-width: 177
-height: 140
+width: 177 * scaleFactor
+height: 140 * scaleFactor
 color: "#4089f7fe"
 radius: 10
 gradient: Gradient {
@@ -106,112 +106,117 @@ color: "#4089f7fe"
 
     Label {
     id: minAvgLabel
-    y: 8
+    y: 8 * scaleFactor
     color: "#087589"
     text: qsTr("Minute Averaged")
     anchors.horizontalCenter: parent.horizontalCenter
     font.family: "PragmaticaLightC"
+    font.pointSize: 9 * scaleFactor
     }
 
     CustomTextField {
     id: maXmin
-    y: 34
-    width: 95
-    height: 20
+    y: 34 * scaleFactor
+    width: 95 * scaleFactor
+    height: 20 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
-    anchors.horizontalCenterOffset: 33
+    anchors.horizontalCenterOffset: 33 * scaleFactor
     placeholderText: "-Baseline"
     validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
     }
 
     CustomTextField {
     id: maXmax
-    y: 60
-    width: 95
-    height: 20
+    y: 60 * scaleFactor
+    width: 95 * scaleFactor
+    height: 20 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
-    anchors.horizontalCenterOffset: 33
+    anchors.horizontalCenterOffset: 33 * scaleFactor
     placeholderText: "None"
     validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
     }
 
     CustomTextField {
     id: maYmin
-    y: 86
-    width: 95
-    height: 20
+    y: 86 * scaleFactor
+    width: 95 * scaleFactor
+    height: 20 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
-    anchors.horizontalCenterOffset: 33
+    anchors.horizontalCenterOffset: 33 * scaleFactor
     placeholderText: "25"
     validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
     }
 
     CustomTextField {
     id: maYmax
-    y: 112
-    width: 95
-    height: 20
+    y: 112 * scaleFactor
+    width: 95 * scaleFactor
+    height: 20 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
-    anchors.horizontalCenterOffset: 33
+    anchors.horizontalCenterOffset: 33 * scaleFactor
     placeholderText: "225"
     validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
     }
 
     Label {
     id: xMinLabel1
-    x: 16
+    x: 16 * scaleFactor
     color: "#087589"
     text: qsTr("X-Min.")
     anchors.verticalCenter: maXmin.verticalCenter
     anchors.right: maXmin.left
-    anchors.rightMargin: 17
+    font.pointSize: 9 * scaleFactor
+    anchors.rightMargin: 17 * scaleFactor
     anchors.verticalCenterOffset: 0
     font.family: "PragmaticaLightC"
     }
 
     Label {
     id: xMaxLabel1
-    x: 16
-    width: 39
-    height: 14
+    x: 16 * scaleFactor
+    width: 39 * scaleFactor
+    height: 14 * scaleFactor
     color: "#087589"
     text: qsTr("X-Max.")
     anchors.verticalCenter: maXmax.verticalCenter
     anchors.right: maXmax.left
-    anchors.rightMargin: 17
+    font.pointSize: 9 * scaleFactor
+    anchors.rightMargin: 17 * scaleFactor
     anchors.verticalCenterOffset: 0
     font.family: "PragmaticaLightC"
     }
 
     Label {
     id: yMinLabel1
-    x: 26
+    x: 26 * scaleFactor
     color: "#087589"
     text: qsTr("Y-Min.")
     anchors.verticalCenter: maYmin.verticalCenter
     anchors.right: maYmin.left
-    anchors.rightMargin: 17
+    font.pointSize: 9 * scaleFactor
+    anchors.rightMargin: 17 * scaleFactor
     anchors.verticalCenterOffset: 0
     font.family: "PragmaticaLightC"
     }
 
     Label {
     id: yMaxLabel1
-    x: 26
+    x: 26 * scaleFactor
     color: "#087589"
     text: qsTr("Y-Max.")
     anchors.verticalCenter: maYmax.verticalCenter
     anchors.right: maYmax.left
-    anchors.rightMargin: 17
+    font.pointSize: 9 * scaleFactor
+    anchors.rightMargin: 17 * scaleFactor
     anchors.verticalCenterOffset: 0
     font.family: "PragmaticaLightC"
     }
 
     Rectangle {
     id: maDropShadow
-    x: 2
-    y: 2
-    height: 740
+    x: 2 * scaleFactor
+    y: 2 * scaleFactor
+    height: 740 * scaleFactor
     opacity: 0.25
     visible: true
     color: "#000000"
@@ -220,10 +225,10 @@ color: "#4089f7fe"
     anchors.right: parent.right
     anchors.top: parent.top
     anchors.bottom: parent.bottom
-    anchors.topMargin: 2
-    anchors.rightMargin: -2
-    anchors.bottomMargin: -2
-    anchors.leftMargin: 2
+    anchors.topMargin: 2 * scaleFactor
+    anchors.rightMargin: -2 * scaleFactor
+    anchors.bottomMargin: -2 * scaleFactor
+    anchors.leftMargin: 2 * scaleFactor
     z: -3
     clip: true
     }

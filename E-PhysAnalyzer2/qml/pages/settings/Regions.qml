@@ -8,15 +8,15 @@ import "../../javascript/graph-settings.js" as GraphSettings
 
 Rectangle {
     id: regions
-    width: 230
-    height: 518
+    width: 230 * scaleFactor
+    height: 518 * scaleFactor
     color: "#00000000"
 
     property var regionObjects: []
     property var objectsToMove: []
     property var currentRegionObject: []
     property int currentRegionY : 0
-    property int regionAxis: 5
+    property int regionAxis: 5 * scaleFactor
     property string chosenRegionColor: "#FF0000"
     property string chosenRegionColorName: "#FF0000"
 
@@ -75,7 +75,7 @@ Rectangle {
     Rectangle {
         id: regionsTopBar
         y: 0
-        height: 29
+        height: 29 * scaleFactor
         opacity: 1
         color: "#02323a"
         radius: 10
@@ -84,27 +84,28 @@ Rectangle {
         anchors.leftMargin: 0
         Rectangle {
             id: regionsTopBarBottom
-            height: 18
+            height: 18 * scaleFactor
             opacity: 1
             color: "#02323a"
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.leftMargin: 0
-            anchors.topMargin: 11
+            anchors.topMargin: 11 * scaleFactor
             z: 0
             anchors.rightMargin: 0
         }
 
         Label {
             id: regionsLabel
-            width: 195
-            height: 14
+            width: 195 * scaleFactor
+            height: 14 * scaleFactor
             color: "#ffffff"
             text: qsTr("Regions")
             anchors.verticalCenter: parent.verticalCenter
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+            font.pointSize: 9 * scaleFactor
             anchors.horizontalCenter: parent.horizontalCenter
             font.family: "PragmaticaLightC"
         }
@@ -113,9 +114,9 @@ Rectangle {
 
     Rectangle {
         id: regionsDropShadow
-        x: 2
-        y: 2
-        height: 740
+        x: 2 * scaleFactor
+        y: 2 * scaleFactor
+        height: 740 * scaleFactor
         opacity: 0.25
         visible: true
         color: "#000000"
@@ -125,23 +126,23 @@ Rectangle {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         clip: true
-        anchors.topMargin: 2
-        anchors.leftMargin: 2
-        anchors.rightMargin: -2
-        anchors.bottomMargin: 2
+        anchors.topMargin: 2 * scaleFactor
+        anchors.leftMargin: 2 * scaleFactor
+        anchors.rightMargin: -2 * scaleFactor
+        anchors.bottomMargin: 2 * scaleFactor
         z: -4
     }
 
     Rectangle {
         id: regionsBg
         x: 0
-        height: 496
+        height: 496 * scaleFactor
         color: "#ffffff"
         radius: 10
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: regionsTopBar.bottom
-        anchors.topMargin: -10
+        anchors.topMargin: -10 * scaleFactor
         anchors.leftMargin: 0
         Rectangle {
             id: regionsBg1
@@ -174,11 +175,11 @@ Rectangle {
         anchors.top: regionsTopBar.bottom
         anchors.bottom: parent.bottom
         clip: true
-        anchors.bottomMargin: 45
+        anchors.bottomMargin: 45 * scaleFactor
         anchors.topMargin: 0
-        contentHeight: 444
+        contentHeight: 444 * scaleFactor
         ScrollBar.vertical: CustomScrollBar {
-            width: 10
+            width: 10 * scaleFactor
         }
 
         Rectangle {
@@ -191,12 +192,12 @@ Rectangle {
 
     CustomButton {
         id: resetRegionsBtn
-        y: 480
-        width: 78
-        height: 20
+        y: 480 * scaleFactor
+        width: 78 * scaleFactor
+        height: 20 * scaleFactor
         text: "Reset"
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 15
+        anchors.bottomMargin: 15 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked: Region.clearRegions()
     }
@@ -228,6 +229,6 @@ Rectangle {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.9}D{i:12}D{i:13}
+    D{i:0;formeditorZoom:0.9}
 }
 ##^##*/

@@ -7,8 +7,8 @@ ComboBox {
     property var modelValues: []
     property string comboBoxTheme: buttonColorDefault//"#087589"
     property string comboBoxThemeClicked: backgroundColor
-    width: 90
-    height: 26 //"#b8e3ee"
+    width: 90 * scaleFactor
+    height: 26 * scaleFactor
 
     model: modelValues
 
@@ -84,7 +84,7 @@ ComboBox {
         implicitHeight: 40*scaleFactor
         border.color: control.pressed ? comboBoxThemeClicked : comboBoxTheme
         border.width: control.visualFocus ? 2 : 1
-        radius: 2
+        radius: 2 * scaleFactor
     }
 
     popup: Popup {
@@ -104,28 +104,28 @@ ComboBox {
 
         background: Rectangle {
             border.color: comboBoxTheme
-            radius: 2
+            radius: 2 * scaleFactor
         }
     }
 
     Rectangle {
         id: comboBoxDropShadow
-        x: 2
-        y: 2
-        height: 740
+        x: 2 * scaleFactor
+        y: 2 * scaleFactor
+        height: 740 * scaleFactor
         opacity: 0.25
         visible: true
         color: "#000000"
-        radius: 2
+        radius: 2 * scaleFactor
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         clip: true
-        anchors.topMargin: 1
-        anchors.leftMargin: 1
-        anchors.rightMargin: -1
-        anchors.bottomMargin: -1
+        anchors.topMargin: 1 * scaleFactor
+        anchors.leftMargin: 1 * scaleFactor
+        anchors.rightMargin: -1 * scaleFactor
+        anchors.bottomMargin: -1 * scaleFactor
         z: -3
     }
 }

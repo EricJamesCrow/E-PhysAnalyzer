@@ -81,7 +81,7 @@ Rectangle {
         }
         }
 id: postAnalysisSection
-height: 140
+height: 140 * scaleFactor
 color: "#4089f7fe"
 radius: 10
 gradient: Gradient {
@@ -100,7 +100,8 @@ color: "#4089f7fe"
 
         Label {
         id: postAnalysisLabel
-        y: 8
+        y: 8 * scaleFactor
+        font.pointSize: 9 * scaleFactor
         color: "#087589"
         text: qsTr("Post Analysis")
         anchors.horizontalCenter: parent.horizontalCenter
@@ -109,103 +110,107 @@ color: "#4089f7fe"
 
         CustomTextField {
         id: paXmin
-        y: 34
-        width: 95
-        height: 20
+        y: 34 * scaleFactor
+        width: 95 * scaleFactor
+        height: 20 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: 33
+        anchors.horizontalCenterOffset: 33 * scaleFactor
         placeholderText: "-Baseline"
         validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
         CustomTextField {
         id: paXmax
-        y: 60
-        width: 95
-        height: 20
+        y: 60 * scaleFactor
+        width: 95 * scaleFactor
+        height: 20 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: 33
+        anchors.horizontalCenterOffset: 33 * scaleFactor
         placeholderText: "None"
         validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
         CustomTextField {
         id: paYmin
-        y: 86
-        width: 95
-        height: 20
+        y: 86 * scaleFactor
+        width: 95 * scaleFactor
+        height: 20 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: 33
+        anchors.horizontalCenterOffset: 33 * scaleFactor
         placeholderText: "25"
         validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
         CustomTextField {
         id: paYmax
-        y: 112
-        width: 95
-        height: 20
+        y: 112 * scaleFactor
+        width: 95 * scaleFactor
+        height: 20 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: 33
+        anchors.horizontalCenterOffset: 33 * scaleFactor
         placeholderText: "225"
         validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
         Label {
         id: xMinLabel
-        x: 18
+        x: 18 * scaleFactor
         color: "#087589"
         text: qsTr("X-Min.")
         anchors.verticalCenter: paXmin.verticalCenter
         anchors.right: paXmin.left
-        anchors.rightMargin: 17
+        font.pointSize: 9 * scaleFactor
+        anchors.rightMargin: 17 * scaleFactor
         anchors.verticalCenterOffset: 0
         font.family: "PragmaticaLightC"
         }
 
         Label {
         id: xMaxLabel
-        x: 18
-        width: 39
-        height: 14
+        x: 18 * scaleFactor
+        width: 39 * scaleFactor
+        height: 14 * scaleFactor
         color: "#087589"
         text: qsTr("X-Max.")
+        font.pointSize: 9 * scaleFactor
         anchors.verticalCenter: paXmax.verticalCenter
         anchors.right: paXmax.left
-        anchors.rightMargin: 17
+        anchors.rightMargin: 17 * scaleFactor
         anchors.verticalCenterOffset: 0
         font.family: "PragmaticaLightC"
         }
 
         Label {
         id: yMinLabel
-        x: 19
+        x: 19 * scaleFactor
         color: "#087589"
         text: qsTr("Y-Min.")
+        font.pointSize: 9 * scaleFactor
         anchors.verticalCenter: paYmin.verticalCenter
         anchors.right: paYmin.left
-        anchors.rightMargin: 17
+        anchors.rightMargin: 17 * scaleFactor
         anchors.verticalCenterOffset: 0
         font.family: "PragmaticaLightC"
         }
 
         Label {
         id: yMaxLabel
-        x: 16
+        x: 16 * scaleFactor
         color: "#087589"
         text: qsTr("Y-Max.")
+        font.pointSize: 9 * scaleFactor
         anchors.verticalCenter: paYmax.verticalCenter
         anchors.right: paYmax.left
-        anchors.rightMargin: 17
+        anchors.rightMargin: 17 * scaleFactor
         anchors.verticalCenterOffset: 0
         font.family: "PragmaticaLightC"
         }
 
         Rectangle {
         id: paDropShadow
-        x: 2
-        y: 2
-        height: 740
+        x: 2 * scaleFactor
+        y: 2 * scaleFactor
+        height: 740 * scaleFactor
         opacity: 0.25
         visible: true
         color: "#000000"
@@ -214,10 +219,10 @@ color: "#4089f7fe"
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.topMargin: 2
-        anchors.rightMargin: -2
-        anchors.bottomMargin: -2
-        anchors.leftMargin: 2
+        anchors.topMargin: 2 * scaleFactor
+        anchors.rightMargin: -2 * scaleFactor
+        anchors.bottomMargin: -2 * scaleFactor
+        anchors.leftMargin: 2 * scaleFactor
         z: -3
         clip: true
         }
