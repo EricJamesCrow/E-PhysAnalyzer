@@ -14,6 +14,7 @@ class Backend(QObject):
     addObject = Signal(str)
     animateObject = Signal(int)
     newRegion = Signal(str, str)
+    adjustHeight = Signal()
     destroyMsg = Signal()
     starting_animation_time = 0.2
     object_animation_time = 0.1  
@@ -22,6 +23,10 @@ class Backend(QObject):
     def run_starting_animation(self):
         starting_animation = StartingAnimation()
         starting_animation.start()
+
+    @Slot()
+    def adjust_region_height(self):
+        self.adjustHeight.emit()
 
     @Slot(list)
     def create_objects(self, selected_files):

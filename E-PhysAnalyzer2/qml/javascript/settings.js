@@ -10,7 +10,6 @@ function adjustRegionHeight(scale) {
     regionAxis = 5 * scale
     for(let i=0; i<regionObjects.length; i++) {
         regionObjects[i].y = regionAxis
-        console.log(regionObjects[i].y)
         regionAxis += 22 * scale
 }
 }

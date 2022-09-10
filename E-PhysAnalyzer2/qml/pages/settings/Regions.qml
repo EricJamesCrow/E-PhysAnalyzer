@@ -31,7 +31,6 @@ Rectangle {
     Connections {
         target: mainWindow
         function onAdjustHeight(scale) {
-            console.log("This is triggered")
             Settings.adjustRegionHeight(scale)
         }
     }

@@ -17,6 +17,13 @@ Window {
     property var scaleFactor: settings.scaleFactor
     onScaleFactorChanged: adjustHeight(scaleFactor)
 
+    Connections {
+        target: backend
+        function onAdjustHeight(){
+            adjustHeight(scaleFactor)
+        }
+    }
+
     Settings {
         id: settings
         // Functionality

@@ -58,6 +58,7 @@ function deserialize(settingsObject) {
         regionObjects.slice(-1)[0].regionNumber = jsonObject["Index"]
         regionObjects.slice(-1)[0].y = jsonObject["Position"][0]
         regionObjects.slice(-1)[0].y = regionObjects.slice(-1)[0].y * scaleFactor
+        console.log(regionObjects.slice(-1)[0].y)
         regionObjects.slice(-1)[0].z = jsonObject["Position"][1]
         regionObjects.slice(-1)[0].greaterThanEqualToText = jsonObject["Values"][0]
         regionObjects.slice(-1)[0].lessThanText = jsonObject["Values"][1] 
@@ -65,12 +66,8 @@ function deserialize(settingsObject) {
         regionObjects.slice(-1)[0].colorName = jsonObject["Colors"][1].toString()
         regionAxis += 22 * scaleFactor
             }
-        settingsObject = []
-    // regionAxis = 5 * scaleFactor
-    // for (let i=0; i<regionObjects.length; i++) {
-    //     regionObjects[i].y = regionAxis // For loop is necessary if scaleFactor is ever changed
-    //     regionAxis += 22 * scaleFactor
-    // }
+    settingsObject = []
+    backend.adjust_region_height()
 }
 
 
