@@ -12,9 +12,9 @@ from uncertainties import ufloat
 # import numpy as np
 
 class MainProgram:
-    def calc_standard_dev(self, files, excludedTraces):
+    def calc_standard_dev(self, file, excludedTraces):
         '''Calculates standard deviation for all the values in the file and uses them throughout the analysis.'''
-        with open(files, 'r') as atfFile:
+        with open(file, 'r') as atfFile:
             for _ in range(3): atfFile.readline()
             totalPA = 0
             totalTraces = 0
@@ -41,9 +41,9 @@ class MainProgram:
         self.z_score = ((abs(float(peakAmp)) - self.mean) / self.standDev)
         return str(self.z_score)
 
-    def calc_traces_per_min(self, files):
+    def calc_traces_per_min(self, file):
         '''Calculates initial time offset, time between traces in minutes, and number of traces per minute.'''
-        with open(files, 'r') as atfFile:
+        with open(file, 'r') as atfFile:
             for _ in range(3): atfFile.readline()
             time_list_min = []
             self.offset_start = 0
@@ -58,32 +58,31 @@ class MainProgram:
             traces_per_minute = round(1 / self.time_between_traces_min)
             return traces_per_minute
 
-    def analyze_data(self, files, drug_name: str, when_drug: int, excluded_traces: list, z_limit: int,
+    def analyze_data(self, file, drug_name: str, when_drug: int, excluded_traces: list, z_limit: int,
                         z_checking: bool, user_baseline: int, color_regions_dict: dict, default_color: str):
         '''Analyzes the data file to create the .tsv files for use by the graphing software'''
         
         # if removing values based on standard deviations from mean, this calculates both values
-        if z_checking: self.calc_standard_dev(files, excluded_traces)
+        self.calc_standard_dev(file, excluded_traces)
         
         # initializing variables used
+        traces_per_minute = self.calc_traces_per_min(file)
         baseline_start = when_drug - (user_baseline * traces_per_minute + 1)
-        traces_per_minute = self.calc_traces_per_min(files)
         excluded_traces = list(map(int, excluded_traces))
         exTracesInBaseine = []
         ampTotal = 0
         traces_in_baseline = 0
-        timeInMinutes = []
-        with open(files, 'r') as atf_file:
+        with open(file, 'r') as atf_file:
 
             # looks for excluded traces that occur in the baseline time period and append the list
             for exTrace in excluded_traces:
                 if int(exTrace) in range(baseline_start, when_drug): exTracesInBaseine.append(int(exTrace))
             
+            # reads past the headers in first 3 lines
+            for _ in range(3): atf_file.readline()
+            
             for line in atf_file:
                 
-                # reads past the headers in first 3 lines
-                for _ in range(3): atf_file.readline()
-
                 # initializes variables from each line in the file
                 tsv = line.strip().split('\t')
                 trace = int(tsv[1])
@@ -113,7 +112,7 @@ class MainProgram:
             for _ in range(3): atf_file.readline()
 
             # analyzes the data and writes to a new file
-            with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'w') as newTSV:
+            with open('Post_Analysis.tsv', 'w') as newTSV:
 
                 # write the headers of the data file
                 newTSV.write('\t'.join(['Trace', 'Trace Start (ms)', 'Trace Start (minutes)', 'R1S1 Peak Amp (pA)',
@@ -131,10 +130,12 @@ class MainProgram:
                     absolute_amp = abs(float(peak_amp))
                     normalized_amp = absolute_amp / baseline * 100
                     time_in_minutes = (float(trace_time) - float(self.offset_start)) / 60000
+                    time_from_drug = time_in_minutes - (float(when_drug)) / traces_per_minute
+                    last_region = False
                     
                     # sets up regions to apply certian color filters
-                    current_region = 'region'+str(region_number)
-                    next_region = 'region'+str(region_number+1)
+                    current_region = str(region_number)
+                    next_region = str(region_number+1)
                     try:
                         _ = color_regions_dict[next_region]
                     except KeyError:
@@ -142,49 +143,61 @@ class MainProgram:
                     except:
                         print('I do not work properly (I\'m at line 140 in Analysis.py). Come find me bitch!')
 
-                    if time_in_minutes < color_regions_dict[current_region][0]:
-                        color = default_color
-                    elif time_in_minutes >= color_regions_dict[current_region][0] and time_in_minutes < color_regions_dict[current_region][1]:
-                        color = color_regions_dict[current_region][2]
-                    elif not last_region and time_in_minutes >= color_regions_dict[next_region][1] and time_in_minutes < color_regions_dict[next_region][1]:
-                        color = color_regions_dict[next_region][2]
-                        region_number += 1
+                    if not last_region:
+                        if time_from_drug < color_regions_dict[current_region][0]:
+                            color = default_color
+                        elif time_from_drug >= color_regions_dict[current_region][0] and time_from_drug < color_regions_dict[current_region][1]:
+                            color = color_regions_dict[current_region][2]
+                        elif time_from_drug >= color_regions_dict[current_region][1] and time_from_drug < color_regions_dict[next_region][0]:
+                            color = default_color
+                            region_number += 1
+                        elif time_from_drug >= color_regions_dict[next_region][0] and time_from_drug < color_regions_dict[next_region][1]:
+                            color = color_regions_dict[next_region][2]
+                            region_number += 1
+                        else:
+                            color = default_color
+                    elif last_region:
+                        if time_from_drug < color_regions_dict[current_region][0]:
+                            color = default_color
+                        elif time_from_drug >= color_regions_dict[current_region][0] and time_from_drug < color_regions_dict[current_region][1]:
+                            color = color_regions_dict[current_region][2]
+                        elif time_from_drug >= color_regions_dict[current_region][1]:
+                            color = default_color
+                        else:
+                            print("shits broken bro at last region section line 166")
                     else:
-                        color = default_color
+                        print("wtf is happening rn line 145")
+
 
                     # if the trace is part of the excluded traces, or is going to be ignored for its z-score
                     # then the file will skip through the lines and ignore them
-                    if z_checking and abs(float(self.calc_z_score(self.mean, self.standDev, peak_amp)) > z_limit):
+                    if z_checking and abs(float(self.calc_z_score(peak_amp)) > z_limit):
                         continue
                     if trace_int in excluded_traces:
                         continue
+                    # since there is no '0' time point, we are removing that by noting when it becomes positive
+                    if time_from_drug >= 0:
+                        time_from_drug += (self.time_between_traces_min)
+                        newTSV.write('\t'.join(
+                            [str(trace), str(trace_time), str(time_in_minutes),
+                                str(peak_amp), str(absolute_amp), str(normalized_amp),
+                                str(time_from_drug)]))
+                        newTSV.write('\t' + color + '\t' + self.calc_z_score(peak_amp) + '\n')
+
+                    # anytime before the '0' time point
                     else:
-                        # time from drug calculation based on given metrics
-                        time_from_drug = timeInMinutes - (float(when_drug)-1) / traces_per_minute
-
-                        # since there is no '0' time point, we are removing that by noting when it becomes positive
-                        if time_from_drug >= 0:
-                            time_from_drug += (self.time_between_traces_min)
-                            newTSV.write('\t'.join(
-                                [str(trace), str(trace_time), str(timeInMinutes),
-                                 str(peak_amp), str(absolute_amp), str(normalized_amp),
-                                 str(time_from_drug)]))
-                            newTSV.write('\t' + color + '\t' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
-
-                        # anytime before the '0' time point
-                        else:
-                            newTSV.write('\t'.join(
-                                [str(trace), str(trace_time), str(timeInMinutes),
-                                 str(peak_amp), str(absolute_amp), str(normalized_amp),
-                                 str(time_from_drug)]))
-                            newTSV.write(
-                                '\t' + color + '\t' + self.calc_z_score(self.mean, self.standDev, peak_amp) + '\n')
+                        newTSV.write('\t'.join(
+                            [str(trace), str(trace_time), str(time_in_minutes),
+                                str(peak_amp), str(absolute_amp), str(normalized_amp),
+                                str(time_from_drug)]))
+                        newTSV.write(
+                            '\t' + color + '\t' + self.calc_z_score(peak_amp) + '\n')
 
 
-        with open(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averaged.tsv'), 'w') as minute_averaged_tsv:
-            with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'r') as full_analysis_tsv:
+        with open('Minute_Averaged.tsv', 'w') as minute_averaged_tsv:
+            with open('Post_Analysis.tsv', 'r') as full_analysis_tsv:
                 minute_averaged_tsv.write(
-                    f"Time from {drug_name} Addition (min),Abs Val R1S1 Peak Amp Normalized to Baseline (pA),Trace Numbers Used in Average,Color Code\n")
+                    f"Time from {drug_name} Addition (min)\tAbs Val R1S1 Peak Amp Normalized to Baseline (pA)\tTrace Numbers Used in Average\tColor Code\n")
                 minuteTimes = []
                 traceNumbers = []
                 traces = ''
@@ -196,7 +209,7 @@ class MainProgram:
                 full_analysis_tsv.readline()
 
                 for line in full_analysis_tsv:
-                    tsv = line.strip().split(',')
+                    tsv = line.strip().split('\t')
                     time_from_drug = tsv[6]
                     normalized_amplitude = tsv[5]
                     trace = tsv[0]
@@ -209,7 +222,7 @@ class MainProgram:
                         for entry in range(0, len(minuteTimes)): total += float(minuteTimes[entry])
                         avg = total / len(minuteTimes)
                         traces = ' '.join(traceNumbers)
-                        minute_averaged_tsv.write(','.join([str(drugTime), str(float(avg)), traces, color]) + '\n')
+                        minute_averaged_tsv.write('\t'.join([str(drugTime), str(float(avg)), traces, color]) + '\n')
                         total = 0
                         traces = ''
                         minuteTimes = []
@@ -227,16 +240,16 @@ class MainProgram:
                 if len(minuteTimes) > 0:
                     traces = ' '.join(traceNumbers)
                     avg = total / len(minuteTimes)
-                    minute_averaged_tsv.write(','.join([str(int(drugTime)), str(float(avg)), traces, color]) + '\n')
+                    minute_averaged_tsv.write('\t'.join([str(int(drugTime)), str(float(avg)), traces, color]) + '\n')
 
-    def make_graphs(self, dpi, baseline, baseline_color, axis_limits):
+    def make_graphs(self, dpi: int, baseline: bool, baseline_color: str, axis_limits: list):
         # Creates the Minute Averaged graph
-        with open(os.path.join(self.path, self.base_name_no_ext + ' Minute Averaged.csv'), 'r') as data:
-            gdata = pd.read_csv(data)
+        with open('Minute_Averaged.tsv', 'r') as data:
+            gdata = pd.read_csv(data, sep = '\t')
             headers = list(gdata.columns)
-            sns.set(rc={'savefig.dpi': int(dpi)})
+            sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
-            color_list = []
+            color_list = []            
             for index, row in gdata.iterrows():
                 if row[headers[3]] not in color_list: color_list.append(row[headers[3]])
             sns.set_palette(sns.color_palette(color_list))
@@ -248,18 +261,18 @@ class MainProgram:
                 basedline = False
             g.set(xlim=(axis_limits[0], axis_limits[1]))
             g.set(ylim=(axis_limits[2], axis_limits[3]))
-            g.set(title=f"{self.base_name_no_ext} Minute Averages Normalized to Baseline")
+            g.set(title=f"Minute Averages Normalized to Baseline")
             sns.despine()
             graph1 = g.get_figure()
-            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + ' Minute Averages.png'))
+            graph1.savefig('Minute_Averages.png')
             importlib.reload(plt)
             importlib.reload(sns)
 
             # Creates the Post Analysis graph
-            with open(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis.csv'), 'r') as data2:
-                gdata2 = pd.read_csv(data2)
+            with open('Post_Analysis.tsv', 'r') as data2:
+                gdata2 = pd.read_csv(data2, sep = '\t')
                 headers2 = list(gdata2.columns)
-                sns.set(rc={'savefig.dpi': int(dpi)})
+                sns.set(rc={'savefig.dpi': dpi})
                 sns.set_theme(style='ticks')
                 color_list2 = []
                 for index, row in gdata2.iterrows():
@@ -273,11 +286,32 @@ class MainProgram:
                     g2.axhline(baseline_int, color=baseline_color).set_linestyle("--")
                 else:
                     pass
-                g2.set(title=f"{self.base_name_no_ext} Peak Amplitude Over Time")
+                g2.set(title=f"Peak Amplitude Over Time")
                 g2.set(xlim=(axis_limits[4], axis_limits[5]))
                 g2.set(ylim=(axis_limits[6], axis_limits[7]))
                 sns.despine()
                 graph2 = g2.get_figure()
-                graph2.savefig(os.path.join(self.path, self.base_name_no_ext + ' Post Analysis Graph.png'))
+                graph2.savefig('Post_Analysis.png')
                 importlib.reload(plt)
                 importlib.reload(sns)
+
+
+file = 'C:/Users/CAM/Desktop/atf_test_files/test.atf'
+drug_name = 'SNAP'
+when_drug = 45
+excluded_traces = []
+z_limit = 2.5
+z_checking = False
+user_baseline = 10
+color_regions_dict = {'0': [0,5,'red'], '1': [5,10,'blue'], '2': [20,30,'purple']}
+default_color = 'grey'
+main_program = MainProgram()
+main_program.analyze_data(file, drug_name, when_drug, excluded_traces, z_limit, z_checking, user_baseline, color_regions_dict, default_color)
+dpi = 300
+baseline = 10
+baseline_color = 'purple'
+axis_limits = [-user_baseline, 30, 25, 225, -user_baseline, 30, 25, 225]
+
+
+main_program.make_graphs(dpi, baseline, baseline_color, axis_limits)
+
