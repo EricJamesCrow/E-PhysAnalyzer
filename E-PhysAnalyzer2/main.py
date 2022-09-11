@@ -19,6 +19,10 @@ class Backend(QObject):
     starting_animation_time = 0.2
     object_animation_time = 0.1
 
+    @Slot(list)
+    def run_analyze_data(self, files):
+        print(files)
+
     @Slot()
     def run_starting_animation(self):
         starting_animation = StartingAnimation()

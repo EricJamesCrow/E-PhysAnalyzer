@@ -1,44 +1,44 @@
-function startDeserialization(graphSettings, postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
-    runDeserialization(graphSettings.objects1, graphSettings.regionAxis1);
-    setSettings1(postAnalysis, minuteAveraged, graphQuality, baseline, zscore)
-    backend.run_starting_animation()
+class Settings {
+    constructor(objects, axis, xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax, single, quality, dpi, defaultColor, color, time, display, remove, score){
+        this.objects = objects;
+        this.axis = axis;
+        this.xmin = xmin;
+        this.xmax = xmax;
+        this.ymin = ymin;
+        this.ymax = ymax;
+        this.maxmin = maxmin;
+        this.maxmax = maxmax;
+        this.maymin = maymin;
+        this.maymax = maymax;
+        this.single = single;
+        this.quality = quality;
+        this.dpi = dpi;
+        this.defaultColor = defaultColor;
+        this.color = color;
+        this.time = time;
+        this.display = display;
+        this.remove = remove;
+        this.score = score;
+    }
+    deserialization(){
+        runDeserialization(this.objects, this.axis);
+        return this
+    }
+    setSettings(){
+        postAnalysisSettings(this.xmin,this.xmax,this.ymin,this.ymax);
+        minuteAveragedSettings(this.maxmin,this.maxmax,this.maymin,this.maymax);
+        graphQualitySettings(this.single, this.quality, this.dpi, this.defaultColor);
+        baselineSettings(this.color, this.time, this.display);
+        return this
+    }
+    load(){
+        backend.run_starting_animation();
+    }
 }
 
-function startDeserialization2(graphSettings, postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
-    runDeserialization(graphSettings.objects2, graphSettings.regionAxis2);
-    setSettings2(postAnalysis, minuteAveraged, graphQuality, baseline, zscore)
-    backend.run_starting_animation()
-}
-
-function startDeserialization3(graphSettings, postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
-    runDeserialization3(graphSettings.objects3, graphSettings.regionAxis3);
-    setSettings3(postAnalysis, minuteAveraged, graphQuality, baseline, zscore)
-    backend.run_starting_animation()
-}
-
-// NEED TO REWRITE THESE AS ONE FUNCTION !!!!!
-function setSettings1(postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
-    postAnalysisSettings(postAnalysis.xmin,postAnalysis.xmax,postAnalysis.ymin,postAnalysis.ymax);
-    minuteAveragedSettings(minuteAveraged.maxmin,minuteAveraged.maxmax,minuteAveraged.maymin,minuteAveraged.maymax);
-    graphQualitySettings(graphQuality.single, graphQuality.quality, graphQuality.dpi, graphQuality.defaultColor);
-    baselineSettings(baseline.color, baseline.time, baseline.display);
-    zscoreSettings(zscore.remove, zscore.score);
-}
-
-function setSettings2(postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
-    postAnalysisSettings(postAnalysis.xmin2,postAnalysis.xmax2,postAnalysis.ymin2,postAnalysis.ymax2);
-    minuteAveragedSettings(minuteAveraged.maxmin2,minuteAveraged.maxmax2,minuteAveraged.maymin2,minuteAveraged.maymax2);
-    graphQualitySettings(graphQuality.single2, graphQuality.quality2, graphQuality.dpi2, graphQuality.defaultColor2);
-    baselineSettings(baseline.color2, baseline.time2, baseline.display2);
-    zscoreSettings(zscore.remove2, zscore.score2);
-}
-
-function setSettings3(postAnalysis, minuteAveraged, graphQuality, baseline, zscore) {
-    postAnalysisSettings(postAnalysis.xmin3,postAnalysis.xmax3,postAnalysis.ymin3,postAnalysis.ymax3);
-    minuteAveragedSettings(minuteAveraged.maxmin3,minuteAveraged.maxmax3,minuteAveraged.maymin3,minuteAveraged.maymax3);
-    graphQualitySettings(graphQuality.single3, graphQuality.quality3, graphQuality.dpi3, graphQuality.defaultColor3);
-    baselineSettings(baseline.color3, baseline.time3, baseline.display3);
-    zscoreSettings(zscore.remove3, zscore.score3);
+function startDeserialization(objects, axis, xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax, single, quality, dpi, defaultColor, color, time, display, remove, score) {
+    var settings = new Settings(objects, axis, xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax, single, quality, dpi, defaultColor, color, time, display, remove, score);
+    return settings.deserialization().setSettings().load()
 }
 
 function serialize() {
@@ -68,8 +68,6 @@ function deserialize(settingsObject) {
     settingsObject = []
     backend.adjust_region_height()
 }
-
-
 
 function animate(object) {
     var objects = {

@@ -5,17 +5,21 @@ import "../controls/custom"
 import "../controls/buttons"
 import "settings"
 import "../javascript/graph-settings.js" as GraphSettings
+import "../javascript/run-analysis.js" as Analysis
 
 Item {
     id: settingsPage3
     // Properties for editing
 //    width: 663 * scaleFactor
 //    height: 704 * scaleFactor
-    Component.onCompleted: GraphSettings.startDeserialization3(graphSettings3, postAnalysisSettings3, minuteAveragedSettings3, graphQualitySettings3, baselineSettings3, zscoreSettings3)
+    Component.onCompleted: GraphSettings.startDeserialization(graphSettings3.objects3, graphSettings3.regionAxis3, postAnalysisSettings3.xmin3, postAnalysisSettings3.xmax3, postAnalysisSettings3.ymin3, postAnalysisSettings3.ymax3,
+                                                              minuteAveragedSettings3.maxmin3, minuteAveragedSettings3.maxmax3, minuteAveragedSettings3.maymin3, minuteAveragedSettings3.maymax3,graphQualitySettings3.single3,
+                                                              graphQualitySettings3.quality3,graphQualitySettings3.dpi3,graphQualitySettings3.defaultColor3, baselineSettings3.color3,
+                                                              baselineSettings3.time3,baselineSettings3.display3, zscoreSettings3.remove3, zscoreSettings3.score3)
     Component.onDestruction: runSerialization3()
 
     signal runSerialization3()
-    signal runDeserialization3(var objects)
+    signal runDeserialization(var objects)
     signal postAnalysisSettings(string xmin, string xmax, string ymin, string ymax)
     signal minuteAveragedSettings(string xmin, string xmax, string ymin, string ymax)
     signal graphQualitySettings(bool single, int quality, string dpi, string defaultColor)
@@ -48,6 +52,13 @@ Item {
         function onEmitSerializedObjects3(objects, axis) {
             graphSettings3.objects3 = objects
             graphSettings3.regionAxis3 = axis
+        }
+    }
+
+    Connections {
+        target: content
+        function onGetGraphSettings() {
+            Analysis.grabZscore(zscoreSettings3)
         }
     }
 

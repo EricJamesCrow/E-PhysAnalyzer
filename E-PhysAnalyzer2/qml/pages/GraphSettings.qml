@@ -5,13 +5,17 @@ import "../controls/custom"
 import "../controls/buttons"
 import "settings"
 import "../javascript/graph-settings.js" as GraphSettings
+import "../javascript/run-analysis.js" as Analysis
 
 Item {
     id: settingsPage1
     // Properties for editing
     width: 663 * scaleFactor
     height: 704 * scaleFactor
-    Component.onCompleted: GraphSettings.startDeserialization(graphSettings1, postAnalysisSettings1, minuteAveragedSettings1, graphQualitySettings1, baselineSettings1, zscoreSettings1)
+    Component.onCompleted: GraphSettings.startDeserialization(graphSettings1.objects1, graphSettings1.regionAxis1, postAnalysisSettings1.xmin1, postAnalysisSettings1.xmax1, postAnalysisSettings1.ymin1, postAnalysisSettings1.ymax1,
+                                                              minuteAveragedSettings1.maxmin1, minuteAveragedSettings1.maxmax1, minuteAveragedSettings1.maymin1, minuteAveragedSettings1.maymax1,graphQualitySettings1.single1,
+                                                              graphQualitySettings1.quality1,graphQualitySettings1.dpi1,graphQualitySettings1.defaultColor1, baselineSettings1.color1,
+                                                              baselineSettings1.time1,baselineSettings1.display1, zscoreSettings1.remove1, zscoreSettings1.score1)
     Component.onDestruction: runSerialization()
 
     signal runSerialization()
@@ -45,6 +49,13 @@ Item {
         }
     }
 
+    Connections {
+        target: content
+        function onGetGraphSettings() {
+            Analysis.grabZscore(zscoreSettings1)
+        }
+    }
+
     Settings {
         id: graphSettings1
         property var objects1: []
@@ -53,39 +64,39 @@ Item {
 
     Settings {
         id: postAnalysisSettings1
-        property string xmin: ""
-        property string xmax: ""
-        property string ymin: ""
-        property string ymax: ""
+        property string xmin1: ""
+        property string xmax1: ""
+        property string ymin1: ""
+        property string ymax1: ""
     }
 
     Settings {
         id: minuteAveragedSettings1
-        property string maxmin: ""
-        property string maxmax: ""
-        property string maymin: ""
-        property string maymax: ""
+        property string maxmin1: ""
+        property string maxmax1: ""
+        property string maymin1: ""
+        property string maymax1: ""
     }
 
     Settings {
         id: graphQualitySettings1
-        property bool single: false
-        property int quality: 1
-        property string dpi: ""
-        property string defaultColor: ""
+        property bool single1: false
+        property int quality1: 1
+        property string dpi1: ""
+        property string defaultColor1: ""
     }
 
     Settings {
         id: baselineSettings1
-        property string color: ""
-        property string time: ""
-        property bool display: true
+        property string color1: ""
+        property string time1: ""
+        property bool display1: true
     }
 
     Settings {
         id: zscoreSettings1
-        property bool remove: true
-        property string score: ""
+        property bool remove1: true
+        property string score1: ""
     }
 
 
@@ -154,10 +165,10 @@ Item {
 //            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
             // GraphSettings.qml
-            onXminChanged: postAnalysisSettings1.xmin = postAnalysisSection.xmin
-            onXmaxChanged: postAnalysisSettings1.xmax = postAnalysisSection.xmax
-            onYminChanged: postAnalysisSettings1.ymin = postAnalysisSection.ymin
-            onYmaxChanged: postAnalysisSettings1.ymax = postAnalysisSection.ymax
+            onXminChanged: postAnalysisSettings1.xmin1 = postAnalysisSection.xmin
+            onXmaxChanged: postAnalysisSettings1.xmax1 = postAnalysisSection.xmax
+            onYminChanged: postAnalysisSettings1.ymin1 = postAnalysisSection.ymin
+            onYmaxChanged: postAnalysisSettings1.ymax1 = postAnalysisSection.ymax
 
             OpacityAnimator on opacity {
                 id: postAnalysisOpacity
@@ -172,18 +183,18 @@ Item {
             id: minuteAveragedSection
 //            x: 19 * scaleFactor
             y: 236 * scaleFactor
-                        x: 279 * scaleFactor
-                        width: 177 * scaleFactor
+            x: 279 * scaleFactor
+            width: 177 * scaleFactor
 //            anchors.left: parent.left
 //            anchors.right: parent.right
 //            anchors.rightMargin: 207 * scaleFactor
 //            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
             // GraphSettings.qml
-            onXminChanged: minuteAveragedSettings1.maxmin = minuteAveragedSection.xmin
-            onXmaxChanged: minuteAveragedSettings1.maxmax = minuteAveragedSection.xmax
-            onYminChanged: minuteAveragedSettings1.maymin = minuteAveragedSection.ymin
-            onYmaxChanged: minuteAveragedSettings1.maymax = minuteAveragedSection.ymax
+            onXminChanged: minuteAveragedSettings1.maxmin1 = minuteAveragedSection.xmin
+            onXmaxChanged: minuteAveragedSettings1.maxmax1 = minuteAveragedSection.xmax
+            onYminChanged: minuteAveragedSettings1.maymin1 = minuteAveragedSection.ymin
+            onYmaxChanged: minuteAveragedSettings1.maymax1 = minuteAveragedSection.ymax
 
             OpacityAnimator on opacity {
                 id: minuteAveragedOpacity
@@ -208,10 +219,10 @@ Item {
 //            anchors.leftMargin: 473 * scaleFactor
             opacity: 0
             // GraphSettings.qml
-            onSingleChanged: graphQualitySettings1.single = colorCodeSection.single
-            onQualityChanged: graphQualitySettings1.quality = colorCodeSection.quality
-            onDpiChanged: graphQualitySettings1.dpi = colorCodeSection.dpi
-            onDefaultColorChanged: graphQualitySettings1.defaultColor = colorCodeSection.defaultColor
+            onSingleChanged: graphQualitySettings1.single1 = colorCodeSection.single
+            onQualityChanged: graphQualitySettings1.quality1 = colorCodeSection.quality
+            onDpiChanged: graphQualitySettings1.dpi1 = colorCodeSection.dpi
+            onDefaultColorChanged: graphQualitySettings1.defaultColor1 = colorCodeSection.defaultColor
 
             OpacityAnimator on opacity {
                 id: colorCodeOpacity
@@ -235,9 +246,9 @@ Item {
 //            anchors.leftMargin: 473 * scaleFactor
             opacity: 0
 //            // GraphSettings.qml
-//            onColorChanged: baselineSettings1.color = baselineSection.color
-//            onTimeChanged: baselineSettings1.time = baselineSection.time
-//            onDisplayChanged: baselineSettings1.display = baselineSection.display
+            onColorChanged: baselineSettings1.color1 = baselineSection.color
+            onTimeChanged: baselineSettings1.time1 = baselineSection.time
+            onDisplayChanged: baselineSettings1.display1 = baselineSection.display
 
             OpacityAnimator on opacity {
                 id: baselineOpacity
@@ -261,8 +272,8 @@ Item {
 //            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
 //            // GraphSettings.qml
-//            onRemoveChanged: zscoreSettings1.remove = zScoreSection.remove
-//            onScoreChanged: zscoreSettings1.score = zScoreSection.score
+            onRemoveChanged: zscoreSettings1.remove1 = zScoreSection.remove
+            onScoreChanged: zscoreSettings1.score1 = zScoreSection.score
 
             OpacityAnimator on opacity {
                 id: zScoreOpacity

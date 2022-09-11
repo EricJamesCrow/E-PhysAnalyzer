@@ -5,13 +5,17 @@ import "../controls/custom"
 import "../controls/buttons"
 import "settings"
 import "../javascript/graph-settings.js" as GraphSettings
+import "../javascript/run-analysis.js" as Analysis
 
 Item {
     id: settingsPage2
     // Properties for editing
 //    width: 663 * scaleFactor
 //    height: 704 * scaleFactor
-    Component.onCompleted: GraphSettings.startDeserialization2(graphSettings2, postAnalysisSettings2, minuteAveragedSettings2, graphQualitySettings2, baselineSettings2, zscoreSettings2)
+    Component.onCompleted: GraphSettings.startDeserialization(graphSettings2.objects2, graphSettings2.regionAxis2, postAnalysisSettings2.xmin2, postAnalysisSettings2.xmax2, postAnalysisSettings2.ymin2, postAnalysisSettings2.ymax2,
+                                                              minuteAveragedSettings2.maxmin2, minuteAveragedSettings2.maxmax2, minuteAveragedSettings2.maymin2, minuteAveragedSettings2.maymax2,graphQualitySettings2.single2,
+                                                              graphQualitySettings2.quality2,graphQualitySettings2.dpi2,graphQualitySettings2.defaultColor2, baselineSettings2.color2,
+                                                              baselineSettings2.time2,baselineSettings2.display2, zscoreSettings2.remove2, zscoreSettings2.score2)
     Component.onDestruction: runSerialization()
 
     signal runSerialization()
@@ -48,6 +52,13 @@ Item {
         function onEmitSerializedObjects2(objects, axis) {
             graphSettings2.objects2 = objects
             graphSettings2.regionAxis2 = axis
+        }
+    }
+
+    Connections {
+        target: content
+        function onGetGraphSettings() {
+            Analysis.grabZscore(zscoreSettings2)
         }
     }
 

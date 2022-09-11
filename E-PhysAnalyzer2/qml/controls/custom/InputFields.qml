@@ -5,6 +5,9 @@ import QtQuick.Controls 2.5
 Rectangle {
 
     property string file: ""
+    property string drugName: ""
+    property string traceNumber: ""
+    property string excludedTraces: ""
 
     id: objectBg
     height: 35 * scaleFactor
@@ -30,25 +33,27 @@ Rectangle {
             }
 
     CustomTextField {
-        id: drugName
+        id: drugNameTextField
         x: 213 * scaleFactor
         width: 128 * scaleFactor
         height: 20 * scaleFactor
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
+        onTextChanged: drugName = drugNameTextField.text
                     }
 
     CustomTextField {
-        id: traceNumber
+        id: traceNumberTextField
         x: 405 * scaleFactor
         width: 128 * scaleFactor
         height: 20 * scaleFactor
         anchors.verticalCenter: parent.verticalCenter
+        onTextChanged: traceNumber = traceNumberTextField.text
         validator: RegularExpressionValidator { regularExpression: /^[0-9]+$/ }
                     }
 
     CustomTextField {
-        id: excludedTraces
+        id: excludedTracesTextField
         x: 574 * scaleFactor
         width: 230 * scaleFactor
         height: 20 * scaleFactor
@@ -56,6 +61,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: 20 * scaleFactor
         anchors.verticalCenterOffset: 0
+        onTextChanged: excludedTraces = excludedTracesTextField.text
         validator: RegularExpressionValidator { regularExpression: /^[,0-9]+$/ }
                     }
 }

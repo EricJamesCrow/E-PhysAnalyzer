@@ -8,9 +8,11 @@ import "../controls/custom" // For creating dynamic object, delete this import s
 import "../javascript/input-fields.js" as InputFields
 import "../javascript/graph-settings.js" as GraphSettings
 import "../javascript/settings.js" as Settings
+import "../javascript/run-analysis.js" as Analysis
 //import Qt5Compat.GraphicalEffects
 
 Item {
+    id: content
     width: 1580 * scaleFactor
     height: 820 * scaleFactor
 
@@ -24,6 +26,7 @@ Item {
     property var filesBasename: []
     property int objectHeight: 10 * scaleFactor
     property int flickableContentHeight: 696 * scaleFactor
+    signal getGraphSettings()
 
     //List for graphsettings pages
     //May change this to a doubly linked list; ability to add pages
@@ -650,6 +653,7 @@ Item {
             y: 12 * scaleFactor
             width: 51 * scaleFactor
             height: 34 * scaleFactor
+            onClicked: getGraphSettings()/*backend.run_analyze_data(Analysis.grabFiles())*/
 
 
         }
@@ -682,6 +686,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.25}D{i:44}
+    D{i:0;formeditorZoom:0.25}
 }
 ##^##*/
