@@ -352,7 +352,7 @@ Window {
                             anchors.rightMargin: 0
                             anchors.leftMargin: 0
                             anchors.topMargin: 0
-                            onClicked: {App.displayDropDownMenuPages("about"); backend.get_recent_commits()}
+                            onClicked: {App.displayDropDownMenuPages("about")}
 
                         }
 
@@ -542,45 +542,6 @@ Window {
                 }
                 clip: true
             }
-
-
-
-            ProfilesPage {
-                id: profilesPage
-                x: 610 * scaleFactor
-                y: 114 * scaleFactor
-                width: 396 * scaleFactor
-                height: 660 * scaleFactor
-                visible: false
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                z: 1
-                MouseArea {
-                    id: profilesPageMouseArea
-                    anchors.fill: parent
-                }
-                clip: true
-            }
-
-
-
-            LogoutPage {
-                id: logoutPage
-                x: 618 * scaleFactor
-                y: 120 * scaleFactor
-                width: 500 * scaleFactor
-                height: 150 * scaleFactor
-                visible: false
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                z: 1
-                MouseArea {
-                    id: logoutPageMouseArea
-                    anchors.fill: parent
-                }
-                clip: true
-            }
-
 
 
             Rectangle {
