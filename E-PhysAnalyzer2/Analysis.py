@@ -296,7 +296,7 @@ class MainProgram:
                 importlib.reload(sns)
 
 
-file = 'C:/Users/CAM/Desktop/atf_test_files/test.atf'
+file = 'test.atf'
 drug_name = 'SNAP'
 when_drug = 45
 excluded_traces = []
