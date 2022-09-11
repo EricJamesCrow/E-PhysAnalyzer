@@ -130,7 +130,7 @@ class MainProgram:
                     absolute_amp = abs(float(peak_amp))
                     normalized_amp = absolute_amp / baseline * 100
                     time_in_minutes = (float(trace_time) - float(self.offset_start)) / 60000
-                    time_from_drug = time_in_minutes - (float(when_drug)) / traces_per_minute
+                    time_from_drug = time_in_minutes - (float(when_drug-1)) / traces_per_minute
                     last_region = False
                     
                     # sets up regions to apply certian color filters
@@ -310,7 +310,7 @@ main_program.analyze_data(file, drug_name, when_drug, excluded_traces, z_limit, 
 dpi = 300
 baseline = 10
 baseline_color = 'purple'
-axis_limits = [-user_baseline, 30, 25, 225, -user_baseline, 30, 0, 1000]
+axis_limits = [-user_baseline, 30, 25, 225, None, None, 0, None]
 
 
 main_program.make_graphs(dpi, baseline, baseline_color, axis_limits)
