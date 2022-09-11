@@ -188,6 +188,7 @@ Rectangle {
         contentHeight: 444 * scaleFactor
         ScrollBar.vertical: CustomScrollBar {
             width: 10 * scaleFactor
+            opacity: 0
         }
 
         Rectangle {

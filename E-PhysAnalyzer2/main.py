@@ -17,7 +17,7 @@ class Backend(QObject):
     adjustHeight = Signal()
     destroyMsg = Signal()
     starting_animation_time = 0.2
-    object_animation_time = 0.1  
+    object_animation_time = 0.1
 
     @Slot()
     def run_starting_animation(self):
