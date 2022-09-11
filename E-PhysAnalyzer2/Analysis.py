@@ -244,29 +244,29 @@ class MainProgram:
 
     def make_graphs(self, dpi: int, baseline: bool, baseline_color: str, axis_limits: list):
         # Creates the Minute Averaged graph
-        with open('Minute_Averaged.tsv', 'r') as data:
-            gdata = pd.read_csv(data, sep = '\t')
-            headers = list(gdata.columns)
-            sns.set(rc={'savefig.dpi': dpi})
-            sns.set_theme(style='ticks')
-            color_list = []            
-            for index, row in gdata.iterrows():
-                if row[headers[3]] not in color_list: color_list.append(row[headers[3]])
-            sns.set_palette(sns.color_palette(color_list))
-            g = sns.scatterplot(x=headers[0], y=headers[1], hue=headers[3], data=gdata, legend=False)
-            if baseline:
-                g.axhline(100, color=baseline_color).set_linestyle("--")
-                basedline = True
-            else:
-                basedline = False
-            g.set(xlim=(axis_limits[0], axis_limits[1]))
-            g.set(ylim=(axis_limits[2], axis_limits[3]))
-            g.set(title=f"Minute Averages Normalized to Baseline")
-            sns.despine()
-            graph1 = g.get_figure()
-            graph1.savefig('Minute_Averages.png')
-            importlib.reload(plt)
-            importlib.reload(sns)
+        # with open('Minute_Averaged.tsv', 'r') as data:
+        #     gdata = pd.read_csv(data, sep = '\t')
+        #     headers = list(gdata.columns)
+        #     sns.set(rc={'savefig.dpi': dpi})
+        #     sns.set_theme(style='ticks')
+        #     color_list = []            
+        #     for index, row in gdata.iterrows():
+        #         if row[headers[3]] not in color_list: color_list.append(row[headers[3]])
+        #     sns.set_palette(sns.color_palette(color_list))
+        #     g = sns.scatterplot(x=headers[0], y=headers[1], hue=headers[3], data=gdata, legend=False)
+        #     if baseline:
+        #         g.axhline(100, color=baseline_color).set_linestyle("--")
+        #         basedline = True
+        #     else:
+        #         basedline = False
+        #     g.set(xlim=(axis_limits[0], axis_limits[1]))
+        #     g.set(ylim=(axis_limits[2], axis_limits[3]))
+        #     g.set(title=f"Minute Averages Normalized to Baseline")
+        #     sns.despine()
+        #     graph1 = g.get_figure()
+        #     graph1.savefig('Minute_Averages.png')
+        #     importlib.reload(plt)
+        #     importlib.reload(sns)
 
         # Creates the Post Analysis graph
         with open('Post_Analysis.tsv', 'r') as data2:
@@ -282,7 +282,7 @@ class MainProgram:
             baseline_string = re.split("\(|\)", headers2[5])
             baseline = float(baseline_string[1])
             baseline_int = int(baseline)
-            if basedline:
+            if baseline:
                 g2.axhline(baseline_int, color=baseline_color).set_linestyle("--")
             else:
                 pass
