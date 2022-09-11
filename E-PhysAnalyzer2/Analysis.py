@@ -268,32 +268,32 @@ class MainProgram:
             importlib.reload(plt)
             importlib.reload(sns)
 
-            # Creates the Post Analysis graph
-            with open('Post_Analysis.tsv', 'r') as data2:
-                gdata2 = pd.read_csv(data2, sep = '\t')
-                headers2 = list(gdata2.columns)
-                sns.set(rc={'savefig.dpi': dpi})
-                sns.set_theme(style='ticks')
-                color_list2 = []
-                for index, row in gdata2.iterrows():
-                    if row[headers2[7]] not in color_list2: color_list2.append(row[headers2[7]])
-                sns.set_palette(sns.color_palette(color_list2))
-                g2 = sns.scatterplot(x=headers2[6], y=headers2[4], data=gdata2, hue=headers2[7], legend=False)
-                baseline_string = re.split("\(|\)", headers2[5])
-                baseline = float(baseline_string[1])
-                baseline_int = int(baseline)
-                if basedline:
-                    g2.axhline(baseline_int, color=baseline_color).set_linestyle("--")
-                else:
-                    pass
-                g2.set(title=f"Peak Amplitude Over Time")
-                g2.set(xlim=(axis_limits[4], axis_limits[5]))
-                g2.set(ylim=(axis_limits[6], axis_limits[7]))
-                sns.despine()
-                graph2 = g2.get_figure()
-                graph2.savefig('Post_Analysis.png')
-                importlib.reload(plt)
-                importlib.reload(sns)
+        # Creates the Post Analysis graph
+        with open('Post_Analysis.tsv', 'r') as data2:
+            gdata2 = pd.read_csv(data2, sep = '\t')
+            headers2 = list(gdata2.columns)
+            sns.set(rc={'savefig.dpi': dpi})
+            sns.set_theme(style='ticks')
+            color_list2 = []
+            for index, row in gdata2.iterrows():
+                if row[headers2[7]] not in color_list2: color_list2.append(row[headers2[7]])
+            sns.set_palette(sns.color_palette(color_list2))
+            g2 = sns.scatterplot(x=headers2[6], y=headers2[4], data=gdata2, hue=headers2[7], legend=False)
+            baseline_string = re.split("\(|\)", headers2[5])
+            baseline = float(baseline_string[1])
+            baseline_int = int(baseline)
+            if basedline:
+                g2.axhline(baseline_int, color=baseline_color).set_linestyle("--")
+            else:
+                pass
+            g2.set(title=f"Peak Amplitude Over Time")
+            g2.set(xlim=(axis_limits[4], axis_limits[5]))
+            g2.set(ylim=(axis_limits[6], axis_limits[7]))
+            sns.despine()
+            graph2 = g2.get_figure()
+            graph2.savefig('Post_Analysis.png')
+            importlib.reload(plt)
+            importlib.reload(sns)
 
 
 file = 'test.atf'
@@ -307,6 +307,7 @@ color_regions_dict = {'0': [0,5,'red'], '1': [5,10,'blue'], '2': [20,30,'purple'
 default_color = 'grey'
 main_program = MainProgram()
 main_program.analyze_data(file, drug_name, when_drug, excluded_traces, z_limit, z_checking, user_baseline, color_regions_dict, default_color)
+
 dpi = 300
 baseline = 10
 baseline_color = 'purple'
