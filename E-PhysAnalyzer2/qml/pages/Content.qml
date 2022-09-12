@@ -28,6 +28,17 @@ Item {
     property int flickableContentHeight: 696 * scaleFactor
     signal getRegions()
     signal getGraphSettings()
+    property var regions: ""
+    property string colorSelected: ""
+    property int time: 10
+    property bool display: true
+    property var axisLimits: ""
+    property bool single: false
+    property int dpi: 300
+    property string defaultcolor: ""
+    property bool remove: true
+    property var score: ""
+    property var fileData: []
 
     //List for graphsettings pages
     //May change this to a doubly linked list; ability to add pages
@@ -54,6 +65,29 @@ Item {
         target: mainWindow
         function onAdjustHeight(scale) {
             Settings.adjustInputFields(scale)
+        }
+    }
+
+    Connections {
+        target: backend
+        function onEmitRegions(region) {
+            regions = region
+        }
+    }
+
+    Connections {
+        target: rightContentLoader.item
+        function onEmitReturnData(colorData, timeData, displayData, axislimitsData, singleData,
+                                  dpiData, defaultcolorData, removeData, scoreData) {
+            colorSelected = colorData;
+            time = timeData;
+            display = displayData;
+            axisLimits = axislimitsData;
+            single = singleData;
+            dpi = dpiData;
+            defaultcolor = defaultcolorData;
+            remove = removeData;
+            score = scoreData;
         }
     }
 
@@ -654,7 +688,7 @@ Item {
             y: 12 * scaleFactor
             width: 51 * scaleFactor
             height: 34 * scaleFactor
-            onClicked: {getRegions(); /*getGraphSettings()*/}/*backend.run_analyze_data(Analysis.grabFiles())*/
+            onClicked: Analysis.runAnalyzeData()
 
 
         }

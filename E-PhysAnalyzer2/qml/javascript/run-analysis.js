@@ -16,7 +16,7 @@ class GrabSettings {
         this.dpi = dpi !== "" ? parseInt(dpi) : 300;
         this.defaultColor = defaultColor !== "" ? defaultColor : "gray";
         this.remove = remove; // Z-Score
-        this.score = score;
+        this.score = score !== "" ? parseFloat(score) : 2.5;
     }
     postAnalysis(){
         console.log(`xmin: ${this.xmin}`)
@@ -50,6 +50,12 @@ class GrabSettings {
         console.log(`z_limit = ${this.score}`) // Float
         return this
     }
+    returnData(){
+        emitReturnData(this.color, this.time, this.display, [this.xmin, 
+            this.xmax, this.ymin, this.ymax, this.maxmin, this.maxmax, this.maymin, 
+            this.maymax], this.single, this.dpi, this.defaultColor, 
+            this.remove, this.score)
+    }
 }
 
 class GrabRegions {
@@ -57,17 +63,11 @@ class GrabRegions {
         this.regionObjects = regionObjects
     }
     createDict(){
-        // const children = {};
-        // this.regionObjects.forEach(item => {
-        //     const dict = {0: [parseInt(item.greaterThanEqualToText), item.lessThanText, item.colorName.toString()]}          
-        //     children.push(dict);
-        // });      
-        // console.log(JSON.stringify(children))
         var dict = {}
         for(let i=0; i<this.regionObjects.length; i++) {
             dict[i] = [parseInt(this.regionObjects[i].greaterThanEqualToText), this.regionObjects[i].lessThanText, this.regionObjects[i].colorName.toString()]
         }
-        backend.run_analyze_data(JSON.stringify(dict))
+        backend.emit_region(JSON.stringify(dict))
     }
 }
 
@@ -78,7 +78,7 @@ function runGrabRegions(objects) {
 
 function runGrabSettings(xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax, single, quality, dpi, defaultColor, color, time, display, remove, score) {
     var grabSettings = new GrabSettings(xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax, single, quality, dpi, defaultColor, color, time, display, remove, score)
-    grabSettings.postAnalysis().minuteAveraged().graphQuality().baseline().zScore()
+    grabSettings.returnData()
 }
 
 
@@ -89,5 +89,12 @@ function grabFiles() {
         var file = [fileObjects[i].file, fileObjects[i].drugName, parseInt(fileObjects[i].traceNumber), excludedTraces]
         files.push(file)
     }
-    return files
+    return fileData = files
+}
+
+function runAnalyzeData() {
+    grabFiles()
+    getRegions()
+    getGraphSettings()
+    backend.run_analyze_data(fileData, score, remove, time, regions, defaultcolor, dpi, colorSelected, axisLimits)
 }

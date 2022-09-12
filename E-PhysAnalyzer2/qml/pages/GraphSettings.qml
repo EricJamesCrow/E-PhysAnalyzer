@@ -26,6 +26,7 @@ Item {
     signal baselineSettings(string color, string time, bool display)
     signal zscoreSettings(bool remove, string score)
     signal reset()
+    signal emitReturnData(string color, int time, bool display, var axisLimits, bool single, int dpi, string defaultcolor, bool remove, var score)
 
     // Properties for editing
     property var scaleFactor: 1

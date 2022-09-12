@@ -17,13 +17,26 @@ class Backend(QObject):
     newRegion = Signal(str, str)
     adjustHeight = Signal()
     destroyMsg = Signal()
+    emitRegions = Signal(str)
     starting_animation_time = 0.2
     object_animation_time = 0.1
 
     @Slot(str)
-    def run_analyze_data(self, files):
+    def emit_region(self, region):
+        self.emitRegions.emit(region)
+
+    @Slot(list, float, bool, int, str, str, int, str, list)
+    def run_analyze_data(self, files, z_limit, z_checking, user_baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
+        print(f"Files: {files}")
+        print(f"z_limit: {z_limit}")
+        print(f"z_checking: {z_checking}")
+        print(f"user_baseline: {user_baseline}")
+        print(f"color_regions_dict: {json.loads(color_regions_dict)}")
+        print(f"default_color: {default_color}")
+        print(f"dpi: {dpi}")
+        print(f"baseline_color: {baseline_color}")
+        print(f"axis_limits: {axis_limits}")
         #json.loads(dict) to convert json string back to an object
-        print(json.loads(files))
 
     @Slot()
     def run_starting_animation(self):
