@@ -304,14 +304,12 @@ z_checking = False
 user_baseline = 10
 color_regions_dict = {'0': [0,5,'red'], '1': [5,10,'blue'], '2': [20,30,'purple']}
 default_color = 'grey'
-main_program = MainProgram()
-main_program.analyze_data(file, drug_name, when_drug, excluded_traces, z_limit, z_checking, user_baseline, color_regions_dict, default_color)
-
+####
 dpi = 300
 baseline = 10
 baseline_color = 'purple'
 axis_limits = [-user_baseline, 30, 25, 225, None, None, 0, None]
-
-
+main_program = MainProgram()
+main_program.analyze_data(file, drug_name, when_drug, excluded_traces, z_limit, z_checking, user_baseline, color_regions_dict, default_color)
 main_program.make_graphs(dpi, baseline, baseline_color, axis_limits)
 
