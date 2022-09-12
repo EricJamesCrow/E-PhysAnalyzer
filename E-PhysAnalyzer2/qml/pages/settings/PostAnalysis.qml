@@ -137,7 +137,7 @@ color: "#4089f7fe"
         height: 20 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: 33 * scaleFactor
-        placeholderText: "25"
+        placeholderText: "None"
         validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
@@ -148,7 +148,7 @@ color: "#4089f7fe"
         height: 20 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: 33 * scaleFactor
-        placeholderText: "225"
+        placeholderText: "None"
         validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 

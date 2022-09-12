@@ -26,6 +26,8 @@ Item {
     signal baselineSettings(string color, string time, bool display)
     signal zscoreSettings(bool remove, string score)
     signal reset()
+    signal emitReturnData(string color, int time, bool display, var axisLimits, bool single, int dpi, string defaultcolor, bool remove, var score)
+
 
     // Images
     property string addFilterSvgIcon: "../../images/svg_images/plus_icon_087589.svg"
@@ -58,7 +60,10 @@ Item {
     Connections {
         target: content
         function onGetGraphSettings() {
-            Analysis.grabZscore(zscoreSettings3)
+            Analysis.runGrabSettings(postAnalysisSettings3.xmin3, postAnalysisSettings3.xmax3, postAnalysisSettings3.ymin3, postAnalysisSettings3.ymax3,
+                                     minuteAveragedSettings3.maxmin3, minuteAveragedSettings3.maxmax3, minuteAveragedSettings3.maymin3, minuteAveragedSettings3.maymax3,graphQualitySettings3.single3,
+                                     graphQualitySettings3.quality3,graphQualitySettings3.dpi3,graphQualitySettings3.defaultColor3, baselineSettings3.color3,
+                                     baselineSettings3.time3,baselineSettings3.display3, zscoreSettings3.remove3, zscoreSettings3.score3)
         }
     }
 

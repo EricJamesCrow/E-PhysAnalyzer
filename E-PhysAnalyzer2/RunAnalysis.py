@@ -3,15 +3,45 @@ import os
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
+plt.switch_backend('agg') # switches the backend for matplotlib so it doesn't use a GUI
 import re
 import datetime
 from uncertainties import ufloat
+from threading import *
+from math import trunc
 
+class Analysis(Thread):
+    def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
+        super(Analysis, self).__init__()
+        self.file = file[0]
+        self.drug_name = file[1]
+        self.when_drug = trunc(file[2]) # QML converts the int to a float; use trunc() to grab just the integer
+        self.excluded_traces = [trunc(i) for i in file[3]]
+        self.z_limit = z_limit
+        self.z_checking = z_checking
+        self.baseline = baseline
+        self.color_regions_dict = color_regions_dict
+        self.default_color = default_color
+        self.dpi = dpi
+        self.baseline_color = baseline_color
+        self.axis_limits = axis_limits
 
-# import mpld3
-# import numpy as np
+    def run(self):
+        # print(self.file)
+        # print(self.drug_name)
+        # print(self.when_drug)
+        # print(self.excluded_traces)
+        # print(self.z_limit)
+        # print(self.z_checking)
+        # print(self.baseline)
+        print(self.color_regions_dict)
+        # print(self.default_color)
+        # print(self.dpi)
+        # print(self.baseline_color)
+        # print(self.axis_limits)
+        self.analyze_data(self.file, self.drug_name, self.when_drug, self.excluded_traces, self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
+        self.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)
 
-class MainProgram:
     def calc_standard_dev(self, file, excludedTraces):
         '''Calculates standard deviation for all the values in the file and uses them throughout the analysis.'''
         with open(file, 'r') as atfFile:
@@ -309,7 +339,7 @@ dpi = 300
 baseline = 10
 baseline_color = 'purple'
 axis_limits = [-user_baseline, 30, 25, 225, None, None, 0, None]
-main_program = MainProgram()
-main_program.analyze_data(file, drug_name, when_drug, excluded_traces, z_limit, z_checking, user_baseline, color_regions_dict, default_color)
-main_program.make_graphs(dpi, baseline, baseline_color, axis_limits)
+# main_program = Analysis()
+# main_program.analyze_data(file, drug_name, when_drug, excluded_traces, z_limit, z_checking, user_baseline, color_regions_dict, default_color)
+# main_program.make_graphs(dpi, baseline, baseline_color, axis_limits)
 

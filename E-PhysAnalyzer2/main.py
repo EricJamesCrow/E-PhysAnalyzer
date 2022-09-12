@@ -11,6 +11,8 @@ from PySide6.QtGui import QGuiApplication, QIcon
 from PySide6.QtCore import QObject, Slot, Signal
 from threading import *
 
+from RunAnalysis import Analysis
+
 class Backend(QObject):
     addObject = Signal(str)
     animateObject = Signal(int)
@@ -26,17 +28,10 @@ class Backend(QObject):
         self.emitRegions.emit(region)
 
     @Slot(list, float, bool, int, str, str, int, str, list)
-    def run_analyze_data(self, files, z_limit, z_checking, user_baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
-        print(f"Files: {files}")
-        print(f"z_limit: {z_limit}")
-        print(f"z_checking: {z_checking}")
-        print(f"user_baseline: {user_baseline}")
-        print(f"color_regions_dict: {json.loads(color_regions_dict)}")
-        print(f"default_color: {default_color}")
-        print(f"dpi: {dpi}")
-        print(f"baseline_color: {baseline_color}")
-        print(f"axis_limits: {axis_limits}")
-        #json.loads(dict) to convert json string back to an object
+    def run_analyze_data(self, files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
+        for i in range(len(files)):
+            analysis = Analysis(files[i], z_limit, z_checking, baseline, json.loads(color_regions_dict), default_color, dpi, baseline_color, axis_limits)
+            analysis.start()
 
     @Slot()
     def run_starting_animation(self):

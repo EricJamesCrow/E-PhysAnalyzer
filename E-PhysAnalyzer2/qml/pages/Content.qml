@@ -671,7 +671,7 @@ Item {
 
         FileDialog {
             id: fileDialog
-            //            nameFilters:["ATF files (*.atf)"]
+            nameFilters:["ATF files (*.atf)"]
             fileMode: FileDialog.OpenFiles
             currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
             onAccepted: InputFields.create_objects(selectedFiles)
