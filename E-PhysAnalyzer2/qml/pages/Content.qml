@@ -26,6 +26,7 @@ Item {
     property var filesBasename: []
     property int objectHeight: 10 * scaleFactor
     property int flickableContentHeight: 696 * scaleFactor
+    signal getRegions()
     signal getGraphSettings()
 
     //List for graphsettings pages
@@ -653,7 +654,7 @@ Item {
             y: 12 * scaleFactor
             width: 51 * scaleFactor
             height: 34 * scaleFactor
-            onClicked: getGraphSettings()/*backend.run_analyze_data(Analysis.grabFiles())*/
+            onClicked: {getRegions(); /*getGraphSettings()*/}/*backend.run_analyze_data(Analysis.grabFiles())*/
 
 
         }

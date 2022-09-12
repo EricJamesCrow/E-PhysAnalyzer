@@ -52,7 +52,10 @@ Item {
     Connections {
         target: content
         function onGetGraphSettings() {
-            Analysis.grabZscore(zscoreSettings1)
+            Analysis.runGrabSettings(postAnalysisSettings1.xmin1, postAnalysisSettings1.xmax1, postAnalysisSettings1.ymin1, postAnalysisSettings1.ymax1,
+                                     minuteAveragedSettings1.maxmin1, minuteAveragedSettings1.maxmax1, minuteAveragedSettings1.maymin1, minuteAveragedSettings1.maymax1,graphQualitySettings1.single1,
+                                     graphQualitySettings1.quality1,graphQualitySettings1.dpi1,graphQualitySettings1.defaultColor1, baselineSettings1.color1,
+                                     baselineSettings1.time1,baselineSettings1.display1, zscoreSettings1.remove1, zscoreSettings1.score1)
         }
     }
 

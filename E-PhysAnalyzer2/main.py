@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 import sys
 import time
+import json
 
 from PySide6 import QtCore
 from PySide6.QtQml import QQmlApplicationEngine
@@ -19,9 +20,10 @@ class Backend(QObject):
     starting_animation_time = 0.2
     object_animation_time = 0.1
 
-    @Slot(list)
+    @Slot(str)
     def run_analyze_data(self, files):
-        print(files)
+        #json.loads(dict) to convert json string back to an object
+        print(json.loads(files))
 
     @Slot()
     def run_starting_animation(self):

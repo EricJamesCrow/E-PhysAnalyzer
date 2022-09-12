@@ -1,23 +1,23 @@
 class Settings {
     constructor(objects, axis, xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax, single, quality, dpi, defaultColor, color, time, display, remove, score){
-        this.objects = objects;
+        this.objects = objects; 
         this.axis = axis;
-        this.xmin = xmin;
+        this.xmin = xmin; // Post Analysis
         this.xmax = xmax;
         this.ymin = ymin;
         this.ymax = ymax;
-        this.maxmin = maxmin;
+        this.maxmin = maxmin; // Minute Averaged
         this.maxmax = maxmax;
         this.maymin = maymin;
         this.maymax = maymax;
-        this.single = single;
+        this.single = single; // Graph Quality
         this.quality = quality;
         this.dpi = dpi;
         this.defaultColor = defaultColor;
-        this.color = color;
+        this.color = color; // Baseline
         this.time = time;
         this.display = display;
-        this.remove = remove;
+        this.remove = remove; // Z-Score
         this.score = score;
     }
     deserialization(){

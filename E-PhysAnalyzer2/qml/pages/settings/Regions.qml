@@ -6,6 +6,7 @@ import "../../controls"
 import "../../javascript/region.js" as Region
 import "../../javascript/graph-settings.js" as GraphSettings
 import "../../javascript/settings.js" as Settings
+import "../../javascript/run-analysis.js" as Analysis
 
 Rectangle {
     id: regions
@@ -32,6 +33,13 @@ Rectangle {
         target: mainWindow
         function onAdjustHeight(scale) {
             Settings.adjustRegionHeight(scale)
+        }
+    }
+
+    Connections {
+        target: content
+        function onGetRegions() {
+            Analysis.runGrabRegions(regionObjects)
         }
     }
 
