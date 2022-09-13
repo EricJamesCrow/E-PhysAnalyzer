@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.5
 import QtQuick.Dialogs
 import QtCore 6.2
+import Qt.labs.settings 1.0
 import "../controls"
 import "../controls/buttons"
 import "../controls/custom" // For creating dynamic object, delete this import statement later
@@ -28,7 +29,8 @@ Item {
     property int flickableContentHeight: 696 * scaleFactor
     signal getRegions()
     signal getGraphSettings()
-    property var regions: ""
+    signal errorMsg(string msg, var object)
+    property string regions: ""
     property string colorSelected: ""
     property int time: 10
     property bool display: true
@@ -39,11 +41,17 @@ Item {
     property bool remove: true
     property var score: ""
     property var fileData: []
+    property var errorMessage: ""
 
     //List for graphsettings pages
     //May change this to a doubly linked list; ability to add pages
     property var graphSettingsPage: ["GraphSettings.qml", "GraphSettings2.qml", "GraphSettings3.qml"]
-    property int pageSelected: 1
+    Settings {
+        id: contentSettings
+        property int pageSelected: 1
+        property bool rightArrowChecked: true
+        property bool leftArrowChecked: false
+    }
 
     // Properties for editing
 //    property int scaleFactor: settings.scaleFactor
@@ -72,6 +80,15 @@ Item {
         target: backend
         function onEmitRegions(region) {
             regions = region
+        }
+        function onDestroyErrorInputField() {
+            Analysis.destroyErrorMsg()
+        }
+        function onDisableRun() {
+            runBtn.enabled = false
+        }
+        function onEnableRun() {
+            runBtn.enabled = true
         }
     }
 
@@ -156,7 +173,7 @@ Item {
                     anchors.verticalCenterOffset: 5 * scaleFactor
                     anchors.leftMargin: 100 * scaleFactor
                     z: 1
-                    checkedState: false
+                    checkedState: contentSettings.leftArrowChecked
                     arrowRotation: 0
 
                     MouseArea {
@@ -176,7 +193,7 @@ Item {
                     anchors.rightMargin: 100 * scaleFactor
                     anchors.verticalCenterOffset: 5 * scaleFactor
                     arrowRotation: 180
-                    checkedState: true
+                    checkedState: contentSettings.rightArrowChecked
 
                     MouseArea {
                         id: rightAreaMouseArea
@@ -199,7 +216,7 @@ Item {
                     background: Rectangle {
                         id: selectedPage2
                         radius: width * 0.5
-                        color: pageSelected === 2 ? "#2aafd3" : "#802aafd3"
+                        color: contentSettings.pageSelected === 2 ? "#2aafd3" : "#802aafd3"
                         border.width: 0
                         implicitWidth: 140 * scaleFactor
                         implicitHeight: width
@@ -222,7 +239,7 @@ Item {
                             implicitWidth: 140 * scaleFactor
                             implicitHeight: width
                             border.width: 0
-                            color: pageSelected === 1 ? "#2aafd3" : "#802aafd3"
+                            color: contentSettings.pageSelected === 1 ? "#2aafd3" : "#802aafd3"
                             radius: width * 0.5
                         }
 
@@ -244,7 +261,7 @@ Item {
                             id: selectedPage3
                             radius: width * 0.5
                             border.width: 0
-                            color: pageSelected === 3 ? "#2aafd3" : "#802aafd3"
+                            color: contentSettings.pageSelected === 3 ? "#2aafd3" : "#802aafd3"
                             implicitWidth: 140 * scaleFactor
                             implicitHeight: width
                         }
@@ -291,7 +308,7 @@ Item {
                 Loader {
                     id: rightContentLoader
                     x: 0
-                    source: "GraphSettings.qml"
+                    source: graphSettingsPage[contentSettings.pageSelected-1]
                     clip: true
                     anchors.left: parent.left
                     anchors.right: parent.right

@@ -80,23 +80,42 @@ function animate(object) {
 function nextPage() {
     if(rightContentLoader.source.toString() === graphSettingsPage[0]){
         rightContentLoader.source = graphSettingsPage[1]
-        leftArrow.checkedState = true
-        pageSelected = 2
+        contentSettings.leftArrowChecked = true
+        contentSettings.pageSelected = 2
     } else if(rightContentLoader.source.toString() === graphSettingsPage[1]) {
         rightContentLoader.source = graphSettingsPage[2]
-        rightArrow.checkedState = false
-        pageSelected = 3
+        contentSettings.rightArrowChecked = false
+        contentSettings.pageSelected = 3
     }
 }
 
 function prevPage() {
     if(rightContentLoader.source.toString() === graphSettingsPage[1]) {
         rightContentLoader.source = graphSettingsPage[0]
-        leftArrow.checkedState = false  
-        pageSelected = 1                     
+        contentSettings.leftArrowChecked = false  
+        contentSettings.pageSelected = 1                     
     } else if(rightContentLoader.source.toString() === graphSettingsPage[2]) {
         rightContentLoader.source = graphSettingsPage[1]
-        rightArrow.checkedState = true
-        pageSelected = 2
+        contentSettings.rightArrowChecked = true
+        contentSettings.pageSelected = 2
     }
+}
+
+function errorMsg(msg, section) {
+    errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
+        x: 5 * scaleFactor;
+        y: 71 * scaleFactor;
+        width: 168 * scaleFactor;
+        height: 36 * scaleFactor;
+        opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration: 150; running: true} PropertyAnimation {target: errorMessage; property: "y"; to: 41 * scaleFactor; duration: 150; running: true}}`,
+        section,
+    "regionErrorMsg");
+    errorMessage.errorMessageString = msg
+    backend.disable_run_button()
+    backend.destroy_error_msg("settings") // Need to call a Python thread so the message is destroyed after 1 second
+}
+
+function destroyErrorMsg() {
+    errorMessage.destroy()
+    backend.enable_run_button()
 }

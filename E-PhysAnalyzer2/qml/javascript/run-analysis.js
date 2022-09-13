@@ -19,18 +19,20 @@ class GrabSettings {
         this.score = score !== "" ? parseFloat(score) : 2.5;
     }
     postAnalysis(){
-        console.log(`xmin: ${this.xmin}`)
-        console.log(`xmin: ${this.xmax}`)
-        console.log(`xmin: ${this.ymin}`)
-        console.log(`xmin: ${this.ymax}`)
-        return this
+        if(this.xmax !== null && this.xmax <= this.xmin || this.ymax !== null && this.ymax <= this.ymin){
+            var msg = "Check Post Analysis values"
+            return errorMsg(msg, postAnalysisSection)
+        } else {
+            return this.minuteAveraged()
+        }
     }
     minuteAveraged(){
-        console.log(`maxmin: ${this.maxmin}`)
-        console.log(`maxmin: ${this.maxmax}`)
-        console.log(`maxmin: ${this.maymin}`)
-        console.log(`maxmin: ${this.maymax}`)
-        return this
+        if(this.maxmax !== null && this.maxmax <= this.maxmin || this.maymax !== null && this.maymax <= this.maymin){
+            var msg = "Check Minute Averaged values"
+            return errorMsg(msg, minuteAveragedSection)
+        } else {
+            return this.graphQuality()
+        }
     }
     graphQuality(){
         if(this.quality === 0) {
@@ -42,24 +44,14 @@ class GrabSettings {
         } else if(this.quality === 3){
             this.dpi = 1000
         }
-        return this
-    }
-    baseline(){
-        console.log(`baseline_color = ${this.color}`)
-        console.log(`baseline = ${this.time}`) // Integer
-        console.log(`display_baseline = ${this.display}`) // Boolean
-        return this
-    }
-    zScore(){
-        console.log(`z_checking = ${this.remove}`) // Boolean
-        console.log(`z_limit = ${this.score}`) // Float
-        return this
+        return this.returnData()
     }
     returnData(){
         emitReturnData(this.color, this.time, this.display, [this.xmin, 
             this.xmax, this.ymin, this.ymax, this.maxmin, this.maxmax, this.maymin, 
             this.maymax], this.single, this.dpi, this.defaultColor, 
             this.remove, this.score)
+        backend.run_analyze_data(fileData, score, remove, time, content.regions, defaultcolor, dpi, colorSelected, axisLimits, single)
     }
 }
 
@@ -76,6 +68,7 @@ class GrabRegions {
     }
 }
 
+
 function runGrabRegions(objects) {
     var grabRegions = new GrabRegions(objects)
     grabRegions.createDict()
@@ -83,7 +76,7 @@ function runGrabRegions(objects) {
 
 function runGrabSettings(xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax, single, quality, dpi, defaultColor, color, time, display, remove, score) {
     var grabSettings = new GrabSettings(xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax, single, quality, dpi, defaultColor, color, time, display, remove, score)
-    grabSettings.graphQuality().returnData()
+    grabSettings.postAnalysis()
 }
 
 
@@ -98,11 +91,41 @@ function grabFiles() {
     return fileData = data
 }
 
+function checkFiles() {
+    for(let i=0; i<fileData.length; i++) {
+        if(fileData[i][1] == "" || fileData[i][2].toString() == "NaN"){
+            var msg = "Empty values for drug name or trace number in one or more fields"
+            errorMsgFields(msg)
+            return "Error"
+        }
+    }
+}
+
+function errorMsgFields(msg) {
+    errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
+        x: 225 * scaleFactor;
+        y: 71 * scaleFactor;
+        width: 400 * scaleFactor;
+        height: 36 * scaleFactor;
+        opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration: 150; running: true} PropertyAnimation {target: errorMessage; property: "y"; to: 41 * scaleFactor; duration: 150; running: true}}`,
+        leftContentLoader,
+    "regionErrorMsg");
+    errorMessage.errorMessageString = msg
+    runBtn.enabled = false // Disable run button while error message is visible
+    backend.destroy_error_msg("fields") // Need to call a Python thread so the message is destroyed after 1 second
+}
+
+function destroyErrorMsg() {
+    errorMessage.destroy()
+    runBtn.enabled = true // re-enable run button
+}
+
 function runAnalyzeData() {
     grabFiles()
-    getRegions()
-    getGraphSettings()
-    backend.run_analyze_data(fileData, score, remove, time, regions, defaultcolor, dpi, colorSelected, axisLimits)
+    if(checkFiles() !== "Error"){
+        getRegions()
+        getGraphSettings()
+    }
 }
 
 // figure out how to import this from region.js

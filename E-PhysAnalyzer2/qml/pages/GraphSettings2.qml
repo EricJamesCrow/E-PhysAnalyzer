@@ -48,6 +48,7 @@ Item {
     property color terminalUnderlineColor: "#51abb9"
     property color terminalText: "#2aafd3"
     property color menuDropDownMouseOverColor: "#af025967"
+    property var errorMessage: ""
 
     Connections {
         target: regions
@@ -64,6 +65,9 @@ Item {
                                      minuteAveragedSettings2.maxmin2, minuteAveragedSettings2.maxmax2, minuteAveragedSettings2.maymin2, minuteAveragedSettings2.maymax2,graphQualitySettings2.single2,
                                      graphQualitySettings2.quality2,graphQualitySettings2.dpi2,graphQualitySettings2.defaultColor2, baselineSettings2.color2,
                                      baselineSettings2.time2,baselineSettings2.display2, zscoreSettings2.remove2, zscoreSettings2.score2)
+        }
+        function onErrorMsg(msg, object) {
+                GraphSettings.errorMsg(msg, object)
         }
     }
 
@@ -384,6 +388,9 @@ Item {
         target: backend
         function onAnimateObject(object) {
             GraphSettings.animate(object)
+        }
+        function onDestroyErrorMsg() {
+            GraphSettings.destroyErrorMsg()
         }
     }
 

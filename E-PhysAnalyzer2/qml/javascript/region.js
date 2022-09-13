@@ -24,7 +24,7 @@ function regionErrorMsg(msg) {
     "regionErrorMsg");
     errorMessage.errorMessageString = msg
     submitButton.enabled = false // Disable dialog submit button while error message is visible
-    backend.destroy_new_region_error_msg() // Need to call a Python thread so the message is destroyed after 1 second
+    backend.destroy_error_msg("region") // Need to call a Python thread so the message is destroyed after 1 second
 }
 
 function destroyErrorMsg() {

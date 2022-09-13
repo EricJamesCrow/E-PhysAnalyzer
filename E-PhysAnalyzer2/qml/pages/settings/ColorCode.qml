@@ -182,8 +182,7 @@ Rectangle {
         id: defaultColor
         y: 42 * scaleFactor
         width: 52 * scaleFactor
-        height: 15 * scaleFactor
-        clip: true
+        height: 18 * scaleFactor
         font.pointSize: 7 * scaleFactor
         placeholderText: "gray"
         anchors.horizontalCenterOffset: 19 * scaleFactor

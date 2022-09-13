@@ -27,18 +27,6 @@ class Analysis(Thread):
         self.axis_limits = axis_limits
 
     def run(self):
-        # print(self.file)
-        # print(self.drug_name)
-        # print(self.when_drug)
-        # print(self.excluded_traces)
-        # print(self.z_limit)
-        # print(self.z_checking)
-        # print(self.baseline)
-        print(self.color_regions_dict)
-        # print(self.default_color)
-        # print(self.dpi)
-        # print(self.baseline_color)
-        # print(self.axis_limits)
         self.analyze_data(self.file, self.drug_name, self.when_drug, self.excluded_traces, self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
         self.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)
 

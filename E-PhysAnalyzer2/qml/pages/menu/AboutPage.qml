@@ -10,7 +10,6 @@ Item {
 
     property url btnIconSource: "../../images/svg_images/close_icon.svg"
 
-
     Rectangle {
         id: about
         x: 689 * scaleFactor
@@ -28,6 +27,7 @@ Item {
             height: 488 * scaleFactor
             color: "#ffffff"
             anchors.verticalCenter: parent.verticalCenter
+            text: "A data analysis and visualization tool for Clampfit data."
             wrapMode: Text.WordWrap
             font.pointSize: 9 * scaleFactor
             anchors.horizontalCenter: parent.horizontalCenter
@@ -83,6 +83,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.75}D{i:3}
+    D{i:0;formeditorZoom:0.75}
 }
 ##^##*/
