@@ -31,8 +31,8 @@ Button {
 
     Connections {
         target: regions
-        function onEmitRegionErrorMessage(msg) {
-            Region.regionErrorMsg(msg)
+        function onEmitRegionErrorMessage(msg, region) {
+            Region.regionErrorMsg(msg, region)
         }
     }
 
@@ -115,8 +115,9 @@ Button {
             id: greaterThanOrEqualEntry
             x: 8 * scaleFactor
             y: 8 * scaleFactor
-            width: 28 * scaleFactor
+            width: 30 * scaleFactor
             height: 20 * scaleFactor
+            font.pointSize: 8 * scaleFactor
             validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
         }
 
@@ -125,8 +126,9 @@ Button {
         CustomTextField {
             id: lessThanEntry
             x: 130 * scaleFactor
-            width: 28 * scaleFactor
+            width: 30 * scaleFactor
             height: 20 * scaleFactor
+            font.pointSize: 8 * scaleFactor
             validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
             anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
         }

@@ -18,6 +18,7 @@ Button {
     property color fontColorDefault: "#087589"
     property color fontColorMouseOver: "#ffffff"//buttonColorDefault
     property color fontColorPressed: "#ffffff"
+    property var errorMessage: ""
     onClicked: Region.expandDialogBox()
 
     signal gPclearRegions()
@@ -25,6 +26,14 @@ Button {
     hoverEnabled: true
     down: false
     flat: true
+
+    Connections {
+        target: backend
+        function onDestroyGenPtn(){
+            errorMessage.destroy()
+            submitButton.enabled = true
+        }
+    }
 
     FontLoader {
         id: pragmaticaFont
@@ -91,29 +100,29 @@ Button {
             validator: IntValidator {bottom: 1; top: 100}
             anchors.verticalCenter: everyLabel.verticalCenter
             anchors.verticalCenterOffset: 0
-            font.pointSize: 9 * scaleFactor
+           font.pointSize: 8 * scaleFactor
 
             CustomTextField {
                 id: startTimeEntry
                 x: 0
                 y: 29 * scaleFactor
-                width: 28 * scaleFactor
+                width: 30 * scaleFactor
                 height: 20 * scaleFactor
                 validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
                 anchors.verticalCenter: every_minutesTextField.verticalCenter
-                font.pointSize: 9 * scaleFactor
+                font.pointSize: 8 * scaleFactor
                 anchors.verticalCenterOffset: 29 * scaleFactor
 
                 CustomTextField {
                     id: endTimeEntry
                     x: 0
                     y: 29 * scaleFactor
-                    width: 28 * scaleFactor
+                    width: 30 * scaleFactor
                     height: 20 * scaleFactor
                     validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
                     anchors.verticalCenter: every_minutesTextField.verticalCenter
                     anchors.verticalCenterOffset: 58 * scaleFactor
-                    font.pointSize: 9 * scaleFactor
+                    font.pointSize: 8 * scaleFactor
 
                     CustomButton {
                         id: submitButton
