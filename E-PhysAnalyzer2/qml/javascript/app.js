@@ -129,6 +129,8 @@ function maximizeRestore(){
         resizeBottom.visible = false
         resizeWindow.visible = false
         btnMaximizeRestore.btnIconSource = "../../../images/svg_images/restore_icon.svg"
+        bg.radius = 0
+        topBar.radius = 0
     }
     else{
         mainWindow.showNormal()
@@ -136,6 +138,8 @@ function maximizeRestore(){
         windowStatus = 0
         windowMargin = 10
         btnMaximizeRestore.btnIconSource = "../../../images/svg_images/maximize_icon.svg"
+        bg.radius = 10 * scaleFactor
+        topBar.radius = 10 * scaleFactor
     }
 }
 

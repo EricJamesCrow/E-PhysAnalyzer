@@ -100,7 +100,7 @@ Window {
         color: settings.backgroundColor
         radius: 10 * scaleFactor
         border.color: settings.backgroundColor
-        border.width: 1  * scaleFactor
+        border.width: 1 * scaleFactor
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
