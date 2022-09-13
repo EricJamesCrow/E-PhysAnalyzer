@@ -35,7 +35,7 @@ Item {
         y: 339 * scaleFactor
         visible: true
         color: colColor
-        //        radius: 5
+        radius: 5 * scaleFactor
         border.color: colColor
         anchors.fill: parent
         z: 1
@@ -75,13 +75,23 @@ Item {
             id: settingsTopBar
             height: 30 * scaleFactor
             color: btnColorDefault
-            //            radius: 5
+            radius: 5 * scaleFactor
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.rightMargin: 0
             anchors.leftMargin: 0
             anchors.topMargin: 0
+            z: 1
+
+            Rectangle {
+                id: settingsTopBarBottom
+                width: settingsTopBar.width
+                height: 12 * scaleFactor
+                color: settings.buttonColorDefault
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 0
+            }
 
             SettingsBtn {
                 id: closeBtn
@@ -121,13 +131,24 @@ Item {
             id: settingsSideBar
             width: 185 * scaleFactor
             color: topBarColor
-            //            radius: 5
+            radius: 5 * scaleFactor
             anchors.left: parent.left
             anchors.top: settingsTopBar.bottom
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 0
             anchors.leftMargin: 0
-            anchors.topMargin: 0
+            anchors.topMargin: -5
+            Rectangle {
+                id: settingsSideBarBottom
+                width: 12 * scaleFactor
+                color:topBarColor
+                anchors.bottom: parent.bottom
+                anchors.topMargin: 0
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.rightMargin: 0
+                anchors.bottomMargin: 0
+            }
         }
 
         CustomComboBox {
@@ -284,6 +305,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.33}D{i:8}
+    D{i:0;formeditorZoom:0.33}D{i:9}
 }
 ##^##*/

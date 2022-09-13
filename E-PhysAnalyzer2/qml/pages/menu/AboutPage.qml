@@ -8,6 +8,8 @@ Item {
     width: 396 * scaleFactor
     height: 660 * scaleFactor
 
+    property int scaleFactor: 1
+
     property url btnIconSource: "../../images/svg_images/close_icon.svg"
 
     Rectangle {
@@ -16,7 +18,7 @@ Item {
         y: 339 * scaleFactor
         visible: true
         color: settings.columnColor
-//        radius: 5
+        radius: 5 * scaleFactor
         border.color: settings.columnColor
         anchors.fill: parent
         z: 1
@@ -40,6 +42,17 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
+            radius: 5 * scaleFactor
+
+            Rectangle {
+                id: aboutTopBarBottom
+                width: aboutTopBar.width
+                height: 12 * scaleFactor
+                color: settings.buttonColorDefault
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 0
+            }
+
             SettingsBtn {
                 id: closeBtn
                 x: 548 * scaleFactor

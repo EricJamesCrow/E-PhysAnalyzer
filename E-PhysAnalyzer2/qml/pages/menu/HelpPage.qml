@@ -17,7 +17,7 @@ Item {
         y: 339 * scaleFactor
         visible: true
         color: settings.columnColor
-//        radius: 5
+        radius: 5 * scaleFactor
         border.color: settings.columnColor
         anchors.fill: parent
         z: 1
@@ -41,7 +41,19 @@ Item {
             color: settings.buttonColorDefault
             anchors.left: parent.left
             anchors.right: parent.right
+            radius: 5 * scaleFactor
             anchors.top: parent.top
+
+            Rectangle {
+                id: helpTopBarBottom
+                width: helpTopBar.width
+                height: 12 * scaleFactor
+                color: settings.buttonColorDefault
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 0
+            }
+
+
             SettingsBtn {
                 id: closeBtn
                 x: 548 * scaleFactor
