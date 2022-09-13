@@ -7,6 +7,7 @@ Item {
     id: aboutPage
     width: 396 * scaleFactor
     height: 660 * scaleFactor
+    focus: true
 
     property int scaleFactor: 1
 

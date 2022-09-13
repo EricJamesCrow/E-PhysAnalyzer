@@ -50,29 +50,6 @@ function displayDropDownMenuPages(menuPage) {
             helpPage.visible = false
             closeHelpPage.visible = false
         }
-    }
-    else if(menuPage === "profiles") {
-        if(settingsPageOverlay.visible == false && profilesPage.visible == false) {
-            settingsPageOverlay.visible = true
-            profilesPage.visible = true
-            closeProfilesPage.visible = true
-            runMenuDropDown()
-        } else {
-            settingsPageOverlay.visible = false
-            profilesPage.visible = false
-            closeProfilesPage.visible = false
-        }
-    } else if(menuPage === "logout") {
-        if(settingsPageOverlay.visible == false && logoutPage.visible == false) {
-            settingsPageOverlay.visible = true
-            logoutPage.visible = true
-            closeLogoutPage.visible = true
-            runMenuDropDown()
-        } else {
-            settingsPageOverlay.visible = false
-            logoutPage.visible = false
-            closeLogoutPage.visible = false
-        }
     } else if(menuPage === "exit") {
         closeWindow()
         runMenuDropDown()
@@ -115,7 +92,14 @@ function switchPages(page) {
 // Basic UI functionality
 
 function closeWindow() {
-    if(closeMainWindow.visible === false && closeMainWindowOverlay.visible === false && clickOffCloseMainWindow.visible === false) {
+    if(helpPage.visible == true) {
+        displayDropDownMenuPages("help")
+    } else if(aboutPage.visible == true) {
+        displayDropDownMenuPages("about")
+    } else if(settingsPage.visible == true) {
+        displayDropDownMenuPages("settings")
+    }
+    else if(closeMainWindow.visible === false && closeMainWindowOverlay.visible === false && clickOffCloseMainWindow.visible === false) {
         closeMainWindow.visible = true
         closeMainWindowOverlay.visible = true
         clickOffCloseMainWindow.visible = true
