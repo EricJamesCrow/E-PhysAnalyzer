@@ -10,10 +10,17 @@ function expandDialogBox() {
 
 function generatePattern(everyMinute, startTime, endTime) {
     gPclearRegions()
+    if((parseInt(endTime) - parseInt(startTime)) / Math.abs(parseInt(everyMinute)) > 20) {
+        return regionErrorMsg("Can only create 20 regions.", "generate")
+    } else if((parseInt(endTime) - parseInt(startTime)) / Math.abs(parseInt(everyMinute)) <= 0) {
+        return regionErrorMsg("Please fix values.", "generate")
+    } else if(endTime === "" || startTime == "" || everyMinute == "") {
+        return regionErrorMsg("Empty values.", "generate")
+    }
     backend.run_generate_pattern(Math.abs(parseInt(everyMinute)), parseInt(startTime), parseInt(endTime))
 }
 
-function regionErrorMsg(msg) {
+function regionErrorMsg(msg, string) {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
         x: 16 * scaleFactor;
         y: 51 * scaleFactor;
@@ -24,7 +31,7 @@ function regionErrorMsg(msg) {
     "regionErrorMsg");
     errorMessage.errorMessageString = msg
     submitButton.enabled = false // Disable dialog submit button while error message is visible
-    backend.destroy_error_msg("region") // Need to call a Python thread so the message is destroyed after 1 second
+    backend.destroy_error_msg(string) // Need to call a Python thread so the message is destroyed after 1 second
 }
 
 function destroyErrorMsg() {
@@ -75,10 +82,12 @@ function checkRegions(greaterThan, lessThan) {
 function createNewRegion(greaterThan, lessThan) {
     // Checks if input fields are correct.
     if(greaterThan === "" || lessThan === "") {
-        return emitRegionErrorMessage("Please enter your values.")
+        return emitRegionErrorMessage("Please enter your values.", "region")
     } else if(parseInt(greaterThan) >= parseInt(lessThan)) {
-        return emitRegionErrorMessage("Please fix your values.")
-    }    
+        return emitRegionErrorMessage("Please fix your values.", "region")
+    } else if(regionObjects.length >= 20)     {
+        return emitRegionErrorMessage("Too many regions.", "region")
+    }
     // Checks to see whether or not the regions need to be moved.
     const checkRegionsVariable = checkRegions(greaterThan, lessThan) // Hold checkRegion's result in a variable
     if(checkRegionsVariable === "Initial") { // Runs if no other objects have been created
@@ -89,7 +98,7 @@ function createNewRegion(greaterThan, lessThan) {
     } else if(checkRegionsVariable === "Last") { // Adds object normally
         return newRegion(greaterThan, lessThan)
     } else if(checkRegionsVariable === "Error") { // Returns an error message in NewRegion.qml's dialog box
-        return emitRegionErrorMessage("Conflict with region values.")
+        return emitRegionErrorMessage("Conflict with region values.", "region")
     } else { // Moves an object inbetween values and re-orders the array
         return moveObjectsInbetween(checkRegionsVariable, greaterThan, lessThan)
     }

@@ -22,7 +22,7 @@ Rectangle {
     property string chosenRegionColor: "#FF0000"
     property string chosenRegionColorName: "#FF0000"
 
-    signal emitRegionErrorMessage(string msg) // Sends this to NewRegion.qml
+    signal emitRegionErrorMessage(string msg, string region) // Sends this to NewRegion.qml
     signal emitSerializedObjects1(var objects, int axis)
     signal emitSerializedObjects2(var objects, int axis)
     signal emitSerializedObjects3(var objects, int axis)

@@ -22,6 +22,7 @@ class Backend(QObject):
     destroyMsg = Signal()
     destroyErrorMsg = Signal()
     destroyErrorInputField = Signal()
+    destroyGenPtn = Signal()
     emitRegions = Signal(str)
     disableRun = Signal()
     enableRun = Signal()
@@ -125,6 +126,9 @@ class ErrorMessage(Thread):
         elif self.string == "fields":
             time.sleep(3)
             backend.destroyErrorInputField.emit()
+        elif self.string == "generate":
+            time.sleep(1)
+            backend.destroyGenPtn.emit()
         
 
 
