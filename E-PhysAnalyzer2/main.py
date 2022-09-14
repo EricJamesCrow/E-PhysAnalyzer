@@ -25,6 +25,7 @@ class Backend(QObject):
     destroyErrorMsg = Signal()
     destroyErrorInputField = Signal()
     destroyGenPtn = Signal(bool)
+    destroyColorPicker = Signal()
     emitRegions = Signal(str)
     disableRun = Signal()
     enableRun = Signal()
@@ -162,6 +163,9 @@ class ErrorMessage(Thread):
         elif self.string == "generate":
             time.sleep(1)
             backend.destroyGenPtn.emit(True)
+        elif self.string == "colorpicker":
+            time.sleep(1)
+            backend.destroyColorPicker.emit()
         
 
 

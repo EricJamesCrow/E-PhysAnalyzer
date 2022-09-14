@@ -35,6 +35,20 @@ function regionErrorMsg(msg, string) {
     backend.destroy_error_msg(string) // Need to call a Python thread so the message is destroyed after 1 second
 }
 
+function colorPickerErrorMsg(msg, string) {
+    errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
+        x: 5 * scaleFactor;
+        y: 51 * scaleFactor;
+        width: 110 * scaleFactor;
+        height: 36 * scaleFactor;
+        opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration: 150; running: true} PropertyAnimation {target: errorMessage; property: "y"; to: 28 * scaleFactor; duration: 150; running: true}}`,
+        dialogBox,
+    "regionErrorMsg");
+    errorMessage.errorMessageString = msg
+    customColorEntry.enabled = false // Disable dialog submit button while error message is visible
+    backend.destroy_error_msg(string) // Need to call a Python thread so the message is destroyed after 1 second
+}
+
 function destroyErrorMsg() {
     errorMessage.destroy()
     submitButton.enabled = true // Re-enable submit button

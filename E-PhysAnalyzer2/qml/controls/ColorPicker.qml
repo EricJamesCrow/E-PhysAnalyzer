@@ -13,13 +13,15 @@ Item {
     property string chosenColor: "#FF0000"
     property string chosenColorName: chosenColor
     property int colorPickerAxis: 0
+    property var errorMessage : ""
 
-//    Connections {
-//        target: newRegionBtn1
-//        function onCloseColorDialogBox() {
-//            ColorPicker.closeColorDialogBox()
-//        }
-//    }
+    Connections {
+        target: backend
+        function onDestroyColorPicker() {
+            errorMessage.destroy()
+            customColorEntry.enabled = true
+        }
+    }
 
     ColorPickerBtn {
         id: selectColorPickerIcon
@@ -236,7 +238,12 @@ Item {
                                chosenColor = ColorPicker.colorDict[customColorEntry.text]
                            } catch(err) {
                            }
-            Keys.onReturnPressed: Region.expandDialogBox()
+            Keys.onReturnPressed: try{
+                                    chosenColor = ColorPicker.colorDict[customColorEntry.text]
+                                    Region.expandDialogBox()
+                                  } catch(err) {
+                                      Region.colorPickerErrorMsg("Color not available", "colorpicker")
+                                  }
 
             Label {
                 id: label
