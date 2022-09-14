@@ -40,6 +40,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
         onTextChanged: drugName = drugNameTextField.text
+        placeholderText: "SNAP" //temp
                     }
 
     CustomTextField {
@@ -49,6 +50,7 @@ Rectangle {
         height: 20 * scaleFactor
         anchors.verticalCenter: parent.verticalCenter
         onTextChanged: traceNumber = traceNumberTextField.text
+        placeholderText: "68" //temp
         validator: RegularExpressionValidator { regularExpression: /^[0-9]+$/ }
                     }
 
