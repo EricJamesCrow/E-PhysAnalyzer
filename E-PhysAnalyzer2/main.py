@@ -24,7 +24,7 @@ class Backend(QObject):
     destroyMsg = Signal()
     destroyErrorMsg = Signal()
     destroyErrorInputField = Signal()
-    destroyGenPtn = Signal()
+    destroyGenPtn = Signal(bool)
     emitRegions = Signal(str)
     disableRun = Signal()
     enableRun = Signal()
@@ -142,6 +142,7 @@ class GeneratePattern(Thread):
             less_than = greater_than + self.every_minutes
             backend.newRegion.emit(str(greater_than), str(less_than))
             greater_than = less_than
+        backend.destroyGenPtn.emit(False)
 
 class ErrorMessage(Thread):
     def __init__(self, string):
@@ -160,7 +161,7 @@ class ErrorMessage(Thread):
             backend.destroyErrorInputField.emit()
         elif self.string == "generate":
             time.sleep(1)
-            backend.destroyGenPtn.emit()
+            backend.destroyGenPtn.emit(True)
         
 
 

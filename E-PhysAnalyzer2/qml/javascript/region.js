@@ -17,6 +17,7 @@ function generatePattern(everyMinute, startTime, endTime) {
     } else if(endTime === "" || startTime == "" || everyMinute == "") {
         return regionErrorMsg("Empty values.", "generate")
     }
+    submitButton.enabled = false
     backend.run_generate_pattern(Math.abs(parseInt(everyMinute)), parseInt(startTime), parseInt(endTime))
 }
 

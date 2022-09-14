@@ -29,8 +29,10 @@ Button {
 
     Connections {
         target: backend
-        function onDestroyGenPtn(){
-            errorMessage.destroy()
+        function onDestroyGenPtn(destroy){
+            if(destroy) {
+              errorMessage.destroy()
+            }
             submitButton.enabled = true
         }
     }
