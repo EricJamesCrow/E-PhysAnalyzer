@@ -4,13 +4,16 @@ import pandas as pd
 # import matplotlib.pyplot as plt
 # import seaborn as sns
 # plt.switch_backend('PDF')
+import matplotlib.pyplot as plt
+import seaborn as sns
+plt.switch_backend('agg')
 import re
 import datetime
 from uncertainties import ufloat
 from threading import *
 from math import trunc
 
-class Analysis:
+class Analysis(Thread):
     # def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
     #     super(Analysis, self).__init__()
     #     self.file = file[0]
@@ -285,9 +288,6 @@ class Analysis:
         with open(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averaged.tsv'), 'r') as data:
             gdata = pd.read_csv(data, sep = '\t')
             headers = list(gdata.columns)
-            import matplotlib.pyplot as plt
-            import seaborn as sns
-            plt.switch_backend('agg')
             sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
             color_list = []            
@@ -306,17 +306,17 @@ class Analysis:
             sns.despine()
             graph1 = g.get_figure()
             graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.png'))
-            # importlib.reload(plt)
-            # plt.switch_backend('PDF')
-            # importlib.reload(sns)
+            importlib.reload(plt)
+            # plt.switch_backend('agg')
+            importlib.reload(sns)
 
         # Creates the Post Analysis graph
         with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'r') as data2:
             gdata2 = pd.read_csv(data2, sep = '\t')
             headers2 = list(gdata2.columns)
-            import matplotlib.pyplot as plt
-            import seaborn as sns
-            plt.switch_backend('agg')
+            # import matplotlib.pyplot as plt
+            # import seaborn as sns
+            # plt.switch_backend('agg')
             sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
             color_list2 = []
