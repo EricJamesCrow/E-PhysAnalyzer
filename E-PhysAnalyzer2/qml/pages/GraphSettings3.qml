@@ -36,7 +36,6 @@ Item {
 
 
     // Properties for editing
-    property var scaleFactor: 1
     property color topBarColor: "#02323a"
     property color topBarSecondaryColor: "#015967"
     property color columnColor: "#5ac1d0"

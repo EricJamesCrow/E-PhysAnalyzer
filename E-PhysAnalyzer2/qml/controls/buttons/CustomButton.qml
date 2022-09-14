@@ -25,8 +25,8 @@ Button {
     QtObject{
         id: internal
 
-        property var dynamicColor: button.hovered ? colorMouseOver : colorDefault
-        property var dynamicFontColor: button.hovered ? fontColorMouseOver : fontColorDefault
+        property var dynamicColor: button.hovered || button.focus ? colorMouseOver : colorDefault
+        property var dynamicFontColor: button.hovered || button.focus ? fontColorMouseOver : fontColorDefault
     }
 
     text: qsTr("Button")

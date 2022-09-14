@@ -8,9 +8,6 @@ Item {
     width: 396 * scaleFactor
     height: 660 * scaleFactor
 
-
-    property int scaleFactor: 1
-
     property url btnIconSource: "../../../images/svg_images/close_icon.svg"
 
 

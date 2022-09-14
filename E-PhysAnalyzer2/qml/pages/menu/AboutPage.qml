@@ -9,8 +9,6 @@ Item {
     height: 660 * scaleFactor
     focus: true
 
-    property int scaleFactor: 1
-
     property url btnIconSource: "../../images/svg_images/close_icon.svg"
 
     Rectangle {

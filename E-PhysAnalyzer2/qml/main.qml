@@ -36,18 +36,18 @@ Window {
         property string closeBtnSvgIcon: "../../images/svg_images/close_icon.svg"
         property string checkBoxIcon: "../../images/svg_images/checkmark_icon_087589.svg"
 
-//        // Colors
-//        property color topBarColor: "#02323a"/*"#001434"*/
-//        property color topBarSecondaryColor: "#015967"
-//        property color columnColor: "#304876"
-//        property color backgroundColor: "#b8e3ee"//"#4E7CFF"
-//        property color backgroundBorderColor: "#e9efec"
-//        property color buttonColorDefault: "#4E7CFF"
-//        property color buttonColorPressed: "#357aac"
-//        property color checkBoxHighlighted: "#33aac0"
-//        property color terminalUnderlineColor: "#51abb9"
-//        property color terminalText: "#2aafd3"
-//        property color menuDropDownMouseOverColor: "#af025967"
+        //        // Colors
+        //        property color topBarColor: "#02323a"/*"#001434"*/
+        //        property color topBarSecondaryColor: "#015967"
+        //        property color columnColor: "#304876"
+        //        property color backgroundColor: "#b8e3ee"//"#4E7CFF"
+        //        property color backgroundBorderColor: "#e9efec"
+        //        property color buttonColorDefault: "#4E7CFF"
+        //        property color buttonColorPressed: "#357aac"
+        //        property color checkBoxHighlighted: "#33aac0"
+        //        property color terminalUnderlineColor: "#51abb9"
+        //        property color terminalText: "#2aafd3"
+        //        property color menuDropDownMouseOverColor: "#af025967"
         // Colors
         property color topBarColor: "#02323a"
         property color topBarSecondaryColor: "#015967"
@@ -87,7 +87,7 @@ Window {
     FontLoader {
         id: fixedFont
         source: "fonts/Segoe UI.ttf"
-//        source:"fonts/LDFComicSans.ttf"
+        //        source:"fonts/LDFComicSans.ttf"
     }
 
     FontLoader {
@@ -128,6 +128,7 @@ Window {
             property bool plusPressed: false
             property bool minusPressed: false
             Keys.onEscapePressed: App.closeWindow()
+            //            Keys.onReturnPressed: if(closeWindowYesButton.visible === true) return mainWindow.close()
             Keys.onPressed: {
                 if (event.key === Qt.Key_Control) {
                     ctrlPressed = true
@@ -551,8 +552,8 @@ Window {
                 opacity:0.67
                 visible: false
                 color: "#323232"
-//                radius: 10
-//                height: roundRect.radius
+                //                radius: 10
+                //                height: roundRect.radius
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: topBar.bottom
@@ -563,14 +564,14 @@ Window {
                 anchors.topMargin: 0
                 z: 0
 
-//                Rectangle {
-//                        id: roundRect
-//                        color:"#323232"
-//                        height: 100
-//                        anchors.left: parent.left
-//                        anchors.right: parent.right
-//                        anchors.top: topBar.bottom
-//                      }
+                //                Rectangle {
+                //                        id: roundRect
+                //                        color:"#323232"
+                //                        height: 100
+                //                        anchors.left: parent.left
+                //                        anchors.right: parent.right
+                //                        anchors.top: topBar.bottom
+                //                      }
             }
 
 
@@ -642,30 +643,31 @@ Window {
                     anchors.leftMargin: 217 * scaleFactor
                     anchors.topMargin: 107 * scaleFactor
                     onClicked: {mainWindow.close()}
-                }
+                    Keys.onReturnPressed: mainWindow.close()
 
-                CustomButton {
-                    id: closeWindowNoButton
-                    colorDefault: settings.buttonColorDefault
-                    colorMouseOver: settings.backgroundColor
-                    colorPressed: settings.buttonColorPressed
-                    fontColorMouseOver: settings.buttonColorDefault
-                    x: 339 * scaleFactor
-                    width: 75 * scaleFactor
-                    height: 27 * scaleFactor
-                    text: "No"
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    z: 1
-                    anchors.rightMargin: 223 * scaleFactor
-                    anchors.topMargin: 107 * scaleFactor
-                    onClicked: App.closeWindow()
+                    CustomButton {
+                        id: closeWindowNoButton
+                        colorDefault: settings.buttonColorDefault
+                        colorMouseOver: settings.backgroundColor
+                        colorPressed: settings.buttonColorPressed
+                        fontColorMouseOver: settings.buttonColorDefault
+                        width: 75 * scaleFactor
+                        height: 27 * scaleFactor
+                        text: "No"
+                        anchors.left: parent.left
+                        anchors.leftMargin: 140
+                        z: 1
+                        onClicked: App.closeWindow()
+                        Keys.onReturnPressed: App.closeWindow()
+                        Keys.onTabPressed: closeWindowYesButton.focus = true
+                    }
                 }
 
                 MouseArea {
                     id: closeMainWindowMouseArea
                     anchors.fill: parent
                 }
+
             }
 
 
@@ -685,7 +687,7 @@ Window {
                 anchors.top: topBar.bottom
                 anchors.bottom: parent.bottom
                 z: 0
-//                anchors.topMargin: -25 * scaleFactor
+                //                anchors.topMargin: -25 * scaleFactor
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
                 anchors.bottomMargin: 0
@@ -957,6 +959,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.33}
+    D{i:0;formeditorZoom:0.33}D{i:40}
 }
 ##^##*/

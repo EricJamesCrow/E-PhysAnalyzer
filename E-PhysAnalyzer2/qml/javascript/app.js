@@ -103,10 +103,13 @@ function closeWindow() {
         closeMainWindow.visible = true
         closeMainWindowOverlay.visible = true
         clickOffCloseMainWindow.visible = true
+        closeWindowYesButton.focus = true
     } else {
         closeMainWindow.visible = false
         closeMainWindowOverlay.visible = false
         clickOffCloseMainWindow.visible = false
+        closeWindowYesButton.focus = false
+        appContainer.focus = true
     }
 }
 
