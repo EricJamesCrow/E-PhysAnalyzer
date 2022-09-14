@@ -3,7 +3,7 @@ import os
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.switch_backend('agg') # switches the backend for matplotlib so it doesn't use a GUI
+plt.switch_backend('Cairo') # cairo makes the graphs, still has issues.
 import re
 import datetime
 from uncertainties import ufloat
@@ -27,13 +27,14 @@ class Analysis(Thread):
         self.axis_limits = axis_limits
 
     def run(self):
+        importlib.reload(plt)
+        importlib.reload(sns)
         self.mkdir_outputs(self.file)
         self.mkdir(self.file)
         self.analyze_data(self.file, self.drug_name, self.when_drug, self.excluded_traces, self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
         self.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)
     
     def mkdir_outputs(self, file):
-        base_name = os.path.basename(file)
         parent_dir = os.path.dirname(os.path.abspath(file))
         directory = f"E-Phys Analyzer {datetime.date.today()} Results"
         self.output_path = os.path.join(parent_dir, directory)
