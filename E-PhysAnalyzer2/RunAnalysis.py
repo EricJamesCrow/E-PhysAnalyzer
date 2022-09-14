@@ -243,7 +243,7 @@ class Analysis(Thread):
 
                 # skip past headers
                 full_analysis_tsv.readline()
-
+                previous_color = ''
                 for line in full_analysis_tsv:
                     tsv = line.strip().split('\t')
                     time_from_drug = tsv[6]
@@ -251,6 +251,7 @@ class Analysis(Thread):
                     trace = tsv[0]
                     color = tsv[7]
                     if time_from_drug[0] == '-' and int(trace) + 1 < (when_drug - (user_baseline * traces_per_minute)):
+                        previous_color = color
                         continue
 
                     if (int(trace) + 1 >= (when_drug + (minute_counter * traces_per_minute + 1))):
@@ -258,7 +259,7 @@ class Analysis(Thread):
                         for entry in range(0, len(minuteTimes)): total += float(minuteTimes[entry])
                         avg = total / len(minuteTimes)
                         traces = ' '.join(traceNumbers)
-                        minute_averaged_tsv.write('\t'.join([str(drugTime), str(float(avg)), traces, color]) + '\n')
+                        minute_averaged_tsv.write('\t'.join([str(drugTime), str(float(avg)), traces, previous_color]) + '\n')
                         total = 0
                         traces = ''
                         minuteTimes = []
@@ -266,6 +267,7 @@ class Analysis(Thread):
                         drugTime += 1
                         minuteTimes.append(normalized_amplitude)
                         traceNumbers.append(trace)
+                        previous_color = color
 
                     else:
                         minuteTimes.append(normalized_amplitude)
