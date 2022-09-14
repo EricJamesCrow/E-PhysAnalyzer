@@ -4,7 +4,6 @@ from pathlib import Path
 import sys
 import time
 import json
-from turtle import color
 
 from PySide6 import QtCore
 from PySide6.QtQml import QQmlApplicationEngine
