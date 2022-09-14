@@ -1,9 +1,9 @@
 import importlib
 import os
-import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.switch_backend('Cairo') # cairo makes the graphs, still has issues.
+import seaborn as sns
+plt.switch_backend('PDF')
 import re
 import datetime
 from uncertainties import ufloat
@@ -27,8 +27,8 @@ class Analysis(Thread):
         self.axis_limits = axis_limits
 
     def run(self):
-        importlib.reload(plt)
-        importlib.reload(sns)
+        # importlib.reload(plt)
+        # importlib.reload(sns)
         self.mkdir_outputs(self.file)
         self.mkdir(self.file)
         self.analyze_data(self.file, self.drug_name, self.when_drug, self.excluded_traces, self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
@@ -300,8 +300,9 @@ class Analysis(Thread):
             g.set(title=f"Minute Averages Normalized to Baseline")
             sns.despine()
             graph1 = g.get_figure()
-            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.png'))
+            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.pdf'))
             importlib.reload(plt)
+            plt.switch_backend('PDF')
             importlib.reload(sns)
 
         # Creates the Post Analysis graph
@@ -326,9 +327,7 @@ class Analysis(Thread):
             g2.set(ylim=(axis_limits[6], axis_limits[7]))
             sns.despine()
             graph2 = g2.get_figure()
-            graph2.savefig(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis_Graph.png'))
-            importlib.reload(plt)
-            importlib.reload(sns)
+            graph2.savefig(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis_Graph.pdf'))
 
 
 file = 'test.atf'
