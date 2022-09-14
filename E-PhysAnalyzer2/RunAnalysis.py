@@ -27,8 +27,25 @@ class Analysis(Thread):
         self.axis_limits = axis_limits
 
     def run(self):
+        self.mkdir_outputs(self.file)
+        self.mkdir(self.file)
         self.analyze_data(self.file, self.drug_name, self.when_drug, self.excluded_traces, self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
         self.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)
+    
+    def mkdir_outputs(self, file):
+        base_name = os.path.basename(file)
+        parent_dir = os.path.dirname(os.path.abspath(file))
+        directory = f"E-Phys Analyzer {datetime.date.today()} Results"
+        self.output_path = os.path.join(parent_dir, directory)
+        os.makedirs(self.output_path, exist_ok=True)
+
+    def mkdir(self, files):
+        base_name = os.path.basename(files)
+        self.base_name_no_ext = os.path.splitext(base_name)[0]
+        parent_dir = self.output_path
+        directory = f"{self.base_name_no_ext}" + " Analysis"
+        self.path = os.path.join(parent_dir, directory)
+        os.makedirs(self.path, exist_ok=True)
 
     def calc_standard_dev(self, file, excludedTraces):
         '''Calculates standard deviation for all the values in the file and uses them throughout the analysis.'''
@@ -130,7 +147,7 @@ class Analysis(Thread):
             for _ in range(3): atf_file.readline()
 
             # analyzes the data and writes to a new file
-            with open('Post_Analysis.tsv', 'w') as newTSV:
+            with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'w') as newTSV:
 
                 # write the headers of the data file
                 newTSV.write('\t'.join(['Trace', 'Trace Start (ms)', 'Trace Start (minutes)', 'R1S1 Peak Amp (pA)',
@@ -212,8 +229,8 @@ class Analysis(Thread):
                             '\t' + color + '\t' + self.calc_z_score(peak_amp) + '\n')
 
 
-        with open('Minute_Averaged.tsv', 'w') as minute_averaged_tsv:
-            with open('Post_Analysis.tsv', 'r') as full_analysis_tsv:
+        with open(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averaged.tsv'), 'w') as minute_averaged_tsv:
+            with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'r') as full_analysis_tsv:
                 minute_averaged_tsv.write(
                     f"Time from {drug_name} Addition (min)\tAbs Val R1S1 Peak Amp Normalized to Baseline (pA)\tTrace Numbers Used in Average\tColor Code\n")
                 minuteTimes = []
@@ -262,7 +279,7 @@ class Analysis(Thread):
 
     def make_graphs(self, dpi: int, baseline: bool, baseline_color: str, axis_limits: list):
         # Creates the Minute Averaged graph
-        with open('Minute_Averaged.tsv', 'r') as data:
+        with open(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averaged.tsv'), 'r') as data:
             gdata = pd.read_csv(data, sep = '\t')
             headers = list(gdata.columns)
             sns.set(rc={'savefig.dpi': dpi})
@@ -282,12 +299,12 @@ class Analysis(Thread):
             g.set(title=f"Minute Averages Normalized to Baseline")
             sns.despine()
             graph1 = g.get_figure()
-            graph1.savefig('Minute_Averages.png')
+            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.png'))
             importlib.reload(plt)
             importlib.reload(sns)
 
         # Creates the Post Analysis graph
-        with open('Post_Analysis.tsv', 'r') as data2:
+        with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'r') as data2:
             gdata2 = pd.read_csv(data2, sep = '\t')
             headers2 = list(gdata2.columns)
             sns.set(rc={'savefig.dpi': dpi})
@@ -308,7 +325,7 @@ class Analysis(Thread):
             g2.set(ylim=(axis_limits[6], axis_limits[7]))
             sns.despine()
             graph2 = g2.get_figure()
-            graph2.savefig('Post_Analysis.png')
+            graph2.savefig(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis_Graph.png'))
             importlib.reload(plt)
             importlib.reload(sns)
 
