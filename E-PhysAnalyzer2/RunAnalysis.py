@@ -10,30 +10,29 @@ from uncertainties import ufloat
 from threading import *
 from math import trunc
 
-class Analysis(Thread):
-    def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
-        super(Analysis, self).__init__()
-        self.file = file[0]
-        self.drug_name = file[1]
-        self.when_drug = trunc(file[2]) # QML converts the int to a float; use trunc() to grab just the integer
-        self.excluded_traces = [trunc(i) for i in file[3]]
-        self.z_limit = z_limit
-        self.z_checking = z_checking
-        self.baseline = baseline
-        self.color_regions_dict = color_regions_dict
-        self.default_color = default_color
-        self.dpi = dpi
-        self.baseline_color = baseline_color
-        self.axis_limits = axis_limits
+class Analysis:
+    # def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
+    #     super(Analysis, self).__init__()
+    #     self.file = file[0]
+    #     self.drug_name = file[1]
+    #     self.when_drug = trunc(file[2]) # QML converts the int to a float; use trunc() to grab just the integer
+    #     self.excluded_traces = [trunc(i) for i in file[3]]
+    #     self.z_limit = z_limit
+    #     self.z_checking = z_checking
+    #     self.baseline = baseline
+    #     self.color_regions_dict = color_regions_dict
+    #     self.default_color = default_color
+    #     self.dpi = dpi
+    #     self.baseline_color = baseline_color
+    #     self.axis_limits = axis_limits
 
-    def run(self):
-        # importlib.reload(plt)
-        # importlib.reload(sns)
-        self.mkdir_outputs(self.file)
-        self.mkdir(self.file)
-        self.analyze_data(self.file, self.drug_name, self.when_drug, self.excluded_traces, self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
-        self.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)
-    
+    # def run(self):
+    #     # importlib.reload(plt)
+    #     # importlib.reload(sns)
+    #     self.mkdir_outputs(self.file)
+    #     self.mkdir(self.file)
+    #     self.analyze_data(self.file, self.drug_name, self.when_drug, self.excluded_traces, self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
+    #     self.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)   
     def mkdir_outputs(self, file):
         parent_dir = os.path.dirname(os.path.abspath(file))
         directory = f"E-Phys Analyzer {datetime.date.today()} Results"
@@ -288,7 +287,7 @@ class Analysis(Thread):
             headers = list(gdata.columns)
             import matplotlib.pyplot as plt
             import seaborn as sns
-            plt.switch_backend('PDF')
+            plt.switch_backend('agg')
             sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
             color_list = []            
@@ -306,7 +305,7 @@ class Analysis(Thread):
             g.set(title=f"Minute Averages Normalized to Baseline")
             sns.despine()
             graph1 = g.get_figure()
-            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.pdf'))
+            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.png'))
             # importlib.reload(plt)
             # plt.switch_backend('PDF')
             # importlib.reload(sns)
@@ -317,7 +316,7 @@ class Analysis(Thread):
             headers2 = list(gdata2.columns)
             import matplotlib.pyplot as plt
             import seaborn as sns
-            plt.switch_backend('PDF')
+            plt.switch_backend('agg')
             sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
             color_list2 = []
@@ -336,7 +335,7 @@ class Analysis(Thread):
             g2.set(ylim=(axis_limits[6], axis_limits[7]))
             sns.despine()
             graph2 = g2.get_figure()
-            graph2.savefig(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis_Graph.pdf'))
+            graph2.savefig(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis_Graph.png'))
 
 
 file = 'test.atf'

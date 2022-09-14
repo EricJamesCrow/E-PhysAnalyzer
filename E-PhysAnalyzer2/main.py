@@ -4,6 +4,7 @@ from pathlib import Path
 import sys
 import time
 import json
+from math import trunc
 
 from PySide6 import QtCore
 from PySide6.QtQml import QQmlApplicationEngine
@@ -40,9 +41,11 @@ class Backend(QObject):
         if single == True:
             for i in range(len(color_regions_dict)):
                 color_regions_dict[str(i)][2] = default_color
-        for i in range(len(files)):
-            analysis = Analysis(files[i], z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits)
-            analysis.start()
+        # for i in range(len(files)):
+        #     analysis = Analysis(files[i], z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits)
+        #     analysis.start()
+        analysis = StartAnalysis(files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits)
+        analysis.start()
 
     @Slot()
     def run_starting_animation(self):
@@ -75,6 +78,28 @@ class Backend(QObject):
     @Slot()
     def enable_run_button(self):
         self.enableRun.emit()
+
+class StartAnalysis(Thread):
+    def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
+        super(StartAnalysis, self).__init__()
+        self.files = file
+        self.z_limit = z_limit
+        self.z_checking = z_checking
+        self.baseline = baseline
+        self.color_regions_dict = color_regions_dict
+        self.default_color = default_color
+        self.dpi = dpi
+        self.baseline_color = baseline_color
+        self.axis_limits = axis_limits
+
+    def run(self):
+        for i in range(len(self.files)):
+            analysis = Analysis()
+            analysis.mkdir_outputs(self.files[i][0])
+            analysis.mkdir(self.files[i][0])
+            analysis.analyze_data(self.files[i][0], self.files[i][1], trunc(self.files[i][2]), [trunc(x) for x in self.files[i][3]], self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
+            analysis.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)
+
 
 class StartingAnimation(Thread):
     def run(self):
