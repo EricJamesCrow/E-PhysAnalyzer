@@ -272,6 +272,7 @@ class Analysis(Thread):
                     else:
                         minuteTimes.append(normalized_amplitude)
                         traceNumbers.append(trace)
+                        previous_color = color
 
                 # add the remaining points together and average them
                 for entry in range(len(minuteTimes)): total += float(minuteTimes[entry])
