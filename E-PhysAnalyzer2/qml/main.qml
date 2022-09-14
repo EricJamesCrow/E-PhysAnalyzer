@@ -11,6 +11,7 @@ import Qt.labs.platform 1.1
 import Qt.labs.settings 1.1
 import "javascript/app.js" as App
 import "javascript/settings.js" as Settings
+import "javascript/progress-bar.js" as Progress
 
 Window {
     // Scale Factor
@@ -22,6 +23,12 @@ Window {
         target: backend
         function onAdjustHeight(){
             adjustHeight(scaleFactor)
+        }
+        function onEmitProgressBar(num) {
+            Progress.runProgressBar(num)
+        }
+        function onSuccessDialog(directory) {
+            Progress.showSuccessDialog(directory)
         }
     }
 
@@ -83,6 +90,7 @@ Window {
     property var terminalTabSelected: true
     property var plotTabSelected: false
     property bool dragHandlerActivated : false
+    property string outputDirectory: ""
 
     FontLoader {
         id: fixedFont
@@ -818,6 +826,109 @@ Window {
                 anchors.rightMargin: 0
             }
 
+            Rectangle {
+                id: progressBarOverlay
+                x: 591 * scaleFactor
+                opacity: 1
+                visible: false
+                color: "#ab323232"
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: topBar.bottom
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 0
+                anchors.bottomMargin: 0
+                anchors.leftMargin: 0
+                anchors.topMargin: 0
+                z: 0
+
+                CircularProgressBar {
+                    id: progressBar
+                    z: 1
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenterOffset: -120 * scaleFactor
+                    progressColor: settings.terminalText
+                    textColor: settings.terminalText
+                    value: 0
+                }
+            }
+
+            MouseArea {
+                id: progressBarOverlayMouseArea
+                x: 0
+                y: 60 * scaleFactor
+                visible: false
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 0
+                anchors.bottomMargin: 0
+                anchors.topMargin: 0
+            }
+
+            Rectangle {
+                id: filesFinishedWindow
+                width: 637 * scaleFactor
+                height: 258 * scaleFactor
+                visible: false
+                color: settings.columnColor
+                radius: 5
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Label {
+                    id: filesFinishedWindowsLabel
+                    width: 400 * scaleFactor
+                    height: 27 * scaleFactor
+                    color: "#ffffff"
+                    text: qsTr("Files finished!")
+                    anchors.top: parent.top
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pointSize: 8 * scaleFactor
+                    font.family: "PragmaticaLightC"
+                    anchors.topMargin: 35 * scaleFactor
+                }
+
+                CustomButton {
+                    id: filesFinishedOkButton
+                    width: 75 * scaleFactor
+                    height: 27 * scaleFactor
+                    text: "OK"
+                    anchors.left: parent.left
+                    anchors.top: parent.top
+                    onClicked: Progress.closeFilesWindow()
+                    Keys.onReturnPressed: Progress.closeFilesWindow()
+                    fontColorMouseOver: settings.buttonColorDefault
+                    colorPressed: settings.buttonColorPressed
+                    CustomButton {
+                        id: filesFinishedBrowseButton
+                        width: 75 * scaleFactor
+                        height: 27 * scaleFactor
+                        text: "Open"
+                        anchors.left: parent.left
+                        onClicked:{ backend.open_files_saved(outputDirectory); Progress.closeFilesWindow()}
+                        Keys.onReturnPressed: {backend.open_files_saved(outputDirectory); Progress.closeFilesWindow()}
+                        fontColorMouseOver: settings.buttonColorDefault
+                        colorPressed: settings.buttonColorPressed
+                        colorDefault: settings.buttonColorDefault
+                        anchors.leftMargin: 140
+                        Keys.onTabPressed: filesFinishedOkButton.focus = true
+                        colorMouseOver: settings.backgroundColor
+                        z: 1
+                    }
+                    colorDefault: settings.buttonColorDefault
+                    anchors.leftMargin: 217 * scaleFactor
+                    colorMouseOver: settings.backgroundColor
+                    anchors.topMargin: 107 * scaleFactor
+                    z: 1
+                }
+                z: 1
+            }
+
         }
 
 
@@ -959,6 +1070,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.33}D{i:40}
+    D{i:0;formeditorZoom:0.33}D{i:49}
 }
 ##^##*/

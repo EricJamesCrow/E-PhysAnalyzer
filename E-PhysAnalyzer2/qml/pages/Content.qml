@@ -54,7 +54,7 @@ Item {
     }
 
     // Properties for editing
-//    property int scaleFactor: settings.scaleFactor
+    //    property int scaleFactor: settings.scaleFactor
     property color topBarColor: "#02323a"
     property color topBarSecondaryColor: "#015967"
     property color columnColor: "#5ac1d0"
@@ -281,29 +281,29 @@ Item {
                 anchors.leftMargin: 0
                 anchors.topMargin: 0
                 // flickable settings
-//                contentWidth: 663 * scaleFactor
-//                contentHeight: 704 * scaleFactor
+                //                contentWidth: 663 * scaleFactor
+                //                contentHeight: 704 * scaleFactor
                 clip: true
-//                ScrollBar.vertical: CustomScrollBar {
-//                    id: scrollBarVerticalLeftContent1
-//                    //                    parent: rightContentFlickable.parent
-//                    //                    anchors.right: rightContentFlickable.right
-//                    //                    anchors.top: rightContentFlickable.top
-//                    //                    anchors.bottom: rightContentFlickable.bottom
-//                    btnColorDefault: settings.buttonColorDefault
-//                    backgroundColorDefault: settings.backgroundColor
-//                    width: 10* scaleFactor
-//                }
-//                ScrollBar.horizontal: CustomScrollBar {
-//                    id: scrollBarHorizontalRightContent
-//                    //                    parent: rightContentFlickable.parent
-//                    //                    anchors.left: rightContentFlickable.left
-//                    //                    anchors.right: rightContentFlickable.right
-//                    //                    anchors.bottom: rightContentFlickable.bottom
-//                    btnColorDefault: settings.buttonColorDefault
-//                    backgroundColorDefault: settings.backgroundColor
-//                    height: 17 * scaleFactor
-//                }
+                //                ScrollBar.vertical: CustomScrollBar {
+                //                    id: scrollBarVerticalLeftContent1
+                //                    //                    parent: rightContentFlickable.parent
+                //                    //                    anchors.right: rightContentFlickable.right
+                //                    //                    anchors.top: rightContentFlickable.top
+                //                    //                    anchors.bottom: rightContentFlickable.bottom
+                //                    btnColorDefault: settings.buttonColorDefault
+                //                    backgroundColorDefault: settings.backgroundColor
+                //                    width: 10* scaleFactor
+                //                }
+                //                ScrollBar.horizontal: CustomScrollBar {
+                //                    id: scrollBarHorizontalRightContent
+                //                    //                    parent: rightContentFlickable.parent
+                //                    //                    anchors.left: rightContentFlickable.left
+                //                    //                    anchors.right: rightContentFlickable.right
+                //                    //                    anchors.bottom: rightContentFlickable.bottom
+                //                    btnColorDefault: settings.buttonColorDefault
+                //                    backgroundColorDefault: settings.backgroundColor
+                //                    height: 17 * scaleFactor
+                //                }
 
                 Loader {
                     id: rightContentLoader

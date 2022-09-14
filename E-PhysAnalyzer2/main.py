@@ -6,6 +6,7 @@ import sys
 import time
 import json
 from math import trunc
+import subprocess
 
 from PySide6 import QtCore
 from PySide6.QtQml import QQmlApplicationEngine
@@ -14,7 +15,6 @@ from PySide6.QtCore import QObject, Slot, Signal
 from threading import *
 
 from RunAnalysis import Analysis
-from datetime import datetime
 
 class Backend(QObject):
     addObject = Signal(str)
@@ -29,8 +29,17 @@ class Backend(QObject):
     emitRegions = Signal(str)
     disableRun = Signal()
     enableRun = Signal()
+    emitProgressBar = Signal(float)
+    successDialog = Signal(str)
     starting_animation_time = 0.2
     object_animation_time = 0.1
+
+    @Slot(str)
+    def open_files_saved(self, directory):
+        if os.name == 'nt':
+            subprocess.Popen(rf'explorer /open,{directory}')
+        else:
+            subprocess.run(['open', f'{directory}'], check=True)
 
     @Slot(str)
     def emit_region(self, region):
@@ -38,21 +47,14 @@ class Backend(QObject):
 
     @Slot(list, float, bool, int, str, str, int, str, list, bool)
     def run_analyze_data(self, files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, single):
-        pdf = False
         color_regions_dict = json.loads(color_regions_dict) # Convert string back to dictioanry
         if color_regions_dict == {}:
             color_regions_dict = {'0': [-10, -5, 'grey'], '1': [-5, 0, 'black'], '2': [0, 5, 'grey'], '3': [5, 10, 'purple'], '4': [10, 15, 'green'], '5': [15, 20, 'blue'], '6': [20, 25, 'orange'], '7': [25, 30, 'red']}
         if single == True:
             for i in range(len(color_regions_dict)):
                 color_regions_dict[str(i)][2] = default_color
-        if pdf:
-            print(datetime.now())
-            for i in range(len(files)):
-                analysis = Analysis(files[i], z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits)
-                analysis.start()
-        else:
-            analysis = StartAnalysis(files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits)
-            analysis.start()
+        analysis = StartAnalysis(files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits)
+        analysis.start()
 
     @Slot()
     def run_starting_animation(self):
@@ -100,14 +102,17 @@ class StartAnalysis(Thread):
         self.axis_limits = axis_limits
 
     def run(self):
-        print(datetime.now())
+        backend.emitProgressBar.emit(0/len(self.files)*100)
         for i in range(len(self.files)):
             analysis = Analysis()
             analysis.mkdir_outputs(self.files[i][0])
             analysis.mkdir(self.files[i][0])
             analysis.analyze_data(self.files[i][0], self.files[i][1], trunc(self.files[i][2]), [trunc(x) for x in self.files[i][3]], self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
             analysis.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)
-        print(datetime.now())
+            backend.emitProgressBar.emit((i+1)/len(self.files)*100)
+        directory = analysis.return_directory()
+        time.sleep(0.1)
+        backend.successDialog.emit(directory)
 
 
 class StartingAnimation(Thread):

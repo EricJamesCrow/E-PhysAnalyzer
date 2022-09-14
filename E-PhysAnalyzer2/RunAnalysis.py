@@ -1,9 +1,6 @@
 import importlib
 import os
 import pandas as pd
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# plt.switch_backend('PDF')
 import matplotlib.pyplot as plt
 import seaborn as sns
 plt.switch_backend('agg')
@@ -14,28 +11,6 @@ from threading import *
 from math import trunc
 
 class Analysis(Thread):
-    # def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits):
-    #     super(Analysis, self).__init__()
-    #     self.file = file[0]
-    #     self.drug_name = file[1]
-    #     self.when_drug = trunc(file[2]) # QML converts the int to a float; use trunc() to grab just the integer
-    #     self.excluded_traces = [trunc(i) for i in file[3]]
-    #     self.z_limit = z_limit
-    #     self.z_checking = z_checking
-    #     self.baseline = baseline
-    #     self.color_regions_dict = color_regions_dict
-    #     self.default_color = default_color
-    #     self.dpi = dpi
-    #     self.baseline_color = baseline_color
-    #     self.axis_limits = axis_limits
-
-    # def run(self):
-    #     # importlib.reload(plt)
-    #     # importlib.reload(sns)
-    #     self.mkdir_outputs(self.file)
-    #     self.mkdir(self.file)
-    #     self.analyze_data(self.file, self.drug_name, self.when_drug, self.excluded_traces, self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
-    #     self.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits)   
     def mkdir_outputs(self, file):
         parent_dir = os.path.dirname(os.path.abspath(file))
         directory = f"E-Phys Analyzer {datetime.date.today()} Results"
@@ -49,6 +24,9 @@ class Analysis(Thread):
         directory = f"{self.base_name_no_ext}" + " Analysis"
         self.path = os.path.join(parent_dir, directory)
         os.makedirs(self.path, exist_ok=True)
+
+    def return_directory(self):
+        return self.output_path
 
     def calc_standard_dev(self, file, excludedTraces):
         '''Calculates standard deviation for all the values in the file and uses them throughout the analysis.'''
@@ -307,16 +285,12 @@ class Analysis(Thread):
             graph1 = g.get_figure()
             graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.png'))
             importlib.reload(plt)
-            # plt.switch_backend('agg')
             importlib.reload(sns)
 
         # Creates the Post Analysis graph
         with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'r') as data2:
             gdata2 = pd.read_csv(data2, sep = '\t')
             headers2 = list(gdata2.columns)
-            # import matplotlib.pyplot as plt
-            # import seaborn as sns
-            # plt.switch_backend('agg')
             sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
             color_list2 = []
