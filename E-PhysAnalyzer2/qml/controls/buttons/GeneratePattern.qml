@@ -134,6 +134,7 @@ Button {
                         text: "Submit"
                         enabled: dialogBox.opacity === 1.0
                         onClicked: Region.generatePattern(every_minutesTextField.text, startTimeEntry.text, endTimeEntry.text)
+                        Keys.onReturnPressed: Region.generatePattern(every_minutesTextField.text, startTimeEntry.text, endTimeEntry.text)
                     }
                 }
             }
