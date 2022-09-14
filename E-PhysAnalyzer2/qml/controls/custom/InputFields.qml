@@ -5,8 +5,8 @@ import QtQuick.Controls 2.5
 Rectangle {
 
     property string file: ""
-    property string drugName: ""
-    property string traceNumber: ""
+    property string drugName: "SNAP"
+    property string traceNumber: "68"
     property string excludedTraces: ""
 
     id: objectBg
@@ -40,7 +40,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
         onTextChanged: drugName = drugNameTextField.text
-        placeholderText: "SNAP" //temp
+        placeholderText: "SNAP"
                     }
 
     CustomTextField {
@@ -50,7 +50,7 @@ Rectangle {
         height: 20 * scaleFactor
         anchors.verticalCenter: parent.verticalCenter
         onTextChanged: traceNumber = traceNumberTextField.text
-        placeholderText: "68" //temp
+        placeholderText: "68"
         validator: RegularExpressionValidator { regularExpression: /^[0-9]+$/ }
                     }
 
