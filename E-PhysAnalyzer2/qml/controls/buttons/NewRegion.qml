@@ -23,7 +23,7 @@ Button {
     property color fontColorPressed: "#ffffff"
 
     signal newRegion(string greaterThan, string lessThan, string chosenRegionColor, string chosenRegionColorName) // Sends this to Regions.qml
-//    signal closeColorDialogBox()
+    //    signal closeColorDialogBox()
     property var errorMessage: ""
     property color chosenRegionColor: colorPicker1.chosenColor
     property color regionColorName: colorPicker1.chosenColorName
@@ -119,19 +119,37 @@ Button {
             height: 20 * scaleFactor
             font.pointSize: 8 * scaleFactor
             validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
+
+            CustomTextField {
+                id: lessThanEntry
+                x: 120 * scaleFactor
+                width: 30 * scaleFactor
+                height: 20 * scaleFactor
+                font.pointSize: 8 * scaleFactor
+                validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
+                anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
+            }
+
+            CustomButton {
+                id: submitButton
+                x: 115 * scaleFactor
+                y: 40 * scaleFactor
+                width: 48 * scaleFactor
+                height: 15 * scaleFactor
+                text: "Submit"
+                onClicked: {newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName);
+                    greaterThanOrEqualEntry.text = "";
+                    lessThanEntry.text = "";
+                    greaterThanOrEqualEntry.focus = true}
+                Keys.onReturnPressed: {newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName);
+                    greaterThanOrEqualEntry.text = "";
+                    lessThanEntry.text = "";
+                    greaterThanOrEqualEntry.focus = true}
+                enabled: true
+            }
         }
 
 
-
-        CustomTextField {
-            id: lessThanEntry
-            x: 130 * scaleFactor
-            width: 30 * scaleFactor
-            height: 20 * scaleFactor
-            font.pointSize: 8 * scaleFactor
-            validator: RegularExpressionValidator { regularExpression: /^-?\d+$/ }
-            anchors.verticalCenter: greaterThanOrEqualEntry.verticalCenter
-        }
 
 
 
@@ -180,20 +198,6 @@ Button {
         }
 
 
-
-        CustomButton {
-            id: submitButton
-            x: 120 * scaleFactor
-            y: 44 * scaleFactor
-            width: 48 * scaleFactor
-            height: 15 * scaleFactor
-            text: "Submit"
-            onClicked: {newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName);
-                greaterThanOrEqualEntry.text = "";
-                lessThanEntry.text = "";
-                greaterThanOrEqualEntry.focus = true}
-            enabled: true
-        }
     }
 
     text: qsTr("Button")

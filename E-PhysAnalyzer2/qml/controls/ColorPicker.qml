@@ -236,6 +236,7 @@ Item {
                                chosenColor = ColorPicker.colorDict[customColorEntry.text]
                            } catch(err) {
                            }
+            Keys.onReturnPressed: Region.expandDialogBox()
 
             Label {
                 id: label
