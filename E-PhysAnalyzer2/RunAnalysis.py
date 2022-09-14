@@ -1,9 +1,9 @@
 import importlib
 import os
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-plt.switch_backend('PDF')
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# plt.switch_backend('PDF')
 import re
 import datetime
 from uncertainties import ufloat
@@ -283,6 +283,9 @@ class Analysis(Thread):
         with open(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averaged.tsv'), 'r') as data:
             gdata = pd.read_csv(data, sep = '\t')
             headers = list(gdata.columns)
+            import matplotlib.pyplot as plt
+            import seaborn as sns
+            plt.switch_backend('PDF')
             sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
             color_list = []            
@@ -301,14 +304,17 @@ class Analysis(Thread):
             sns.despine()
             graph1 = g.get_figure()
             graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.pdf'))
-            importlib.reload(plt)
-            plt.switch_backend('PDF')
-            importlib.reload(sns)
+            # importlib.reload(plt)
+            # plt.switch_backend('PDF')
+            # importlib.reload(sns)
 
         # Creates the Post Analysis graph
         with open(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis.tsv'), 'r') as data2:
             gdata2 = pd.read_csv(data2, sep = '\t')
             headers2 = list(gdata2.columns)
+            import matplotlib.pyplot as plt
+            import seaborn as sns
+            plt.switch_backend('PDF')
             sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
             color_list2 = []
