@@ -41,17 +41,17 @@ function startDeserialization(objects, axis, xmin, xmax, ymin, ymax, maxmin, max
     return settings.deserialization().setSettings().load()
 }
 
-function serialize() {
+const serialize = function() {
     for(let i=0; i<regionObjects.length; i++){
         var serializedObject = {"Index": regionObjects[i].regionNumber, "Position": [regionObjects[i].y, regionObjects[i].z], "Values": [regionObjects[i].greaterThanEqualToText, regionObjects[i].lessThanText], "Colors": [regionObjects[i].chosenRegionColor.toString(), regionObjects[i].colorName.toString()]}
         serializedObjects.push(JSON.stringify(serializedObject))
     }
 }
 
-function deserialize(settingsObject) {
+var deserialize = (settingsObject) => {
     for (let i=0; i<settingsObject.length; i++) { 
-        var jsonObject = JSON.parse(settingsObject[i]) // Convert back to a JSON object
-        var newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200 * scaleFactor; height: 19 * scaleFactor; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
+        let jsonObject = JSON.parse(settingsObject[i]) // Convert back to a JSON object
+        let newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200 * scaleFactor; height: 19 * scaleFactor; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
         regionsLoader,
         "dynamicRegion");
         regionObjects.push(newObject);
@@ -69,15 +69,15 @@ function deserialize(settingsObject) {
     backend.adjust_region_height()
 }
 
-function animate(object) {
-    var objects = {
+const animate = (object) => {
+    const objects = {
         0: generatePatternOpacity, 1: newRegionOpacity, 2: regionsOpacity, 3: postAnalysisOpacity, 
         4: colorCodeOpacity, 5: minuteAveragedOpacity, 6: baselineOpacity, 7: zScoreOpacity, 8: resetBtnOpacity
     }
     objects[object].running = true
 }
 
-function nextPage() {
+const nextPage = function() {
     if(rightContentLoader.source.toString() === graphSettingsPage[0]){
         rightContentLoader.source = graphSettingsPage[1]
         contentSettings.leftArrowChecked = true
@@ -89,7 +89,7 @@ function nextPage() {
     }
 }
 
-function prevPage() {
+const prevPage = function() {
     if(rightContentLoader.source.toString() === graphSettingsPage[1]) {
         rightContentLoader.source = graphSettingsPage[0]
         contentSettings.leftArrowChecked = false  
@@ -101,7 +101,7 @@ function prevPage() {
     }
 }
 
-function errorMsg(msg, section) {
+var errorMsg = (msg, section) => {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
         x: 5 * scaleFactor;
         y: 71 * scaleFactor;
@@ -115,7 +115,7 @@ function errorMsg(msg, section) {
     backend.destroy_error_msg("settings") // Need to call a Python thread so the message is destroyed after 1 second
 }
 
-function destroyErrorMsg() {
+const destroyErrorMsg = function() {
     errorMessage.destroy()
     backend.enable_run_button()
 }

@@ -1,4 +1,4 @@
-function adjustInputFields(scale) {
+var adjustInputFields = (scale) => {
     objectHeight = 10 * scale
     flickableContentHeight = 696 * scale
     for(let i=0; i<fileObjects.length; i++) {
@@ -10,7 +10,7 @@ function adjustInputFields(scale) {
     }
 }
 
-function adjustRegionHeight(scale) {
+var adjustRegionHeight = (scale) => {
     regionAxis = 5 * scale
     for(let i=0; i<regionObjects.length; i++) {
         regionObjects[i].y = regionAxis
@@ -46,38 +46,23 @@ var updateScaleDict = {
     10: 1.5
 };
 
-function increaseScale() {
+const increaseScale = function() {
     return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()+1)
 }
 
-function decreaseScale() {
+const decreaseScale = function() {
    return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()-1) 
 }
 
-function scaleFactorDictFunction(){
+const scaleFactorDictFunction = function(){
     return scaleFactorDict[settings.scaleFactor]
 }
-function updateScaleFactor(index){
+const updateScaleFactor = (index) => {
     return updateScaleDict[index]
 }
 
-function resetSettings(determineScaleFactor) {
+const resetSettings = (determineScaleFactor) => {
     settings.scaleFactor = determineScaleFactor
     settings.repeatDrugNames = false
     settings.outputFormat = 0
-}
-
-function logDeviceInformation() {
-    mutationspectra.terminal_update_info(`Operating System: ${Qt.platform.os}`)
-    mutationspectra.terminal_update_info(`Pixel Density: ${Screen.pixelDensity}`)
-    mutationspectra.terminal_update_info(`Device Pixel ratio: ${Screen.devicePixelRatio}`)
-    mutationspectra.terminal_update_info(`Desktop Available Height: ${Screen.desktopAvailableHeight}`)
-    mutationspectra.terminal_update_info(`Desktop Available Width: ${Screen.desktopAvailableWidth}`)
-    mutationspectra.terminal_update_info(`X-coordinate Virtual: ${Screen.virtualX}`)
-    mutationspectra.terminal_update_info(`Y-coordinate Virtual: ${Screen.virtualY}`)
-    mutationspectra.terminal_update_info(`Width: ${Screen.width}`)
-    mutationspectra.terminal_update_info(`Manufacturer: ${Screen.manufacturer}`)
-    mutationspectra.terminal_update_info(`Model: ${Screen.model}`)
-    mutationspectra.terminal_update_info(`Name: ${Screen.name}`)
-    mutationspectra.terminal_update_info(`Serial Number: ${Screen.serialNumber}`)
 }
