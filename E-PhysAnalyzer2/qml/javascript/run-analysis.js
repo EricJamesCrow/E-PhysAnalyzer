@@ -51,7 +51,7 @@ class GrabSettings {
             this.maymax, this.xmin, 
             this.xmax, this.ymin, this.ymax], this.single, this.dpi, this.defaultColor, 
             this.remove, this.score)
-        backend.run_analyze_data(fileData, score, remove, time, content.regions, defaultcolor, dpi, colorSelected, axisLimits, single)
+        backend.run_analyze_data(fileData, score, remove, time, content.regions, defaultcolor, dpi, colorSelected, axisLimits, single, settings.outputFormat)
     }
 }
 
