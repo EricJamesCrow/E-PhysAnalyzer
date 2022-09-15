@@ -9,21 +9,21 @@ import "../../javascript/settings.js" as Settings
 Item {
     id: settingsPage
 
-    //        property color colColor:  settings.columnColor //"#5ac1d0"
-    //        property color btnColorDefault:  settings.buttonColorDefault //"#087589"
-    //        property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
-    //        property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
-    //        property color topBarColor: settings.topBarColor //"#02323a"
+    property color colColor:  settings.columnColor //"#5ac1d0"
+    property color btnColorDefault:  settings.buttonColorDefault //"#087589"
+    property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
+    property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
+    property color topBarColor: settings.topBarColor //"#02323a"
 
-    // Properties for editing
-    property color colColor: "#5ac1d0"
-    property color btnColorDefault: "#087589"
-    property color bckgrndColor: "#b8e3ee"
-    property color btnColorPressed: "#357aac"
-    property color topBarColor: "#02323a"
-    property int scaleFactor: 1
-    width: 750
-    height: 800
+//    // Properties for editing
+//    property color colColor: "#5ac1d0"
+//    property color btnColorDefault: "#087589"
+//    property color bckgrndColor: "#b8e3ee"
+//    property color btnColorPressed: "#357aac"
+//    property color topBarColor: "#02323a"
+//    property int scaleFactor: 1
+//    width: 750
+//    height: 800
 
     property url btnIconSource: "../../../images/svg_images/close_icon.svg"
 
@@ -347,25 +347,26 @@ Item {
 
         CustomSwitch {
             id: useSameDrugNames
-            y: 235
-            width: 250
-            height: 38
+            y: 235 * scaleFactor
+            width: 250 * scaleFactor
+            height: 38 * scaleFactor
             anchors.top: scaleComboBox.bottom
             anchors.horizontalCenter: scaleComboBox.horizontalCenter
-            anchors.topMargin: 25
+            anchors.topMargin: 25 * scaleFactor
             checked: settings.usePdf
             onCheckedChanged: if(useSameDrugNames.checked) return settings.usePdf = true; else return settings.usePdf = false
         }
 
         CustomComboBox{
             id: graphFormatComboBox
-            y: 282
-            width: 87
-            height: 31
+            y: 282 * scaleFactor
+            width: 87 * scaleFactor
+            height: 31 * scaleFactor
             anchors.top: useSameDrugNames.bottom
-            anchors.horizontalCenterOffset: -76
+            font.pointSize: 9 * scaleFactor
+            anchors.horizontalCenterOffset: -76 * scaleFactor
             anchors.horizontalCenter: useSameDrugNames.horizontalCenter
-            anchors.topMargin: 26
+            anchors.topMargin: 26 * scaleFactor
             model: ["PNG", "PDF"]
             comboBoxTheme: settings.buttonColorDefault
             comboBoxThemeClicked: settings.backgroundColor

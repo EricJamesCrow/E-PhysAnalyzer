@@ -6,7 +6,7 @@ Switch {
 
     indicator: Rectangle {
         implicitWidth: 48 * scaleFactor
-        implicitHeight: 26
+        implicitHeight: 26 * scaleFactor
         x: control.leftPadding
         y: parent.height / 2 - height / 2
         radius: 13 * scaleFactor
@@ -30,6 +30,6 @@ Switch {
         color: control.checked ? "#02323a" : "#ffffff"
         verticalAlignment: Text.AlignVCenter
 //        font.pointSize: 9 * scaleFactor
-        leftPadding: control.indicator.width + control.spacing
+        leftPadding: control.indicator.width * scaleFactor + control.spacing * scaleFactor
     }
 }
