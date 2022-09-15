@@ -63,6 +63,8 @@ function updateScaleFactor(index){
 
 function resetSettings(determineScaleFactor) {
     settings.scaleFactor = determineScaleFactor
+    settings.usePdf = false
+    settings.outputFormat = 0
 }
 
 function logDeviceInformation() {

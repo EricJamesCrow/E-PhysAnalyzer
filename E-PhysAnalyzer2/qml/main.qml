@@ -68,6 +68,9 @@ Window {
         property color terminalText: "#2aafd3"
         property color menuDropDownMouseOverColor: "#af025967"
 
+        property bool usePdf: false
+        property int outputFormat: 0
+
     }
 
     id: mainWindow
