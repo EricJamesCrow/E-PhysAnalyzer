@@ -353,8 +353,8 @@ Item {
             anchors.top: scaleComboBox.bottom
             anchors.horizontalCenter: scaleComboBox.horizontalCenter
             anchors.topMargin: 25 * scaleFactor
-            checked: settings.usePdf
-            onCheckedChanged: if(useSameDrugNames.checked) return settings.usePdf = true; else return settings.usePdf = false
+            checked: settings.repeatDrugNames
+            onCheckedChanged: if(useSameDrugNames.checked) return settings.repeatDrugNames = true; else return settings.repeatDrugNames = false
         }
 
         CustomComboBox{

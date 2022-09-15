@@ -18,6 +18,12 @@ function create(selectedFile) {
     }
 }
 
+function repeatDrugNames() {
+    for(let i=1; i<fileObjects.length; i++) {
+        fileObjects[i].drugName = drugName
+    }
+}
+
 var splitTest = function (str) {
     return str.split('\\').pop().split('/').pop();
 }

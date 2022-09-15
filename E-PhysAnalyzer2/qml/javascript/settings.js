@@ -63,7 +63,7 @@ function updateScaleFactor(index){
 
 function resetSettings(determineScaleFactor) {
     settings.scaleFactor = determineScaleFactor
-    settings.usePdf = false
+    settings.repeatDrugNames = false
     settings.outputFormat = 0
 }
 

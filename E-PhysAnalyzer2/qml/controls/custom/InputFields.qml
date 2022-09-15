@@ -1,12 +1,13 @@
 import QtQuick
 import QtQuick 2.15
 import QtQuick.Controls 2.5
+import "../../javascript/input-fields.js" as InputFields
 
 Rectangle {
 
     property string file: ""
-    property string drugName: "SNAP"
-    property string traceNumber: "68"
+    property string drugName: ""
+    property string traceNumber: ""
     property string excludedTraces: ""
 
     id: objectBg
@@ -15,6 +16,7 @@ Rectangle {
     radius: 5 * scaleFactor
     border.color: topBarColor
     border.width: 0
+    onDrugNameChanged: {if(settings.repeatDrugNames === true) return InputFields.repeatDrugNames();}
 
     Label {
         id: fileName
@@ -40,7 +42,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
         onTextChanged: drugName = drugNameTextField.text
-        placeholderText: "SNAP"
+        text: drugName
                     }
 
     CustomTextField {
@@ -50,7 +52,6 @@ Rectangle {
         height: 20 * scaleFactor
         anchors.verticalCenter: parent.verticalCenter
         onTextChanged: traceNumber = traceNumberTextField.text
-        placeholderText: "68"
         validator: RegularExpressionValidator { regularExpression: /^[0-9]+$/ }
                     }
 
