@@ -19,7 +19,7 @@ function create(selectedFile) {
 }
 
 function repeatDrugNames() {
-    for(let i=1; i<fileObjects.length; i++) {
+    for(let i=0; i<fileObjects.length; i++) {
         fileObjects[i].drugName = drugName
     }
 }
