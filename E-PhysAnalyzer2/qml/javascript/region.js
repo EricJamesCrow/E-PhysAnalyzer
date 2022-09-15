@@ -1,4 +1,4 @@
-function expandDialogBox() {
+const expandDialogBox = () => {
     // Expands dialog boxes for NewRegion.qml and GeneratePattern.qml
     if(dialogBox.opacity === 0) {
         dialogBox.visible = true
@@ -8,7 +8,7 @@ function expandDialogBox() {
     }
 }
 
-function generatePattern(everyMinute, startTime, endTime) {
+var generatePattern = (everyMinute, startTime, endTime) => {
     gPclearRegions()
     if((parseInt(endTime) - parseInt(startTime)) / Math.abs(parseInt(everyMinute)) > 20) {
         return regionErrorMsg("Can only create 20 regions.", "generate")
@@ -21,7 +21,7 @@ function generatePattern(everyMinute, startTime, endTime) {
     backend.run_generate_pattern(Math.abs(parseInt(everyMinute)), parseInt(startTime), parseInt(endTime))
 }
 
-function regionErrorMsg(msg, string) {
+var regionErrorMsg = (msg, string) => {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
         x: 16 * scaleFactor;
         y: 51 * scaleFactor;
@@ -35,7 +35,7 @@ function regionErrorMsg(msg, string) {
     backend.destroy_error_msg(string) // Need to call a Python thread so the message is destroyed after 1 second
 }
 
-function colorPickerErrorMsg(msg, string) {
+var colorPickerErrorMsg = (msg, string) => {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
         x: 5 * scaleFactor;
         y: 51 * scaleFactor;
@@ -49,13 +49,13 @@ function colorPickerErrorMsg(msg, string) {
     backend.destroy_error_msg(string) // Need to call a Python thread so the message is destroyed after 1 second
 }
 
-function destroyErrorMsg() {
+const destroyErrorMsg = () => {
     errorMessage.destroy()
     submitButton.enabled = true // Re-enable submit button
 }
 
 // Checks to see whether the region should go first, inbetween other regions, or last
-function checkRegions(greaterThan, lessThan) {
+var checkRegions = (greaterThan, lessThan) => {
     // No other objects created yet
     if(regionObjects.length === 0) { 
         return "Initial"
@@ -94,7 +94,7 @@ function checkRegions(greaterThan, lessThan) {
     }
 }
 
-function createNewRegion(greaterThan, lessThan) {
+var createNewRegion = (greaterThan, lessThan) => {
     // Checks if input fields are correct.
     if(greaterThan === "" || lessThan === "") {
         return emitRegionErrorMessage("Please enter your values.", "region")
@@ -119,7 +119,7 @@ function createNewRegion(greaterThan, lessThan) {
     }
 }
 
-function moveObjectsFirst(greaterThan, lessThan) {
+var moveObjectsFirst = (greaterThan, lessThan) => {
     const currentRegionAxis = regionAxis // store the current region axis in a variable
     regionAxis = 5 * scaleFactor // set back to inital value
     objectsToMove = regionObjects // put objects to be moved into a temporary variable
@@ -128,7 +128,7 @@ function moveObjectsFirst(greaterThan, lessThan) {
     regionAxis = currentRegionAxis + 22 * scaleFactor
 }
 
-function moveObjectsInbetween(regionNumber, greaterThan, lessThan) {
+var moveObjectsInbetween = (regionNumber, greaterThan, lessThan) => {
     const currentRegionAxis = regionAxis // store the current region axis in a variable
     regionAxis = regionObjects[regionNumber].y * scaleFactor// set region axis to the regionObject that is going to be moved down
     objectsToMove = regionObjects.slice(regionNumber) // put objects to be moved into a temporary variable
@@ -137,7 +137,7 @@ function moveObjectsInbetween(regionNumber, greaterThan, lessThan) {
     regionAxis = currentRegionAxis + 22 * scaleFactor
 }
 
-function moveAndNew(greaterThan, lessThan, otm) {
+var moveAndNew = (greaterThan, lessThan, otm) => {
     newRegion(greaterThan, lessThan) // create
     moveRegions(otm, "add") // move
     for(let i=0; i<otm.length; i++) {
@@ -145,7 +145,7 @@ function moveAndNew(greaterThan, lessThan, otm) {
     } // Everything is now in order
 }
 
-function newRegion(greaterThan, lessThan) {
+var newRegion = (greaterThan, lessThan) => {
     var newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200 * scaleFactor; height: 19 * scaleFactor; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
     regionsLoader,
     "dynamicRegion");
@@ -162,11 +162,11 @@ function newRegion(greaterThan, lessThan) {
     }
 }
 
-function getKeyByValue(object, value) {
+var getKeyByValue = (object, value) => {
     return Object.keys(object).find(key => object[key] === value);
   }
 
-function clearRegions() {
+const clearRegions = () => {
     for(let i=0; i<regionObjects.length; i++) {
             regionObjects[i].destroy()
     }
@@ -176,7 +176,7 @@ function clearRegions() {
 
 
 // Delete a region
-function deleteRegion(regionNumber) {
+var deleteRegion = regionNumber => {
     regionAxis -= 22 * scaleFactor
     regionObjects[regionNumber].destroy() // Removes/destroys region
     regionObjects.splice(regionNumber, 1) // Removes destroyed object from the list
@@ -184,7 +184,7 @@ function deleteRegion(regionNumber) {
     moveRegions(regionObjectsSlice, "subtract")
 }
 
-function moveRegions(regionObjectsSlice, operator) {
+var moveRegions = (regionObjectsSlice, operator) => {
         for(let i=0; i<regionObjectsSlice.length; i++) {
             currentRegionObject = regionObjectsSlice[i] // Have to assign current object to a variable held in QML in order for the PropertyAnimation to work
             if(operator === "subtract") {

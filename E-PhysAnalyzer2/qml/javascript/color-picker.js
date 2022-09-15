@@ -159,9 +159,3 @@ const colorDict = {
     "b": "#0000FF",
     "m": "#BF00BF",
 }
-
-// function closeColorDialogBox() {
-//     if(dialogBox.opacity === 1.0) {
-//         dialogBoxOpacityOff.running = true
-//     }
-// }

@@ -1,4 +1,4 @@
-function determineScaleFactor(platform, screen){
+var determineScaleFactor = (platform, screen) => {
     if(platform === "windows") {
         if(screen === 1.5) {
             return 1
@@ -14,7 +14,7 @@ function determineScaleFactor(platform, screen){
     }
 }
 
-function displayDropDownMenuPages(menuPage) {
+var displayDropDownMenuPages = menuPage => {
     if(menuPage === "settings") {
         if(settingsPageOverlay.visible == false && settingsPage.visible == false) {
             settingsPageOverlay.visible = true
@@ -56,7 +56,7 @@ function displayDropDownMenuPages(menuPage) {
     }
 }
 
-function runMenuDropDown(){
+const runMenuDropDown = () => {
     if(menuDropDown.opacity === 0) {
         closeDropDownMenuClickAnywhere.visible = true
         menuDropDown.visible = true
@@ -67,7 +67,7 @@ function runMenuDropDown(){
     }
 }
 
-function switchPages(page) {
+var switchPages = page => {
     for(let i=0; i < switchPagesButtons.length; i++) {
         switchPagesButtons[i].btnColorDefault = settings.buttonColorDefault
         switchPagesButtons[i].fontColorDefault = "#ffffff"
@@ -91,7 +91,7 @@ function switchPages(page) {
 
 // Basic UI functionality
 
-function closeWindow() {
+const closeWindow = () => {
     if(helpPage.visible == true) {
         displayDropDownMenuPages("help")
     } else if(aboutPage.visible == true) {
@@ -114,7 +114,7 @@ function closeWindow() {
 }
 
 
-function resetResizeBorders(){
+const resetResizeBorders = () => {
     // Resize visibility
     resizeLeft.visible = true
     resizeRight.visible = true
@@ -122,7 +122,7 @@ function resetResizeBorders(){
     resizeWindow.visible = true
 }
 
-function maximizeRestore(){
+const maximizeRestore = () => {
     if(windowStatus == 0){
         mainWindow.showMaximized()
         windowStatus = 1
@@ -146,7 +146,7 @@ function maximizeRestore(){
     }
 }
 
-function ifMaximizedWindowRestore(){
+const ifMaximizedWindowRestore = () => {
     if(windowStatus == 1){
         mainWindow.showNormal()
         windowStatus = 0
@@ -156,7 +156,7 @@ function ifMaximizedWindowRestore(){
     }
 }
 
-function restoreMargings(){
+const restoreMargings = () => {
     windowMargin = 10
     windowStatus = 0
     resetResizeBorders()

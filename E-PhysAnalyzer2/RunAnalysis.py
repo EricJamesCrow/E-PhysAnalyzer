@@ -3,7 +3,6 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-plt.switch_backend('agg')
 import re
 import datetime
 from uncertainties import ufloat
@@ -261,11 +260,15 @@ class Analysis(Thread):
                     avg = total / len(minuteTimes)
                     minute_averaged_tsv.write('\t'.join([str(int(drugTime)), str(float(avg)), traces, color]) + '\n')
 
-    def make_graphs(self, dpi: int, baseline: bool, baseline_color: str, axis_limits: list):
+    def make_graphs(self, dpi: int, baseline: bool, baseline_color: str, axis_limits: list, graph_format: str):
         # Creates the Minute Averaged graph
         with open(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averaged.tsv'), 'r') as data:
             gdata = pd.read_csv(data, sep = '\t')
             headers = list(gdata.columns)
+            if graph_format == "png":
+                plt.switch_backend('agg')
+            elif graph_format == "pdf":
+                plt.switch_backend('PDF')
             sns.set(rc={'savefig.dpi': dpi})
             sns.set_theme(style='ticks')
             color_list = []            
@@ -283,7 +286,7 @@ class Analysis(Thread):
             g.set(title=f"Minute Averages Normalized to Baseline")
             sns.despine()
             graph1 = g.get_figure()
-            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + '_Minute_Averages.png'))
+            graph1.savefig(os.path.join(self.path, self.base_name_no_ext + f'_Minute_Averages.{graph_format}'))
             importlib.reload(plt)
             importlib.reload(sns)
 
@@ -309,7 +312,7 @@ class Analysis(Thread):
             g2.set(ylim=(axis_limits[6], axis_limits[7]))
             sns.despine()
             graph2 = g2.get_figure()
-            graph2.savefig(os.path.join(self.path, self.base_name_no_ext + '_Post_Analysis_Graph.png'))
+            graph2.savefig(os.path.join(self.path, self.base_name_no_ext + f'_Post_Analysis_Graph.{graph_format}'))
 
 
 file = 'test.atf'

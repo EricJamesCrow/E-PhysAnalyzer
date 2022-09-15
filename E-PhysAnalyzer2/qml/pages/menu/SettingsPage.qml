@@ -9,11 +9,11 @@ import "../../javascript/settings.js" as Settings
 Item {
     id: settingsPage
 
-        property color colColor:  settings.columnColor //"#5ac1d0"
-        property color btnColorDefault:  settings.buttonColorDefault //"#087589"
-        property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
-        property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
-        property color topBarColor: settings.topBarColor //"#02323a"
+    property color colColor:  settings.columnColor //"#5ac1d0"
+    property color btnColorDefault:  settings.buttonColorDefault //"#087589"
+    property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
+    property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
+    property color topBarColor: settings.topBarColor //"#02323a"
 
 //    // Properties for editing
 //    property color colColor: "#5ac1d0"
@@ -344,6 +344,59 @@ Item {
             font.pointSize: 12 * scaleFactor
             anchors.rightMargin: 125 * scaleFactor
         }
+
+        CustomSwitch {
+            id: useSameDrugNames
+            y: 235 * scaleFactor
+            width: 250 * scaleFactor
+            height: 38 * scaleFactor
+            anchors.top: scaleComboBox.bottom
+            anchors.horizontalCenter: scaleComboBox.horizontalCenter
+            anchors.topMargin: 25 * scaleFactor
+            checked: settings.repeatDrugNames
+            onCheckedChanged: if(useSameDrugNames.checked) return settings.repeatDrugNames = true; else return settings.repeatDrugNames = false
+        }
+
+        CustomComboBox{
+            id: graphFormatComboBox
+            y: 282 * scaleFactor
+            width: 87 * scaleFactor
+            height: 31 * scaleFactor
+            anchors.top: useSameDrugNames.bottom
+            font.pointSize: 9 * scaleFactor
+            anchors.horizontalCenterOffset: -76 * scaleFactor
+            anchors.horizontalCenter: useSameDrugNames.horizontalCenter
+            anchors.topMargin: 26 * scaleFactor
+            model: ["PNG", "PDF"]
+            comboBoxTheme: settings.buttonColorDefault
+            comboBoxThemeClicked: settings.backgroundColor
+            currentIndex: settings.outputFormat
+            onCurrentIndexChanged: settings.outputFormat = graphFormatComboBox.currentIndex
+        }
+
+        Label {
+            id: graphOutputFormatLabel
+            width: 117 * scaleFactor
+            height: 16 * scaleFactor
+            color: "#ffffff"
+            text: "Graph Output Format"
+            anchors.verticalCenter: graphFormatComboBox.verticalCenter
+            anchors.horizontalCenter: scalingLabel.horizontalCenter
+            font.pointSize: 12 * scaleFactor
+            font.family: "PragmaticaLightC"
+        }
+
+        Label {
+            id: repeatDrugNamesLabel
+            width: 117 * scaleFactor
+            height: 16 * scaleFactor
+            color: "#ffffff"
+            text: "Repeat Drug Names"
+            anchors.verticalCenter: useSameDrugNames.verticalCenter
+            anchors.horizontalCenter: scalingLabel.horizontalCenter
+            font.pointSize: 12 * scaleFactor
+            font.family: "PragmaticaLightC"
+        }
     }
 
 }
@@ -356,6 +409,7 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}D{i:10}D{i:9}D{i:12}D{i:13}D{i:14}
+    D{i:0;formeditorZoom:0.66}D{i:10}D{i:9}D{i:12}D{i:13}D{i:14}D{i:15}D{i:16}D{i:17}
+D{i:18}
 }
 ##^##*/

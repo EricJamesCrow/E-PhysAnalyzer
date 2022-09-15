@@ -51,7 +51,7 @@ class GrabSettings {
             this.maymax, this.xmin, 
             this.xmax, this.ymin, this.ymax], this.single, this.dpi, this.defaultColor, 
             this.remove, this.score)
-        backend.run_analyze_data(fileData, score, remove, time, content.regions, defaultcolor, dpi, colorSelected, axisLimits, single)
+        backend.run_analyze_data(fileData, score, remove, time, content.regions, defaultcolor, dpi, colorSelected, axisLimits, single, settings.outputFormat)
     }
 }
 
@@ -69,7 +69,7 @@ class GrabRegions {
 }
 
 
-function runGrabRegions(objects) {
+const runGrabRegions = objects => {
     var grabRegions = new GrabRegions(objects)
     grabRegions.createDict()
 }
@@ -80,7 +80,7 @@ function runGrabSettings(xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax,
 }
 
 
-function grabFiles() {
+const grabFiles = () => {
     var data = []
     for(let i=0; i<fileObjects.length; i++) {
         var excludedTraces = fileObjects[i].excludedTraces !== "" ? fileObjects[i].excludedTraces.replace(/, +/g, ",").split(",").map(Number) : "" // Convert to list of integers
@@ -91,7 +91,7 @@ function grabFiles() {
     return fileData = data
 }
 
-function checkFiles() {
+const checkFiles = () => {
     for(let i=0; i<fileData.length; i++) {
         if(fileData[i][1] == "" || fileData[i][2].toString() == "NaN"){
             var msg = "Empty values for drug name or trace number in one or more fields"
@@ -101,7 +101,7 @@ function checkFiles() {
     }
 }
 
-function errorMsgFields(msg) {
+var errorMsgFields = msg => {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
         x: 225 * scaleFactor;
         y: 71 * scaleFactor;
@@ -115,12 +115,12 @@ function errorMsgFields(msg) {
     backend.destroy_error_msg("fields") // Need to call a Python thread so the message is destroyed after 1 second
 }
 
-function destroyErrorMsg() {
+const destroyErrorMsg = () => {
     errorMessage.destroy()
     runBtn.enabled = true // re-enable run button
 }
 
-function runAnalyzeData() {
+const runAnalyzeData = () => {
     grabFiles()
     if(checkFiles() !== "Error"){
         getRegions()
@@ -129,7 +129,7 @@ function runAnalyzeData() {
 }
 
 // figure out how to import this from region.js
-function getKeyByValue(object, value) {
+var getKeyByValue = (object, value) => {
     return Object.keys(object).find(key => object[key] === value);
   }
 
