@@ -41,14 +41,14 @@ function startDeserialization(objects, axis, xmin, xmax, ymin, ymax, maxmin, max
     return settings.deserialization().setSettings().load()
 }
 
-const serialize = function() {
+const serialize = () => {
     for(let i=0; i<regionObjects.length; i++){
         var serializedObject = {"Index": regionObjects[i].regionNumber, "Position": [regionObjects[i].y, regionObjects[i].z], "Values": [regionObjects[i].greaterThanEqualToText, regionObjects[i].lessThanText], "Colors": [regionObjects[i].chosenRegionColor.toString(), regionObjects[i].colorName.toString()]}
         serializedObjects.push(JSON.stringify(serializedObject))
     }
 }
 
-var deserialize = (settingsObject) => {
+var deserialize = settingsObject => {
     for (let i=0; i<settingsObject.length; i++) { 
         let jsonObject = JSON.parse(settingsObject[i]) // Convert back to a JSON object
         let newObject = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; Region {id: region; y:0; width: 200 * scaleFactor; height: 19 * scaleFactor; anchors.horizontalCenter: parent.horizontalCenter; opacity: 0; OpacityAnimator on opacity {from: 0; to: 1.0; duration:150; running: true}}`,
@@ -69,7 +69,7 @@ var deserialize = (settingsObject) => {
     backend.adjust_region_height()
 }
 
-const animate = (object) => {
+const animate = object => {
     const objects = {
         0: generatePatternOpacity, 1: newRegionOpacity, 2: regionsOpacity, 3: postAnalysisOpacity, 
         4: colorCodeOpacity, 5: minuteAveragedOpacity, 6: baselineOpacity, 7: zScoreOpacity, 8: resetBtnOpacity
@@ -77,7 +77,7 @@ const animate = (object) => {
     objects[object].running = true
 }
 
-const nextPage = function() {
+const nextPage = () => {
     if(rightContentLoader.source.toString() === graphSettingsPage[0]){
         rightContentLoader.source = graphSettingsPage[1]
         contentSettings.leftArrowChecked = true
@@ -89,7 +89,7 @@ const nextPage = function() {
     }
 }
 
-const prevPage = function() {
+const prevPage = () => {
     if(rightContentLoader.source.toString() === graphSettingsPage[1]) {
         rightContentLoader.source = graphSettingsPage[0]
         contentSettings.leftArrowChecked = false  
@@ -115,7 +115,7 @@ var errorMsg = (msg, section) => {
     backend.destroy_error_msg("settings") // Need to call a Python thread so the message is destroyed after 1 second
 }
 
-const destroyErrorMsg = function() {
+const destroyErrorMsg = () => {
     errorMessage.destroy()
     backend.enable_run_button()
 }

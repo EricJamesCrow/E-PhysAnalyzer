@@ -14,7 +14,7 @@ var determineScaleFactor = (platform, screen) => {
     }
 }
 
-var displayDropDownMenuPages = (menuPage) => {
+var displayDropDownMenuPages = menuPage => {
     if(menuPage === "settings") {
         if(settingsPageOverlay.visible == false && settingsPage.visible == false) {
             settingsPageOverlay.visible = true
@@ -56,7 +56,7 @@ var displayDropDownMenuPages = (menuPage) => {
     }
 }
 
-const runMenuDropDown = function(){
+const runMenuDropDown = () => {
     if(menuDropDown.opacity === 0) {
         closeDropDownMenuClickAnywhere.visible = true
         menuDropDown.visible = true
@@ -67,7 +67,7 @@ const runMenuDropDown = function(){
     }
 }
 
-var switchPages = (page) => {
+var switchPages = page => {
     for(let i=0; i < switchPagesButtons.length; i++) {
         switchPagesButtons[i].btnColorDefault = settings.buttonColorDefault
         switchPagesButtons[i].fontColorDefault = "#ffffff"
@@ -91,7 +91,7 @@ var switchPages = (page) => {
 
 // Basic UI functionality
 
-const closeWindow = function() {
+const closeWindow = () => {
     if(helpPage.visible == true) {
         displayDropDownMenuPages("help")
     } else if(aboutPage.visible == true) {
@@ -114,7 +114,7 @@ const closeWindow = function() {
 }
 
 
-const resetResizeBorders = function(){
+const resetResizeBorders = () => {
     // Resize visibility
     resizeLeft.visible = true
     resizeRight.visible = true
@@ -122,7 +122,7 @@ const resetResizeBorders = function(){
     resizeWindow.visible = true
 }
 
-const maximizeRestore = function(){
+const maximizeRestore = () => {
     if(windowStatus == 0){
         mainWindow.showMaximized()
         windowStatus = 1
@@ -146,7 +146,7 @@ const maximizeRestore = function(){
     }
 }
 
-const ifMaximizedWindowRestore = function(){
+const ifMaximizedWindowRestore = () => {
     if(windowStatus == 1){
         mainWindow.showNormal()
         windowStatus = 0
@@ -156,7 +156,7 @@ const ifMaximizedWindowRestore = function(){
     }
 }
 
-const restoreMargings = function(){
+const restoreMargings = () => {
     windowMargin = 10
     windowStatus = 0
     resetResizeBorders()

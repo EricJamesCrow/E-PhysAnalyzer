@@ -1,4 +1,4 @@
-const expandDialogBox = function() {
+const expandDialogBox = () => {
     // Expands dialog boxes for NewRegion.qml and GeneratePattern.qml
     if(dialogBox.opacity === 0) {
         dialogBox.visible = true
@@ -49,7 +49,7 @@ var colorPickerErrorMsg = (msg, string) => {
     backend.destroy_error_msg(string) // Need to call a Python thread so the message is destroyed after 1 second
 }
 
-const destroyErrorMsg = function() {
+const destroyErrorMsg = () => {
     errorMessage.destroy()
     submitButton.enabled = true // Re-enable submit button
 }
@@ -166,7 +166,7 @@ var getKeyByValue = (object, value) => {
     return Object.keys(object).find(key => object[key] === value);
   }
 
-const clearRegions = function() {
+const clearRegions = () => {
     for(let i=0; i<regionObjects.length; i++) {
             regionObjects[i].destroy()
     }
@@ -176,7 +176,7 @@ const clearRegions = function() {
 
 
 // Delete a region
-var deleteRegion = (regionNumber) => {
+var deleteRegion = regionNumber => {
     regionAxis -= 22 * scaleFactor
     regionObjects[regionNumber].destroy() // Removes/destroys region
     regionObjects.splice(regionNumber, 1) // Removes destroyed object from the list

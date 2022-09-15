@@ -1,10 +1,10 @@
-var runProgressBar = (num) => {
+var runProgressBar = num => {
     progressBarOverlay.visible = true
     progressBarOverlayMouseArea.visible = true
     progressBar.value = num
 }
 
-var showSuccessDialog = (directory) => {
+var showSuccessDialog = directory => {
     progressBar.visible = false
     filesFinishedWindow.visible = true
     filesFinishedBrowseButton.focus = true
@@ -12,7 +12,7 @@ var showSuccessDialog = (directory) => {
     outputDirectory = directory
 }
 
-const closeFilesWindow = function() {
+const closeFilesWindow = () => {
     filesFinishedWindow.visible = false
     progressBarOverlay.visible = false
     progressBarOverlayMouseArea.visible = false

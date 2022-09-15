@@ -46,22 +46,22 @@ var updateScaleDict = {
     10: 1.5
 };
 
-const increaseScale = function() {
+const increaseScale = () => {
     return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()+1)
 }
 
-const decreaseScale = function() {
+const decreaseScale = () => {
    return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()-1) 
 }
 
-const scaleFactorDictFunction = function(){
+const scaleFactorDictFunction = () => {
     return scaleFactorDict[settings.scaleFactor]
 }
-const updateScaleFactor = (index) => {
+const updateScaleFactor = index => {
     return updateScaleDict[index]
 }
 
-const resetSettings = (determineScaleFactor) => {
+const resetSettings = determineScaleFactor => {
     settings.scaleFactor = determineScaleFactor
     settings.repeatDrugNames = false
     settings.outputFormat = 0

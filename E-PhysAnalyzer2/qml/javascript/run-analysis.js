@@ -69,7 +69,7 @@ class GrabRegions {
 }
 
 
-const runGrabRegions = (objects) => {
+const runGrabRegions = objects => {
     var grabRegions = new GrabRegions(objects)
     grabRegions.createDict()
 }
@@ -80,7 +80,7 @@ function runGrabSettings(xmin, xmax, ymin, ymax, maxmin, maxmax, maymin, maymax,
 }
 
 
-const grabFiles = function() {
+const grabFiles = () => {
     var data = []
     for(let i=0; i<fileObjects.length; i++) {
         var excludedTraces = fileObjects[i].excludedTraces !== "" ? fileObjects[i].excludedTraces.replace(/, +/g, ",").split(",").map(Number) : "" // Convert to list of integers
@@ -91,7 +91,7 @@ const grabFiles = function() {
     return fileData = data
 }
 
-const checkFiles = function() {
+const checkFiles = () => {
     for(let i=0; i<fileData.length; i++) {
         if(fileData[i][1] == "" || fileData[i][2].toString() == "NaN"){
             var msg = "Empty values for drug name or trace number in one or more fields"
@@ -101,7 +101,7 @@ const checkFiles = function() {
     }
 }
 
-var errorMsgFields = (msg) => {
+var errorMsgFields = msg => {
     errorMessage = Qt.createQmlObject(`import QtQuick; import QtQuick 2.0; import QtQuick.Controls 6.2; import "../controls"; RegionErrorMsg {id: errorMessage; 
         x: 225 * scaleFactor;
         y: 71 * scaleFactor;
@@ -115,12 +115,12 @@ var errorMsgFields = (msg) => {
     backend.destroy_error_msg("fields") // Need to call a Python thread so the message is destroyed after 1 second
 }
 
-const destroyErrorMsg = function() {
+const destroyErrorMsg = () => {
     errorMessage.destroy()
     runBtn.enabled = true // re-enable run button
 }
 
-const runAnalyzeData = function() {
+const runAnalyzeData = () => {
     grabFiles()
     if(checkFiles() !== "Error"){
         getRegions()
