@@ -10,7 +10,8 @@ import subprocess
 
 from PySide6 import QtCore
 from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtGui import QGuiApplication, QIcon
+from PySide6.QtWidgets import QFileDialog, QApplication
+from PySide6.QtGui import QIcon
 from PySide6.QtCore import QObject, Slot, Signal
 from threading import *
 
@@ -32,8 +33,15 @@ class Backend(QObject):
     emitProgressBar = Signal(float)
     successDialog = Signal(str)
     analysisError = Signal(str)
+    updateDirectory = Signal(str)
     starting_animation_time = 0.2
     object_animation_time = 0.1
+
+    @Slot()
+    def change_default_directory(self):
+        new_dir = QFileDialog.getExistingDirectory()
+        if new_dir != "":
+            return self.updateDirectory.emit(f"{new_dir}/")
 
     @Slot(str)
     def open_files_saved(self, directory):
@@ -46,15 +54,15 @@ class Backend(QObject):
     def emit_region(self, region):
         self.emitRegions.emit(region)
 
-    @Slot(list, float, bool, int, str, str, int, str, list, bool, int)
-    def run_analyze_data(self, files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, single, graph_format):
+    @Slot(list, float, bool, int, str, str, int, str, list, bool, int, bool, str)
+    def run_analyze_data(self, files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, single, graph_format, use_custom_directory, custom_directory):
         color_regions_dict = json.loads(color_regions_dict) # Convert string back to dictioanry
         if color_regions_dict == {}:
             color_regions_dict = {'0': [-10, -5, 'grey'], '1': [-5, 0, 'black'], '2': [0, 5, 'grey'], '3': [5, 10, 'purple'], '4': [10, 15, 'green'], '5': [15, 20, 'blue'], '6': [20, 25, 'orange'], '7': [25, 30, 'red']}
         if single == True:
             for i in range(len(color_regions_dict)):
                 color_regions_dict[str(i)][2] = default_color
-        analysis = StartAnalysis(files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format)
+        analysis = StartAnalysis(files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format, use_custom_directory, custom_directory)
         analysis.start()
 
     @Slot()
@@ -90,7 +98,7 @@ class Backend(QObject):
         self.enableRun.emit()
 
 class StartAnalysis(Thread):
-    def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format):
+    def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format, use_custom_directory, custom_directory):
         super(StartAnalysis, self).__init__()
         self.files = file
         self.z_limit = z_limit
@@ -102,6 +110,8 @@ class StartAnalysis(Thread):
         self.baseline_color = baseline_color
         self.axis_limits = axis_limits
         self.graph_format = graph_format
+        self.use_custom_directory = use_custom_directory
+        self.custom_directory = custom_directory
 
 
     def run(self):
@@ -113,7 +123,10 @@ class StartAnalysis(Thread):
         for i in range(len(self.files)):
             analysis = Analysis()
             try:
-                analysis.mkdir_outputs(self.files[i][0])
+                if self.use_custom_directory:
+                    analysis.mkdir_outputs(self.custom_directory, self.use_custom_directory)
+                else:
+                    analysis.mkdir_outputs(self.files[i][0], self.use_custom_directory)
                 analysis.mkdir(self.files[i][0])
                 analysis.analyze_data(self.files[i][0], self.files[i][1], trunc(self.files[i][2]), [trunc(x) for x in self.files[i][3]], self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
                 analysis.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits, self.graph_format)
@@ -186,7 +199,7 @@ class ErrorMessage(Thread):
 
 if __name__ == "__main__":
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
-    app = QGuiApplication(sys.argv)
+    app = QApplication(sys.argv)
     app.setOrganizationName("Washington State University")
     app.setOrganizationDomain("github.com/EricJamesCrow/E-PhysAnalyzer")
     app.setApplicationName("E-PhysAnalyzer")

@@ -47,11 +47,11 @@ var updateScaleDict = {
 };
 
 const increaseScale = () => {
-    return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()+1)
+    return settings.scaleFactor = updateScaleFactor(scaleFactorDictFunction()+1)
 }
 
 const decreaseScale = () => {
-   return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()-1) 
+   return settings.scaleFactor = updateScaleFactor(scaleFactorDictFunction()-1) 
 }
 
 const scaleFactorDictFunction = () => {
@@ -61,8 +61,10 @@ const updateScaleFactor = index => {
     return updateScaleDict[index]
 }
 
-const resetSettings = determineScaleFactor => {
+const resetSettings = (determineScaleFactor, url) => {
     settings.scaleFactor = determineScaleFactor
     settings.repeatDrugNames = false
     settings.outputFormat = 0
+    settings.customDirectory = false
+    settings.mtkDefaultOutputPath = url
 }

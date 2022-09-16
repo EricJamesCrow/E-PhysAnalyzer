@@ -10,11 +10,17 @@ from threading import *
 from math import trunc
 
 class Analysis(Thread):
-    def mkdir_outputs(self, file):
-        parent_dir = os.path.dirname(os.path.abspath(file))
-        directory = f"E-Phys Analyzer {datetime.date.today()} Results"
-        self.output_path = os.path.join(parent_dir, directory)
-        os.makedirs(self.output_path, exist_ok=True)
+    def mkdir_outputs(self, file, custom):
+        if not custom:
+            parent_dir = os.path.dirname(os.path.abspath(file))
+            directory = f"E-Phys Analyzer {datetime.date.today()} Results"
+            self.output_path = os.path.join(parent_dir, directory)
+            os.makedirs(self.output_path, exist_ok=True)
+        else:
+            parent_dir = os.path.abspath(file)
+            directory = f"E-Phys Analyzer {datetime.date.today()} Results"
+            self.output_path = os.path.join(parent_dir, directory)
+            os.makedirs(self.output_path, exist_ok=True)
 
     def mkdir(self, files):
         base_name = os.path.basename(files)

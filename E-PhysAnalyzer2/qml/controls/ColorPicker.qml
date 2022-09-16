@@ -7,8 +7,8 @@ import "../javascript/color-picker.js" as ColorPicker
 
 Item {
     id: colorPicker
-    height: 20 * scaleFactor
-    width: 20 * scaleFactor
+//    height: 20 * scaleFactor
+//    width: 20 * scaleFactor
 
     property string chosenColor: "#FF0000"
     property string chosenColorName: chosenColor
@@ -18,7 +18,10 @@ Item {
     Connections {
         target: backend
         function onDestroyColorPicker() {
-            errorMessage.destroy()
+            try{
+              errorMessage.destroy()
+            } catch(err) {
+            }
             customColorEntry.enabled = true
         }
     }
@@ -227,13 +230,13 @@ Item {
 
         CustomTextField {
             id:customColorEntry
-            fontSize: colorPicker.height / 2.85 * scaleFactor
-            height: colorPicker.height / 1.3 * scaleFactor
+            fontSize: colorPicker.height / 2.85
+            height: colorPicker.height / 1.3
             anchors.top: orange.bottom
-            anchors.topMargin:colorPicker.height / 2.5 * scaleFactor
-            anchors.horizontalCenterOffset: colorPicker.height / 1.3 * scaleFactor
+            anchors.topMargin:colorPicker.height / 2.5
+            anchors.horizontalCenterOffset: colorPicker.height / 1.3
             anchors.horizontalCenter: parent.horizontalCenter
-            width: colorPicker.height * 2.5 * scaleFactor
+            width: colorPicker.height * 2.5
             onTextChanged: try{
                                chosenColor = ColorPicker.colorDict[customColorEntry.text]
                            } catch(err) {
@@ -254,7 +257,7 @@ Item {
                 anchors.verticalCenter: customColorEntry.verticalCenter
                 anchors.right: customColorEntry.left
                 anchors.rightMargin: 4 * scaleFactor
-                font.pointSize: colorPicker.height / 2.85 * scaleFactor
+                font.pointSize: 5 * scaleFactor
                 font.family: "PragmaticaLightC"
             }
         }
