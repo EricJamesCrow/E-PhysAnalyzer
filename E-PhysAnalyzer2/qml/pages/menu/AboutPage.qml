@@ -5,16 +5,14 @@ import "../../javascript/app.js" as App
 
 Item {
     id: aboutPage
-    width: 396 * scaleFactor
-    height: 660 * scaleFactor
     focus: true
 
     property url btnIconSource: "../../images/svg_images/close_icon.svg"
 
     Rectangle {
         id: about
-        x: 689 * scaleFactor
-        y: 339 * scaleFactor
+//        x: 689 * scaleFactor
+//        y: 339 * scaleFactor
         visible: true
         color: settings.columnColor
         radius: 5 * scaleFactor
@@ -24,13 +22,14 @@ Item {
 
         Label {
             id: aboutPageText
-            width: 287 * scaleFactor
+            width: 486 * scaleFactor
             height: 488 * scaleFactor
             color: "#ffffff"
             anchors.verticalCenter: parent.verticalCenter
-            text: "A data analysis and visualization tool for Clampfit data."
+            anchors.verticalCenterOffset: 75 * scaleFactor
+            text: "E-Phys Analyzer is a program designed to save users time by analyzing and visualizing electrophysiology data in bulk. This program takes .atf files from Clampfit and creates two graphs and two files. The files aim to make the data easier to interpret by processing the data creating files that are comparable. The first file gives a full breakdown of datapoints, including converting the time from miliseconds (ms) to minutes, normalizing the peak amplitudes to the baseline reads, creates timepoints relative to drug addition, and calculates z-statistics to determine outlier datapoints. The second file is a minute averaged graph, that will average datapoints with set axis limits for efficient comparisions between experiments. The program then creates graphs from these two files, which include color coding regions on the graph to quickly identify time points and regions with full control over the output. There are options for different output formats, image quality, and more!"
             wrapMode: Text.WordWrap
-            font.pointSize: 9 * scaleFactor
+            font.pointSize: 12 * scaleFactor
             anchors.horizontalCenter: parent.horizontalCenter
         }
 

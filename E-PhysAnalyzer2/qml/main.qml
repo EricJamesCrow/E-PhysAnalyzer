@@ -80,6 +80,7 @@ Window {
 
         property bool repeatDrugNames: false
         property int outputFormat: 0
+        property bool customDirectory: false
 
     }
 
@@ -533,8 +534,8 @@ Window {
                 id: aboutPage
                 x: 598 * scaleFactor
                 y: 124 * scaleFactor
-                width: 396 * scaleFactor
-                height: 660 * scaleFactor
+                width: 720 * scaleFactor
+                height: 405 * scaleFactor
                 visible: false
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
