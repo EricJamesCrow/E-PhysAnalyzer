@@ -1,6 +1,6 @@
 # E-Phys Analyzer version 2.0
 ![](https://raw.githubusercontent.com/EricJamesCrow/E-PhysAnalyzer/development/E-PhysAnalyzer2/images/gifs/ephysAnalyzerJavascript.gif)
-##### E-Phys Analyzer is a program designed to save users time by analyzing and visualizing electrophysiology data in bulk. This program takes .atf files from Clampfit and creates two graphs and two files.  
+##### E-Phys Analyzer is a program designed to save users time by analyzing and visualizing electrophysiology data in bulk. This program takes .atf files from Clampfit and creates two graphs and two files. The files aim to make the data easier to interpret by processing the data creating files that are comparable. The first file gives a full breakdown of datapoints, including converting the time from miliseconds (ms) to minutes, normalizing the peak amplitudes to the baseline reads, creates timepoints relative to drug addition, and calculates z-statistics to determine outlier datapoints. The second file is a minute averaged graph, that will average datapoints with set axis limits for efficient comparisions between experiments. The program then creates graphs from these two files, which include color coding regions on the graph to quickly identify time points and regions with full control over the output. There are options for different output formats, image quality, and more!
 ***
 ## Table of Contents
 1. [Installation Guide](#installation-guide)
@@ -28,13 +28,6 @@ Linux installation instructions:
 
 ***
 ## 2. Input Files and Formats
-#### Directory Structure
-There is no directory setup required for this program.
-To use E-Phys Analyzer, simply use the 'Browse Files' button in the top left of the program to navigate to and select your Clampfit .atf files.
-The program will create an 'E-Phys Analyzer YYYY-MM-DD Results' folder in the same directory as your input files. Within this folder will be individual folders for each inputted data file with the corresponding analysis files.
-#### Admin Privileges
-This program should not ask for administrative privileges to access your files, the only reason it would ask for this is becuase it needs to create new files within the same directory as your input.
-If you come accross any issues like this, please let us know.
 #### Clampfit Data File Format
 When using clampfit to analyze your dataset, you want to determine the range of the elicited response. 
 This program analyzes that by looking at the absolute peak response from stimulation, and if done properly, it should be labeled R1S1 peak.
