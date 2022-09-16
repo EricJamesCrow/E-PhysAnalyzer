@@ -47,11 +47,11 @@ var updateScaleDict = {
 };
 
 const increaseScale = () => {
-    return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()+1)
+    return settings.scaleFactor = updateScaleFactor(scaleFactorDictFunction()+1)
 }
 
 const decreaseScale = () => {
-   return settings.scaleFactor = Settings.updateScaleFactor(scaleFactorDictFunction()-1) 
+   return settings.scaleFactor = updateScaleFactor(scaleFactorDictFunction()-1) 
 }
 
 const scaleFactorDictFunction = () => {

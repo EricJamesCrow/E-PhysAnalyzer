@@ -8,7 +8,7 @@ Rectangle {
     width: 168 * scaleFactor
     height: 36 * scaleFactor
     color: "#ff9e9e"
-    radius: 5
+    radius: 5 * scaleFactor
 
 
 
@@ -17,6 +17,7 @@ Rectangle {
         text: qsTr("Error")
         color: "red"
         anchors.verticalCenter: parent.verticalCenter
+        font.pointSize: 9 * scaleFactor
         anchors.verticalCenterOffset: -8 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
     }
@@ -26,6 +27,7 @@ Rectangle {
         text: errorMessageString
         color: "red"
         anchors.verticalCenter: parent.verticalCenter
+        font.pointSize: 9 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenterOffset: 7 * scaleFactor
     }

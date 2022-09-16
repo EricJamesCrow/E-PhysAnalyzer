@@ -18,7 +18,10 @@ Item {
     Connections {
         target: backend
         function onDestroyColorPicker() {
-            errorMessage.destroy()
+            try{
+              errorMessage.destroy()
+            } catch(err) {
+            }
             customColorEntry.enabled = true
         }
     }
