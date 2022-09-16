@@ -1,5 +1,4 @@
 # E-Phys Analyzer version 2.0
-![](https://raw.githubusercontent.com/EricJamesCrow/E-PhysAnalyzer/development/E-PhysAnalyzer2/images/gifs/ephysAnalyzerJavascript.gif)
 ##### E-Phys Analyzer is a program designed to save users time by analyzing and visualizing electrophysiology data in bulk. This program takes .atf files from Clampfit and creates two graphs and two files. The files aim to make the data easier to interpret by processing the data creating files that are comparable. The first file gives a full breakdown of datapoints, including converting the time from miliseconds (ms) to minutes, normalizing the peak amplitudes to the baseline reads, creates timepoints relative to drug addition, and calculates z-statistics to determine outlier datapoints. The second file is a minute averaged graph, that will average datapoints with set axis limits for efficient comparisions between experiments. The program then creates graphs from these two files, which include color coding regions on the graph to quickly identify time points and regions with full control over the output. There are options for different output formats, image quality, and more!
 ***
 ## Table of Contents
@@ -34,7 +33,7 @@ This program analyzes that by looking at the absolute peak response from stimula
 The only necessary columns for this program is 'trace number', 'time (ms)' and 'R1S1 peak amplitude'. To avoid errors in the program, please have the data only contain these values.
 While viewing the dataset in Clampfit, save the data set as an .atf file and save it to the directory of your choice.
 ## 3. Using the Program
-#### 1. Left side of program
+#### 1. Selecting files and running the program
 - Begin by selecting files using the folder button in the top left of the screen, which should bring up your native file browser.
 - From there you can navigate to the directory containing the file(s) you would like to analyze and select one or multiple files.  
 NOTE: The program will automatically save the results into the input file(s) directory. If you want to use a custom output directory, go to Settings -> General then turn on Custom Output Directory. From there you will be prompted to select a directory to save your files.
@@ -45,8 +44,19 @@ NOTE: The program will automatically save the results into the input file(s) dir
 - Once all the data is entered, press the run arrow, which is next to the file selection button. This will bring up a circular progress bar that will update as each file is processed.
 - Upon completion, a window will pop up with options to close, or open your native file chooser to the output directory.
 - If any files were unable to process, they will appear in red below the completion statement, if this occurs, it is usually due to an incalculable trace number. Such as extremely high or low values.
-#### 2. Right side of program
-- Within the setup tab lies the parameters and variables that the user can change for running the analysis.
+#### 2. Customizing run settings
+Regions and Patterns
+- The Regions section is where the user can create color coded regions on the graph.
+- There are two ways a user can create these regions. Using the Generate Pattern or New Region buttons.
+    - Generate Pattern: This button will give the user options to create regions from a certain start and end time, increasing incrementally by a given number of minutes.
+    - Once you enter the information, hit submit, and the program will auto-populate the Regions section with the color defaulting to red.
+    - You will be able to change the color by pressing the colored box, which will display a color chooser.
+        - The color pallete will allow you to click any color to replace the current color in the region.
+        - There is the option to manually enter a python matplotlib library color if you need a separate color.
+        - To view a list of all possible matplotlib library colors, use this link https://matplotlib.org/stable/gallery/color/named_colors.html#sphx-glr-gallery-color-named-colors-py.
+    - 
+
+<!-- - Within the setup tab lies the parameters and variables that the user can change for running the analysis.
 - There are up to 3 user profiles with complete control and 1 profile designed for a single color.
 - Defaults for the program are shown in the gray placeholder text.
 - Any settings changed in these profiles will be saved automatically and can be reset at anytime using the 'Reset' button in the bottom right.
@@ -77,10 +87,9 @@ NOTE: To view available colors, click on the 'Colors' tab next to the 'Graphs' t
 The baseline will be used to calculate what the peak averages are before adding the drug to find relative increases or decreases in signal.
 The default is 10, but if you would like to change it, type an integer into the box.
 - Again, the 'Reset' button in the bottom right will reset EVERYTHING for this profile only. It will not affect any other profiles.
-If you have further questions, please reach out to us and send us a screenshot of your parameters along with your data set and we can help you troubleshoot from there.
-#### 3. Settings, 
+If you have further questions, please reach out to us and send us a screenshot of your parameters along with your data set and we can help you troubleshoot from there. -->
+#### 3. Help, General Settings, and About 
 
-![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/runtheprogram.gif)
 ## 4. Interpreting Results
 As mentioned previously, to view results, look in the same directory as the analyzed files and select the 'E-Phys Analyzer YYYY-DD-MM Results' file folder.
 The file creates two graphs and two .csv files, both from the same analysis.
