@@ -31,6 +31,7 @@ class Backend(QObject):
     enableRun = Signal()
     emitProgressBar = Signal(float)
     successDialog = Signal(str)
+    analysisError = Signal(str)
     starting_animation_time = 0.2
     object_animation_time = 0.1
 
@@ -102,6 +103,7 @@ class StartAnalysis(Thread):
         self.axis_limits = axis_limits
         self.graph_format = graph_format
 
+
     def run(self):
         backend.emitProgressBar.emit(0/len(self.files)*100)
         if self.graph_format == 0:
@@ -110,11 +112,14 @@ class StartAnalysis(Thread):
             self.graph_format = "pdf"
         for i in range(len(self.files)):
             analysis = Analysis()
-            analysis.mkdir_outputs(self.files[i][0])
-            analysis.mkdir(self.files[i][0])
-            analysis.analyze_data(self.files[i][0], self.files[i][1], trunc(self.files[i][2]), [trunc(x) for x in self.files[i][3]], self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
-            analysis.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits, self.graph_format)
-            backend.emitProgressBar.emit((i+1)/len(self.files)*100)
+            try:
+                analysis.mkdir_outputs(self.files[i][0])
+                analysis.mkdir(self.files[i][0])
+                analysis.analyze_data(self.files[i][0], self.files[i][1], trunc(self.files[i][2]), [trunc(x) for x in self.files[i][3]], self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
+                analysis.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits, self.graph_format)
+                backend.emitProgressBar.emit((i+1)/len(self.files)*100)
+            except Exception as ex:
+                backend.analysisError.emit(f"{os.path.basename(self.files[i][0])} Error: {str(ex)}.\nCheck trace number.")
         directory = analysis.return_directory()
         time.sleep(0.1)
         backend.successDialog.emit(directory)
