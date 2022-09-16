@@ -10,7 +10,8 @@ import subprocess
 
 from PySide6 import QtCore
 from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtGui import QGuiApplication, QIcon
+from PySide6.QtWidgets import QFileDialog, QApplication
+from PySide6.QtGui import QIcon
 from PySide6.QtCore import QObject, Slot, Signal
 from threading import *
 
@@ -32,8 +33,15 @@ class Backend(QObject):
     emitProgressBar = Signal(float)
     successDialog = Signal(str)
     analysisError = Signal(str)
+    updateDirectory = Signal(str)
     starting_animation_time = 0.2
     object_animation_time = 0.1
+
+    @Slot()
+    def change_default_directory(self):
+        new_dir = QFileDialog.getExistingDirectory()
+        if new_dir != "":
+            return self.updateDirectory.emit(f"{new_dir}/")
 
     @Slot(str)
     def open_files_saved(self, directory):
@@ -186,7 +194,7 @@ class ErrorMessage(Thread):
 
 if __name__ == "__main__":
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
-    app = QGuiApplication(sys.argv)
+    app = QApplication(sys.argv)
     app.setOrganizationName("Washington State University")
     app.setOrganizationDomain("github.com/EricJamesCrow/E-PhysAnalyzer")
     app.setApplicationName("E-PhysAnalyzer")

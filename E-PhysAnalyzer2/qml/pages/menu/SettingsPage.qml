@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 import Qt.labs.platform 1.1
+import QtQuick.Dialogs
+import QtCore 6.2
 import "../../controls/buttons"
 import "../../controls/custom"
 import "../../javascript/app.js" as App
@@ -54,7 +56,7 @@ Item {
             anchors.verticalCenterOffset: 185 * scaleFactor
             anchors.horizontalCenterOffset: 60 * scaleFactor
             anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: Settings.resetSettings(App.determineScaleFactor(Qt.platform.os, Screen.devicePixelRatio))
+            onClicked: Settings.resetSettings(App.determineScaleFactor(Qt.platform.os, Screen.devicePixelRatio), StandardPaths.writableLocation(StandardPaths.DocumentsLocation).toString().substring(8))
         }
 
         Rectangle {
@@ -406,20 +408,51 @@ Item {
             text: qsTr("Custom Output Directory")
             anchors.verticalCenter: directorySwitch.verticalCenter
             font.family: "PragmaticaLightC"
-            anchors.horizontalCenterOffset: 24
+            anchors.horizontalCenterOffset: 24 * scaleFactor
             anchors.horizontalCenter: scalingLabel.horizontalCenter
-            font.pointSize: 12
+            font.pointSize: 12 * scaleFactor
         }
 
         CustomSwitch {
             id: directorySwitch
             anchors.top: graphFormatComboBox.bottom
-            anchors.topMargin: 25
-            anchors.horizontalCenterOffset: -92
+            anchors.topMargin: 25 * scaleFactor
+            anchors.horizontalCenterOffset: -92 * scaleFactor
             anchors.horizontalCenter: scaleComboBox.horizontalCenter
             checked: settings.customDirectory
             onCheckedChanged: if(directorySwitch.checked) return settings.customDirectory = true; else return settings.customDirectory = false
+
         }
+
+
+        CustomButton {
+            id: changeDefaultOutputDirectoryBtn
+            colorDefault: btnColorDefault
+            colorMouseOver: bckgrndColor
+            colorPressed: settings.buttonColorPressed
+            fontColorMouseOver: btnColorDefault
+            anchors.top: directoryLabel.top
+            anchors.topMargin: 50 * scaleFactor
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: -75 * scaleFactor
+            width: 216 * scaleFactor
+            height: 25 * scaleFactor
+            text: "Change Custom Output Directory"
+            font.family: "PragmaticaLightC"
+            onClicked: backend.change_default_directory()
+            visible: settings.customDirectory
+
+            CustomTextField {
+                id: currentDirectoryTextField
+                x: 233 * scaleFactor
+                y: 3 * scaleFactor
+                width: 327 * scaleFactor
+                height: 20 * scaleFactor
+                clip: true
+                placeholderText: settings.mtkDefaultOutputPath
+                colorDefault: bckgrndColor
+                fontColorDefault: btnColorDefault
+            }}
     }
 
 }
@@ -434,6 +467,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.75}D{i:19}
+    D{i:0;formeditorZoom:0.66}
 }
 ##^##*/

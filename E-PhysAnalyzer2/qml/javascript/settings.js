@@ -61,8 +61,10 @@ const updateScaleFactor = index => {
     return updateScaleDict[index]
 }
 
-const resetSettings = determineScaleFactor => {
+const resetSettings = (determineScaleFactor, url) => {
     settings.scaleFactor = determineScaleFactor
     settings.repeatDrugNames = false
     settings.outputFormat = 0
+    settings.customDirectory = false
+    settings.mtkDefaultOutputPath = url
 }

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.5
+import QtCore 6.2
 import "controls"
 import "controls/buttons"
 import "controls/custom"
@@ -40,12 +41,15 @@ Window {
                 Progress.updateError(multipleErrors)
             }
         }
+        function onUpdateDirectory(dir) {
+            settings.mtkDefaultOutputPath = dir
+        }
     }
 
     Settings {
         id: settings
         // Functionality
-        property string mtkDefaultOutputPath : Qt.resolvedUrl("./../").toString().slice(8)
+        property string mtkDefaultOutputPath : StandardPaths.writableLocation(StandardPaths.DocumentsLocation).toString().substring(8)
         property double scaleFactor: App.determineScaleFactor(Qt.platform.os, Screen.devicePixelRatio)
 
         // Images
