@@ -47,11 +47,11 @@ Item {
 
         Label {
         id: xLabel
-        x: 96 * scaleFactor
+        x: 84 * scaleFactor
         width: 8 * scaleFactor
         height: 14 * scaleFactor
         color: "#ffffff"
-        text: qsTr("X")
+        text: qsTr("min.")
         anchors.verticalCenter: parent.verticalCenter
         font.family: "PragmaticaLightC"
         font.pointSize: 9 * scaleFactor
