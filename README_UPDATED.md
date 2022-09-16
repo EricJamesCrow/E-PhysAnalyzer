@@ -13,7 +13,7 @@
 #### Install EPhysAnalyzer 
 Windows installation instructions:
 -	*REQUIRES PYTHON 3.8 OR ABOVE*
--	For the newest version of python, click here https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe
+-	For the newest version of python, click here https://www.python.org/ftp/python/3.10.7/python-3.10.7-amd64.exe
 -	Download this package from https://github.com/EricJamesCrow/E-PhysAnalyzer/archive/refs/heads/main.zip
 -	Unzip the downloaded file to your desired directory
 -	Within the E-Phys Analyzer-main folder run 'install.bat'
@@ -31,20 +31,21 @@ Linux installation instructions:
 #### Clampfit Data File Format
 When using clampfit to analyze your dataset, you want to determine the range of the elicited response. 
 This program analyzes that by looking at the absolute peak response from stimulation, and if done properly, it should be labeled R1S1 peak.
-The only necessary columns for this program is 'trace number', 'time (ms)' and 'R1S1 peak amplitude'. To avoid errors in the program, please have the data only have this format.
-While viewing the dataset in Clampfit, save the data set as an .atf file and save it to the directory of your choice. Just a reminder, the output from the program saves to the same directory.
-***
+The only necessary columns for this program is 'trace number', 'time (ms)' and 'R1S1 peak amplitude'. To avoid errors in the program, please have the data only contain these values.
+While viewing the dataset in Clampfit, save the data set as an .atf file and save it to the directory of your choice.
 ## 3. Using the Program
-#### 1. Selecting Files
-Begin by selecting files using the 'Browse' button in blue.
-This should bring up your native file browser.
-From there you can navigate to the directory containing the files you would like to analyze.
-You may select as many files as you want from this directory.
-REMEMBER the files will output to this same directory.
-
-![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/browsefiles.gif)
-#### 2. The 'SETUP' Tab
-![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/setupfeatures.gif)
+#### 1. Left side of program
+- Begin by selecting files using the folder button in the top left of the screem, which should bring up your native file browser.
+- From there you can navigate to the directory containing the file(s) you would like to analyze and select one or multiple files.
+NOTE: The program will automatically save the results into the input file(s) directory. If you want to use a custom output directory, go to Settings -> General then turn on Custom Output Directory. From there you will be prompted to select a directory to save your files.
+- Once files are selected, the file display box will populate with the file name and text entry boxes for: Drug Name, Trace Number, and Excluded Traces
+    - Drug Name: Enter the name of the drug used in the experiment, this will be displated in the x-axis as well as the data files.
+    - Trace Number: Enter the trace number in which the drug was added, this becomes the time point where the baseline and time relative to the drug addition is calculated.
+    - Excluded Traces: These are traces where there may have been user error or bad reads which you may want to exclude from your analysis, these will also be removed from the standard deviation, baseline average, and minute averaged calculations.
+- Once all the data is entered, press the run arrow, which is next to the file selection button. This will bring up a circular progress bar that will update as each file is processed.
+- Upon completion, a window will pop up with options to close, or open your native file chooser to the output directory.
+- If any files were unable to process, they will appear in red below the completion statement, if this occurs, it is usually due to an incalculable trace number. Such as extremely high or low values.
+#### 2. Right side of program
 - Within the setup tab lies the parameters and variables that the user can change for running the analysis.
 - There are up to 3 user profiles with complete control and 1 profile designed for a single color.
 - Defaults for the program are shown in the gray placeholder text.
@@ -78,9 +79,8 @@ The default is 10, but if you would like to change it, type an integer into the 
 - Again, the 'Reset' button in the bottom right will reset EVERYTHING for this profile only. It will not affect any other profiles.
 If you have further questions, please reach out to us and send us a screenshot of your parameters along with your data set and we can help you troubleshoot from there.
 #### 3. Running the Program
-- To run the program simply navigate to the 'RUN' tab and select run.
+- To run the program simply press the play arrow next to the file selection button.
 NOTE: Make sure you have the drug name, the trace number the drug was added, and any excluded traces you want removed from the data and analysis.
-- Please follow the placeholder text for formatting these entries. If you have any questions or are running into errors, please note the error messages and resolve the issue. If you cannot, contact us.
 
 ![](https://github.com/EricJamesCrow/E-PhysAnalyzer/blob/main/E-PhysAnalyzer/images/gifs/runtheprogram.gif)
 ## 4. Interpreting Results
