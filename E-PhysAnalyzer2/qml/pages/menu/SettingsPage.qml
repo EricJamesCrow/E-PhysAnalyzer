@@ -1,8 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 import Qt.labs.platform 1.1
-import QtQuick.Dialogs
-import QtCore 6.2
 import "../../controls/buttons"
 import "../../controls/custom"
 import "../../javascript/app.js" as App
@@ -11,21 +9,21 @@ import "../../javascript/settings.js" as Settings
 Item {
     id: settingsPage
 
-    //    property color colColor:  settings.columnColor //"#5ac1d0"
-    //    property color btnColorDefault:  settings.buttonColorDefault //"#087589"
-    //    property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
-    //    property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
-    //    property color topBarColor: settings.topBarColor //"#02323a"
+        property color colColor:  settings.columnColor //"#5ac1d0"
+        property color btnColorDefault:  settings.buttonColorDefault //"#087589"
+        property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
+        property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
+        property color topBarColor: settings.topBarColor //"#02323a"
 
-    // Properties for editing
-    property color colColor: "#5ac1d0"
-    property color btnColorDefault: "#087589"
-    property color bckgrndColor: "#b8e3ee"
-    property color btnColorPressed: "#357aac"
-    property color topBarColor: "#02323a"
-    property int scaleFactor: 1
-    width: 750
-    height: 800
+//    // Properties for editing
+//    property color colColor: "#5ac1d0"
+//    property color btnColorDefault: "#087589"
+//    property color bckgrndColor: "#b8e3ee"
+//    property color btnColorPressed: "#357aac"
+//    property color topBarColor: "#02323a"
+//    property int scaleFactor: 1
+//    width: 750
+//    height: 800
 
     property url btnIconSource: "../../../images/svg_images/close_icon.svg"
 
@@ -402,8 +400,8 @@ Item {
 
         Label {
             id: directoryLabel
-            width: 166
-            height: 22
+            width: 166 * scaleFactor
+            height: 22 * scaleFactor
             color: "#ffffff"
             text: qsTr("Custom Output Directory")
             anchors.verticalCenter: directorySwitch.verticalCenter
@@ -467,6 +465,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}
+    D{i:0;autoSize:true;formeditorZoom:0.66;height:480;width:640}
 }
 ##^##*/
