@@ -9,21 +9,21 @@ import "../../javascript/settings.js" as Settings
 Item {
     id: settingsPage
 
-    property color colColor:  settings.columnColor //"#5ac1d0"
-    property color btnColorDefault:  settings.buttonColorDefault //"#087589"
-    property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
-    property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
-    property color topBarColor: settings.topBarColor //"#02323a"
+    //    property color colColor:  settings.columnColor //"#5ac1d0"
+    //    property color btnColorDefault:  settings.buttonColorDefault //"#087589"
+    //    property color bckgrndColor:  settings.backgroundColor //"#b8e3ee"
+    //    property color btnColorPressed:  settings.buttonColorPressed //"#357aac"
+    //    property color topBarColor: settings.topBarColor //"#02323a"
 
-//    // Properties for editing
-//    property color colColor: "#5ac1d0"
-//    property color btnColorDefault: "#087589"
-//    property color bckgrndColor: "#b8e3ee"
-//    property color btnColorPressed: "#357aac"
-//    property color topBarColor: "#02323a"
-//    property int scaleFactor: 1
-//    width: 750
-//    height: 800
+    // Properties for editing
+    property color colColor: "#5ac1d0"
+    property color btnColorDefault: "#087589"
+    property color bckgrndColor: "#b8e3ee"
+    property color btnColorPressed: "#357aac"
+    property color topBarColor: "#02323a"
+    property int scaleFactor: 1
+    width: 750
+    height: 800
 
     property url btnIconSource: "../../../images/svg_images/close_icon.svg"
 
@@ -397,6 +397,29 @@ Item {
             font.pointSize: 12 * scaleFactor
             font.family: "PragmaticaLightC"
         }
+
+        Label {
+            id: directoryLabel
+            width: 166
+            height: 22
+            color: "#ffffff"
+            text: qsTr("Custom Output Directory")
+            anchors.verticalCenter: directorySwitch.verticalCenter
+            font.family: "PragmaticaLightC"
+            anchors.horizontalCenterOffset: 24
+            anchors.horizontalCenter: scalingLabel.horizontalCenter
+            font.pointSize: 12
+        }
+
+        CustomSwitch {
+            id: directorySwitch
+            anchors.top: graphFormatComboBox.bottom
+            anchors.topMargin: 25
+            anchors.horizontalCenterOffset: -92
+            anchors.horizontalCenter: scaleComboBox.horizontalCenter
+            checked: settings.customDirectory
+            onCheckedChanged: if(directorySwitch.checked) return settings.customDirectory = true; else return settings.customDirectory = false
+        }
     }
 
 }
@@ -407,9 +430,10 @@ Item {
 
 
 
+
+
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}D{i:10}D{i:9}D{i:12}D{i:13}D{i:14}D{i:15}D{i:16}D{i:17}
-D{i:18}
+    D{i:0;formeditorZoom:0.75}D{i:19}
 }
 ##^##*/
