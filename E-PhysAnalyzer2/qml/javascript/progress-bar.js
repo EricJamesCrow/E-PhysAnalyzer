@@ -17,4 +17,11 @@ const closeFilesWindow = () => {
     progressBarOverlay.visible = false
     progressBarOverlayMouseArea.visible = false
     progressBar.visible = true
+    filesFinishedErrorLabel.visible = false
+    numOfErrors = 0
+}
+
+var updateError = err => {
+    filesFinishedErrorLabel.visible = true
+    filesFinishedErrorLabel.text = err
 }

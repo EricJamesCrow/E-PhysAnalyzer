@@ -18,6 +18,7 @@ Window {
     signal adjustHeight(var scale)
     property var scaleFactor: settings.scaleFactor
     onScaleFactorChanged: adjustHeight(scaleFactor)
+    property int numOfErrors: 0
 
     Connections {
         target: backend
@@ -29,6 +30,15 @@ Window {
         }
         function onSuccessDialog(directory) {
             Progress.showSuccessDialog(directory)
+        }
+        function onAnalysisError(err) {
+            numOfErrors += 1
+            if(numOfErrors < 2) {
+              Progress.updateError(err)
+            } else {
+                let multipleErrors = `${numOfErrors} errors occurred in analysis. Check trace numbers.`
+                Progress.updateError(multipleErrors)
+            }
         }
     }
 
@@ -894,6 +904,25 @@ Window {
                     font.pointSize: 8 * scaleFactor
                     font.family: "PragmaticaLightC"
                     anchors.topMargin: 35 * scaleFactor
+
+
+                    Label {
+                        id: filesFinishedErrorLabel
+                        width: 400 * scaleFactor
+                        height: 27 * scaleFactor
+                        color: "#ff0000"
+                        text: ""
+                        visible: false
+                        anchors.top: parent.top
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        anchors.topMargin: 25
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.pointSize: 8 * scaleFactor
+                        font.family: "PragmaticaLightC"
+
+
+                    }
                 }
 
                 CustomButton {
@@ -1073,6 +1102,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.33}D{i:49}
+    D{i:0;formeditorZoom:0.33}
 }
 ##^##*/
