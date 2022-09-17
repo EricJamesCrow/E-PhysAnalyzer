@@ -12,11 +12,20 @@ Rectangle {
     property bool error: false
     property bool success: false
 
+
+    property var dynamicColor : if(error) {
+                                    return "red"
+                                } else if(success) {
+                                    return "green"
+                                } else {
+                                    return columnColor
+                                }
+
     id: objectBg
     height: 35 * scaleFactor
-    color: error ? "red" : columnColor
+    color: dynamicColor
     radius: 5 * scaleFactor
-    border.color: success ? "green" : topBarColor
+    border.color: topBarColor
     border.width: 0
     onDrugNameChanged: {if(settings.repeatDrugNames === true) return InputFields.repeatDrugNames();}
 
