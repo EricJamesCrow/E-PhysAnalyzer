@@ -1,3 +1,4 @@
+import QtQuick
 import QtQuick 2.15
 import QtQuick.Controls 2.5
 import QtQuick.Dialogs
@@ -54,7 +55,7 @@ Item {
     }
 
     // Properties for editing
-    //    property int scaleFactor: settings.scaleFactor
+//    property int scaleFactor: 1
     property color topBarColor: "#02323a"
     property color topBarSecondaryColor: "#015967"
     property color columnColor: "#5ac1d0"
@@ -730,6 +731,46 @@ Item {
             }
         }
 
+        Label {
+            id: title
+            x: 1095
+            y: 21
+            width: 268
+            height: 16
+            visible: false
+            text: qsTr("E-Phys Analyzer")
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.pointSize: 25
+
+
+
+
+            Canvas
+            {
+                id: drawingCanvas
+                height: 1
+                y: 22
+                anchors.left: parent.left
+                anchors.right: parent.right
+                onPaint:
+                {
+                    var ctx = getContext("2d")
+
+                    ctx.fillStyle = "black"
+                    ctx.fillRect(0,0,drawingCanvas.width ,drawingCanvas.height )
+
+                    ctx.lineWidth = 15;
+                    ctx.strokeStyle = "black"
+                    ctx.beginPath()
+                    ctx.moveTo(drawingCanvas.width / 2, 0)
+                    ctx.lineTo((drawingCanvas.width / 2) + 10, 0)
+                    //ctx.closePath()
+                    ctx.stroke()
+                }
+            }
+        }
+
 
 
 
@@ -745,8 +786,10 @@ Item {
 
 
 
+
+
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.25}
+    D{i:0;formeditorZoom:1.25}
 }
 ##^##*/
