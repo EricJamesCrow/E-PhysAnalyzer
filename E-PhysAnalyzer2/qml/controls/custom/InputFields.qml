@@ -9,12 +9,14 @@ Rectangle {
     property string drugName: ""
     property string traceNumber: ""
     property string excludedTraces: ""
+    property bool error: false
+    property bool success: false
 
     id: objectBg
     height: 35 * scaleFactor
-    color: columnColor
+    color: error ? "red" : columnColor
     radius: 5 * scaleFactor
-    border.color: topBarColor
+    border.color: success ? "green" : topBarColor
     border.width: 0
     onDrugNameChanged: {if(settings.repeatDrugNames === true) return InputFields.repeatDrugNames();}
 

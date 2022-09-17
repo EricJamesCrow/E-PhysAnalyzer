@@ -90,6 +90,15 @@ Item {
         function onEnableRun() {
             runBtn.enabled = true
         }
+        function onEmitInputFieldSuccess(num) {
+            fileObjects[num].error = false
+            fileObjects[num].success = true
+        }
+
+        function onEmitInputFieldError(num) {
+            fileObjects[num].error = true
+            fileObjects[num].success = false
+        }
     }
 
     Connections {
