@@ -3,46 +3,46 @@ import QtQuick.Controls 2.5
 import "../../controls/custom"
 
 Rectangle {
-    property bool remove: removeOutliers.checkedState
+    property bool remove: removeOutliers.checked
     property string score: zScoreEntry.text
 
 
     Connections {
         target: settingsPage1
         function onZscoreSettings(remove, score) {
-            removeOutliers.checkedState = remove
+            removeOutliers.checked = remove
             if(score !== "") {
                 zScoreEntry.text = score
             }
         }
         function onReset() {
-            removeOutliers.checkedState = true
+            removeOutliers.checked = true
             zScoreEntry.text = ""
         }
     }
     Connections {
         target: settingsPage2
         function onZscoreSettings(remove, score) {
-            removeOutliers.checkedState = remove
+            removeOutliers.checked = remove
             if(score !== "") {
                 zScoreEntry.text = score
             }
         }
         function onReset() {
-            removeOutliers.checkedState = true
+            removeOutliers.checked = true
             zScoreEntry.text = ""
         }
     }
     Connections {
         target: settingsPage3
         function onZscoreSettings(remove, score) {
-            removeOutliers.checkedState = remove
+            removeOutliers.checked = remove
             if(score !== "") {
                 zScoreEntry.text = score
             }
         }
         function onReset() {
-            removeOutliers.checkedState = true
+            removeOutliers.checked = true
             zScoreEntry.text = ""
         }
     }
@@ -65,7 +65,7 @@ color: "#4089f7fe"
     }
     z: -1
 
-    CustomCheckBoxLabel {
+    CustomSwitch {
     id: removeOutliers
     y: 11 * scaleFactor
     width: 150 * scaleFactor
@@ -73,7 +73,8 @@ color: "#4089f7fe"
     text: "Remove Outliers"
     anchors.horizontalCenter: parent.horizontalCenter
     clip: false
-    checkedState: true
+    font.family: "PragmaticaLightC"
+    font.pointSize: 8 * scaleFactor
     }
 
     CustomTextField {

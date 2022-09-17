@@ -3,7 +3,7 @@ import QtQuick.Controls 2.5
 import "../../controls/custom"
 
 Rectangle {
-    property bool single: colorCode.checkedState
+    property bool single: colorCode.checked
     property int quality: graphQuality.currentIndex
     property string dpi: dpiEntry.text
     property string defaultColor: defaultColor.text
@@ -11,7 +11,7 @@ Rectangle {
     Connections {
         target: settingsPage1
         function onGraphQualitySettings(single, quality, dpi, color) {
-            colorCode.checkedState = single
+            colorCode.checked = single
             if(dpi !== "") {
                 dpiEntry.text = dpi
             }
@@ -21,7 +21,7 @@ Rectangle {
             graphQuality.currentIndex = quality
         }
         function onReset() {
-            colorCode.checkedState = false
+            colorCode.checked = false
             graphQuality.currentIndex = 1
             dpiEntry.text = ""
             defaultColor.text = ""
@@ -31,7 +31,7 @@ Rectangle {
     Connections {
         target: settingsPage2
         function onGraphQualitySettings(single, quality, dpi, color) {
-            colorCode.checkedState = single
+            colorCode.checked = single
             if(dpi !== "") {
                 dpiEntry.text = dpi
             }
@@ -41,7 +41,7 @@ Rectangle {
             graphQuality.currentIndex = quality
         }
         function onReset() {
-            colorCode.checkedState = false
+            colorCode.checked = false
             graphQuality.currentIndex = 1
             dpiEntry.text = ""
             defaultColor.text = ""
@@ -51,7 +51,7 @@ Rectangle {
     Connections {
         target: settingsPage3
         function onGraphQualitySettings(single, quality, dpi, color) {
-            colorCode.checkedState = single
+            colorCode.checked = single
             if(dpi !== "") {
                 dpiEntry.text = dpi
             }
@@ -61,7 +61,7 @@ Rectangle {
             graphQuality.currentIndex = quality
         }
         function onReset() {
-            colorCode.checkedState = false
+            colorCode.checked = false
             graphQuality.currentIndex = 1
             dpiEntry.text = ""
             defaultColor.text = ""
@@ -87,7 +87,7 @@ Rectangle {
     }
     z: -1
 
-    CustomCheckBoxLabel {
+    CustomSwitch {
         id: colorCode
         x: -191 * scaleFactor
         y: 8 * scaleFactor
@@ -98,6 +98,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         clip: false
         font.family: "PragmaticaLightC"
+        font.pointSize: 8 * scaleFactor
     }
 
     CustomComboBox {

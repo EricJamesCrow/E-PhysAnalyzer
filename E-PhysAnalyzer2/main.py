@@ -54,15 +54,15 @@ class Backend(QObject):
     def emit_region(self, region):
         self.emitRegions.emit(region)
 
-    @Slot(list, float, bool, int, str, str, int, str, list, bool, int, bool, str)
-    def run_analyze_data(self, files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, single, graph_format, use_custom_directory, custom_directory):
+    @Slot(list, float, bool, bool, int, str, str, int, str, list, bool, int, bool, str)
+    def run_analyze_data(self, files, z_limit, z_checking, baseline, baseline_int, color_regions_dict, default_color, dpi, baseline_color, axis_limits, single, graph_format, use_custom_directory, custom_directory):
         color_regions_dict = json.loads(color_regions_dict) # Convert string back to dictioanry
         if color_regions_dict == {}:
             color_regions_dict = {'0': [-10, -5, 'grey'], '1': [-5, 0, 'black'], '2': [0, 5, 'grey'], '3': [5, 10, 'purple'], '4': [10, 15, 'green'], '5': [15, 20, 'blue'], '6': [20, 25, 'orange'], '7': [25, 30, 'red']}
         if single == True:
             for i in range(len(color_regions_dict)):
                 color_regions_dict[str(i)][2] = default_color
-        analysis = StartAnalysis(files, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format, use_custom_directory, custom_directory)
+        analysis = StartAnalysis(files, z_limit, z_checking, baseline, baseline_int, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format, use_custom_directory, custom_directory)
         analysis.start()
 
     @Slot()
@@ -98,12 +98,13 @@ class Backend(QObject):
         self.enableRun.emit()
 
 class StartAnalysis(Thread):
-    def __init__(self, file, z_limit, z_checking, baseline, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format, use_custom_directory, custom_directory):
+    def __init__(self, file, z_limit, z_checking, baseline, baseline_int, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format, use_custom_directory, custom_directory):
         super(StartAnalysis, self).__init__()
         self.files = file
         self.z_limit = z_limit
         self.z_checking = z_checking
         self.baseline = baseline
+        self.baseline_int = baseline_int
         self.color_regions_dict = color_regions_dict
         self.default_color = default_color
         self.dpi = dpi
@@ -128,7 +129,7 @@ class StartAnalysis(Thread):
                 else:
                     analysis.mkdir_outputs(self.files[i][0], self.use_custom_directory)
                 analysis.mkdir(self.files[i][0])
-                analysis.analyze_data(self.files[i][0], self.files[i][1], trunc(self.files[i][2]), [trunc(x) for x in self.files[i][3]], self.z_limit, self.z_checking, self.baseline, self.color_regions_dict, self.default_color)
+                analysis.analyze_data(self.files[i][0], self.files[i][1], trunc(self.files[i][2]), [trunc(x) for x in self.files[i][3]], self.z_limit, self.z_checking, self.baseline_int, self.color_regions_dict, self.default_color)
                 analysis.make_graphs(self.dpi, self.baseline, self.baseline_color, self.axis_limits, self.graph_format)
                 backend.emitProgressBar.emit((i+1)/len(self.files)*100)
             except Exception as ex:

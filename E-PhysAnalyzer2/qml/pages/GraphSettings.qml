@@ -216,15 +216,10 @@ Item {
 
         ColorCode {
             id: colorCodeSection
-//            x: 21 * scaleFactor
             y: 90 * scaleFactor
-                        x: 473 * scaleFactor
-                        width: 177 * scaleFactor
+            x: 473 * scaleFactor
+            width: 177 * scaleFactor
             height: 140 * scaleFactor
-//            anchors.left: parent.left
-//            anchors.right: parent.right
-//            anchors.rightMargin: 13 * scaleFactor
-//            anchors.leftMargin: 473 * scaleFactor
             opacity: 0
             // GraphSettings.qml
             onSingleChanged: graphQualitySettings1.single1 = colorCodeSection.single
@@ -243,15 +238,10 @@ Item {
 
         Baseline {
             id: baselineSection
-//            x: 32 * scaleFactor
             y: 236 * scaleFactor
                         x: 473 * scaleFactor
                         width: 177 * scaleFactor
             height: 140 * scaleFactor
-//            anchors.left: parent.left
-//            anchors.right: parent.right
-//            anchors.rightMargin: 13 * scaleFactor
-//            anchors.leftMargin: 473 * scaleFactor
             opacity: 0
 //            // GraphSettings.qml
             onColorChanged: baselineSettings1.color1 = baselineSection.color
@@ -270,14 +260,9 @@ Item {
 
         Zscore {
             id: zScoreSection
-//            x: 28 * scaleFactor
             y: 388 * scaleFactor
             x: 279 * scaleFactor
             width: 177 * scaleFactor
-//            anchors.left: parent.left
-//            anchors.right: parent.right
-//            anchors.rightMargin: 207 * scaleFactor
-//            anchors.leftMargin: 279 * scaleFactor
             opacity: 0
 //            // GraphSettings.qml
             onRemoveChanged: zscoreSettings1.remove1 = zScoreSection.remove

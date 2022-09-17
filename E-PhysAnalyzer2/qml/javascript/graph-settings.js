@@ -29,6 +29,7 @@ class Settings {
         minuteAveragedSettings(this.maxmin,this.maxmax,this.maymin,this.maymax);
         graphQualitySettings(this.single, this.quality, this.dpi, this.defaultColor);
         baselineSettings(this.color, this.time, this.display);
+        zscoreSettings(this.remove, this.score);
         return this
     }
     load(){

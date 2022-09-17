@@ -5,23 +5,24 @@ import "../../controls/custom"
 Rectangle {
     property string color: baselineColor.text
     property string time: baselineValue.text
-    property bool display: displayBaseline.checkedState
+    property bool display: displayBaseline.checked
 
     Connections {
         target: settingsPage1
         function onBaselineSettings(color, time, display) {
+            console.log(`BASELINE: ${display}`)
             if(color !== "") {
                 baselineColor.text = color
             }
             if(time !== "") {
                 baselineValue.text = time
             }
-            displayBaseline.checkedState = display
+            displayBaseline.checked = display
         }
         function onReset() {
             baselineColor.text = ""
             baselineValue.text = ""
-            displayBaseline.checkedState = true
+            displayBaseline.checked = true
         }
     }
 
@@ -34,12 +35,12 @@ Rectangle {
             if(time !== "") {
                 baselineValue.text = time
             }
-            displayBaseline.checkedState = display
+            displayBaseline.checked = display
         }
         function onReset() {
             baselineColor.text = ""
             baselineValue.text = ""
-            displayBaseline.checkedState = true
+            displayBaseline.checked = true
         }
     }
 
@@ -52,12 +53,12 @@ Rectangle {
             if(time !== "") {
                 baselineValue.text = time
             }
-            displayBaseline.checkedState = display
+            displayBaseline.checked = display
         }
         function onReset() {
             baselineColor.text = ""
             baselineValue.text = ""
-            displayBaseline.checkedState = true
+            displayBaseline.checked = true
         }
     }
         
@@ -79,16 +80,16 @@ Rectangle {
     }
     z: -1
 
-    CustomCheckBoxLabel {
+    CustomSwitch {
     id: displayBaseline
     y: 13 * scaleFactor
     width: 137 * scaleFactor
     height: 26 * scaleFactor
     text: "Display Baseline"
-    checkedState: true
     anchors.horizontalCenter: parent.horizontalCenter
     clip: false
     font.family: "PragmaticaLightC"
+    font.pointSize: 8 * scaleFactor
     }
 
     CustomTextField {

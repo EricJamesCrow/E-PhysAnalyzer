@@ -3,6 +3,7 @@ import QtQuick.Controls
 
 Switch {
     id: control
+    property bool checkedState: false
 
     indicator: Rectangle {
         implicitWidth: 48 * scaleFactor
@@ -29,7 +30,6 @@ Switch {
         opacity: enabled ? 1.0 : 0.3
         color: control.checked ? "#02323a" : "#ffffff"
         verticalAlignment: Text.AlignVCenter
-//        font.pointSize: 9 * scaleFactor
-        leftPadding: control.indicator.width * scaleFactor + control.spacing * scaleFactor
+        leftPadding: control.indicator.width + control.spacing
     }
 }
