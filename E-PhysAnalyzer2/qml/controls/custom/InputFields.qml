@@ -11,6 +11,8 @@ Rectangle {
     property string excludedTraces: ""
     property bool error: false
     property bool success: false
+    onSuccessChanged: if(success) return successAnimation.running = true
+    onErrorChanged: if(error) return errorAnimation.running = true
 
 
     property var dynamicColor : if(error) {
@@ -23,11 +25,25 @@ Rectangle {
 
     id: objectBg
     height: 35 * scaleFactor
-    color: dynamicColor
+    color: columnColor /*dynamicColor*/
     radius: 5 * scaleFactor
     border.color: topBarColor
     border.width: 0
     onDrugNameChanged: {if(settings.repeatDrugNames === true) return InputFields.repeatDrugNames();}
+
+    ColorAnimation on color {
+        id: successAnimation
+        to: "green"
+        duration: 250
+        running: false
+    }
+
+    ColorAnimation on color {
+        id: errorAnimation
+        to: "red"
+        duration: 250
+        running: false
+    }
 
     Label {
         id: fileName
