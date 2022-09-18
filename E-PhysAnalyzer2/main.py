@@ -208,6 +208,7 @@ class StartUp(Thread):
             for i in range(5):
                 time.sleep(0.2)
                 backend.startUpMenuDropDown.emit(i)
+            backend.emitStartUp.emit(self.num)
         
 
 

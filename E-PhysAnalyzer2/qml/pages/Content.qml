@@ -146,7 +146,7 @@ Item {
             id: startupMouseArea
             x: 0
             y: 0
-            visible: startup < 14
+            visible: startup < 19
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
