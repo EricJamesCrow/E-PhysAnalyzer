@@ -14,6 +14,7 @@ import Qt.labs.settings 1.1
 import "javascript/app.js" as App
 import "javascript/settings.js" as Settings
 import "javascript/progress-bar.js" as Progress
+import "javascript/startup.js" as Startup
 
 Window {
     // Scale Factor
@@ -45,6 +46,9 @@ Window {
         }
         function onUpdateDirectory(dir) {
             settings.mtkDefaultOutputPath = dir
+        }
+        function onStartUpMenuDropDown(num) {
+            Startup.menu(num)
         }
     }
 
@@ -324,6 +328,29 @@ Window {
                         anchors.topMargin: 0
                         anchors.leftMargin: 5  * scaleFactor
                         onClicked: App.runMenuDropDown()
+
+                        ToolTip {
+                            id: menuToolTip
+                            anchors.top: parent.bottom
+                            anchors.topMargin: 5  * scaleFactor
+                            anchors.left: parent.left
+                            anchors.leftMargin: -5 * scaleFactor
+                            width: 150 * scaleFactor
+                            height: 100 * scaleFactor
+                            textInfo: "Click here to access the menu"
+                            z: 3
+                            visible: startup === 17
+                            opacity: 0
+
+                            OpacityAnimator on opacity {
+                                id: menuToolTipAnimation
+                                from: 0
+                                to: 1.0
+                                duration: 250
+                                running: startup === 17
+                            }
+                        }
+
                     }
 
                     Rectangle {

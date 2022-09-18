@@ -46,7 +46,7 @@ Button {
         }
         function onStartUpNewRegion(num) {
             Startup.newRegion(num)
-            if(num === 16) {
+            if(num === 17) {
                 return newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName)
             }
 

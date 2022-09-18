@@ -114,6 +114,9 @@ Item {
                 fileObjects[i].traceNumber = trace
             }
         }
+        function onStartUpClearInputFields() {
+           InputFields.reset()
+        }
     }
 
     Connections {
@@ -143,7 +146,7 @@ Item {
             id: startupMouseArea
             x: 0
             y: 0
-            visible: startup < 9
+            visible: startup < 14
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
@@ -727,8 +730,7 @@ Item {
             id: browseFilesToolTip
             anchors.top: browseBtn.bottom
             anchors.topMargin: 8  * scaleFactor
-            anchors.left: parent.left
-            anchors.leftMargin: 10 * scaleFactor
+            anchors.left: browseBtn.left
             width: 150 * scaleFactor
             height: 100 * scaleFactor
             textInfo: "Click here to select your files"
@@ -742,6 +744,27 @@ Item {
                 to: 1.0
                 duration: 250
                 running: startup === 1
+            }
+        }
+
+        ToolTip {
+            id: runBtnToolTip
+            anchors.top: runBtn.bottom
+            anchors.topMargin: 8  * scaleFactor
+            anchors.left: runBtn.left
+            width: 150 * scaleFactor
+            height: 100 * scaleFactor
+            textInfo: "Click here to run the program"
+            z: 3
+            visible: startup === 14
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: runBtnToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 14
             }
         }
 
@@ -764,6 +787,28 @@ Item {
             to: 1.0
             duration: 250
             running: startup === 3
+        }
+        }
+
+        ToolTip {
+        id: errorsToolTip
+        width: 150
+        height: 125
+        visible: startup === 16
+        anchors.left: parent.left
+        anchors.top: leftContent.top
+        anchors.leftMargin: 100
+        anchors.topMargin: 285
+        z: 3
+        opacity: 0
+        textInfo: "Files that could not be analyzed will be highlighted in red"
+
+        OpacityAnimator on opacity {
+            id: errorsToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 16
         }
         }
 
@@ -812,6 +857,129 @@ Item {
             running: startup === 7
         }
         }
+
+        ToolTip {
+        id: postAnalysisToolTip
+        width: 150
+        height: 125
+        visible: startup === 9
+        anchors.left: rightContent.left
+        anchors.top: rightContent.top
+        anchors.leftMargin: 300
+        anchors.topMargin: 270
+        z: 3
+        opacity: 0
+        textInfo: "Post Analysis Graph Information goes here"
+
+
+        OpacityAnimator on opacity {
+            id: postAnalysisToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 9
+        }
+        }
+
+        ToolTip {
+        id: graphQualityToolTip
+        width: 150
+        height: 125
+        visible: startup === 12
+        anchors.left: rightContent.left
+        anchors.top: rightContent.top
+        anchors.leftMargin: 500
+        anchors.topMargin: 270
+        z: 3
+        opacity: 0
+        textInfo: "Graph Quality Information goes here"
+
+
+        OpacityAnimator on opacity {
+            id: graphQualityToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 12
+        }
+        }
+
+
+
+
+        ToolTip {
+        id: minAvgToolTip
+        width: 150
+        height: 125
+        visible: startup === 10
+        anchors.left: rightContent.left
+        anchors.top: rightContent.top
+        anchors.leftMargin: 300
+        anchors.topMargin: 415
+        z: 3
+        opacity: 0
+        textInfo: "Minute Averaged Graph Information goes here"
+
+
+        OpacityAnimator on opacity {
+            id: minAvgToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 10
+        }
+        }
+
+
+
+        ToolTip {
+        id: baselineToolTip
+        width: 150
+        height: 125
+        visible: startup === 13
+        anchors.left: rightContent.left
+        anchors.top: rightContent.top
+        anchors.leftMargin: 500
+        anchors.topMargin: 415
+        z: 3
+        opacity: 0
+        textInfo: "Baseline Information goes here"
+
+
+        OpacityAnimator on opacity {
+            id: baselineToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 13
+        }
+        }
+
+
+
+        ToolTip {
+        id: zScoreToolTip
+        width: 150
+        height: 125
+        visible: startup === 11
+        anchors.left: rightContent.left
+        anchors.top: rightContent.top
+        anchors.leftMargin: 300
+        anchors.topMargin: 515
+        z: 3
+        opacity: 0
+        textInfo: "Z-Score Information goes here"
+
+
+        OpacityAnimator on opacity {
+            id: zScoreToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 11
+        }
+        }
+
 
 
 

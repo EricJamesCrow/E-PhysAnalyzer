@@ -42,6 +42,8 @@ class Backend(QObject):
     startUpGenPtn = Signal(int)
     startUpNewRegion = Signal(int)
     startupClearRegions = Signal()
+    startUpClearInputFields = Signal()
+    startUpMenuDropDown = Signal(int)
     starting_animation_time = 0.2
     object_animation_time = 0.1
 
@@ -186,10 +188,25 @@ class StartUp(Thread):
         elif self.num == 8:
             time.sleep(0.25)
             backend.startupClearRegions.emit()
-            for i in range(22):
+            for i in range(19):
                 time.sleep(0.1)
                 backend.startUpNewRegion.emit(i)
+            time.sleep(0.25)
             backend.emitStartUp.emit(self.num)
+        elif self.num == 15:
+            for i in range(8):
+                time.sleep(0.25)
+                if i != 5:
+                    backend.emitInputFieldSuccess.emit(i)
+                else:
+                    backend.emitInputFieldError.emit(i)
+            backend.emitStartUp.emit(self.num)
+        elif self.num == 17:
+            backend.startUpClearInputFields.emit()
+        elif self.num == 18:
+            for i in range(5):
+                time.sleep(0.2)
+                backend.startUpMenuDropDown.emit(i)
         
 
 

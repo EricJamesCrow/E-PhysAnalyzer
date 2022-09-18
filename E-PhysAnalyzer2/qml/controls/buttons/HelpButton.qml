@@ -19,7 +19,7 @@ Button{
         id: internal
 
         // MOUSE OVER AND CLICK CHANGE COLOR
-        property var dynamicColor: btnSettings.hovered ? btnColorMouseOver : btnColorDefault
+        property var dynamicColor: (btnSettings.hovered || (btnSettings.focus == true)) ? btnColorMouseOver : btnColorDefault
 
     }
 

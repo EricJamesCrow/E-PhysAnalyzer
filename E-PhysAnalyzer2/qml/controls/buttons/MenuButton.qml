@@ -23,7 +23,7 @@ Button{
         property var dynamicColor: if(btnToggle.down){
                                        btnToggle.down ? btnColorClicked : btnColorDefault
                                    } else {
-                                       btnToggle.hovered ? btnColorMouseOver : btnColorDefault
+                                       (btnToggle.hovered || (btnToggle.focus == true)) ? btnColorMouseOver : btnColorDefault
                                    }
 
         property var dynamicFontColor: if(btnToggle.down){

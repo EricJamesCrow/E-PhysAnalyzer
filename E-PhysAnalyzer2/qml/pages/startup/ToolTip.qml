@@ -18,26 +18,26 @@ Rectangle {
 
     Label {
         id: label
-        y: 17
-        width: 135
-        height: 42
+        y: 17 * scaleFactor
+        width: 135 * scaleFactor
+        height: 42 * scaleFactor
         color: "#ffffff"
         text: textInfo
         wrapMode: Text.WordWrap
         anchors.horizontalCenterOffset: 0
         font.family: "PragmaticaLightC"
-        font.pointSize: 12
+        font.pointSize: 12 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
     CustomButton {
         id: nextBtn
-        y: 65
-        width: 58
-        height: 22
+        y: 65 * scaleFactor
+        width: 58 * scaleFactor
+        height: 22 * scaleFactor
         text: "Next"
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 10 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
         colorDefault: settings.buttonColorDefault
         colorMouseOver: settings.backgroundColor
@@ -48,10 +48,10 @@ Rectangle {
 
     Triangle {
             id: triangle
-            x: 14
-            y: -9
-            width: 20
-            height: 20
+            x: 14 * scaleFactor
+            y: -9 * scaleFactor
+            width: 20 * scaleFactor
+            height: 20 * scaleFactor
             z: 0
             rotation: 90
             fillStyle: "#5ac1d0"

@@ -47,7 +47,7 @@ const newRegion = num => {
         return lessThanEntry.text = "-5"
     } else if(num === 16) {
         return submitButton.focus = true
-    } else if(num === 17) {
+    } else if(num === 18) {
         return Region.expandDialogBox()
     }
 }
@@ -71,5 +71,20 @@ const colorPicker = num => {
         return customColorEntry.text = "magenta"
     } else if(num === 15) {
         return Region.expandDialogBox()
+    }
+}
+
+const menu = num => {
+    if(num === 0) {
+        menuDropDownButton.focus = true
+    }
+    else if(num === 1) {
+        App.runMenuDropDown()
+    } else if(num === 2) {
+        aboutMenuButton.focus = true
+    } else if(num === 3) {
+        settingsMenuButton.focus = true
+    } else if(num === 4) {
+        App.displayDropDownMenuPages("settings")
     }
 }
