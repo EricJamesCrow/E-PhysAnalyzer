@@ -13,6 +13,7 @@ Rectangle {
     visible: true
     color: "#5ac1d0"
     radius: 5 * scaleFactor
+    onOpacityChanged: if(calibrateScreen.opacity === 1.0) return nextBtn.focus = true
 
 
     CustomComboBox {
@@ -52,7 +53,7 @@ Rectangle {
         colorPressed: settings.buttonColorPressed
         fontColorMouseOver: settings.buttonColorDefault
         onClicked: Startup.tooltips()
-        Keys.onReturnPressed: if(calibrateScreen.visible === true) return Startup.tooltips()
+        Keys.onReturnPressed: if(nextBtn.focus === true && calibrateScreen.visible === true) return Startup.tooltips()
     }
 
     Triangle {

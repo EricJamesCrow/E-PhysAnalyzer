@@ -1032,9 +1032,18 @@ Window {
                 width: 637 * scaleFactor
                 height: 258 * scaleFactor
                 visible: startup === 0
+                opacity: 0
                 anchors.verticalCenter: parent.verticalCenter
                 z: 3
                 anchors.horizontalCenter: parent.horizontalCenter
+
+                OpacityAnimator on opacity {
+                    id: calibrateScreenAnimation
+                    from: 0
+                    to: 1.0
+                    duration: 250
+                    running: startup === 0
+                }
             }
 
         }
