@@ -1016,7 +1016,7 @@ Window {
                 id: startupMouseArea
                 x: 0
                 y: 0
-                visible: startup === 0
+                visible: startup === 0 || (startup > 18 && startup < 23)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -1024,6 +1024,7 @@ Window {
                 anchors.rightMargin: 0
                 anchors.bottomMargin: 0
                 anchors.topMargin: 0
+                z: 2
             }
 
             CalibrateScreen {
@@ -1032,7 +1033,7 @@ Window {
                 height: 258 * scaleFactor
                 visible: startup === 0
                 anchors.verticalCenter: parent.verticalCenter
-                z: 1
+                z: 3
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 

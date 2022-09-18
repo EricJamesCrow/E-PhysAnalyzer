@@ -1,8 +1,10 @@
+import QtQuick
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 import Qt.labs.platform 1.1
 import "../../controls/buttons"
 import "../../controls/custom"
+import "../../pages/startup"
 import "../../javascript/app.js" as App
 import "../../javascript/settings.js" as Settings
 
@@ -190,133 +192,100 @@ Item {
         }
 
 
+        ToolTip {
+        id: scaleComboBoxTip
+        anchors.top:scaleComboBox.bottom
+        anchors.topMargin: 5  * scaleFactor
+        anchors.left: scaleComboBox.left
+        anchors.leftMargin: -5 * scaleFactor
+        width: 150 * scaleFactor
+        height: 150 * scaleFactor
+        textInfo: "Click here or hold Ctrl + Shift + (_ or +) to change the size of the program"
+        toolTipColor: topBarColor
+        z: 3
+        visible: startup === 19
+        opacity: 0
+
+        OpacityAnimator on opacity {
+        id: scaleComboBoxAnimation
+        from: 0
+        to: 1.0
+        duration: 250
+        running: startup === 19
+        }
+        }
+
+        ToolTip {
+        id: useSameDrugNamesTip
+        anchors.top:useSameDrugNames.bottom
+        anchors.topMargin: 5  * scaleFactor
+        anchors.left: useSameDrugNames.left
+        anchors.leftMargin: -5 * scaleFactor
+        width: 150 * scaleFactor
+        height: 170 * scaleFactor
+        textInfo: "Click here to choose whether to repeat the same drug names in all of the input fields"
+        toolTipColor: topBarColor
+        z: 3
+        visible: startup === 20
+        opacity: 0
+
+        OpacityAnimator on opacity {
+        id: useSameDrugNamesTipAnimation
+        from: 0
+        to: 1.0
+        duration: 250
+        running: startup === 20
+        }
+        }
 
 
+        ToolTip {
+        id: graphFormatTip
+        anchors.top:graphFormatComboBox.bottom
+        anchors.topMargin: 5  * scaleFactor
+        anchors.left: graphFormatComboBox.left
+        anchors.leftMargin: -5 * scaleFactor
+        width: 150 * scaleFactor
+        height: 150 * scaleFactor
+        textInfo: "Choose to output the graphs in PNG or PDF format (PDF is twice as fast)"
+        toolTipColor: topBarColor
+        z: 3
+        visible: startup === 21
+        opacity: 0
 
-        //        CustomTextField {
-        //            id: customTextField
-        //            x: 27 * scaleFactor
-        //            y: 176 * scaleFactor
-        //            colorDefault: bckgrndColor
-        //            fontColorDefault: btnColorDefault
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            placeholderText: "topBarColor"
-        //            onReleased: settings.topBarColor = customTextField.text
-        //        }
-
-
-        //        CustomTextField {
-        //            id: customTextField1
-        //            x: 27 * scaleFactor
-        //            y: 202 * scaleFactor
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            fontColorDefault: btnColorDefault
-        //            placeholderText: "topBarSecondaryColor"
-        //            colorDefault: bckgrndColor
-        //            onReleased: settings.topBarSecondaryColor = customTextField1.text
-        //        }
+        OpacityAnimator on opacity {
+        id: graphFormatTipAnimation
+        from: 0
+        to: 1.0
+        duration: 250
+        running: startup === 21
+        }
+        }
 
 
-        //        CustomTextField {
-        //            id: customTextField2
-        //            x: 27 * scaleFactor
-        //            y: 228 * scaleFactor
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            fontColorDefault: btnColorDefault
-        //            placeholderText: "columnColor"
-        //            colorDefault: bckgrndColor
-        //            onReleased: settings.columnColor = customTextField2.text
-        //        }
+        ToolTip {
+        id: directorySwitchTip
+        anchors.top:directorySwitch.bottom
+        anchors.topMargin: 5  * scaleFactor
+        anchors.left: directorySwitch.left
+        anchors.leftMargin: -5 * scaleFactor
+        width: 150 * scaleFactor
+        height: 110 * scaleFactor
+        textInfo: "Choose to output your files to a specific directory"
+        toolTipColor: topBarColor
+        z: 3
+        visible: startup === 22
+        opacity: 0
 
+        OpacityAnimator on opacity {
+        id: directorySwitchTipAnimation
+        from: 0
+        to: 1.0
+        duration: 250
+        running: startup === 22
+        }
+        }
 
-        //        CustomTextField {
-        //            id: customTextField3
-        //            x: 27 * scaleFactor
-        //            y: 254 * scaleFactor
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            fontColorDefault: btnColorDefault
-        //            placeholderText: "backgroundColor"
-        //            colorDefault: bckgrndColor
-        //            onReleased: settings.backgroundColor = customTextField3.text
-        //        }
-
-
-        //        CustomTextField {
-        //            id: customTextField4
-        //            x: 27 * scaleFactor
-        //            y: 280 * scaleFactor
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            fontColorDefault: btnColorDefault
-        //            placeholderText: "backgroundBorderColor"
-        //            colorDefault: bckgrndColor
-        //            onReleased: settings.backgroundBorderColor = customTextField4.text
-        //        }
-
-
-        //        CustomTextField {
-        //            id: customTextField5
-        //            x: 159 * scaleFactor
-        //            y: 176 * scaleFactor
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            fontColorDefault: btnColorDefault
-        //            placeholderText: "buttonColorDefault"
-        //            colorDefault: bckgrndColor
-        //            onReleased: settings.buttonColorDefault = customTextField5.text
-        //        }
-
-
-        //        CustomTextField {
-        //            id: customTextField6
-        //            x: 159 * scaleFactor
-        //            y: 202 * scaleFactor
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            fontColorDefault: btnColorDefault
-        //            placeholderText: "buttonColorPressed"
-        //            colorDefault: bckgrndColor
-        //            onReleased: settings.buttonColorPressed = customTextField6.text
-        //        }
-
-
-        //        CustomTextField {
-        //            id: customTextField7
-        //            x: 159 * scaleFactor
-        //            y: 228 * scaleFactor
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            fontColorDefault: btnColorDefault
-        //            placeholderText: "checkBoxHighlighted"
-        //            colorDefault: bckgrndColor
-        //            onReleased: settings.checkBoxHighlighted = customTextField7.text
-        //        }
-
-
-        //        CustomTextField {
-        //            id: customTextField8
-        //            x: 159 * scaleFactor
-        //            y: 254 * scaleFactor
-        //            width: 120 * scaleFactor
-        //            height: 20 * scaleFactor
-        //            clip: true
-        //            fontColorDefault: btnColorDefault
-        //            placeholderText: "terminalUnderlineColor"
-        //            colorDefault: bckgrndColor
-        //            onReleased: settings.terminalUnderlineColor = customTextField8.text
-        //        }
 
         Rectangle {
             id: frame

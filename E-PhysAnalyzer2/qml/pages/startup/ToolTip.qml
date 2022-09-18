@@ -5,16 +5,18 @@ import "../../controls/buttons"
 import "../../controls"
 import "../../javascript/settings.js" as Settings
 import "../../javascript/startup.js" as Startup
+import "../../javascript/app.js" as App
 
 Rectangle {
     id: toolTip
     width: 150 /** scaleFactor*/
     height: 100 /** scaleFactor*/
-    color: "#5ac1d0"
+    color: toolTipColor
     radius: 5
     onOpacityChanged: if(toolTip.opacity === 1.0) return nextBtn.focus = true
 
     property string textInfo: "Click here to select your files"
+    property color toolTipColor: "#5ac1d0"
 
 
     Label {
@@ -56,8 +58,8 @@ Rectangle {
             height: 20 * scaleFactor
             z: 0
             rotation: 90
-            fillStyle: "#5ac1d0"
-            strokeStyle: "#5ac1d0"
+            fillStyle: toolTipColor
+            strokeStyle: toolTipColor
             clip: false
             fill: true
         }

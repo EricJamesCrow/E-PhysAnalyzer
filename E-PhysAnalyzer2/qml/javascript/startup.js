@@ -5,6 +5,9 @@ const tooltips = () => {
         backend.create_objects(sampleFiles)
         return backend.start_up(startup)
     } 
+    if(startup === 23) {
+        App.displayDropDownMenuPages("settings")
+    }
     backend.start_up(startup)
 }
 

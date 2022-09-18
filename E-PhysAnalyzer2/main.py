@@ -44,6 +44,7 @@ class Backend(QObject):
     startupClearRegions = Signal()
     startUpClearInputFields = Signal()
     startUpMenuDropDown = Signal(int)
+    welcomeToEphysAnalyzer = Signal()
     starting_animation_time = 0.2
     object_animation_time = 0.1
 
@@ -209,6 +210,9 @@ class StartUp(Thread):
                 time.sleep(0.2)
                 backend.startUpMenuDropDown.emit(i)
             backend.emitStartUp.emit(self.num)
+        elif self.num == 23:
+            time.sleep(0.5)
+            backend.welcomeToEphysAnalyzer.emit()
         
 
 
