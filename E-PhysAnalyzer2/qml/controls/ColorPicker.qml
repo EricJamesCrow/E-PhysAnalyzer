@@ -27,6 +27,9 @@ Item {
         }
         function onStartUpNewRegion(num) {
             Startup.colorPicker(num)
+            if(num === 123) {
+                chosenColor = "#FF0000"
+            }
         }
     }
 

@@ -31,6 +31,9 @@ const genPattern = num => {
     } else if(num === 8) {
         return Region.generatePattern(every_minutesTextField.text, startTimeEntry.text, endTimeEntry.text)
     } else if(num === 9) {
+        every_minutesTextField.text = ""
+        startTimeEntry.text = ""
+        endTimeEntry.text = ""
         return Region.expandDialogBox()
     }
 }
@@ -51,6 +54,8 @@ const newRegion = num => {
     } else if(num === 16) {
         return submitButton.focus = true
     } else if(num === 18) {
+        greaterThanOrEqualEntry.text = ""
+        lessThanEntry.text = ""
         return Region.expandDialogBox()
     }
 }
@@ -73,8 +78,8 @@ const colorPicker = num => {
     } else if(num === 14) {
         return customColorEntry.text = "magenta"
     } else if(num === 15) {
-        customColorEntry.text = "";
-        return Region.expandDialogBox()
+        Region.expandDialogBox()
+        return customColorEntry.text = "";
     }
 }
 

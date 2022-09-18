@@ -242,6 +242,7 @@ Rectangle {
         target: generatePatternBnt
         function onGPclearRegions(){
             Region.clearRegions()
+            chosenRegionColor = "#FF0000"
         }
     }
 

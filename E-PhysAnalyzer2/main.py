@@ -189,7 +189,7 @@ class StartUp(Thread):
         elif self.num == 8:
             time.sleep(0.25)
             backend.startupClearRegions.emit()
-            for i in range(19):
+            for i in range(20):
                 time.sleep(0.1)
                 backend.startUpNewRegion.emit(i)
             time.sleep(0.25)
@@ -205,6 +205,7 @@ class StartUp(Thread):
         elif self.num == 17:
             backend.startUpClearInputFields.emit()
             backend.startupClearRegions.emit()
+            backend.startUpNewRegion.emit(123)
         elif self.num == 18:
             for i in range(5):
                 time.sleep(0.2)

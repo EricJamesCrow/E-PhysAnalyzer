@@ -91,7 +91,7 @@ Window {
         property bool repeatDrugNames: false
         property int outputFormat: 0
         property bool customDirectory: false
-        property int startup: settings.startup
+        property int startup: -1
 
     }
 
