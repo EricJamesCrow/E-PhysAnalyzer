@@ -97,3 +97,9 @@ const menu = num => {
         App.displayDropDownMenuPages("settings")
     }
 }
+
+const checkStartup = () => {
+    if(settings.startup < 23) {
+        return settings.startup = -1
+    }
+}

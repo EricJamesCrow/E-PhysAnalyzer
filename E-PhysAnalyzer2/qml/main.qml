@@ -103,6 +103,7 @@ Window {
     visible: true
     color: "#00000000"
     title: qsTr("E-Phys Analyzer 2.0")
+    Component.onCompleted: Startup.checkStartup()
 
 
     // Remove title bar
