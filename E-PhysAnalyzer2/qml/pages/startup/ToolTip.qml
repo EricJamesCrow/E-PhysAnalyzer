@@ -12,6 +12,7 @@ Rectangle {
     height: 100 /** scaleFactor*/
     color: "#5ac1d0"
     radius: 5
+    onOpacityChanged: if(toolTip.opacity === 1.0) return nextBtn.focus = true
 
     property string textInfo: "Click here to select your files"
 
@@ -44,6 +45,7 @@ Rectangle {
         colorPressed: settings.buttonColorPressed
         fontColorMouseOver: settings.buttonColorDefault
         onClicked: Startup.tooltips()
+        Keys.onReturnPressed: if(nextBtn.focus === true && nextBtn.visible === true) return Startup.tooltips()
     }
 
     Triangle {
