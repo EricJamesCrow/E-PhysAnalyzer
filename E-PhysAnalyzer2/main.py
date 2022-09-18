@@ -213,6 +213,8 @@ class StartUp(Thread):
         elif self.num == 23:
             time.sleep(0.5)
             backend.welcomeToEphysAnalyzer.emit()
+            time.sleep(0.5)
+            backend.emitStartUp.emit(self.num)
         
 
 

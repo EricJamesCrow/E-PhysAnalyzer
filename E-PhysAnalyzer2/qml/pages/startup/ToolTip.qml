@@ -9,10 +9,10 @@ import "../../javascript/app.js" as App
 
 Rectangle {
     id: toolTip
-    width: 150 /** scaleFactor*/
-    height: 100 /** scaleFactor*/
+    width: 150 * scaleFactor
+    height: 100 * scaleFactor
     color: toolTipColor
-    radius: 5
+    radius: 5 * scaleFactor
     onOpacityChanged: if(toolTip.opacity === 1.0) return nextBtn.focus = true
 
     property string textInfo: "Click here to select your files"

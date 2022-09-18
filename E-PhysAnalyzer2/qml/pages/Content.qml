@@ -770,13 +770,13 @@ Item {
 
         ToolTip {
         id: drugNamesToolTip
-        width: 150
-        height: 150
+        width: 150 * scaleFactor
+        height: 150 * scaleFactor
         visible: startup === 3
         anchors.left: parent.left
         anchors.top: leftContent.top
-        anchors.leftMargin: 250
-        anchors.topMargin: 85
+        anchors.leftMargin: 250 * scaleFactor
+        anchors.topMargin: 85 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Enter in your drug name, trace number, and any traces that need to be excluded"
@@ -792,13 +792,13 @@ Item {
 
         ToolTip {
         id: errorsToolTip
-        width: 150
-        height: 125
+        width: 150 * scaleFactor
+        height: 125 * scaleFactor
         visible: startup === 16
         anchors.left: parent.left
         anchors.top: leftContent.top
-        anchors.leftMargin: 100
-        anchors.topMargin: 285
+        anchors.leftMargin: 100 * scaleFactor
+        anchors.topMargin: 285 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Files that could not be analyzed will be highlighted in red"
@@ -814,13 +814,13 @@ Item {
 
         ToolTip {
         id: generatePatternToolTip
-        width: 150
-        height: 130
+        width: 150 * scaleFactor
+        height: 130 * scaleFactor
         visible: startup === 5
         anchors.left: rightContent.left
         anchors.top: rightContent.top
-        anchors.leftMargin: 30
-        anchors.topMargin: 88
+        anchors.leftMargin: 30 * scaleFactor
+        anchors.topMargin: 88 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Quickly generate a pattern for the regions on the graph"
@@ -837,13 +837,13 @@ Item {
 
         ToolTip {
         id: newRegionToolTip
-        width: 150
-        height: 90
+        width: 150 * scaleFactor
+        height: 90 * scaleFactor
         visible: startup === 7
         anchors.left: rightContent.left
         anchors.top: rightContent.top
-        anchors.leftMargin: 140
-        anchors.topMargin: 88
+        anchors.leftMargin: 140 * scaleFactor
+        anchors.topMargin: 88 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Or create an individual region"
@@ -860,13 +860,13 @@ Item {
 
         ToolTip {
         id: postAnalysisToolTip
-        width: 150
-        height: 125
+        width: 150 * scaleFactor
+        height: 125 * scaleFactor
         visible: startup === 9
         anchors.left: rightContent.left
         anchors.top: rightContent.top
-        anchors.leftMargin: 300
-        anchors.topMargin: 270
+        anchors.leftMargin: 300 * scaleFactor
+        anchors.topMargin: 270 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Post Analysis Graph Information goes here"
@@ -883,13 +883,13 @@ Item {
 
         ToolTip {
         id: graphQualityToolTip
-        width: 150
-        height: 125
+        width: 150 * scaleFactor
+        height: 125 * scaleFactor
         visible: startup === 12
         anchors.left: rightContent.left
         anchors.top: rightContent.top
-        anchors.leftMargin: 500
-        anchors.topMargin: 270
+        anchors.leftMargin: 500 * scaleFactor
+        anchors.topMargin: 270 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Graph Quality Information goes here"
@@ -909,13 +909,13 @@ Item {
 
         ToolTip {
         id: minAvgToolTip
-        width: 150
-        height: 125
+        width: 150 * scaleFactor
+        height: 125 * scaleFactor
         visible: startup === 10
         anchors.left: rightContent.left
         anchors.top: rightContent.top
-        anchors.leftMargin: 300
-        anchors.topMargin: 415
+        anchors.leftMargin: 300 * scaleFactor
+        anchors.topMargin: 415 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Minute Averaged Graph Information goes here"
@@ -934,13 +934,13 @@ Item {
 
         ToolTip {
         id: baselineToolTip
-        width: 150
-        height: 125
+        width: 150 * scaleFactor
+        height: 125 * scaleFactor
         visible: startup === 13
         anchors.left: rightContent.left
         anchors.top: rightContent.top
-        anchors.leftMargin: 500
-        anchors.topMargin: 415
+        anchors.leftMargin: 500 * scaleFactor
+        anchors.topMargin: 415 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Baseline Information goes here"
@@ -959,13 +959,13 @@ Item {
 
         ToolTip {
         id: zScoreToolTip
-        width: 150
-        height: 125
+        width: 150 * scaleFactor
+        height: 125 * scaleFactor
         visible: startup === 11
         anchors.left: rightContent.left
         anchors.top: rightContent.top
-        anchors.leftMargin: 300
-        anchors.topMargin: 515
+        anchors.leftMargin: 300 * scaleFactor
+        anchors.topMargin: 515 * scaleFactor
         z: 3
         opacity: 0
         textInfo: "Z-Score Information goes here"

@@ -1016,7 +1016,7 @@ Window {
                 id: startupMouseArea
                 x: 0
                 y: 0
-                visible: startup === 0 || (startup > 18 && startup < 23)
+                visible: startup === 0 || (startup > 18 && startup < 24)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top

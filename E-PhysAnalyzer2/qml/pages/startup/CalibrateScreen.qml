@@ -12,7 +12,7 @@ Rectangle {
     height: 258 /** scaleFactor*/
     visible: true
     color: "#5ac1d0"
-    radius: 5
+    radius: 5 * scaleFactor
 
 
     CustomComboBox {
@@ -31,20 +31,20 @@ Rectangle {
 
     Label {
         id: label
-        y: 69
+        y: 69 * scaleFactor
         color: "#ffffff"
         text: qsTr("Adjust Scale to fit Screen Size")
         anchors.horizontalCenterOffset: 1
         font.family: "PragmaticaLightC"
-        font.pointSize: 12
+        font.pointSize: 12 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
     CustomButton {
         id: nextBtn
-        y: 180
-        width: 58
-        height: 22
+        y: 180 * scaleFactor
+        width: 58 * scaleFactor
+        height: 22 * scaleFactor
         text: "Next"
         anchors.horizontalCenter: parent.horizontalCenter
         colorDefault: settings.buttonColorDefault
@@ -57,10 +57,10 @@ Rectangle {
 
     Triangle {
             id: triangle
-            x: 8
-            y: 8
-            width: 20
-            height: 20
+            x: 8 * scaleFactor
+            y: 8 * scaleFactor
+            width: 20 * scaleFactor
+            height: 20 * scaleFactor
             z: 0
             rotation: 0
             fillStyle: "#5ac1d0"
