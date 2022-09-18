@@ -203,6 +203,7 @@ class StartUp(Thread):
             backend.emitStartUp.emit(self.num)
         elif self.num == 17:
             backend.startUpClearInputFields.emit()
+            backend.startupClearRegions.emit()
         elif self.num == 18:
             for i in range(5):
                 time.sleep(0.2)

@@ -52,6 +52,7 @@ Rectangle {
         colorPressed: settings.buttonColorPressed
         fontColorMouseOver: settings.buttonColorDefault
         onClicked: Startup.tooltips()
+        Keys.onReturnPressed: if(calibrateScreen.visible === true) return Startup.tooltips()
     }
 
     Triangle {
