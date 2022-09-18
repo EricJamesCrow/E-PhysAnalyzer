@@ -77,6 +77,7 @@ Rectangle {
         x: 405 * scaleFactor
         width: 128 * scaleFactor
         height: 20 * scaleFactor
+        text: traceNumber
         anchors.verticalCenter: parent.verticalCenter
         onTextChanged: traceNumber = traceNumberTextField.text
         validator: RegularExpressionValidator { regularExpression: /^[0-9]+$/ }

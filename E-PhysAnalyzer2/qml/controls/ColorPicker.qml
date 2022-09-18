@@ -4,6 +4,7 @@ import "../controls/custom"
 import "../controls/buttons"
 import "../javascript/region.js" as Region
 import "../javascript/color-picker.js" as ColorPicker
+import "../javascript/startup.js" as Startup
 
 Item {
     id: colorPicker
@@ -23,6 +24,9 @@ Item {
             } catch(err) {
             }
             customColorEntry.enabled = true
+        }
+        function onStartUpNewRegion(num) {
+            Startup.colorPicker(num)
         }
     }
 
@@ -98,7 +102,7 @@ Item {
                 y: 0
                 width: colorPicker.width
                 height: colorPicker.height
-                selectedColor: "#0000ff"
+                selectedColor: "#0000FF"
                 anchors.left: red.right
                 anchors.leftMargin: 5 * scaleFactor
                 onClicked: chosenColor = blue.selectedColor;

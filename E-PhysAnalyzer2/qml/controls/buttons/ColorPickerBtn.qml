@@ -8,6 +8,7 @@ Button {
     property color selectedColor: "#f81010"
     property color colorDefault: "#087589"
     property color colorMouseOver: "#b8e3ee"
+    property bool startUp: false
 
     down: false
     flat: true
@@ -15,7 +16,13 @@ Button {
     QtObject{
         id: internal
 
-        property var dynamicColor: button.hovered ? colorMouseOver : colorDefault
+        property var dynamicColor: if(button.hovered) {
+                                       return colorMouseOver
+                                   } else if(startUp) {
+                                    return colorMouseOver
+                                   } else {
+                                       return colorDefault
+                                       }
     }
 
     checkable: false

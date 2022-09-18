@@ -3,7 +3,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.5
 import "../custom"
 import "../../javascript/region.js" as Region
-
+import "../../javascript/startup.js" as Startup
 
 Button {
     id: button
@@ -34,6 +34,9 @@ Button {
               errorMessage.destroy()
             }
             submitButton.enabled = true
+        }
+        function onStartUpGenPtn(num) {
+            Startup.genPattern(num)
         }
     }
 

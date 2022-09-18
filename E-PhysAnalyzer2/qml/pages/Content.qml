@@ -6,6 +6,7 @@ import QtCore 6.2
 import Qt.labs.settings 1.0
 import "../controls"
 import "../controls/buttons"
+import "../pages/startup"
 import "../controls/custom" // For creating dynamic object, delete this import statement later
 import "../javascript/input-fields.js" as InputFields
 import "../javascript/graph-settings.js" as GraphSettings
@@ -100,6 +101,19 @@ Item {
             fileObjects[num].error = true
             fileObjects[num].success = false
         }
+        function onEmitStartUp(num) {
+            startup += 1
+        }
+        function onStartUpDrugName(string) {
+            for(let i=0; i<fileObjects.length; i++) {
+                fileObjects[i].drugName = string
+            }
+        }
+        function onStartUpTraceNumber(trace) {
+            for(let i=0; i<fileObjects.length; i++) {
+                fileObjects[i].traceNumber = trace
+            }
+        }
     }
 
     Connections {
@@ -118,11 +132,28 @@ Item {
         }
     }
 
+
     Rectangle {
         id: bg
         color: backgroundColor //"#4e7cff"
         anchors.fill: parent
         z: 0
+
+        MouseArea {
+            id: startupMouseArea
+            x: 0
+            y: 0
+            visible: startup < 10
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: 0
+            anchors.bottomMargin: 0
+            anchors.topMargin: 0
+            anchors.leftMargin: 0
+            z: 2
+        }
 
         Rectangle {
             id: rightContent
@@ -692,6 +723,95 @@ Item {
             onClicked: fileDialog.open()
         }
 
+        ToolTip {
+            id: browseFilesToolTip
+            anchors.top: browseBtn.bottom
+            anchors.topMargin: 8  * scaleFactor
+            anchors.left: parent.left
+            anchors.leftMargin: 10 * scaleFactor
+            width: 150 * scaleFactor
+            height: 100 * scaleFactor
+            textInfo: "Click here to select your files"
+            z: 3
+            visible: startup === 1
+            opacity: 0
+
+            OpacityAnimator on opacity {
+                id: browseFilesToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 1
+            }
+        }
+
+        ToolTip {
+        id: drugNamesToolTip
+        width: 150
+        height: 150
+        visible: startup === 3
+        anchors.left: parent.left
+        anchors.top: leftContent.top
+        anchors.leftMargin: 250
+        anchors.topMargin: 85
+        z: 3
+        opacity: 0
+        textInfo: "Enter in your drug name, trace number, and any traces that need to be excluded"
+
+        OpacityAnimator on opacity {
+            id: drugNamesToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 3
+        }
+        }
+
+        ToolTip {
+        id: generatePatternToolTip
+        width: 150
+        height: 130
+        visible: startup === 5
+        anchors.left: rightContent.left
+        anchors.top: rightContent.top
+        anchors.leftMargin: 30
+        anchors.topMargin: 88
+        z: 3
+        opacity: 0
+        textInfo: "Quickly generate a pattern for the regions on the graph"
+
+        OpacityAnimator on opacity {
+            id: generatePatternToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 5
+        }
+        }
+
+
+        ToolTip {
+        id: newRegionToolTip
+        width: 150
+        height: 90
+        visible: startup === 7
+        anchors.left: rightContent.left
+        anchors.top: rightContent.top
+        anchors.leftMargin: 140
+        anchors.topMargin: 88
+        z: 3
+        opacity: 0
+        textInfo: "Or create an individual region"
+
+
+        OpacityAnimator on opacity {
+            id: newRegionToolTipAnimation
+            from: 0
+            to: 1.0
+            duration: 250
+            running: startup === 7
+        }
+        }
 
 
 

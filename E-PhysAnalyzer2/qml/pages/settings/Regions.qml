@@ -7,6 +7,7 @@ import "../../javascript/region.js" as Region
 import "../../javascript/graph-settings.js" as GraphSettings
 import "../../javascript/settings.js" as Settings
 import "../../javascript/run-analysis.js" as Analysis
+import "../../javascript/startup.js" as Startup
 
 Rectangle {
     id: regions
@@ -40,6 +41,15 @@ Rectangle {
         target: content
         function onGetRegions() {
             Analysis.runGrabRegions(regionObjects)
+        }
+    }
+
+    Connections {
+        target: backend
+        function onStartupClearRegions() {
+            resetRegionsBtn.focus = true
+            Region.clearRegions()
+            resetRegionsBtn.focus = false
         }
     }
 

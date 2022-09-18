@@ -6,6 +6,7 @@ import "../custom"
 import "../../controls"
 import "../../javascript/region.js" as Region
 import "../../javascript/color-picker.js" as ColorPicker
+import "../../javascript/startup.js" as Startup
 
 
 Button {
@@ -42,6 +43,13 @@ Button {
         target: backend
         function onDestroyMsg() {
             Region.destroyErrorMsg()
+        }
+        function onStartUpNewRegion(num) {
+            Startup.newRegion(num)
+            if(num === 16) {
+                return newRegion(greaterThanOrEqualEntry.text, lessThanEntry.text, chosenRegionColor, regionColorName)
+            }
+
         }
     }
 

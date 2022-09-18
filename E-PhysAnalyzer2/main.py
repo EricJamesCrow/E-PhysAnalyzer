@@ -36,6 +36,12 @@ class Backend(QObject):
     successDialog = Signal(str)
     analysisError = Signal(str)
     updateDirectory = Signal(str)
+    emitStartUp = Signal(int)
+    startUpDrugName = Signal(str)
+    startUpTraceNumber = Signal(str)
+    startUpGenPtn = Signal(int)
+    startUpNewRegion = Signal(int)
+    startupClearRegions = Signal()
     starting_animation_time = 0.2
     object_animation_time = 0.1
 
@@ -99,6 +105,11 @@ class Backend(QObject):
     def enable_run_button(self):
         self.enableRun.emit()
 
+    @Slot(int)
+    def start_up(self, num):
+        start_up = StartUp(num)
+        start_up.start()
+
 class StartAnalysis(Thread):
     def __init__(self, file, z_limit, z_checking, baseline, baseline_int, color_regions_dict, default_color, dpi, baseline_color, axis_limits, graph_format, use_custom_directory, custom_directory):
         super(StartAnalysis, self).__init__()
@@ -141,6 +152,45 @@ class StartAnalysis(Thread):
         directory = analysis.return_directory()
         time.sleep(0.1)
         backend.successDialog.emit(directory)
+
+class StartUp(Thread):
+    def __init__(self, num):
+        super(StartUp, self).__init__()
+        self.num = num
+
+    def run(self):
+        if self.num == 2:
+            time.sleep(0.4)
+            backend.emitStartUp.emit(self.num)
+        elif self.num == 4:
+            time.sleep(0.1)
+            backend.startUpDrugName.emit("S")
+            time.sleep(0.1)
+            backend.startUpDrugName.emit("SN")
+            time.sleep(0.1)
+            backend.startUpDrugName.emit("SNA")
+            time.sleep(0.1)
+            backend.startUpDrugName.emit("SNAP")
+            time.sleep(0.1)
+            backend.startUpTraceNumber.emit("6")
+            time.sleep(0.1)
+            backend.startUpTraceNumber.emit("68")
+            time.sleep(0.25)
+            backend.emitStartUp.emit(self.num)
+        elif self.num == 6:
+            for i in range(10):
+                time.sleep(0.1)
+                backend.startUpGenPtn.emit(i)
+            time.sleep(0.25)
+            backend.emitStartUp.emit(self.num)
+        elif self.num == 8:
+            time.sleep(0.25)
+            backend.startupClearRegions.emit()
+            for i in range(22):
+                time.sleep(0.1)
+                backend.startUpNewRegion.emit(i)
+            backend.emitStartUp.emit(self.num)
+        
 
 
 class StartingAnimation(Thread):

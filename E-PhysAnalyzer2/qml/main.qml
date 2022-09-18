@@ -7,6 +7,7 @@ import "controls/buttons"
 import "controls/custom"
 import "pages"
 import "pages/menu"
+import "pages/startup"
 //import Qt5Compat.GraphicalEffects
 import Qt.labs.platform 1.1
 import Qt.labs.settings 1.1
@@ -20,6 +21,7 @@ Window {
     property var scaleFactor: settings.scaleFactor
     onScaleFactorChanged: adjustHeight(scaleFactor)
     property int numOfErrors: 0
+    property int startup: 0
 
     Connections {
         target: backend
@@ -35,7 +37,7 @@ Window {
         function onAnalysisError(err) {
             numOfErrors += 1
             if(numOfErrors < 2) {
-              Progress.updateError(err)
+                Progress.updateError(err)
             } else {
                 let multipleErrors = `${numOfErrors} errors occurred in analysis. Check trace numbers.`
                 Progress.updateError(multipleErrors)
@@ -964,6 +966,47 @@ Window {
                     z: 1
                 }
                 z: 1
+            }
+
+            Rectangle {
+                id: startupOverlay
+                x: 591 * scaleFactor
+                opacity: 1
+                visible: startup === 0
+                color: "#ab323232"
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: topBar.bottom
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 0
+                anchors.bottomMargin: 0
+                z: 0
+                anchors.leftMargin: 0
+                anchors.topMargin: 0
+            }
+
+            MouseArea {
+                id: startupMouseArea
+                x: 0
+                y: 0
+                visible: startup === 0
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 0
+                anchors.bottomMargin: 0
+                anchors.topMargin: 0
+            }
+
+            CalibrateScreen {
+                id: calibrateScreen
+                width: 637 * scaleFactor
+                height: 258 * scaleFactor
+                visible: startup === 0
+                anchors.verticalCenter: parent.verticalCenter
+                z: 1
+                anchors.horizontalCenter: parent.horizontalCenter
             }
 
         }
