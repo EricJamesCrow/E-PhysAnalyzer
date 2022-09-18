@@ -1,5 +1,5 @@
 const tooltips = () => {
-    startup += 1
+    settings.startup += 1
     if(startup === 2) {
         let sampleFiles = ["example1.atf", "example2.atf", "example3.atf", "example4.atf", "example5.atf", "example6.atf", "example7.atf", "example8.atf"]
         backend.create_objects(sampleFiles)
@@ -73,6 +73,7 @@ const colorPicker = num => {
     } else if(num === 14) {
         return customColorEntry.text = "magenta"
     } else if(num === 15) {
+        customColorEntry.text = "";
         return Region.expandDialogBox()
     }
 }

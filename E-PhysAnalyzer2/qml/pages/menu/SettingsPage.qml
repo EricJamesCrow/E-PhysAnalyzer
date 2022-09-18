@@ -420,6 +420,31 @@ Item {
                 colorDefault: bckgrndColor
                 fontColorDefault: btnColorDefault
             }}
+
+            Label {
+                id: tutorialLabel
+                width: 166 * scaleFactor
+                height: 22 * scaleFactor
+                color: "#ffffff"
+                text: qsTr("Show Tutorial on Startup")
+                anchors.verticalCenter: tutorialSwitch.verticalCenter
+                anchors.verticalCenterOffset: 0
+                anchors.horizontalCenterOffset: 24
+                anchors.horizontalCenter: scalingLabel.horizontalCenter
+                font.pointSize: 12 * scaleFactor
+                font.family: "PragmaticaLightC"
+            }
+
+            CustomSwitch {
+                id: tutorialSwitch
+                anchors.top: directorySwitch.bottom
+                anchors.topMargin: 50
+                checked: false
+                anchors.horizontalCenterOffset: -92 * scaleFactor
+                anchors.horizontalCenter: scaleComboBox.horizontalCenter
+                onCheckedChanged: if(tutorialSwitch.checked === true) return settings.startup = -1
+
+            }
     }
 
 }
@@ -434,6 +459,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;formeditorZoom:0.66;height:480;width:640}
+    D{i:0;autoSize:true;formeditorZoom:0.66;height:480;width:640}D{i:27}D{i:28}
 }
 ##^##*/

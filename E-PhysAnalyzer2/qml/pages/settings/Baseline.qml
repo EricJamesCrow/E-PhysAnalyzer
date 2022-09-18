@@ -87,6 +87,7 @@ Rectangle {
     height: 26 * scaleFactor
     text: "Display Baseline"
     anchors.horizontalCenter: parent.horizontalCenter
+    anchors.horizontalCenterOffset: -7 * scaleFactor
     clip: false
     font.family: "PragmaticaLightC"
     font.pointSize: 8 * scaleFactor

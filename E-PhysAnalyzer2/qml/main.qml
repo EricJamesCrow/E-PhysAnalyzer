@@ -22,7 +22,7 @@ Window {
     property var scaleFactor: settings.scaleFactor
     onScaleFactorChanged: adjustHeight(scaleFactor)
     property int numOfErrors: 0
-    property int startup: 0
+    property int startup: settings.startup
 
     Connections {
         target: backend
@@ -91,6 +91,7 @@ Window {
         property bool repeatDrugNames: false
         property int outputFormat: 0
         property bool customDirectory: false
+        property int startup: settings.startup
 
     }
 

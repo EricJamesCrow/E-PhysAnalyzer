@@ -36,7 +36,7 @@ class Backend(QObject):
     successDialog = Signal(str)
     analysisError = Signal(str)
     updateDirectory = Signal(str)
-    emitStartUp = Signal(int)
+    emitStartUp = Signal()
     startUpDrugName = Signal(str)
     startUpTraceNumber = Signal(str)
     startUpGenPtn = Signal(int)
@@ -164,7 +164,7 @@ class StartUp(Thread):
     def run(self):
         if self.num == 2:
             time.sleep(0.4)
-            backend.emitStartUp.emit(self.num)
+            backend.emitStartUp.emit()
         elif self.num == 4:
             time.sleep(0.1)
             backend.startUpDrugName.emit("S")
@@ -179,13 +179,13 @@ class StartUp(Thread):
             time.sleep(0.1)
             backend.startUpTraceNumber.emit("68")
             time.sleep(0.25)
-            backend.emitStartUp.emit(self.num)
+            backend.emitStartUp.emit()
         elif self.num == 6:
             for i in range(10):
                 time.sleep(0.1)
                 backend.startUpGenPtn.emit(i)
             time.sleep(0.25)
-            backend.emitStartUp.emit(self.num)
+            backend.emitStartUp.emit()
         elif self.num == 8:
             time.sleep(0.25)
             backend.startupClearRegions.emit()
@@ -193,7 +193,7 @@ class StartUp(Thread):
                 time.sleep(0.1)
                 backend.startUpNewRegion.emit(i)
             time.sleep(0.25)
-            backend.emitStartUp.emit(self.num)
+            backend.emitStartUp.emit()
         elif self.num == 15:
             for i in range(8):
                 time.sleep(0.25)
@@ -201,7 +201,7 @@ class StartUp(Thread):
                     backend.emitInputFieldSuccess.emit(i)
                 else:
                     backend.emitInputFieldError.emit(i)
-            backend.emitStartUp.emit(self.num)
+            backend.emitStartUp.emit()
         elif self.num == 17:
             backend.startUpClearInputFields.emit()
             backend.startupClearRegions.emit()
@@ -209,18 +209,19 @@ class StartUp(Thread):
             for i in range(5):
                 time.sleep(0.2)
                 backend.startUpMenuDropDown.emit(i)
-            backend.emitStartUp.emit(self.num)
+            backend.emitStartUp.emit()
         elif self.num == 23:
             time.sleep(0.5)
             backend.welcomeToEphysAnalyzer.emit()
             time.sleep(0.5)
-            backend.emitStartUp.emit(self.num)
+            backend.emitStartUp.emit()
         
 
 
 class StartingAnimation(Thread):
     def run(self):
         time.sleep(backend.starting_animation_time)
+        backend.emitStartUp.emit()
         backend.starting_animation_time = 0
         for i in range(9):
             time.sleep(backend.object_animation_time)

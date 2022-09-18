@@ -101,8 +101,8 @@ Item {
             fileObjects[num].error = true
             fileObjects[num].success = false
         }
-        function onEmitStartUp(num) {
-            startup += 1
+        function onEmitStartUp() {
+            settings.startup += 1
         }
         function onStartUpDrugName(string) {
             for(let i=0; i<fileObjects.length; i++) {

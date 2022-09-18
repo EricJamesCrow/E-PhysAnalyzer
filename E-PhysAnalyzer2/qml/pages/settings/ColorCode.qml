@@ -94,7 +94,7 @@ Rectangle {
         width: 118 * scaleFactor
         height: 26 * scaleFactor
         text: "Single Color"
-        anchors.horizontalCenterOffset: 0
+        anchors.horizontalCenterOffset: -5 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
         clip: false
         font.family: "PragmaticaLightC"
@@ -123,7 +123,7 @@ Rectangle {
         text: qsTr("Graph Quality")
         anchors.bottom: graphQuality.top
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 5 * scaleFactor
+        anchors.bottomMargin: 2 * scaleFactor
         font.family: "PragmaticaLightC"
     }
 
