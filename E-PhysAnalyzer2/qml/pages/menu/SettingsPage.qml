@@ -442,7 +442,7 @@ Item {
                 checked: false
                 anchors.horizontalCenterOffset: -92 * scaleFactor
                 anchors.horizontalCenter: scaleComboBox.horizontalCenter
-                onCheckedChanged: if(tutorialSwitch.checked === true) return settings.startup = -1
+                onCheckedChanged: if(tutorialSwitch.checked === true) return settings.startup = -1; else return settings.startup = 25
 
             }
     }
@@ -459,6 +459,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;formeditorZoom:0.66;height:480;width:640}D{i:27}D{i:28}
+    D{i:0;autoSize:true;formeditorZoom:0.66;height:480;width:640}
 }
 ##^##*/
