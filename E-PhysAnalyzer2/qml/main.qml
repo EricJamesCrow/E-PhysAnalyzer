@@ -556,7 +556,7 @@ Window {
                 height: 600 * scaleFactor
                 anchors.verticalCenter: parent.verticalCenter
                 clip: true
-                z: 1
+                z: 3
                 anchors.horizontalCenter: parent.horizontalCenter
                 visible: false
 

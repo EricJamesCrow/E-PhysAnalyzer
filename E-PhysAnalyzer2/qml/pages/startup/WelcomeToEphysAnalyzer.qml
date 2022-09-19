@@ -131,7 +131,7 @@ Rectangle {
             }
 
             var timer = new Timer();
-            timer.interval = 10;
+            timer.interval = 0;
             timer.repeat = false;
             timer.triggered.connect(function drawWave() {
                 requestAnimationFrame(drawWave);

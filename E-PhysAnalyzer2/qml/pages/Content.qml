@@ -13,6 +13,7 @@ import "../javascript/graph-settings.js" as GraphSettings
 import "../javascript/settings.js" as Settings
 import "../javascript/run-analysis.js" as Analysis
 //import Qt5Compat.GraphicalEffects
+import "startup"
 
 Item {
     id: content
@@ -115,7 +116,7 @@ Item {
             }
         }
         function onStartUpClearInputFields() {
-           InputFields.reset()
+            InputFields.reset()
         }
     }
 
@@ -494,6 +495,20 @@ Item {
                 clip: true
             }
 
+            Label {
+                id: ephysAnalyzerLabel
+                color: topBarColor
+                text: qsTr("E-Phys Analyzer")
+                anchors.bottom: rightContentTopBar.top
+                font.letterSpacing: 2
+                font.family: "PragmaticaLightC"
+                anchors.bottomMargin: 10
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenterOffset: 140
+                font.pointSize: 24
+
+            }
+
 
 
         }
@@ -769,215 +784,215 @@ Item {
         }
 
         ToolTip {
-        id: drugNamesToolTip
-        width: 150 * scaleFactor
-        height: 150 * scaleFactor
-        visible: startup === 3
-        anchors.left: parent.left
-        anchors.top: leftContent.top
-        anchors.leftMargin: 250 * scaleFactor
-        anchors.topMargin: 85 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Enter in your drug name, trace number, and any traces that need to be excluded"
+            id: drugNamesToolTip
+            width: 150 * scaleFactor
+            height: 150 * scaleFactor
+            visible: startup === 3
+            anchors.left: parent.left
+            anchors.top: leftContent.top
+            anchors.leftMargin: 250 * scaleFactor
+            anchors.topMargin: 85 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Enter in your drug name, trace number, and any traces that need to be excluded"
 
-        OpacityAnimator on opacity {
-            id: drugNamesToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 3
-        }
-        }
-
-        ToolTip {
-        id: errorsToolTip
-        width: 150 * scaleFactor
-        height: 125 * scaleFactor
-        visible: startup === 16
-        anchors.left: parent.left
-        anchors.top: leftContent.top
-        anchors.leftMargin: 100 * scaleFactor
-        anchors.topMargin: 285 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Files that could not be analyzed will be highlighted in red"
-
-        OpacityAnimator on opacity {
-            id: errorsToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 16
-        }
+            OpacityAnimator on opacity {
+                id: drugNamesToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 3
+            }
         }
 
         ToolTip {
-        id: generatePatternToolTip
-        width: 150 * scaleFactor
-        height: 130 * scaleFactor
-        visible: startup === 5
-        anchors.left: rightContent.left
-        anchors.top: rightContent.top
-        anchors.leftMargin: 30 * scaleFactor
-        anchors.topMargin: 88 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Quickly generate a pattern for the regions on the graph"
+            id: errorsToolTip
+            width: 150 * scaleFactor
+            height: 125 * scaleFactor
+            visible: startup === 16
+            anchors.left: parent.left
+            anchors.top: leftContent.top
+            anchors.leftMargin: 100 * scaleFactor
+            anchors.topMargin: 285 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Files that could not be analyzed will be highlighted in red"
 
-        OpacityAnimator on opacity {
-            id: generatePatternToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 5
+            OpacityAnimator on opacity {
+                id: errorsToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 16
+            }
         }
+
+        ToolTip {
+            id: generatePatternToolTip
+            width: 150 * scaleFactor
+            height: 130 * scaleFactor
+            visible: startup === 5
+            anchors.left: rightContent.left
+            anchors.top: rightContent.top
+            anchors.leftMargin: 30 * scaleFactor
+            anchors.topMargin: 88 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Quickly generate a pattern for the regions on the graph"
+
+            OpacityAnimator on opacity {
+                id: generatePatternToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 5
+            }
         }
 
 
         ToolTip {
-        id: newRegionToolTip
-        width: 150 * scaleFactor
-        height: 90 * scaleFactor
-        visible: startup === 7
-        anchors.left: rightContent.left
-        anchors.top: rightContent.top
-        anchors.leftMargin: 140 * scaleFactor
-        anchors.topMargin: 88 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Or create an individual region"
+            id: newRegionToolTip
+            width: 150 * scaleFactor
+            height: 90 * scaleFactor
+            visible: startup === 7
+            anchors.left: rightContent.left
+            anchors.top: rightContent.top
+            anchors.leftMargin: 140 * scaleFactor
+            anchors.topMargin: 88 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Or create an individual region"
 
 
-        OpacityAnimator on opacity {
-            id: newRegionToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 7
-        }
-        }
-
-        ToolTip {
-        id: postAnalysisToolTip
-        width: 150 * scaleFactor
-        height: 125 * scaleFactor
-        visible: startup === 9
-        anchors.left: rightContent.left
-        anchors.top: rightContent.top
-        anchors.leftMargin: 300 * scaleFactor
-        anchors.topMargin: 270 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Post Analysis Graph Information goes here"
-
-
-        OpacityAnimator on opacity {
-            id: postAnalysisToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 9
-        }
+            OpacityAnimator on opacity {
+                id: newRegionToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 7
+            }
         }
 
         ToolTip {
-        id: graphQualityToolTip
-        width: 150 * scaleFactor
-        height: 125 * scaleFactor
-        visible: startup === 12
-        anchors.left: rightContent.left
-        anchors.top: rightContent.top
-        anchors.leftMargin: 500 * scaleFactor
-        anchors.topMargin: 270 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Graph Quality Information goes here"
+            id: postAnalysisToolTip
+            width: 150 * scaleFactor
+            height: 125 * scaleFactor
+            visible: startup === 9
+            anchors.left: rightContent.left
+            anchors.top: rightContent.top
+            anchors.leftMargin: 300 * scaleFactor
+            anchors.topMargin: 270 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Post Analysis Graph Information goes here"
 
 
-        OpacityAnimator on opacity {
-            id: graphQualityToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 12
+            OpacityAnimator on opacity {
+                id: postAnalysisToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 9
+            }
         }
-        }
-
-
-
 
         ToolTip {
-        id: minAvgToolTip
-        width: 150 * scaleFactor
-        height: 125 * scaleFactor
-        visible: startup === 10
-        anchors.left: rightContent.left
-        anchors.top: rightContent.top
-        anchors.leftMargin: 300 * scaleFactor
-        anchors.topMargin: 415 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Minute Averaged Graph Information goes here"
+            id: graphQualityToolTip
+            width: 150 * scaleFactor
+            height: 125 * scaleFactor
+            visible: startup === 12
+            anchors.left: rightContent.left
+            anchors.top: rightContent.top
+            anchors.leftMargin: 500 * scaleFactor
+            anchors.topMargin: 270 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Graph Quality Information goes here"
 
 
-        OpacityAnimator on opacity {
-            id: minAvgToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 10
+            OpacityAnimator on opacity {
+                id: graphQualityToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 12
+            }
         }
-        }
+
 
 
 
         ToolTip {
-        id: baselineToolTip
-        width: 150 * scaleFactor
-        height: 125 * scaleFactor
-        visible: startup === 13
-        anchors.left: rightContent.left
-        anchors.top: rightContent.top
-        anchors.leftMargin: 500 * scaleFactor
-        anchors.topMargin: 415 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Baseline Information goes here"
+            id: minAvgToolTip
+            width: 150 * scaleFactor
+            height: 125 * scaleFactor
+            visible: startup === 10
+            anchors.left: rightContent.left
+            anchors.top: rightContent.top
+            anchors.leftMargin: 300 * scaleFactor
+            anchors.topMargin: 415 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Minute Averaged Graph Information goes here"
 
 
-        OpacityAnimator on opacity {
-            id: baselineToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 13
-        }
+            OpacityAnimator on opacity {
+                id: minAvgToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 10
+            }
         }
 
 
 
         ToolTip {
-        id: zScoreToolTip
-        width: 150 * scaleFactor
-        height: 125 * scaleFactor
-        visible: startup === 11
-        anchors.left: rightContent.left
-        anchors.top: rightContent.top
-        anchors.leftMargin: 300 * scaleFactor
-        anchors.topMargin: 515 * scaleFactor
-        z: 3
-        opacity: 0
-        textInfo: "Z-Score Information goes here"
+            id: baselineToolTip
+            width: 150 * scaleFactor
+            height: 125 * scaleFactor
+            visible: startup === 13
+            anchors.left: rightContent.left
+            anchors.top: rightContent.top
+            anchors.leftMargin: 500 * scaleFactor
+            anchors.topMargin: 415 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Baseline Information goes here"
 
 
-        OpacityAnimator on opacity {
-            id: zScoreToolTipAnimation
-            from: 0
-            to: 1.0
-            duration: 250
-            running: startup === 11
+            OpacityAnimator on opacity {
+                id: baselineToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 13
+            }
         }
+
+
+
+        ToolTip {
+            id: zScoreToolTip
+            width: 150 * scaleFactor
+            height: 125 * scaleFactor
+            visible: startup === 11
+            anchors.left: rightContent.left
+            anchors.top: rightContent.top
+            anchors.leftMargin: 300 * scaleFactor
+            anchors.topMargin: 515 * scaleFactor
+            z: 3
+            opacity: 0
+            textInfo: "Z-Score Information goes here"
+
+
+            OpacityAnimator on opacity {
+                id: zScoreToolTipAnimation
+                from: 0
+                to: 1.0
+                duration: 250
+                running: startup === 11
+            }
         }
 
 
@@ -1019,46 +1034,6 @@ Item {
             }
         }
 
-        Label {
-            id: title
-            x: 1095
-            y: 21
-            width: 268
-            height: 16
-            visible: false
-            text: qsTr("E-Phys Analyzer")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            font.pointSize: 25
-
-
-
-
-            Canvas
-            {
-                id: drawingCanvas
-                height: 1
-                y: 22
-                anchors.left: parent.left
-                anchors.right: parent.right
-                onPaint:
-                {
-                    var ctx = getContext("2d")
-
-                    ctx.fillStyle = "black"
-                    ctx.fillRect(0,0,drawingCanvas.width ,drawingCanvas.height )
-
-                    ctx.lineWidth = 15;
-                    ctx.strokeStyle = "black"
-                    ctx.beginPath()
-                    ctx.moveTo(drawingCanvas.width / 2, 0)
-                    ctx.lineTo((drawingCanvas.width / 2) + 10, 0)
-                    //ctx.closePath()
-                    ctx.stroke()
-                }
-            }
-        }
-
 
 
 
@@ -1067,7 +1042,6 @@ Item {
 
 
     }
-
 }
 
 
@@ -1078,6 +1052,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:1.25}
+    D{i:0;formeditorZoom:0.33}
 }
 ##^##*/
