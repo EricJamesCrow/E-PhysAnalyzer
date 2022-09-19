@@ -182,7 +182,7 @@ class StartUp(Thread):
             backend.emitStartUp.emit()
         elif self.num == 6:
             for i in range(10):
-                time.sleep(0.1)
+                time.sleep(0.2)
                 backend.startUpGenPtn.emit(i)
             time.sleep(0.25)
             backend.emitStartUp.emit()
@@ -190,7 +190,7 @@ class StartUp(Thread):
             time.sleep(0.25)
             backend.startupClearRegions.emit()
             for i in range(20):
-                time.sleep(0.1)
+                time.sleep(0.2)
                 backend.startUpNewRegion.emit(i)
             time.sleep(0.25)
             backend.emitStartUp.emit()
