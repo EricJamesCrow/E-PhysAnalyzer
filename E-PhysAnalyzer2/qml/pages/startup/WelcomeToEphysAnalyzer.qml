@@ -17,7 +17,7 @@ Rectangle {
     height: 258 /** scaleFactor*/
     visible: true
     color: "#5ac1d0"
-    radius: 5
+    radius: 5 * scaleFactor
 
 
     Label {
@@ -31,7 +31,7 @@ Rectangle {
         anchors.verticalCenterOffset: -70
         anchors.horizontalCenterOffset: 0
         font.family: "PragmaticaLightC"
-        font.pointSize: 12
+        font.pointSize: 12 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
@@ -40,10 +40,10 @@ Rectangle {
         color: "#ffffff"
         text: qsTr("E-Phys Analyzer")
         anchors.verticalCenter: parent.verticalCenter
-        font.letterSpacing: 2
+        font.letterSpacing: 2 * scaleFactor
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        font.pointSize: 24
+        font.pointSize: 24 * scaleFactor
         anchors.verticalCenterOffset: 0
         font.family: "PragmaticaLightC"
         anchors.horizontalCenterOffset: 0
@@ -54,7 +54,7 @@ Rectangle {
     Canvas
     {
         id: canvas
-        x: 180
+        x: 180 * scaleFactor
         //            anchors.fill: parent
         anchors.left: parent.left
         anchors.right: parent.right
@@ -76,7 +76,7 @@ Rectangle {
 
 
             var data = [
-                        150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150,
+                        150 , 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150,
                         150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150,
                         150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150,
                         150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150,
@@ -144,8 +144,8 @@ Rectangle {
                     n = 1;
                 }
                 ctx.beginPath();
-                ctx.moveTo(n - 1, data[n - 1]);
-                ctx.lineTo(n, data[n]);
+                ctx.moveTo((n - 1)* scaleFactor, data[n - 1]* scaleFactor);
+                ctx.lineTo(n* scaleFactor, data[n]* scaleFactor);
                 ctx.stroke();
 
                 ctx.clearRect(n+1, 0, 10, canvas.height);
