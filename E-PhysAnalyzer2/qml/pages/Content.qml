@@ -502,7 +502,7 @@ Item {
                 anchors.bottom: rightContentTopBar.top
                 font.letterSpacing: 2 * scaleFactor
                 font.family: "PragmaticaLightC"
-                anchors.bottomMargin: 12 * scaleFactor
+                anchors.bottomMargin: 20 * scaleFactor
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.horizontalCenterOffset: 140 * scaleFactor
                 font.pointSize: 24 * scaleFactor
@@ -514,7 +514,7 @@ Item {
                     height: 7 * scaleFactor
                     text: "Circle button"
                     anchors.top: parent.bottom
-                    anchors.topMargin: 0
+                    anchors.topMargin: 3
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.horizontalCenterOffset: -30
                     display: AbstractButton.IconOnly
