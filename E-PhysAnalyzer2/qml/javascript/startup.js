@@ -99,7 +99,11 @@ const menu = num => {
 }
 
 const checkStartup = () => {
-    if(settings.startup < 23) {
+    if(settings.startup < 25) {
         return settings.startup = -1
     }
+}
+
+const closeWelcome = () => {
+    welcomeAnimation2.running = true
 }

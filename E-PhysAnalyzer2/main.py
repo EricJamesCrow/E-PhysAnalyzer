@@ -212,9 +212,11 @@ class StartUp(Thread):
                 backend.startUpMenuDropDown.emit(i)
             backend.emitStartUp.emit()
         elif self.num == 23:
-            time.sleep(0.5)
+            backend.emitStartUp.emit()
+        elif self.num == 24:
+            time.sleep(5)
             backend.welcomeToEphysAnalyzer.emit()
-            time.sleep(0.5)
+            time.sleep(0.25)
             backend.emitStartUp.emit()
         
 

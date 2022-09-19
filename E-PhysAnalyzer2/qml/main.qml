@@ -50,6 +50,9 @@ Window {
         function onStartUpMenuDropDown(num) {
             Startup.menu(num)
         }
+        function onWelcomeToEphysAnalyzer() {
+            Startup.closeWelcome()
+        }
     }
 
     Settings {
@@ -1001,7 +1004,7 @@ Window {
                 id: startupOverlay
                 x: 591 * scaleFactor
                 opacity: 1
-                visible: startup === 0
+                visible: startup === 0 || startup === 24
                 color: "#ab323232"
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -1018,7 +1021,7 @@ Window {
                 id: startupMouseArea
                 x: 0
                 y: 0
-                visible: startup === 0 || (startup > 18 && startup < 24)
+                visible: startup === 0 || (startup > 18 && startup < 25)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -1045,6 +1048,34 @@ Window {
                     to: 1.0
                     duration: 250
                     running: startup === 0
+                }
+            }
+
+            WelcomeToEphysAnalyzer{
+                id: welcome
+                width: 637 * scaleFactor
+                height: 258 * scaleFactor
+                visible: startup === 24
+                opacity: 0
+                anchors.verticalCenter: parent.verticalCenter
+                z: 3
+                anchors.horizontalCenter: parent.horizontalCenter
+                onOpacityChanged: if(welcome.opacity === 1.0) return backend.start_up(startup)
+
+                OpacityAnimator on opacity {
+                    id: welcomeAnimation
+                    from: 0
+                    to: 1.0
+                    duration: 250
+                    running: startup === 24
+                }
+
+                OpacityAnimator on opacity {
+                    id: welcomeAnimation2
+                    from: 1.0
+                    to:0
+                    duration: 250
+                    running: false
                 }
             }
 
