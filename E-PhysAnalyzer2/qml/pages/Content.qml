@@ -500,12 +500,59 @@ Item {
                 color: topBarColor
                 text: qsTr("E-Phys Analyzer")
                 anchors.bottom: rightContentTopBar.top
-                font.letterSpacing: 2
+                font.letterSpacing: 2 * scaleFactor
                 font.family: "PragmaticaLightC"
-                anchors.bottomMargin: 10
+                anchors.bottomMargin: 12 * scaleFactor
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.horizontalCenterOffset: 140
-                font.pointSize: 24
+                anchors.horizontalCenterOffset: 140 * scaleFactor
+                font.pointSize: 24 * scaleFactor
+
+
+                Button {
+                    id: ephysAnalyzerCircle
+                    width: 7 * scaleFactor
+                    height: 7 * scaleFactor
+                    text: "Circle button"
+                    anchors.top: parent.bottom
+                    anchors.topMargin: 0
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.horizontalCenterOffset: -30
+                    display: AbstractButton.IconOnly
+                    flat: true
+                    down: false
+                    background: Rectangle {
+                        implicitWidth: 140 * scaleFactor
+                        implicitHeight: width
+                        border.width: 0
+                        color: topBarColor
+                        radius: width * 0.5
+                    }
+
+                    Label {
+                        id: ericCrow
+                        y: -3
+                        color: topBarColor
+                        text: qsTr("Eric Crow")
+                        anchors.right: parent.left
+                        anchors.rightMargin: 10
+                        font.family: "PragmaticaLightC"
+                        font.pointSize: 9 * scaleFactor
+                    }
+
+
+                    Label {
+                        id: cameronCordero
+                        y: -3
+                        color: topBarColor
+                        text: qsTr("Cameron Cordero")
+                        anchors.left: parent.right
+                        anchors.leftMargin: 10
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.family: "PragmaticaLightC"
+                        font.pointSize: 9 * scaleFactor
+                    }
+
+                }
 
             }
 
@@ -1052,6 +1099,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.33}
+    D{i:0;formeditorZoom:0.33}D{i:41}
 }
 ##^##*/
