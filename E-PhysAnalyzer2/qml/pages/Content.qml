@@ -841,7 +841,7 @@ Item {
             anchors.topMargin: 85 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Enter in your drug name, trace number, and any traces thatyou want excluded"
+            textInfo: "Enter in your drug name, trace number, and any traces that you want excluded"
 
             OpacityAnimator on opacity {
                 id: drugNamesToolTipAnimation
@@ -885,7 +885,7 @@ Item {
             anchors.topMargin: 88 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Quickly generate a color pattern for time regions on the graph"
+            textInfo: "Quickly generate a color pattern for time regions on the graph using parameters you select"
 
             OpacityAnimator on opacity {
                 id: generatePatternToolTipAnimation
@@ -908,7 +908,7 @@ Item {
             anchors.topMargin: 88 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Or create your own custom color regions"
+            textInfo: "Or create your own custom color regions by entering time intervals and colors here. You can type your own colors in the text box, and available colors are in the readme"
 
 
             OpacityAnimator on opacity {
@@ -931,7 +931,7 @@ Item {
             anchors.topMargin: 270 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Post Analysis Graph information goes here"
+            textInfo: "Here, you can enter the axis limits, the defailt is displayed in the boxes, and it starts the x-axis at the beginning of the baseline time, so if you started calculating baseline 10 minutes before drug addition, this will start at -10 min"
 
 
             OpacityAnimator on opacity {
@@ -954,7 +954,7 @@ Item {
             anchors.topMargin: 270 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Graph Quality information goes here (DPI)"
+            textInfo: "Here you can adjust some graph settings, such as DPI for the output graph quality as well as whether or not you want the entire graph to be a single color"
 
 
             OpacityAnimator on opacity {
@@ -980,7 +980,7 @@ Item {
             anchors.topMargin: 415 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Minute Averaged Graph Information goes here"
+            textInfo: "This information is the same, however it is calculated for the graph that averages each data point during a single minute interval"
 
 
             OpacityAnimator on opacity {
@@ -1005,7 +1005,7 @@ Item {
             anchors.topMargin: 415 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Baseline Information goes here"
+            textInfo: "The peak average for the time interval used to calculate the baseline goes here. You can enter how long you monitored the cells to determine baseline activity as well as the color the displayed line is"
 
 
             OpacityAnimator on opacity {
@@ -1030,7 +1030,7 @@ Item {
             anchors.topMargin: 515 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Removing outliers using z-statistics goes here"
+            textInfo: "You can also remove outliers using values greater than an inputted z-statistic, the option is here"
 
 
             OpacityAnimator on opacity {
