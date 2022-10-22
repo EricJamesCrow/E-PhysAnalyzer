@@ -841,7 +841,7 @@ Item {
             anchors.topMargin: 85 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Enter in your drug name, trace number, and any traces that need to be excluded"
+            textInfo: "Enter in your drug name, trace number, and any traces thatyou want excluded"
 
             OpacityAnimator on opacity {
                 id: drugNamesToolTipAnimation
@@ -885,7 +885,7 @@ Item {
             anchors.topMargin: 88 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Quickly generate a pattern for the regions on the graph"
+            textInfo: "Quickly generate a color pattern for time regions on the graph"
 
             OpacityAnimator on opacity {
                 id: generatePatternToolTipAnimation
@@ -908,7 +908,7 @@ Item {
             anchors.topMargin: 88 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Or create an individual region"
+            textInfo: "Or create your own custom color regions"
 
 
             OpacityAnimator on opacity {
@@ -931,7 +931,7 @@ Item {
             anchors.topMargin: 270 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Post Analysis Graph Information goes here"
+            textInfo: "Post Analysis Graph information goes here"
 
 
             OpacityAnimator on opacity {
@@ -954,7 +954,7 @@ Item {
             anchors.topMargin: 270 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Graph Quality Information goes here"
+            textInfo: "Graph Quality information goes here (DPI)"
 
 
             OpacityAnimator on opacity {
@@ -1030,7 +1030,7 @@ Item {
             anchors.topMargin: 515 * scaleFactor
             z: 3
             opacity: 0
-            textInfo: "Z-Score Information goes here"
+            textInfo: "Removing outliers using z-statistics goes here"
 
 
             OpacityAnimator on opacity {
