@@ -56,6 +56,7 @@ Rectangle {
         id: canvas
         x: 180 * scaleFactor
         //            anchors.fill: parent
+        visible: false
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top

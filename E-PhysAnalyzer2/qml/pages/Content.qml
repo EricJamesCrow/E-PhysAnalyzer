@@ -877,7 +877,7 @@ Item {
         ToolTip {
             id: generatePatternToolTip
             width: 150 * scaleFactor
-            height: 130 * scaleFactor
+            height: 170 * scaleFactor
             visible: startup === 5
             anchors.left: rightContent.left
             anchors.top: rightContent.top
@@ -900,7 +900,7 @@ Item {
         ToolTip {
             id: newRegionToolTip
             width: 150 * scaleFactor
-            height: 90 * scaleFactor
+            height: 250 * scaleFactor
             visible: startup === 7
             anchors.left: rightContent.left
             anchors.top: rightContent.top
@@ -923,7 +923,7 @@ Item {
         ToolTip {
             id: postAnalysisToolTip
             width: 150 * scaleFactor
-            height: 125 * scaleFactor
+            height: 350 * scaleFactor
             visible: startup === 9
             anchors.left: rightContent.left
             anchors.top: rightContent.top
@@ -946,7 +946,7 @@ Item {
         ToolTip {
             id: graphQualityToolTip
             width: 150 * scaleFactor
-            height: 125 * scaleFactor
+            height: 250 * scaleFactor
             visible: startup === 12
             anchors.left: rightContent.left
             anchors.top: rightContent.top
@@ -972,7 +972,7 @@ Item {
         ToolTip {
             id: minAvgToolTip
             width: 150 * scaleFactor
-            height: 125 * scaleFactor
+            height: 225 * scaleFactor
             visible: startup === 10
             anchors.left: rightContent.left
             anchors.top: rightContent.top
@@ -997,7 +997,7 @@ Item {
         ToolTip {
             id: baselineToolTip
             width: 150 * scaleFactor
-            height: 125 * scaleFactor
+            height: 325 * scaleFactor
             visible: startup === 13
             anchors.left: rightContent.left
             anchors.top: rightContent.top
@@ -1022,7 +1022,7 @@ Item {
         ToolTip {
             id: zScoreToolTip
             width: 150 * scaleFactor
-            height: 125 * scaleFactor
+            height: 190 * scaleFactor
             visible: startup === 11
             anchors.left: rightContent.left
             anchors.top: rightContent.top
@@ -1099,6 +1099,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.33}D{i:41}
+    D{i:0;formeditorZoom:0.33}
 }
 ##^##*/

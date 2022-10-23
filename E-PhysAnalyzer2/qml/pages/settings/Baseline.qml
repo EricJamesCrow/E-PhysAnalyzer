@@ -100,7 +100,7 @@ Rectangle {
     anchors.verticalCenter: baselineValueLabel.verticalCenter
     anchors.verticalCenterOffset: 0
     font.pointSize: 8 * scaleFactor
-    anchors.horizontalCenterOffset: 45 * scaleFactor
+    anchors.horizontalCenterOffset: 60 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
     placeholderText: "gray"
     }
@@ -111,7 +111,7 @@ Rectangle {
     height: 20 * scaleFactor
     anchors.verticalCenter: baselineTimeLabel.verticalCenter
     anchors.verticalCenterOffset: 0
-    anchors.horizontalCenterOffset: 45 * scaleFactor
+    anchors.horizontalCenterOffset: 60 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
     placeholderText: "10"
     validator: IntValidator {bottom: 1; top: 100}
@@ -122,7 +122,7 @@ Rectangle {
     y: 90 * scaleFactor
     color: "#087589"
     text: qsTr("Baseline time (min):")
-    font.pointSize: 7 * scaleFactor
+    font.pointSize: 8 * scaleFactor
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.horizontalCenterOffset: -26 * scaleFactor
     font.family: "PragmaticaLightC"
@@ -161,10 +161,10 @@ Rectangle {
         id: baselineValueLabel
         y: 50 * scaleFactor
         color: "#087589"
-        text: qsTr("Baseline value:")
+        text: qsTr("Baseline color:")
         anchors.horizontalCenter: parent.horizontalCenter
         font.family: "PragmaticaLightC"
-        anchors.horizontalCenterOffset: -25 * scaleFactor
+        anchors.horizontalCenterOffset: -13 * scaleFactor
         font.pointSize: 8 * scaleFactor
     }
 }
