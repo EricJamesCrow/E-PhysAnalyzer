@@ -1,4 +1,0 @@
-02.14.2022
-  Version 1.0.1
-  Added functionality to remove values with a 'z-score' of user entered value, defaulting to 2.5
-  Minor bug fixes and error message improvements

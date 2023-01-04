@@ -1,3 +1,0 @@
-{
-    "files": ["qml/pages/README.qml","qml/controls/SettingsButton.qml","main.qml","qml/pages/settingspage.qml","qml/pages/graphSettings.qml","qml/pages/fileLabels.qml","qml/pages/runpage.qml","qml/pages/testColorsPage.qml","main.py","qml/pages/chosenFiles.qml","qml/controls/NewButton.qml","qml/pages/ShowColors.qml","fonts.qrc"]
-}
