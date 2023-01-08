@@ -5,9 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import re
 import datetime
-from uncertainties import ufloat
 from threading import *
-from math import trunc
 
 class Analysis(Thread):
     def mkdir_outputs(self, file, custom):
@@ -162,7 +160,7 @@ class Analysis(Thread):
                     except KeyError:
                         last_region = True
                     except:
-                        print('Error')
+                        print('Error 163')
 
                     if not last_region:
                         if time_from_drug < color_regions_dict[current_region][0]:
@@ -185,9 +183,9 @@ class Analysis(Thread):
                         elif time_from_drug >= color_regions_dict[current_region][1]:
                             color = default_color
                         else:
-                            print("shits broken bro at last region section line 166")
+                            print("Error 186")
                     else:
-                        print("wtf is happening rn line 145")
+                        print("Error 188")
 
 
                     # if the trace is part of the excluded traces, or is going to be ignored for its z-score
