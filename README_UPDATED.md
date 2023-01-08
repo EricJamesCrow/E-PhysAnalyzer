@@ -75,7 +75,7 @@ NOTE: The program will automatically save the results into the input file(s) dir
         - High = 600 dpi
         - Ultra = 1000 dpi
         - The user can also select 'Custom' which will allow them to enter their own dpi.
-- Baseline Settings
+- **Baseline Settings**
     - The slider allows users to display a dashed line that is equal to the calculated baseline value.
     - The baseline line color can be changed in the text entry box below (default = gray).
     - The time the user measured the baseline and what time region you want to calculate from can be entered in the box at the bottom (default = 10).
