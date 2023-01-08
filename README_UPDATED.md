@@ -61,7 +61,7 @@ Post Analysis and Minute Averaged Graphs
 - X-Max. (default = auto adjust scale based on data) is a parameter that allows you to change the x-axis maximum value.
 - Y-Min. (default = auto adjust scale based on data) is a parameter that allows you to change the y-axis minimum value.
 - Y-Max. (default = auto adjust scale based on data) is a parameter that allows you to change the y-axis maximum value.
-- For the Minute Averaged graph, the defaults for the y axis are consistent (25-225) so that the data is more comparable.
+- For the Minute Averaged graph, the defaults for the y axis are consistent (25-225) so that the data is more comparable.__
 Outliers
 - We have given the option to remove outliers from the data set as well as graphs (default = True). This will calculate standard deviations for the data set and if on, will remove outliers that are outside of a given z-score (default = 2.5).
 - explained simply, it will remove data points from all calculations and resulting data that occurs outside of given number of standard deviations (default = 2.5). 2.5 is the default based on standard practice in statistics.
