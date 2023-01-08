@@ -701,7 +701,7 @@ Window {
                     anchors.top: parent.top
                     z: 1
                     anchors.leftMargin: 217 * scaleFactor
-                    anchors.topMargin: 107 * scaleFactor
+                    anchors.topMargin: 127 * scaleFactor
                     onClicked: {mainWindow.close()}
                     Keys.onReturnPressed: mainWindow.close()
 
@@ -1077,6 +1077,25 @@ Window {
                     duration: 250
                     running: false
                 }
+            }
+
+            CustomButton {
+                id: skipTutorial
+                x: 655 * scaleFactor
+                y: 385 * scaleFactor
+                width: 100 * scaleFactor
+                height: 20 * scaleFactor
+                text: qsTr("Skip Tutorial")
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 25 * scaleFactor
+                anchors.bottomMargin: 25 * scaleFactor
+                colorDefault: "#087589"
+                colorMouseOver: "#b8e3ee"
+                colorPressed: "#357aac"
+                fontColorMouseOver: "#087589"
+                visible: settings.startup <= 22 && settings.startup >= 1
+                onClicked: {settings.startup = 23; Startup.tooltips()}
             }
 
         }

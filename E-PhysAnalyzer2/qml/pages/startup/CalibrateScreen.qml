@@ -7,6 +7,9 @@ import "../../javascript/settings.js" as Settings
 import "../../javascript/startup.js" as Startup
 
 Rectangle {
+
+    property int scaleFactor: 1
+
     id: calibrateScreen
     width: 637 /** scaleFactor*/
     height: 258 /** scaleFactor*/
@@ -44,9 +47,10 @@ Rectangle {
     CustomButton {
         id: nextBtn
         y: 180 * scaleFactor
-        width: 58 * scaleFactor
+        width: 80 * scaleFactor
         height: 22 * scaleFactor
-        text: "Next"
+        text: "Show Tutorial"
+        anchors.horizontalCenterOffset: -75 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
         colorDefault: settings.buttonColorDefault
         colorMouseOver: settings.backgroundColor
@@ -54,25 +58,39 @@ Rectangle {
         fontColorMouseOver: settings.buttonColorDefault
         onClicked: Startup.tooltips()
         Keys.onReturnPressed: if(nextBtn.focus === true && calibrateScreen.visible === true) return Startup.tooltips()
+
+        CustomButton {
+            id: nextBtn1
+            x: 125 * scaleFactor
+            y: 0
+            width: 120 * scaleFactor
+            height: 22 * scaleFactor
+            text: "Start E-PhysAnalyzer"
+            anchors.horizontalCenterOffset: 135 * scaleFactor
+            anchors.horizontalCenter: parent.horizontalCenter
+            colorPressed: settings.buttonColorPressed
+            fontColorMouseOver: settings.buttonColorDefault
+            colorDefault: settings.buttonColorDefault
+            colorMouseOver: settings.backgroundColor
+            onClicked: Startup.skipTutorial()
+            Keys.onReturnPressed: if(nextBtn1.focus === true && calibrateScreen.visible === true) return Startup.skipTutorial()
+            Keys.onTabPressed: nextBtn.focus = true
+        }
     }
 
     Triangle {
-            id: triangle
-            x: 8 * scaleFactor
-            y: 8 * scaleFactor
-            width: 20 * scaleFactor
-            height: 20 * scaleFactor
-            z: 0
-            rotation: 0
-            fillStyle: "#5ac1d0"
-            strokeStyle: "#5ac1d0"
-            clip: false
-            fill: true
-        }
+        id: triangle
+        x: 8 * scaleFactor
+        y: 8 * scaleFactor
+        width: 20 * scaleFactor
+        height: 20 * scaleFactor
+        z: 0
+        rotation: 0
+        fillStyle: "#5ac1d0"
+        strokeStyle: "#5ac1d0"
+        clip: false
+        fill: true
+    }
 }
 
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:1.1}D{i:2}
-}
-##^##*/
+

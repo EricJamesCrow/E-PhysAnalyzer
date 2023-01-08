@@ -11,6 +11,11 @@ const tooltips = () => {
     backend.start_up(startup)
 }
 
+const skipTutorial = () => {
+    settings.startup = 23
+    tooltips()
+}
+
 const genPattern = num => {
     if(num === 0) {
         return Region.expandDialogBox()

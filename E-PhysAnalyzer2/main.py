@@ -214,7 +214,10 @@ class StartUp(Thread):
         elif self.num == 23:
             backend.emitStartUp.emit()
         elif self.num == 24:
-            time.sleep(5)
+            backend.startUpClearInputFields.emit()
+            backend.startupClearRegions.emit()
+            backend.startupClearRegions.emit()
+            time.sleep(1.5)
             backend.welcomeToEphysAnalyzer.emit()
             time.sleep(0.25)
             backend.emitStartUp.emit()
