@@ -79,7 +79,7 @@ NOTE: The program will automatically save the results into the input file(s) dir
     - The slider allows users to display a dashed line that is equal to the calculated baseline value.
     - The baseline line color can be changed in the text entry box below (default = gray).
     - The time the user measured the baseline and what time region you want to calculate from can be entered in the box at the bottom (default = 10).
-# Reset Button
+###### Reset Button
     - To reset all settings to default for THIS PAGE ONLY, press the Reset button.
 
 #### 3. Help, General Settings, and About 
