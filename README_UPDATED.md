@@ -19,7 +19,7 @@ Windows installation instructions:
 -	To properly run the program with all of the features, use the 'run.bat' file to start the program
 
 Linux installation instructions:
-- From the Linux command line, input the following commands:
+###### - From the Linux command line, input the following commands:
   - git clone https://github.com/EricJamesCrow/E-PhysAnalyzer.git
   - pip install -r E-PhysAnalyzer/Info/requirements.txt
   - cd E-PhysAnalyzer/E-PhysAnalyzer
