@@ -84,10 +84,9 @@ While viewing the dataset in Clampfit, save the data set as an .atf file and sav
     - The time the user measured the baseline and what time region you want to calculate from can be entered in the box at the bottom (default = 10).
 - **Reset Button**
     - To reset all settings to default for THIS PAGE ONLY, press the Reset button.
-***
 #### 3. Help, General Settings, and About 
 ***
-#### 4. Interpreting Results
+## 4. Interpreting Results
 As mentioned previously, to view results, look in the same directory as the analyzed files and select the 'E-Phys Analyzer YYYY-DD-MM Results' file folder.
 The file creates two graphs and two .csv files, both from the same analysis.
 1. The first dataset labeled 'Post Analysis' comes from the algorithm in 'AnalyzeData.py'. This file contains every data point and a full analysis of each. The corresponding graph has the same values.
