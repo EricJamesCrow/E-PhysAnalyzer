@@ -56,6 +56,8 @@ Regions and Patterns
         - To view a list of all possible matplotlib library colors, use this link https://matplotlib.org/stable/gallery/color/named_colors.html#sphx-glr-gallery-color-named-colors-py.
     - These regions are based on the time, in minutes, that the data point lies between
 Post Analysis and Minute Averaged Graphs
+- Post Analysis graph
+    - This 
 
 <!-- - Within the setup tab lies the parameters and variables that the user can change for running the analysis.
 - There are up to 3 user profiles with complete control and 1 profile designed for a single color.
