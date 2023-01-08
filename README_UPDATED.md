@@ -54,9 +54,8 @@ Regions and Patterns
         - The color pallete will allow you to click any color to replace the current color in the region.
         - There is the option to manually enter a python matplotlib library color if you need a separate color.
         - To view a list of all possible matplotlib library colors, use this link https://matplotlib.org/stable/gallery/color/named_colors.html#sphx-glr-gallery-color-named-colors-py.
-    - These regions are based on the time, in minutes, that the data point lies between
-Post Analysis and Minute Averaged Graphs
-
+    - These regions are based on the time, in minutes, that the data point lies between Post Analysis and Minute Averaged Graphs
+    - 
 <!-- - Within the setup tab lies the parameters and variables that the user can change for running the analysis.
 - There are up to 3 user profiles with complete control and 1 profile designed for a single color.
 - Defaults for the program are shown in the gray placeholder text.
