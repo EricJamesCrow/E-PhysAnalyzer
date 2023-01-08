@@ -36,7 +36,7 @@ While viewing the dataset in Clampfit, save the data set as an .atf file and sav
 #### 1. Selecting files and running the program
 - Begin by selecting files using the folder button in the top left of the screen, which should bring up your native file browser.
 - From there you can navigate to the directory containing the file(s) you would like to analyze and select one or multiple files.  
-NOTE: The program will automatically save the results into the input file(s) directory. If you want to use a custom output directory, go to Settings -> General then turn on Custom Output Directory. From there you will be prompted to select a directory to save your files.
+**NOTE**: The program will automatically save the results into the input file(s) directory. If you want to use a custom output directory, go to Settings -> General then turn on Custom Output Directory. From there you will be prompted to select a directory to save your files.
 - Once files are selected, the file display box will populate with the file name and text entry boxes for: Drug Name, Trace Number, and Excluded Traces
     - Drug Name: Enter the name of the drug used in the experiment, this will be displayed in the x-axis as well as the data files.
     - Trace Number: Enter the trace number in which the drug was added, this becomes the time point where the baseline and time relative to the drug addition is calculated.
@@ -45,7 +45,7 @@ NOTE: The program will automatically save the results into the input file(s) dir
 - Upon completion, a window will pop up with options to close, or open your native file chooser to the output directory.
 - If any files were unable to process, they will appear in red below the completion statement, if this occurs, it is usually due to an incalculable trace number. Such as extremely high or low values.
 #### 2. Customizing run settings
-- Regions and Patterns
+- **Regions and Patterns**
     - The Regions section is where the user can create color coded regions on the graph.
     - There are two ways a user can create these regions. Using the Generate Pattern or New Region buttons.
         - Generate Pattern: This button will give the user options to create regions from a certain start and end time, increasing incrementally by a given number of minutes.
@@ -55,17 +55,17 @@ NOTE: The program will automatically save the results into the input file(s) dir
             - There is the option to manually enter a python matplotlib library color if you need a separate color.
             - To view a list of all possible matplotlib library colors, use this link https://matplotlib.org/stable/gallery/color/named_colors.html#sphx-glr-gallery-color-named-colors-py.
         - These regions are based on the time, in minutes, that the data point lies between.
-- Post Analysis and Minute Averaged Graphs
+- **Post Analysis and Minute Averaged Graphs**
     - In these settings you can change a few different values. Both of these graph settings are the same, but applied to each graph.
     - X-Min. (default = negative value equivalent to baseline time) is a parameter that allows you to change the x-axis minimum value.
     - X-Max. (default = auto adjust scale based on data) is a parameter that allows you to change the x-axis maximum value.
     - Y-Min. (default = auto adjust scale based on data) is a parameter that allows you to change the y-axis minimum value.
     - Y-Max. (default = auto adjust scale based on data) is a parameter that allows you to change the y-axis maximum value.
     - For the Minute Averaged graph, the defaults for the y axis are consistent (25-225) so that the data is more comparable.
-- Outliers
+- **Outliers**
     - We have given the option to remove outliers from the data set as well as graphs (default = True). This will calculate standard deviations for the data set and if on, will remove outliers that are outside of a given z-score (default = 2.5).
     - explained simply, it will remove data points from all calculations and resulting data that occurs outside of given number of standard deviations (default = 2.5). 2.5 is the default based on standard practice in statistics.
-- Color Options
+- **Color Options**
     - The first color option is to have the entire graph's data points the same color, regardless of region or pattern information (default = False).
     - If the Single Color option is True, it will make all data points the specified color (default = gray).
     - Graph Quality allows you to select a DPI (dots per inch) for the graph output (default = medium).
@@ -79,7 +79,7 @@ NOTE: The program will automatically save the results into the input file(s) dir
     - The slider allows users to display a dashed line that is equal to the calculated baseline value.
     - The baseline line color can be changed in the text entry box below (default = gray).
     - The time the user measured the baseline and what time region you want to calculate from can be entered in the box at the bottom (default = 10).
-- Reset Button
+- **Reset Button**
     - To reset all settings to default for THIS PAGE ONLY, press the Reset button.
 
 #### 3. Help, General Settings, and About 
