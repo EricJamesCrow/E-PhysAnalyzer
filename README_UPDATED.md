@@ -20,10 +20,12 @@ Windows installation instructions:
 
 Linux installation instructions:
 ###### From the Linux command line, input the following commands:
-- git clone https://github.com/EricJamesCrow/E-PhysAnalyzer.git
-- pip install -r E-PhysAnalyzer/Info/requirements.txt
-- cd E-PhysAnalyzer/E-PhysAnalyzer
-- python3 main.py
+```console
+git clone https://github.com/EricJamesCrow/E-PhysAnalyzer.git
+pip install -r E-PhysAnalyzer/Info/requirements.txt
+cd E-PhysAnalyzer/E-PhysAnalyzer
+python3 main.py
+```
 
 ***
 ## 2. Input Files and Formats
